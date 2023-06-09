@@ -1,0 +1,111 @@
+\documentclass[12pt,twoside]{report}
+
+\usepackage[no-math]{fontspec}
+\setmainfont{Times New Roman}
+
+%\usepackage[hidelinks]{hyperref}
+\usepackage[french]{babel}
+\usepackage[style=english]{csquotes}
+
+\usepackage[authoryear]{natbib}
+\bibliographystyle{abbrvnat}
+
+\usepackage{graphicx} % Required for inserting images
+\graphicspath{{Figures/}}
+
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{textcomp} %Required to use \textdegree
+\usepackage{url}
+\usepackage[locale=FR]{siunitx}
+%\usepackage{tabularray}
+
+%%%%%% Page style
+
+\usepackage[a4paper,top=2.5cm, bottom=2cm, width=165mm, bindingoffset=6mm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\setlength{\headheight}{29.8pt}
+\addtolength{\topmargin}{-13.72pt}
+
+\setlength{\parskip}{8pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[french]{minitoc}
+%\usepackage[nottoc]{tocbibind}
+\usepackage{enumitem}
+\setlist[itemize]{nosep, label={--}}
+\usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
+
+%%%%%% Biblatex settings
+
+%\usepackage[backend=bibtex8, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false]{biblatex} %uniquename=full
+%\addbibresource{references.bib}
+
+% \DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
+% \renewbibmacro{in:}{ %eliminates the 'in' in the biblio
+%     \ifentrytype{article}{}{%
+%     \printtext{\bibstring{in}\intitlepunct}}}
+
+%\setlength\bibitemsep{1.5\itemsep}
+%\DeclareFieldFormat[inbook]{citetitle}{#1}
+%\DeclareFieldFormat[inbook]{title}{#1}
+%\DeclareFieldFormat[article]{citetitle}{#1}
+%\DeclareFieldFormat[article]{title}{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{subfiles}
+
+\title{Évolution future de l'activité cyclonique tropicale}
+\author{William Dulac}
+\date{2023}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\dominitoc
+
+\chapter*{Remerciements}
+Merci.
+
+\chapter*{Résumé}
+Ici sera le résumé
+
+\chapter*{Abstract}
+Abstract goes here
+
+\tableofcontents
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\mtcaddchapter{Introduction}
+\subfile{Chapitres/introduction}
+
+\chapter{Cyclones tropicaux}
+\subfile{Chapitres/chapitre1}
+
+\chapter{Détection objective de cyclones tropicaux dans les simulations}
+\subfile{Chapitres/chapitre2}
+
+\chapter{Les indices de cyclogénèses}
+\subfile{Chapitres/chapitre3}
+
+\chapter{Application de l'indice en climat plus chaud}
+\subfile{Chapitres/chapitre4}
+
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+\subfile{Chapitres/conclusion}
+
+% \appendix
+% \chapter{Appendix Title}
+% \subfile{Chapitres/appendix}
+
+%\printbibliography
+\bibliography{references}
+
+\end{document}
