@@ -7,8 +7,8 @@
 \usepackage[french]{babel}
 \usepackage[style=english]{csquotes}
 
-\usepackage[authoryear]{natbib}
-\bibliographystyle{abbrvnat}
+% \usepackage[authoryear]{natbib}
+% \bibliographystyle{abbrvnat}
 
 \usepackage{graphicx} % Required for inserting images
 \graphicspath{{Figures/}}
@@ -44,19 +44,19 @@
 
 %%%%%% Biblatex settings
 
-%\usepackage[backend=bibtex8, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false]{biblatex} %uniquename=full
-%\addbibresource{references.bib}
+\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, natbib=false]{biblatex} %uniquename=full
+\addbibresource{references.bib}
 
-% \DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
-% \renewbibmacro{in:}{ %eliminates the 'in' in the biblio
-%     \ifentrytype{article}{}{%
-%     \printtext{\bibstring{in}\intitlepunct}}}
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
+\renewbibmacro{in:}{ %eliminates the 'in' in the biblio
+    \ifentrytype{article}{}{%
+    \printtext{\bibstring{in}\intitlepunct}}}
 
-%\setlength\bibitemsep{1.5\itemsep}
-%\DeclareFieldFormat[inbook]{citetitle}{#1}
-%\DeclareFieldFormat[inbook]{title}{#1}
-%\DeclareFieldFormat[article]{citetitle}{#1}
-%\DeclareFieldFormat[article]{title}{#1}
+\setlength\bibitemsep{1.5\itemsep}
+\DeclareFieldFormat[inbook]{citetitle}{#1}
+\DeclareFieldFormat[inbook]{title}{#1}
+\DeclareFieldFormat[article]{citetitle}{#1}
+\DeclareFieldFormat[article]{title}{#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -108,7 +108,7 @@ Abstract goes here
 % \chapter{Appendix Title}
 % \subfile{Chapitres/appendix}
 
-%\printbibliography
-\bibliography{references}
+\printbibliography
+%\bibliography{references}
 
 \end{document}
