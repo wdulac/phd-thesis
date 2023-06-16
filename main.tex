@@ -45,7 +45,7 @@
 
 %%%%%% Biblatex settings
 
-\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, natbib=false]{biblatex} %uniquename=full
+\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false]{biblatex} %uniquename=full
 \addbibresource{references.bib}
 
 \DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
@@ -72,12 +72,15 @@
 \dominitoc
 
 \chapter*{Remerciements}
+
 Merci.
 
 \chapter*{Résumé}
+
 Ici sera le résumé
 
 \chapter*{Abstract}
+
 Abstract goes here
 
 \tableofcontents
