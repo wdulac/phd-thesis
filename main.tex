@@ -3,18 +3,39 @@
 \documentclass[12pt,twoside]{report}
 
 
-%\usepackage[hidelinks]{hyperref}
-\usepackage[french]{babel}
-\usepackage[style=english]{csquotes}
-
-% \usepackage[authoryear]{natbib}
-% \bibliographystyle{abbrvnat}
+\usepackage{silence}
+\WarningFilter{minitoc(hints)}{W0023}
+\WarningFilter{minitoc(hints)}{W0028}
+\WarningFilter{minitoc(hints)}{W0030}
+\WarningFilter{minitoc(hints)}{W0024}
 
 %\usepackage{tabularray}
 \usepackage{graphicx} % Required for inserting images
-\graphicspath{{Figures/}}
+\graphicspath{
+    {Figures/}
+    {Figures/Chap1/}
+}
+
+%%%%%% Biblatex settings
+
+\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false]{biblatex} %uniquename=full
+\addbibresource{references.bib}
+
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
+\renewbibmacro{in:}{ %eliminates the 'in' in the biblio
+    \ifentrytype{article}{}{%
+    \printtext{\bibstring{in}\intitlepunct}}}
+
+\setlength\bibitemsep{1.5\itemsep}
+\DeclareFieldFormat[inbook]{citetitle}{#1}
+\DeclareFieldFormat[inbook]{title}{#1}
+\DeclareFieldFormat[article]{citetitle}{#1}
+\DeclareFieldFormat[article]{title}{#1}
 
 %%%%%%% Font and text related settings
+
+\usepackage[french]{babel}
+\usepackage[style=english]{csquotes}
 
 \usepackage[no-math]{fontspec}
 \setmainfont{Times New Roman}
@@ -26,6 +47,17 @@
     mode=math,
     detect-all
 }
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks, % Colours links instead of boxes
+    %linkcolor={red!50!black},
+    linkcolor=black, % Internal links
+    citecolor={blue!50!black}, % References
+    urlcolor={blue!80!black} % External links
+}
+\urlstyle{same}
 
 %%%%%% Page style
 
@@ -44,29 +76,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
 \usepackage[french]{minitoc}
 %\usepackage[nottoc]{tocbibind}
 \usepackage{enumitem}
 \setlist[itemize]{nosep, label={--}}
-\usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
-
-%%%%%% Biblatex settings
-
-\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false]{biblatex} %uniquename=full
-\addbibresource{references.bib}
-
-\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
-\renewbibmacro{in:}{ %eliminates the 'in' in the biblio
-    \ifentrytype{article}{}{%
-    \printtext{\bibstring{in}\intitlepunct}}}
-
-\setlength\bibitemsep{1.5\itemsep}
-\DeclareFieldFormat[inbook]{citetitle}{#1}
-\DeclareFieldFormat[inbook]{title}{#1}
-\DeclareFieldFormat[article]{citetitle}{#1}
-\DeclareFieldFormat[article]{title}{#1}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{subfiles}
 
