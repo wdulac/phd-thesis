@@ -29,7 +29,7 @@
 
 %%%%%% Biblatex settings
 
-\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false]{biblatex} %uniquename=full
+\usepackage[backend=biber, style=authoryear, autocite=inline, maxbibnames=20, minbibnames=20, maxcitenames=2, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false]{biblatex} %uniquename=full
 \addbibresource{references.bib}
 
 \DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} %pour que les noms des références ne soient pas en majuscules
@@ -37,11 +37,19 @@
     \ifentrytype{article}{}{%
     \printtext{\bibstring{in}\intitlepunct}}}
 
+% Apparemment, permet de ne pas avoir les titres d'article entre guillemets ?
 \setlength\bibitemsep{1.5\itemsep}
 \DeclareFieldFormat[inbook]{citetitle}{#1}
 \DeclareFieldFormat[inbook]{title}{#1}
 \DeclareFieldFormat[article]{citetitle}{#1}
 \DeclareFieldFormat[article]{title}{#1}
+
+% Supprime la date de consultation dans la bibliographie pour le(s) types indiqués.
+\AtEveryBibitem{%
+    \ifentrytype{article}{
+            \clearfield{urlyear}
+        }
+    }
 
 %%%%%%% Font and text related settings
 
@@ -145,8 +153,9 @@ Abstract goes here (in english)
 
 % \appendix
 % \chapter{Appendix Title}
-% \subfile{Chapitres/appendix}
+% \subfile{Chapitres/appendix}maxnames
 
+\addcontentsline{toc}{chapter}{Bibliographie}
 \printbibliography
 %\bibliography{references}
 
