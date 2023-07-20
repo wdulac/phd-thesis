@@ -162,7 +162,10 @@ temporelles, y compris la rupture causée par l'avènement de l'ère satellitair
 
 \subsection{Les modèles de climat}
 
-Le terme \textquote{modèle de climat} est souvent utilisé comme un terme parapluie puisqu'il peut se référer aussi bien à un ensemble de modèles fonctionnant en configuration couplée, c'est à dire de façon à ce que chaque composante puisse interagir avec les autres afin de mieux simuler les rétroactions, comme il peut se référer à une seule composante, celle-ci étant en général la composante atmosphérique.
+Le terme \textquote{modèle de climat} est souvent utilisé comme un terme parapluie puisqu'il peut se référer aussi bien à un ensemble de modèles fonctionnant en configuration couplée, c'est à dire de façon à ce que chaque composante puisse interagir avec les autres afin de mieux simuler les rétroactions, comme il peut se référer à une seule composante, celle-ci étant en général la composante atmosphérique, à fortiori lorsqu'il s'agit d'étudier les cyclones tropicaux. Dans cet ouvrage,
+sauf indication contraire, c'est ce second usage du terme qui sera privilégié. Les modèles de climat, ou modèles de circulation atmosphériques, sont des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas de temps régulier, sur chacune des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie dynamique du modèle consiste en la résolution à
+chaque pas de temps d'un jeu d'équations différentielles décrivant la circulation atmosphérique, tandis que la physique et les processus prenant place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisées. Les modèles de climat peuvent soit simuler l'atmosphère sur l'entièreté du globe, auquel cas il s'agit de modèles de circulation globaux (\textit{Global Circulation Model}, GCM), ou bien ne simuler qu'un domaine spécifique~---~il s'agit alors de modèles à
+aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM).
 
 \begin{figure}[t]
     \centering
@@ -170,6 +173,10 @@ Le terme \textquote{modèle de climat} est souvent utilisé comme un terme parap
     \caption{Représentation schématique du modèle couplé océan-atmosphère CNRM-CM6-1. \hbox{ARPEGE} constitue la composante atmosphérique de CNRM-CM, ainsi que celle du modèle système-terre CNRM-ESM \parencite{seferian_evaluation_2019}. Diagramme issu de \cite{voldoire_evaluation_2019}.}
     \label{fig:cnrm-cm6}
 \end{figure}
+
+Au CNRM, le modèle atmosphérique global est nommé ARPEGE-Climat \parencite{deque_arpege_1994} et est dérivé du modèle de prévision numérique du temps ARPEGE/IFS, développé conjointement par Météo-France et le Centre européen pour les prévisions météorologiques à moyen terme (CEPMMT, ou juste CEP ; en anglais \textit{European Centre for Medium-Range Weather Forecasts}, ECMWF). En tant que composante atmosphérique dans le modèle couplé océan-atmosphère \nolinebreak CNRM-CM6-1
+\parencite{voldoire_evaluation_2019}, ARPEGE est doté d'une résolution horizontale d'environ \ang{1.4} à l'équateur, ou approximativement \SI{140}{\kilo\metre}, et \num{91} niveaux verticaux, résolution qui se situe à peu près dans la moyenne des modèles globaux modernes \parencite{ipcc_annex_2021}. Une version haute résolution du modèle ARPEGE existe toutefois et est utilisée dans CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021} pour atteindre
+une résolution horizontale de l'ordre de \ang{0.5}, soit \SI{50}{\kilo\metre}. 
 
 \subsection{Les cyclones dans les modèles de climat}
 
