@@ -115,22 +115,50 @@ Un cyclone tropical consomme environ \SI{15}{\mega\joule} par jour de chaleur se
 flottabilité n'est pas suffisante pour assurer la convection \parencite{palmen_formation_1948}~--- mais également que cette température soit atteinte sur au moins \SI{60}{\metre} de profondeur d'eau \parencite{leipper_observed_1967,perlboth_hurricane_1967}. En effet, si ce seuil de SST n'est atteint qu'en surface, le phénomène d'upwelling apportera de l'eau plus froide qui ne permettra plus d'alimenter le système. Ce besoin important en chaleur a généralement pour conséquence la désintensification rapide du TC mature lorsqu'il atteint les terres.
 
 \subsubsection{Humidité relative et instabilité atmosphérique}
-X
+
 Ces deux derniers facteurs que sont l'humidité relative en moyenne troposphère, c'est à dire autour de \SI{600}{\hecto\pascal}, et la notion de stabilité atmosphérique, sont, dans le cadre de la cyclogénèse, étroitement liés. La stabilité de l'atmosphère, à fortiori lorsqu'elle est chargée en vapeur d'eau, dépend du gradient vertical de température potentielle équivalente, notée $\theta_e$ et définie comme la température que la parcelle d'air atteindrait si tout son contenu en vapeur d'eau
 venait à condenser et qu'elle était ramenée au niveau du sol de manière adiabatique. Le processus de convection des cumulonimbus, à l'origine de la formation d'un cyclone tropical, nécessite en effet une forte diminution de $\theta_e$ entre la couche limite atmosphérique et la moyenne troposphère, c'est à dire une atmosphère instable. Par ailleurs, la convection profonde est favorisée par une atmosphère à haute humidité relative en moyenne troposphère, car à température égale, une
 parcelle d'air humide possède une plus grande flottabilité qu'une parcelle d'air sec. Enfin, toujours d'après \cite{gray_tropical_1975}, une humidité relative élevée en haute troposphère favorise les précipitations et donc la libération d'enthalpie qui vient renforcer le cœur chaud du système.
 
 \subsubsection{Climatologies}
 
-\cite{gray_tropical_1975} a montré que le produit des ingrédients de la cyclogénèse est proportionnel à la fréquence d'occurence des cyclones tropicaux.
+La \cref{fig:clim_ingredients} présente les climatologies saisonnières de quatre des éléments favorables à la cyclogénèse que sont la vorticité absolue à \SI{850}{\hecto\pascal}, notée $\zeta_{\text{\SI{850}{\hecto\pascal}}}$; l'humidité relative à \SI{600}{\hecto\pascal}, $\text{RH}_{\text{\SI{600}{\hecto\pascal}}}$ ; l'inverse du cisaillement vertical du vent horizontal entre \SI{200}{\hecto\pascal} et \SI{850}{\hecto\pascal}, noté $1/S_z$ et enfin la SST relative aux
+tropiques. Ces champs sont issus de la réanalyse ERA5 du Centre européen pour les prévisions météorologiques à moyen terme (CEPMMT, ou juste CEP ; en anglais \textit{European Centre for Medium-Range Weather Forecasts}, ECMWF) \parencite{hersbach_era5_2020}, laquelle est décrite plus en détails dans la \cref{sec:chapitre_2}. Notons que la vorticité absolue $\zeta$ à \SI{850}{\hecto\pascal}
+intègre déjà le paramètre de Coriolis, noté $f$, auquel le module de la force éponyme est proportionnel, puisque la vorticité absolue est définie comme
+\begin{equation*}
+    \zeta = \zeta_R + \underbrace{2 \Omega \sin \phi}_{f}
+\end{equation*}
+\noindent où $\zeta_R$ est la vorticité relative, définie comme le rotationel du vent tel que mesuré dans le référentiel de la Terre, $\Omega$ la période de rotation de la Terre et $\phi$ la latitude. L'inverse du cisaillement vertical est pris de telle façon à ce que des valeurs élevées indiquent des régions favorables à l'apparition de TC, puisque la présence de cisaillement y est sinon hautement défavorable. La SST est présentée ici comme l'anomalie spatiale de température aux tropiques pour y faire
+apparaître les variations saisonnières plus nettement.
 
-\begin{figure}[t]
+\begin{figure}[tp]
     \centering
-    \includegraphics[width=1\textwidth]{clim_saison_hurel_rotu_shear_sst_et_ibtracs.png}
-    \caption{Climatologies saisonnières du produit de l'humidité relative à \SI{600}{\hecto\pascal}, de la vorticité absolue à \SI{850}{\hecto\pascal}, de l'inverse du cisaillement vertical du vent entre \SI{200}{\hecto\pascal} et \SI{850}{\hecto\pascal} et de la SST, issues des moyennes mensuelles de la réanalyse ERA5 entre 1981 et 2019.
-Sont représentés par des points noirs pour chaque saison les premières observations des systèmes issus de la base de données IBTrACS atteignant le stade de cyclone tropical sur la même période.}
-    \label{fig:ingredients_clim}
+    \includegraphics[width=\textwidth]{clim_saison_hurel_rotu_shear_sst.png}
+    \caption{Climatologies saisonnières de l'humidité relative à \SI{600}{\hecto\pascal}, de la vorticité absolue à \SI{850}{\hecto\pascal}, de l'inverse du cisaillement vertical entre \SI{200}{\hecto\pascal} et \SI{850}{\hecto\pascal} et de la SST relative à la température moyenne le long de la ceinture tropicale, entre \ang{20}S et \ang{20}N, calculées à partir de moyennes mensuelles de la réanalyse ERA5 entre 1979 et 2020 et avec une résolution horizontale de \ang{1}.}
+    \label{fig:clim_ingredients}
 \end{figure}
+
+La SST apparaît comme un des facteurs prédominants dans la répartition spatiale et temporelle de l'activité cyclonique, puisqu'on retrouve sur ces cartes de SST relatives la structure géographique des trajectoires de cyclones tropicaux observés présentés sur la \cref{fig:bassins_TC}. De même, la saisonnalité de la SST semble coïncider avec l'activité mensuelle présentée sur la \cref{fig:saisons_TC} dans la plupart des bassins océaniques, avec des températures relatives de surface des océans très
+prononcées dans l'Atlantique nord et l'Indo-Pacifique nord pendant les saisons Juin~-~Juillet~-~Août (JJA) ainsi que, dans une mesure un peu moindre, durant la saison Septembre~-~Octobre~-~Novembre (SON). Cette configuration spatiale s'inverse dans l'Indo-Pacifique durant les saisons Décembre~-~Janvier~-~Février (DJF) et Mars~-~Avril~-~Mai (MAM), où la partie sud présente une anomalie spatiale plus forte. Une exception à ce lien direct entre SST et l'activité cyclonique observée est
+visible dans le bassin NInd durant JJA. À cette saison, on note, en plus de la SST, une humidité relative élevée ainsi qu'une forte vorticité dans le bassin. Néanmoins, comme précédemment expliqué (c.f \cref{sec:bassins_saisons}), JJA correspond à la saison de la mousson indienne, laquelle apporte du cisaillement vertical important, si bien que $1/S_z$ avoisine zéro, correspondant exactement à la rupture visible sur la \cref{fig:saisons_TC}, ce qui illustre donc à nouveau le rôle essentiel du
+cisaillement dans le processus de cyclogénèse. La climatologie de ces ingrédients fournit par ailleurs des indices sur la rareté des cyclones tropicaux dans l'océan Atlantique sud. La SST ne s'éloigne guère de la moyenne tropicale tout au long de l'année, l'humidité y est beaucoup moins présente que dans les autres bassin d'activité et la région présente par ailleurs du cisaillement, avec une baisse durant DJF. Selon \cite{gray_global_1968}, il n'y a généralement pas de ZCIT dans ce
+secteur non plus, ce qui prive la région des précurseurs qui peuvent en être issus. 
+
+En première approche, il est possible d'estimer la climatologie spatiale et saisonnière des bassins cycloniques en prenant simplement le produit des quatre variables présentées sur la \cref{fig:clim_ingredients}. C'est ce que montre la \cref{fig:produit_ingredients}, avec en superposition les premières observations des trajectoires des cyclones tropicaux observés entre 1981 et 2019, celles là mêmes qui sont présentées sur la \cref{fig:bassins_TC}. Ce produit est alors défini comme suit :
+\begin{equation*}
+    10^{-4} \times \text{RH}_{\SI{600}{\hecto\pascal}} \times \zeta_{\SI{850}{\hecto\pascal}} \times \frac{1}{S_z} \times \text{SST} \quad \text{[$10^{-7}$ K m$^{-1}$ \SI{650}{\pascal}}]
+\end{equation*}
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=1\textwidth]{clim_saison_produit_ingredients_et_ibtracs.png}
+    \caption{Climatologies saisonnières du produit des quatre variables présentées sur la \cref{fig:clim_ingredients}, à l'exception de la SST qui est ici simplement la température de surface de l'océan, sans considérer l'écart aux tropiques.
+    Sont représentés par des points noirs pour chaque saison les premières observations des trajectoires présentées sur la \cref{fig:bassins_TC}.}
+    \label{fig:produit_ingredients}
+\end{figure}
+\noindent Cette figure montre un excellent accord entre le produit des quatre variables et l'activité cyclonique observée, aussi bien dans la répartition géographique que temporelle. Quelques points de discorde demeurent cependant, notamment durant les saisons DJF et SON dans l'océan Pacifique sud et nord, respectivement, où la combinaison des variables indique des zones favorables jusque dans les moyennes latitudes, tandis que l'activité cyclonique y est quasi inexistante.
+On distingue dans ces zones l'empreinte conjointe de l'humidité relative et du cisaillement, lesquelles présentent la même structure durant ces saisons sur la \cref{fig:clim_ingredients}. La constatation selon laquelle la fréquence d'occurrence des cyclones tropicaux en un lieu donné puisse être proportionnel à une combinaison de variables de grande échelles, découverte attribuée à \cite{gray_tropical_1975}, est à l'origine de ce qui sera nommé par la suite les indices de
+cyclogénèse, et qui seront abordés plus en détails dans la \cref{sec:tracking_vs_indices}, puis dans le \cref{sec:chapitre_3}.
+
 
 % \subsection{Modèles conceptuels de fonctionnement}
 % 
@@ -184,7 +212,7 @@ aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM)
     \label{fig:cnrm-cm6}
 \end{figure}
 
-Au CNRM, le modèle atmosphérique global est nommé ARPEGE-Climat \parencite{deque_arpege_1994} et est dérivé du modèle de prévision numérique du temps ARPEGE/IFS, développé conjointement par Météo-France et le Centre européen pour les prévisions météorologiques à moyen terme (CEPMMT, ou juste CEP ; en anglais \textit{European Centre for Medium-Range Weather Forecasts}, ECMWF). En tant que composante atmosphérique dans le modèle couplé océan-atmosphère \nolinebreak CNRM-CM6-1
+Au CNRM, le modèle atmosphérique global est nommé ARPEGE-Climat \parencite{deque_arpege_1994} et est dérivé du modèle de prévision numérique du temps ARPEGE/IFS, développé conjointement par Météo-France et le CEPMMT. En tant que composante atmosphérique dans le modèle couplé océan-atmosphère \nolinebreak CNRM-CM6-1
 \parencite{voldoire_evaluation_2019}, ARPEGE est doté d'une résolution horizontale d'environ \ang{1.4} à l'équateur, ou approximativement \SI{140}{\kilo\metre}, et \num{91} niveaux verticaux, résolution qui se situe à peu près dans la moyenne des modèles globaux modernes \parencite{ipcc_annex_2021}. Une version haute résolution du modèle ARPEGE existe toutefois et est utilisée dans CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021} pour atteindre
 une résolution horizontale de l'ordre de \ang{0.5}, soit \SI{50}{\kilo\metre}. 
 
@@ -196,7 +224,7 @@ une résolution horizontale de l'ordre de \ang{0.5}, soit \SI{50}{\kilo\metre}.
 
 \cite{seneviratne_weather_2021}
 
-\subsection{Détection objective v.s indices de cyclogénèse}
+\subsection{Détection objective v.s indices de cyclogénèse}\label{sec:tracking_vs_indices}
 
 %-------------------------------------------------------------------------------
 \section{Synthèse}
