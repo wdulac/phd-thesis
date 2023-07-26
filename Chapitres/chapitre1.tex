@@ -210,13 +210,24 @@ aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM)
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{cnrm-cm6.jpg}
-    \caption{Représentation schématique du modèle couplé océan-atmosphère CNRM-CM6-1. \hbox{ARPEGE} constitue la composante atmosphérique de CNRM-CM, ainsi que celle du modèle système-terre CNRM-ESM \parencite{seferian_evaluation_2019}. Diagramme issu de \cite{voldoire_evaluation_2019}.}
+    \caption{Représentation schématique du modèle couplé océan-atmosphère CNRM-CM6-1. \hbox{ARPEGE} constitue la composante atmosphérique de CNRM-CM, ainsi que celle du modèle système-terre CNRM-ESM \parencite{seferian_evaluation_2019}. Illustration issue de \cite{voldoire_evaluation_2019}.}
     \label{fig:cnrm-cm6}
 \end{figure}
 
 Au CNRM, le modèle atmosphérique global est nommé ARPEGE-Climat \parencite{deque_arpege_1994} et est dérivé du modèle de prévision numérique du temps ARPEGE/IFS, développé conjointement par Météo-France et le CEPMMT. En tant que composante atmosphérique dans le modèle couplé océan-atmosphère \nolinebreak CNRM-CM6-1
-\parencite{voldoire_evaluation_2019}, ARPEGE est doté d'une résolution horizontale d'environ \ang{1.4} à l'équateur, ou approximativement \SI{140}{\kilo\metre}, et \num{91} niveaux verticaux, résolution qui se situe à peu près dans la moyenne des modèles globaux modernes \parencite{ipcc_annex_2021}. Une version haute résolution du modèle ARPEGE existe toutefois et est utilisée dans CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021} pour atteindre
-une résolution horizontale de l'ordre de \ang{0.5}, soit \SI{50}{\kilo\metre}. 
+\parencite{voldoire_evaluation_2019}, ARPEGE est doté d'une résolution horizontale d'environ \ang{1.4} à l'équateur, ou approximativement \SI{140}{\kilo\metre}, et \num{91} niveaux verticaux. Cela situe donc ARPEGE à peu près dans la moyenne des modèles globaux modernes puisque la résolution des modèles atmosphériques ayant pris part au sixième et plus récent exercice d'intercomparaison des modèles couplés (\textit{Coupled Model Intercomparison Project}, CMIP, ici CMIP6)
+\parencite{eyring_overview_2016} varie entre \SI{80}{\kilo\metre} et \SI{250}{\kilo\metre} \parencite{ipcc_annex_2021}. Une version dite haute-résolution du modèle ARPEGE existe toutefois et est utilisée dans le modèle couplé CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021}, participant au projet d'intercomparaison des modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une une résolution horizontale de \SI{50}{\kilo\metre} ---~les autre modèles participants se situant entre \SI{20}{\kilo\metre} et \SI{80}{\kilo\metre}. Ainsi, de manière générale un GCM disposant d'une résolution horizontale plus fine que \SI{100}{\kilo\metre} peut être considéré comme un modèle à haute résolution.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{dynamical_downscaling.png}
+    \caption{Illustration schématique du raffinement de la résolution permis par l'utilisation d'un modèle à aire limitée. Ce dernier nécessite que des conditions limites lui soient fournies aux bords du domaine simulé à chaque pas de temps, le plus souvent par l'intermédiaire d'un GCM, à travers une zone tampon, ici représentée par le maillage entourant le domaine du RCM. Illustration issue de \hbox{\cite{giorgi_regional_2015}}.}
+    \label{fig:dynamical_downscaling}
+\end{figure}
+
+La résolution d'un modèle est déterminante dans sa capacité à simuler une activité cyclonique réaliste \parencite{roberts_impact_2020}, aussi bien pour ce qui est de la fréquence d'occurrence que pour l'intensité des systèmes simulés, puisqu'il est estimé qu'un modèle doté d'une résolution plus large que \SI{25}{\kilo\metre} ne saurait produire une quantité réaliste de cyclones de catégorie 4 sur l'échelle de Saffir-Simpson \parencite{davis_resolving_2018}, ce qui laisse entendre que
+la majorité des GCM à haute résolution n'en sont donc pas capables. Il est cependant possible d'accroître la résolution des modèles de circulation atmosphérique. Une des solutions consiste à utiliser un modèle dit à aire limitée, ou modèle de circulation régional (\textit{Regional Circulation Model}, RCM). En ne simulant l'évolution de l'atmosphère que sur un domaine restreint, contrairement aux modèles globaux, ces derniers sont en mesure d'opérer à des résolutions nettement plus fines
+avec des temps de calcul raisonnables. Les RCM peuvent alors fonctionner avec une résolution de \SI{11}{\kilo\metre}.
 
 \subsection{Les cyclones dans les modèles de climat}
 
