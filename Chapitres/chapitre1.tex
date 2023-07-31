@@ -343,19 +343,58 @@ de données IBTrACS (\textit{International Best Track Archive for Climate Stewar
 détaillé que certaines bases de données locales, comme par exemple HURDAT2 pour l'océan Atlantique \parencite{landsea_atlantic_2013} qui fournit une information
 sur la taille des cyclones à travers l'étendue maximale des vents à \num{34}, \num{50} et \SI{64}{\knot} dans les quatre quadrants autour du centre du système,
 elle possède donc néanmoins la qualité de couvrir tous les bassins géographiques et fournit également une grande quantité de méta données permettant de filtrer
-au mieux les informations. Pour cette raison, IBTrACS est la base de données observationnelle qui est utilisée à travers tout ce document.
+au mieux les informations. Pour cette raison, IBTrACS est la base de données observationnelle qui est utilisée à travers tout ce document. Il demeure que toutes
+les sources d'hétérogénéité mentionnées, spatiales comme temporelles, y compris la rupture causée par l'avènement de l'ère satellitaire, constituent autant de
+limites à l'analyse de tendances historiques de l'activité cyclonique tropicale.
 
-Il demeure que toutes les sources d'hétérogénéité mentionnées, spatiales comme temporelles, y compris la rupture causée par l'avènement de l'ère satellitaire,
-constituent autant de limites à l'analyse de tendances historiques de l'activité cyclonique tropicale.
+Une des tendances historiques les plus facilement détectable concerne l'intensité des cyclones tropicaux. À partir d'une base de données construite dans un
+soucis d'homogénéisation spatiale et temporelle de l'intensité observée des TC issus des best tracks, la \cref{fig:observed_trends_lmi} présente les tendances
+dans les quantiles de la distribution de l'intensité maximale des cyclones sur la période \num{1982}~---~\num{2009} et fait apparaître une tendance positive
+faible à l'échelle globale, indiquant donc un changement vers des systèmes plus forts \parencite{kossin_trend_2013}. Cette tendance globale cache toutefois de
+fortes disparités régionales, avec notamment une très forte tendance positive dans le NAtl ---~pouvant s'expliquer au moins en partie par l'augmentation
+constatée des SST dans la région due à la phase ascendante actuelle de l'oscillation atlantique multidécénnale (OAM, ou AMO en anglais)
+\parencite{ting_forced_2009}~--- et au contraire une diminution de l'intensité dans le bassin EPac. Cette propension vers des cyclones plus intenses est
+accompagnée d'une augmentation du taux d'intensification des TC ainsi que de la fréquence de cas d'intensification rapide.
+\parencite{balaguru_increasing_2018,kishtawal_tropical_2012}. Dans le bassin WPac, si aucune tendance très nette dans l'évolution annuelle du LMI ne se dégage,
+il existe néanmoins une tendance positive statistiquement significative dans la latitude moyenne auxquelles les TC atteignent leur maximum d'intensité
+(\cref{fig:observed_trends_other}, encadré \textbf{b}, \hbox{\cite{kossin_comment_2018}}), avec un degré de confiance jugé faible quant au  fait que cette
+tendance puisse être attribuable à des forçages anthropiques \parencite{knutson_tropical_2019}. Le décalage vers les pôles de l'intensité maximale des TC est
+également détectable à l'échelle globale \parencite{kossin_poleward_2014}. Il est considéré que la fréquence d'occurrence globale des cyclones tropicaux
+---~présentée sur la \cref{fig:observed_trends_other}, encadré \textbf{a}~--- ne présente pas de tendance à long terme détectable, mais qu'il existe cependant
+une augmentation de l'activité dans le bassin NAtl depuis \num{1995}
+\parencite{webster_changes_2005,maue_recent_2011,wang_climate_2010,seneviratne_weather_2021}. Néanmoins l'étude plus récente de \cite{klotzbach_trends_2022}
+portant sur la période \num{1990}~---~\num{2021} établit une tendance globale à la baisse, portée par une diminution de l'activité dans le WPac plus importante
+que la hausse du NAtl, et qui serait liée à une tendance à un état de base plus proche de La Niña depuis \num{1990}, c'est à dire marquée par une anomalie
+froide des SST équatoriales dans le Pacifique centre. Par ailleurs, si la quantité de TC touchant terre ne présente pas de tendance globalement, une tendance à
+la baisse est reconnue en Australie de l'est depuis la fin du \num{19}\ieme~siècle \parencite{knutson_tropical_2019,callaghan_variability_2011}. Enfin,
+\cite{kossin_global_2018,kossin_reply_2019} a établi une tendance significative à une baisse de la vitesse de translation des TC, présentée sur la
+\cref{fig:observed_trends_other}, encadré \textbf{d} et évaluée à \SI{10}{\percent} entre \num{1949} et \num{2016}. Un ralentissement des TC pourrait avoir des
+conséquences désastreuses dans la mesure où ces derniers aurait alors plus de temps pour causer des dégâts dans les zones habitées. Si la confiance accordée à
+la détectabilité de cette tendance est jugée bonne \parencite{knutson_tropical_2019,seneviratne_weather_2021}, il est à souligner que ce résultat est néanmoins
+contesté \parencite{lanzante_uncertainties_2019,moon_climate_2019}.
 
-\begin{figure}[tbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{trends_lmi_kossin_2013.jpg}
-\caption{Test, \cite{kossin_trend_2013}}
-    \label{fig:observed_trends}
+    \caption{Évolution temporelle de l'intensité maximale sur le cycle de vie des TC (\textit{lifecycle maximum intensity}, LMI) entre 1982 et 2009, présentée
+        par les quantiles entre \num{0.5} et \num{0.9} de la distribution associée et leur tendances linéaires. Intensités calculées avec une base de données
+        homogénéisée de l'intensité construite à partir d'images satellites \hbox{HURSAT} (\textit{Hurricane Satellite}) auxquelles est appliquée la technique
+        de Dvorak avancée (\textit{Advanced Dvorak Technique}, ADT, \cite{olander_advanced_2007}). Figure issue de \hbox{\cite{kossin_trend_2013}}}
+    \label{fig:observed_trends_lmi}
 \end{figure}
-
-% Il en découle que l'étude de l'impact du réchauffement climatique sur l'activité cyclonique nécessite d'autant plus le recours à des modèles de climat.
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{trends_freq_lat_land_speed_kossin_2019.png}
+    \caption{\textbf{(a)} Fréquence globale annuelle des tempêtes tropicales (\SI{34}{\knot}) en noir et des TC atteignant au moins la catégorie 1 en rouge
+        (\SI{64}{\knot}) entre 1970 et Mai 2018 et sous forme de somme glissante sur 12 mois \parencite{maue_recent_2011}. \textbf{(b)} Évolution annuelle de la
+        moyenne des latitudes auxquelles l'intensité maximale est atteinte dans le bassin WPac, après retranchement de l'influence des modes de variabilité El Niño et de
+        l'oscillation décennale du Pacifique par régression linéaire, et intervalle de confiance à \SI{95}{\percent} \parencite{kossin_comment_2018}. \textbf{(c)}
+        Fréquence annuelle des TC touchant terre pour les catégories \num{1} et \num{2} (noir) et de \num{3} à \num{5} (rouge) entre 1970 et 2016
+        \parencite{weinkle_historical_2012}. \textbf{(d)} Vitesse moyenne globale de translation des TC entre 1949 et 2016 et son intervalle de confiance à
+        \SI{95}{\percent} \hbox{\parencite{kossin_global_2018}}. Les encadrés (a) et (c) ont été mis à jour par leurs auteurs respectifs dans le cadre de
+        \cite{knutson_tropical_2019}, étude dont sont issues ces quatre figures.}
+    \label{fig:observed_trends_other}
+\end{figure}
 
 \subsection{Les modèles de climat}
 
