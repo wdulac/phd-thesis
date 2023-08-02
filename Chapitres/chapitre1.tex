@@ -486,16 +486,45 @@ permet donc de profiter des bénéfices de la haute résolution sans les inconv�
 \subsection{Les cyclones dans les modèles de climat}
 
 \cite{manabe_tropical_1970} ont pour la première fois observé, dans une simulation produite par un GCM doté d'une résolution horizontale de \km{417} à
-l'équateur, des vortex pouvant s'apparenter à des cyclones tropicaux sous la forme de très larges dépressions atmosphériques de l'ordre de \km{2000} à
-\km{3000} de diamètre dans le Sud-ouest de l'océan indien et
-dans le Pacifique Sud, à des emplacements correspondant aux zones de formation des TC de l'hémisphère sud identifiées par \cite{gray_global_1968} (voir aussi
-\cref{fig:produit_ingredients}). Limitées par la résolution du modèle, les dépressions tropicales de \cite{manabe_tropical_1970} atteignent une vitesse de vent
-maximale de \ms{20}, soit un stade de tempête tropicale, et ne peuvent pas s'intensifier au delà. Outre la taille et
-l'intensité des systèmes simulés, \cite{mcbride_comments_1984} souligne plusieurs autre différences clefs entre les simulations et les TC observés
-
-Par conséquent, la dénomination de HTV (\textit{Hurricane-Type Vortices}) est parfois préférée dans la mesure où la résolution des GCM est souvent trop faible,
-et la microphysique propre aux TC insuffisamment paramétrisée, pour simuler correctement ces systèmes complexes
+l'équateur, des vortex pouvant s'apparenter à des cyclones tropicaux sous la forme de très larges dépressions atmosphériques de l'ordre de \km{2000} à \km{3000}
+de diamètre dans le Sud-ouest de l'océan indien et dans le Pacifique Sud, à des emplacements correspondant aux zones de formation des TC de l'hémisphère sud
+identifiées par \cite{gray_global_1968} (voir aussi \cref{fig:produit_ingredients}). Limitées par la résolution du modèle, les dépressions tropicales de
+\cite{manabe_tropical_1970} atteignent une vitesse de vent maximale de \ms{20}, soit un stade de tempête tropicale, et ne peuvent pas s'intensifier au delà.
+\cite{bengtsson_simulation_1982} ont ensuite proposé une étude plus approfondie des divers stades de développement des TC simulés dans le modèle opérationnel du
+CEP, à environ \km{200} de résolution, dans lequel ces objets atteignent un vent tangentiel maximum de \ms{25}. Outre la taille et l'intensité des systèmes
+simulés, et malgré une structure interne réaliste lorsque les systèmes sont pleinement développés, \cite{mcbride_comments_1984} souligne plusieurs autres
+différences clefs entre les simulations et les TC observés, notamment pendant les étapes de formation et d'intensification, marquées par une très forte activité
+convective néanmoins accompagnée d'une absence de cœur chaud et d'une faible vorticité. L'auteur souligne également le lien exacerbé entre la SST et l'activité
+simulée, en dépit des autres facteurs favorables à la cyclogénèse identifiés par \cite{gray_tropical_1975} (voir \cref{sec:conditions_cyclogenese}), et
+qui explique la répartition spatiale et temporelle imparfaite de l'activité simulée. La faible résolution des GCM et la paramétrisation nécessaire de la
+microphysique propre aux TC en résultant font qu'il est très difficile de simuler correctement ces systèmes complexes, si bien que la dénomination de HTV
+(\textit{Hurricane-Type Vortices}) est parfois préférée pour les désigner
 \parencite{bengtsson_simulation_1982,bengtsson_hurricanetype_1995,chauvin_response_2006}.
+%
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{camargo_2013_NTC_per_year.jpg}
+    \caption{Distributions du nombre de TC annuel à l'échelle globale dans les observations sur la période \num{1980}~--~\num{2005} (gauche) ainsi que dans des
+    simulations historiques de la période \num{1950}~--~\num{2005} issues de \num{14} modèles couplés de CMIP5, avec des résolutions variant de \km{300} à
+    \km{110}. Tous les modèles présentés ici sous-estiment la fréquence de HTV, et le modèle ici dénommé M13 est celui doté de la résolution la plus fine. Figure
+    issue de \cite{camargo_global_2013}.}
+    \label{fig:NTC_CMIP5}
+\end{figure}
+
+Les modèles se sont ensuite améliorés, et s'ils souffrent toujours de la sous-estimation de l'intensité maximale, ils sont désormais capables de simuler
+l'évolution du cycle de vie des TC, la répartition géographique, la saisonnalité des bassins d'activité ---~avec plus ou moins de succès selon les bassins~---
+\parencite{bengtsson_tropical_2007,zhao_simulations_2009}, ainsi que l'influence de l'Oscillation australe El Niño sur l'activité cyclonique
+\parencite{gualdi_changes_2008,camargo_experimental_2009}. La fréquence annuelle globale de HTV dans les GCM est toutefois très variable selon les modèles,
+comme en atteste la \cref{fig:NTC_CMIP5}. Sans être le seul facteur, les modèles à plus haute résolution simulent généralement plus de HTV que ceux de
+résolution inférieure \parencite{camargo_global_2013,roberts_impact_2020}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.7\textwidth]{roberts_2020_PV_diag_LR_HR.png}
+    \caption{Figure issue de \cite{roberts_impact_2020}.}
+    \label{fig:roberts_PV_resolution}
+\end{figure}
+
 
 \subsection{Consensus actuel sur les projections futures}\label{sec:projections_futures}
 
