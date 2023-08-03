@@ -500,25 +500,53 @@ qui explique la répartition spatiale et temporelle imparfaite de l'activité si
 microphysique propre aux TC en résultant font qu'il est très difficile de simuler correctement ces systèmes complexes, si bien que la dénomination de HTV
 (\textit{Hurricane-Type Vortices}) est parfois préférée pour les désigner
 \parencite{bengtsson_simulation_1982,bengtsson_hurricanetype_1995,chauvin_response_2006}.
-%
-\begin{figure}[tb]
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{camargo_2013_NTC_per_year.jpg}
-    \caption{Distributions du nombre de TC annuel à l'échelle globale dans les observations sur la période \num{1980}~--~\num{2005} (gauche) ainsi que dans des
-    simulations historiques de la période \num{1950}~--~\num{2005} issues de \num{14} modèles couplés de CMIP5, avec des résolutions variant de \km{300} à
-    \km{110}. Tous les modèles présentés ici sous-estiment la fréquence de HTV, et le modèle ici dénommé M13 est celui doté de la résolution la plus fine. Figure
-    issue de \cite{camargo_global_2013}.}
-    \label{fig:NTC_CMIP5}
+    \includegraphics[width=0.9\textwidth]{manabe_1970_tracks_screenshot.png}
+    \caption{Trajectoires des HTV détectés par \cite{manabe_tropical_1970}, caractérisés par une dépression centrale d'au moins \hPa{2}. Les croix désignent les
+        premières positions des HTV, tandis que les points représentent leurs positions respectives avec un intervalle de \SI{24}{\hour}.}
+    \label{fig:tracks_manabe}
 \end{figure}
 
-Les modèles se sont ensuite améliorés, et s'ils souffrent toujours de la sous-estimation de l'intensité maximale, ils sont désormais capables de simuler
+\cite{broccoli_can_1990} ont ensuite pour la première fois essayé d'utiliser un modèle de climat pour étudier l'influence du changement climatique sur
+l'activité cyclonique, en analysant les HTV dans le modèle du GFDL (\textit{Geophysical Fluid Dynamics Laboratory}) via des expériences à deux résolutions
+différentes (\ang{4.5}\times\ang{7.5} et \ang{2.25}\times\ang{3.75}, en latitude et longitude, respectivement), \num{9} niveaux verticaux, avec et sans
+rétro-actions nuageuses et dans lesquelles la concentration en \ce{CO2} est doublée. Ils notèrent ainsi un changement à la baisse en
+\ensuremath{2\times\ce{CO2}} dans la simulation avec rétro-action nuageuse, et au contraire une augmentation lorsque la nébulosité est prescrite, indépendamment
+de la résolution utilisée. Ces expériences, bien que peu concluantes, validèrent le principe de l'utilisation de GCM pour l'étude des TC en changement
+climatique. Plus tard, \cite{bengtsson_hurricanetype_1995} notèrent que la variabilité inter-annuelle de l'activité cyclonique était forte dans leurs
+simulations, en dépit du fait que des SST climatologiques ---~donc dénuées de cette variabilité~--- furent prescrites, s'affranchissant ainsi du trop fort lien
+entre SST et cyclogénèse des HTV dans les premières expériences. Leurs travaux montrèrent également un lien clair entre la résolution du modèle d'une part, et
+l'intensité ainsi que le réalisme de la structure interne des HTV d'autre part.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{roberts_projected_2020_TE_coupled.png}
+    \caption{Fréquence annuelle moyenne du nombre de TC dans des simulations historiques couplées océan-atmosphère HighResMIP sur la période
+        \num{1974}~--~\num{2014} (deux premières lignes) ainsi que pour cinq réanalyses et dans les observations (dernière ligne). Moyenne annuelle entre Mai et
+        Novembre dans l'hémisphère nord et Octobre~--~Mai dans l'hémisphère sud. Les modèles couplés sont par paire basse / haute résolution. Les deux valeurs
+        centrales de chaque disque présentent la moyenne dans les deux hémisphères et les tranches de couleur présentent le pourcentage de trajectoires de
+        l'hémisphère nord pour chaque bassin d'activité. L'épaisseur des disques est calibrée sur le nombre annuel de TC observé dans l'hémisphère nord. Figure
+        issue de \hbox{\cite{roberts_projected_2020}}.}
+        \label{fig:NTC_HighResMIP}
+\end{figure}
+
+Les modèles ont depuis continué à s'améliorer, et s'ils souffrent toujours de la sous-estimation de l'intensité maximale, ils sont désormais capables de simuler
 l'évolution du cycle de vie des TC, la répartition géographique, la saisonnalité des bassins d'activité ---~avec plus ou moins de succès selon les bassins~---
 \parencite{bengtsson_tropical_2007,zhao_simulations_2009}, ainsi que l'influence de l'Oscillation australe El Niño sur l'activité cyclonique
 \parencite{gualdi_changes_2008,camargo_experimental_2009}. La fréquence annuelle globale de HTV dans les GCM est toutefois très variable selon les modèles,
-comme en atteste la \cref{fig:NTC_CMIP5}. Sans être le seul facteur, les modèles à plus haute résolution simulent généralement plus de HTV que ceux de
-résolution inférieure \parencite{camargo_global_2013,roberts_impact_2020}.
+comme en atteste la \cref{fig:NTC_HighResMIP}. Les modèles à plus haute résolution simulent généralement plus de HTV que ceux de résolution inférieure
+\parencite{camargo_global_2013,roberts_impact_2020}. Cependant, cette figure montre aussi que la résolution ne peut expliquer à elle seule la sous-estimation de
+la fréquence, puisque deux des paires de modèles sur la \cref{fig:NTC_HighResMIP} ne présentent qu'une amélioration marginale, voire pas d'amélioration dans
+leur version haute résolution (EC-Earth3P, \cite{haarsma_highresmip_2020} et MPI-ESM1-2, \cite{gutjahr_max_2019}). La figure met aussi en évidence de fortes
+différences de fréquence à l'échelle des bassins géographiques. Le modèle CNRM-CM6-1 est par exemple le seul à surestimer l'activité dans le bassin NAtl, aussi
+bien dans version basse que haute résolution\footnote{Dans CNRM-CM6-1, la surestimation de la fréquence relative dans le NAtl pour la version basse résolution
+semble due au couplage océan-atmosphère, car \cite{roberts_projected_2020} montre en effet que l'expérience réalisée avec des SST prescrites produit une activité
+relative de \SI{11}{\percent}. En revanche pour les autres modèles, le couplage tend à réduire l'activité dans cette région.} avec respectivement
+\SI{28}{\percent} et \SI{26}{\percent}, contre \SI{21}{\percent} dans les observations. 
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.7\textwidth]{roberts_2020_PV_diag_LR_HR.png}
     \caption{Figure issue de \cite{roberts_impact_2020}.}
@@ -531,6 +559,15 @@ résolution inférieure \parencite{camargo_global_2013,roberts_impact_2020}.
 \cite{seneviratne_weather_2021}
 
 \subsection{Détection objective v.s indices de cyclogénèse}\label{sec:tracking_vs_indices}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{roberts_projected_2020_TRACKS_coupled.png}
+    \caption{Comme pour la \cref{fig:NTC_HighResMIP}, mais où l'algorithme de détection TRACK \parencite{hodges_how_2017} est utilisé à la place de
+    TempestExtreme \parencite{ullrich_tempestextremes_2017,zarzycki_assessing_2017}. Les réanalyses ne sont pas incluses. Figure issue de
+    \cite{roberts_projected_2020}.}
+    \label{fig:NTC_HighResMIP_TRACK}
+\end{figure}
 
 %----------------------------------------------------------------------------------------------------------------------
 \section{Synthèse}
