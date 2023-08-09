@@ -225,7 +225,7 @@ La \cref{fig:clim_ingredients} présente les climatologies saisonnières de quat
 \hPa{850}, notée $\zeta_{\text{\hPa{850}}}$; l'humidité relative à \hPa{600}, $\text{RH}_{\text{\hPa{600}}}$ ; l'inverse du cisaillement vertical du vent
 horizontal entre \hPa{200} et \hPa{850}, noté $1/S_z$ et enfin la SST relative aux tropiques. Ces champs sont issus de la réanalyse ERA5 du Centre européen pour
 les prévisions météorologiques à moyen terme (CEPMMT, ou juste CEP ; en anglais \textit{European Centre for Medium-Range Weather Forecasts}, ECMWF)
-\parencite{hersbach_era5_2020}, laquelle est décrite plus en détails dans la \cref{sec:chapitre_2}. Notons que la vorticité absolue $\zeta$ à \hPa{850} intègre
+\parencite{hersbach_era5_2020}, laquelle est décrite plus en détails dans la \cref{sec:eval_tracker_ERA5}. Notons que la vorticité absolue $\zeta$ à \hPa{850} intègre
 déjà le paramètre de Coriolis, noté $f$, auquel le module de la force éponyme est proportionnel, puisque la vorticité absolue est définie comme
 \begin{equation*}
     \zeta = \zeta_R + \underbrace{2 \Omega \sin \phi}_{f}
@@ -284,7 +284,7 @@ inexistante. On distingue dans ces zones l'empreinte conjointe de l'humidité re
 saisons sur la \cref{fig:clim_ingredients}. Dans la ceinture tropicale et sub-tropicale, la correspondance entre le produit des paramètres et l'activité
 observée demeure cependant remarquable. Ce constat selon lequel la fréquence d'occurrence des cyclones tropicaux en un lieu donné puisse être proportionnelle à
 une combinaison de variables de grande échelle, découverte attribuée à \cite{gray_tropical_1975}, est à l'origine de ce qui sera nommé par la suite les indices
-de cyclogénèse, et qui seront abordés plus en détails dans la \cref{sec:tracking_vs_indices}, puis dans le \cref{sec:chapitre_3}.
+de cyclogénèse, et qui seront abordés plus en détails dans la \cref{sec:tracking_vs_indices}, puis dans le \cref{chap:chapitre_3}.
 
 % \subsection{Modèles conceptuels de fonctionnement}
 % 
@@ -401,7 +401,7 @@ la détectabilité de cette tendance est jugée bonne \parencite{knutson_tropica
 contesté, notamment par \cite{lanzante_uncertainties_2019,moon_climate_2019} qui estiment que cette tendance pourrait être causée par l'hétérogénéité des
 données, et plus spécifiquement par l'introduction de données satellitaire à partir de \num{1965}.
 
-\subsection{Les modèles de climat}
+\subsection{Les modèles de climat}\label{sec:modèles}
 
 Le terme \textquote{modèle de climat} est souvent utilisé comme un terme parapluie puisqu'il peut se référer aussi bien à un ensemble de modèles fonctionnant en
 configuration couplée, c'est à dire de façon à ce que chaque composante puisse interagir avec les autres afin de mieux simuler les rétroactions, comme il peut
@@ -485,7 +485,7 @@ La spécificité de sa grille place ARPEGE dans le cercle très restreint des GC
 \parencite{chauvin_response_2006,chauvin_atlantic_2017,chauvin_future_2020,daloz_impact_2012,cattiaux_projected_2020}, y compris en changement climatique, et
 permet donc de profiter des bénéfices de la haute résolution sans les inconvénients des modèles à aire limitée.
 
-\subsection{Les cyclones dans les modèles de climat}
+\subsection{Les cyclones dans les modèles de climat}\label{sec:cyclones_dans_modèles}
 
 \cite{manabe_tropical_1970} ont pour la première fois observé, dans une simulation produite par un GCM doté d'une résolution horizontale de \km{417} à
 l'équateur, des vortex pouvant s'apparenter à des cyclones tropicaux sous la forme de très larges dépressions atmosphériques de l'ordre de \km{2000} à \km{3000}
@@ -587,7 +587,44 @@ si les différences dans leur capacité à représenter les TC et leur activité
 simuler l'activité cyclonique et sa variabilité de manière réaliste qu'aujourd'hui. Les modèles de climat constituent par conséquent le meilleur outil pour
 tenter d'évaluer l'impact du réchauffement climatique sur l'activité cyclonique.
 
-\subsection{Consensus actuel sur les projections futures}\label{sec:projections_futures}
+\subsubsection{Approche directe et indirecte pour l'étude de l'activité cyclonique}\label{sec:tracking_vs_indices}
+
+Il existe plusieurs façons d'évaluer l'activité cyclonique dans les modèles et qui peuvent être classées comme directes ou indirectes. En particulier,
+l'approche utilisée pour la description des HTV présentées dans la \cref{sec:cyclones_dans_modèles}, et qui est également implicitement référée dans la
+\cref{sec:modèles} lorsqu'il est fait mention de l'importance de la résolution, peut être vue comme la mesure la plus directe possible, puisqu'il s'agit
+d'identifier les HTV et d'aller directement analyser leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon de procéder
+repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations, à l'aide d'un schéma (ou algorithme) de détection et de
+suivi objectif, aussi appelés algorithmes de tracking. Basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995}, ces algorithmes consistent pour la
+plupart\footnote{Une exception à ce mode opératoire est proposée par \cite{tory_development_2013} et brièvement présentée dans le \cref{chap:chapitre_2},
+\cref{sec:tour_horizon_tracking}.} à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de détection puis à relier
+les points entre eux de façon à former des trajectoires. Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques
+de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats d'un tel travail. La
+\cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts
+importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur
+le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les
+fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier
+est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans
+le nord.
+
+%Par exemple,
+%\cite{manabe_tropical_1970} produisit les trajectoires présentés sur la \cref{fig:tracks_manabe} en identifiant les minimums de pression correspondant à une
+%dépression d'au moins \hPa{2} et cessa le suivi lorsque ces systèmes atteignirent les moyennes latitudes\footnote{L'histoire ne dit pas si Manabe utilisa un
+%schéma de détection automatique et il semble plausible que le travail fut réalisé manuellement. Cet exemple illustre néanmoins le caractère subjectif de la
+%détection de HTV.}
+
+\cite{horn_tracking_2014}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{roberts_projected_2020_TRACKS_coupled.png}
+    \caption{Comme pour la \cref{fig:NTC_HighResMIP}, mais où l'algorithme de détection TRACK \parencite{hodges_how_2017} est utilisé à la place de
+    TempestExtreme \parencite{ullrich_tempestextremes_2017,zarzycki_assessing_2017}. Les réanalyses ne sont pas incluses. Figure issue de
+    \cite{roberts_projected_2020}.}
+    \label{fig:NTC_HighResMIP_TRACK}
+\end{figure}
+
+\newpage
+\subsection{Les cyclones dans les projections climatiques}\label{sec:projections_futures}
 
 Les exercices d'intercomparaison de modèles (MIP) existent sous de multiples formes ; modèles couplés océan-atmosphère (CMIP), modèles atmosphériques seuls
 (AMIP), océaniques seuls (OMIP),  modèles à hautes résolutions (HighResMIP), pour n'en citer que quelques uns. Les MIP sont des programmes définis par une série
@@ -620,20 +657,6 @@ dispersion des résultats issus des groupes travaillant sur les ensembles multi-
         les deux métriques de fréquence, et \SI{10}{\percent}~--~\SI{90}{\percent} pour les métriques d'intensité et de précipitation. Figure issue de
         \cite{knutson_tropical_2020}.}
     \label{fig:projections_TC}
-\end{figure}
-
-\newpage
-\subsection{Détection objective v.s indices de cyclogénèse}\label{sec:tracking_vs_indices}
-
-\cite{horn_tracking_2014}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{roberts_projected_2020_TRACKS_coupled.png}
-    \caption{Comme pour la \cref{fig:NTC_HighResMIP}, mais où l'algorithme de détection TRACK \parencite{hodges_how_2017} est utilisé à la place de
-    TempestExtreme \parencite{ullrich_tempestextremes_2017,zarzycki_assessing_2017}. Les réanalyses ne sont pas incluses. Figure issue de
-    \cite{roberts_projected_2020}.}
-    \label{fig:NTC_HighResMIP_TRACK}
 \end{figure}
 
 %----------------------------------------------------------------------------------------------------------------------
