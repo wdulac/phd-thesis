@@ -619,12 +619,24 @@ le nord.
 
 Ces différences ne se limitent pas à des biais stationnaires dans le temps ---~auquel cas des traqueurs avec différents résultats en climat présent pourraient
 néanmoins indiquer la même tendance relative en climat futur~--- puisque \cite{horn_tracking_2014} ont montré que différents critères de détection peuvent
-aboutir à des changements de signes opposés pour une même expérience. C'est en effet ce que montre la \cref{fig:horn_2014_projections}, avec des tendances
-opposées, toutes deux statistiquement significatives à \SI{95}{\percent}, pour le modèle du \textit{Goddard Institute for Space Studies} (GISS) dans
-l'expérience à SST accrues, pour le traqueur proposé dans \cite{zhao_simulations_2009}, et les tracks obtenues par le groupe du GISS eux-mêmes, selon la
-méthodologie de \cite{camargo_improving_2002} ---~deux algorithmes qui, comme beaucoup d'autres, ont pourtant en commun de chercher à diagnostiquer la présence d'un tourbillon, d'un cœur
-chaud et d'un minimum local de SLP\footnote{Si la finalité de ces diagnostiques est la même entre les deux méthodes, leurs implémentations exactes sont
-toutefois très différentes. Le cas de la méthode de \cite{camargo_improving_2002} est explicité davantage dans la \cref{sec:tour_horizon_tracking}.}.
+aboutir à des changements de signes opposés pour une même expérience. C'est en effet ce que montre la \cref{fig:horn_2014_projections}, avec des changements
+relatifs opposés, toutes deux statistiquement significatives à \SI{95}{\percent}, pour le modèle du \textit{Goddard Institute for Space Studies} (GISS) dans
+l'expérience à SST accrues (a), pour le traqueur proposé dans \cite{zhao_simulations_2009}, et les tracks obtenues par le groupe du GISS eux-mêmes, selon la
+méthodologie de \cite{camargo_improving_2002} ---~deux algorithmes qui, comme beaucoup d'autres, ont pourtant en commun le fait de chercher à diagnostiquer la
+présence d'un tourbillon, d'un cœur chaud et d'un minimum local de SLP\footnote{Si la finalité de ces diagnostiques est la même entre les deux méthodes, leurs
+implémentations exactes sont toutefois très différentes. Le cas de la méthode de \cite{camargo_improving_2002} est explicité davantage dans la
+\cref{sec:tour_horizon_tracking}.}. Outre le signe du changement, c'est aussi son amplitude qui se voit affectée par ce choix méthodologique, comme par exemple
+pour le cas du modèle GFS (\textit{Global Forecast System}) du \textit{National Centers for Environmental Predictions} (NCEP) et désigné sous cet acronyme dans
+la \cref{fig:horn_2014_projections}, en particulier dans les expériences (a) et (b), où la réponse du signal est plus de trois fois supérieures avec le traqueur
+de \cite{zhao_simulations_2009} qu'avec le schéma de détection ici nommé CSIRO. Les deux schémas se distinguent l'un de l'autre principalement par le fait que
+le premier cherche à identifier un cœur chaud, tandis que le second inclut un seuil de vent minimal à la surface et s'assure également que le vent soit plus
+fort dans la basse troposphère que dans les couches supérieures \parencite{horn_tracking_2014}. Les auteurs soulignent que les différences dans les projections
+entre les schémas de détection sont amoindries lorsque les critères portant sur la durée minimale, les seuils de vitesses de vents et la latitude de cyclogénèse
+sont homogénéisés. Cela illustre donc la difficulté à déterminer les meilleurs critères permettant de discriminer au mieux les HTV d'autres systèmes
+météorologiques qui pourraient avoir des caractéristiques similaires ---~comme par exemple les tempêtes extra-tropicales, qui sont une source fréquente de faux
+positifs \parencite[][voir aussi \cref{sec:filtrage_mid_latitudes}]{dulac_assessing_2023}~--- en faisant toutefois attention à ce que les seuils de détection ne
+soient pas trop trop restrictifs, sinon quoi le traqueur sera susceptible d'éliminer des systèmes pour de mauvaises raisons, c'est à dire de produire au
+contraire des faux négatifs. 
 
 \begin{figure}[tb]
     \centering
@@ -634,6 +646,13 @@ toutefois très différentes. Le cas de la méthode de \cite{camargo_improving_2
     \SI{95}{\percent}. Figure issue de \cite{horn_tracking_2014}.}
     \label{fig:horn_2014_projections}
 \end{figure}
+
+L'approche consistant à appliquer un schéma de détection objective de HTV dans les modèles de climat dans le but d'y mesurer l'activité cyclonique dispose par
+conséquent de l'avantage non négligeable de constituer justement une mesure directe. Il est néanmoins important de souligner que la conception de l'algorithme de
+détection, ses divers seuils et autres spécificités viennent ajouter autant de sources d'incertitudes, non seulement sur la capacité d'un modèle donné à simuler
+l'activité cyclonique, mais également sur les projections climatiques issues de ces modèles, et s'ajoutent à l'incertitude propre à ces derniers dans les
+projections.
+
 
 \newpage
 \subsection{Les cyclones dans les projections climatiques}\label{sec:projections_futures}
