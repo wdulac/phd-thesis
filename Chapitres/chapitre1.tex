@@ -587,7 +587,9 @@ si les différences dans leur capacité à représenter les TC et leur activité
 simuler l'activité cyclonique et sa variabilité de manière réaliste qu'aujourd'hui. Les modèles de climat constituent par conséquent le meilleur outil pour
 tenter d'évaluer l'impact du réchauffement climatique sur l'activité cyclonique.
 
-\subsubsection{Approche directe et indirecte pour l'étude de l'activité cyclonique}\label{sec:tracking_vs_indices}
+\subsection{Approche directe et indirecte pour l'étude de l'activité cyclonique}\label{sec:tracking_vs_indices}
+
+\subsubsection{Approche directe : Détection et suivi objectif}
 
 Il existe plusieurs façons d'évaluer l'activité cyclonique dans les modèles et qui peuvent être classées comme directes ou indirectes. En particulier,
 l'approche utilisée pour la description des HTV présentées dans la \cref{sec:cyclones_dans_modèles}, et qui est également implicitement référée dans la
@@ -597,7 +599,7 @@ repose sur la capacité à correctement identifier et suivre l'évolution des HT
 suivi objectif, aussi appelés algorithmes de tracking. Basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995}, ces algorithmes consistent pour la
 plupart\footnote{Une exception à ce mode opératoire est proposée par \cite{tory_development_2013} et brièvement présentée dans le \cref{chap:chapitre_2},
 \cref{sec:tour_horizon_tracking}.} à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de détection puis à relier
-les points entre eux de façon à former des trajectoires. Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques
+les points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques
 de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats d'un tel travail. La
 \cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts
 importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur
@@ -606,14 +608,6 @@ fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un r
 est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans
 le nord.
 
-%Par exemple,
-%\cite{manabe_tropical_1970} produisit les trajectoires présentés sur la \cref{fig:tracks_manabe} en identifiant les minimums de pression correspondant à une
-%dépression d'au moins \hPa{2} et cessa le suivi lorsque ces systèmes atteignirent les moyennes latitudes\footnote{L'histoire ne dit pas si Manabe utilisa un
-%schéma de détection automatique et il semble plausible que le travail fut réalisé manuellement. Cet exemple illustre néanmoins le caractère subjectif de la
-%détection de HTV.}
-
-\cite{horn_tracking_2014}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{roberts_projected_2020_TRACKS_coupled.png}
@@ -621,6 +615,24 @@ le nord.
     TempestExtreme \parencite{ullrich_tempestextremes_2017,zarzycki_assessing_2017}. Les réanalyses ne sont pas incluses. Figure issue de
     \cite{roberts_projected_2020}.}
     \label{fig:NTC_HighResMIP_TRACK}
+\end{figure}
+
+Ces différences ne se limitent pas à des biais stationnaires dans le temps ---~auquel cas des traqueurs avec différents résultats en climat présent pourraient
+néanmoins indiquer la même tendance relative en climat futur~--- puisque \cite{horn_tracking_2014} ont montré que différents critères de détection peuvent
+aboutir à des changements de signes opposés pour une même expérience. C'est en effet ce que montre la \cref{fig:horn_2014_projections}, avec des tendances
+opposées, toutes deux statistiquement significatives à \SI{95}{\percent}, pour le modèle du \textit{Goddard Institute for Space Studies} (GISS) dans
+l'expérience à SST accrues, pour le traqueur proposé dans \cite{zhao_simulations_2009}, et les tracks obtenues par le groupe du GISS eux-mêmes, selon la
+méthodologie de \cite{camargo_improving_2002} ---~deux algorithmes qui, comme beaucoup d'autres, ont pourtant en commun de chercher à diagnostiquer la présence d'un tourbillon, d'un cœur
+chaud et d'un minimum local de SLP\footnote{Si la finalité de ces diagnostiques est la même entre les deux méthodes, leurs implémentations exactes sont
+toutefois très différentes. Le cas de la méthode de \cite{camargo_improving_2002} est explicité davantage dans la \cref{sec:tour_horizon_tracking}.}.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{horn_2014_divergence.jpg}
+    \caption{Changements relatifs du nombre moyen annuel de HTV dans quatre modèles (abscisse) et pour différentes méthodologies de tracking (couleurs) dans
+    trois expériences à climat altéré notées (a), (b) et (c) par rapport à des simulations du climat présent. Les astérisques indiquent une significativité à
+    \SI{95}{\percent}. Figure issue de \cite{horn_tracking_2014}.}
+    \label{fig:horn_2014_projections}
 \end{figure}
 
 \newpage
