@@ -665,7 +665,7 @@ unité de temps, et s'apparente à une densité surfacique :
 %
 \begin{align*}
     N_{\text{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
-    \rho &= \underbrace{\vphantom{X_1}A}_{\text{Calibration}} \times \underbrace{X_1}_{\text{Thermique}} \times \underbrace{X_2}_{\text{Dynamique}}
+    \rho &= \underbrace{\vphantom{X_{\text{Dyn}}}A}_{\text{Calibration}} \times \underbrace{\vphantom{X_{\text{Dyn}}}X_{\text{Th}}}_{\text{Thermique}} \times \underbrace{X_{\text{Dyn}}}_{\text{Dynamique}}
 \end{align*}
 %
 Où $\rho$ est exprimé sur un domaine géographique $D$ et dépend de la latitude $\phi$ et de la longitude $\lambda$. Comme mentionné dans la
@@ -674,13 +674,13 @@ saisonnière} (\textit{Seasonal Genesis Parameter}, SGP)\footnote{Le SGP de \cit
 sont ajoutés des constantes déterminées empiriquement et choisies de telle sorte à simuler approximativement les variations journalières de ces variables. La
 formulation du SGP est donc plus sophistiquée que le simple produit des quatre variables dont les moyennes saisonnières sont tracées sur la
 \cref{fig:produit_ingredients}.}. Comme son nom l'indique, ce dernier est conçu pour prendre en entrée des moyennes saisonnières de ses
-prédicteurs. Le SGP était exprimé en TC par maille de \ang{5}$\times$\ang{5} par 20 ans et était capable de reproduire fidèlement la densité de cyclones observés sur
-la période \num{1952}~--~\num{1971}.
+prédicteurs. Le SGP tel que défini dans \cite{gray_tropical_1975} s'exprime en TC par boîte de \ang{5}$\times$\ang{5} par 20 ans et est capable de reproduire
+fidèlement la densité de cyclones observés sur la période \num{1952}~--~\num{1971}.
 
 L'étude des conditions de grande échelle favorables comme alternative à la mesure directe des HTV était alors
 particulièrement pertinente dans la mesure où la résolution des GCM de l'époque ne permettaient pas de les simuler correctement, malgré les résultats
 encourageants de \cite{broccoli_can_1990} évoqués précédemment. C'est notamment pour cette raison que \hbox{\cite{ryan_tropical_1992}} ont utilisé pour la première
-fois le SGP, ainsi qu'une variante annuelle appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations de \num{15} ans. Leurs travaux
+fois le SGP, ainsi qu'une variante annuelle appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux
 indiquèrent une très forte augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique
 dans la run de contrôle (\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \cite{ryan_tropical_1992} l'ont appliqué à leur modèle.} dans la run de contrôle à \num{440} TC par an dans la
 run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ \SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les
