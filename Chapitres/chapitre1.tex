@@ -418,7 +418,7 @@ simuler qu'un domaine spécifique~---~il s'agit alors de modèles à aire limit�
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\textwidth]{cnrm-cm6.jpg}
+    \includegraphics[width=0.9\textwidth]{cnrm-cm6.jpg}
     \caption{Représentation schématique du modèle couplé océan-atmosphère CNRM-CM6-1. \hbox{ARPEGE} constitue la composante atmosphérique de CNRM-CM, ainsi que
     celle du modèle système-terre CNRM-ESM \parencite{seferian_evaluation_2019}. Illustration issue de \cite{voldoire_evaluation_2019}.}
     \label{fig:cnrm-cm6}
@@ -435,20 +435,11 @@ ARPEGE existe néanmoins et est utilisée dans le modèle couplé CNRM-CM6-1-HR 
 modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une une résolution
 horizontale de \km{50} ---~les autre modèles participants se situant entre \km{20} et \km{80} \parencite[][Tableau AII.6]{ipcc_annex_2021}. Ainsi, de manière
 générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle de climat à haute résolution. La finesse de la
-résolution des modèles de climat est en pratique limitée par le temps de calcul nécessaire à leur fonctionnement, et la résolution relativement grossière des modèles de climat
-modernes témoigne de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations climatiques de
-l'ordre d'une centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, malgré la grande capacité des
-supercalculateurs\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme~place du
-classement mondial lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}.}.
-
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{grille_arpege_stretchee_C3AF.png}
-    \caption{Exemple d'utilisation de la grille ARPEGE dans sa configuration tournée étirée, où le pôle est positionné sur une région d'intérêt et un facteur
-    d'étirement est appliqué pour y augmenter localement la résolution (ici égal à \num{3.5}) au détriment de l'antipode. Figure issue de
-    \cite{chauvin_future_2020}.}
-    \label{fig:rotated_streched}
-\end{figure}
+résolution des modèles de climat est en pratique limitée par le temps de calcul nécessaire à leur fonctionnement, et la résolution relativement grossière des
+modèles de climat modernes témoigne de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations
+climatiques de l'ordre d'une centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, malgré la grande capacité des
+supercalculateurs\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme~place du classement mondial
+lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}.}.
 
 La résolution d'un modèle est déterminante dans sa capacité à simuler une activité cyclonique réaliste \parencite{roberts_impact_2020}, aussi bien pour ce qui
 est de la fréquence d'occurrence que pour l'intensité des systèmes simulés, puisqu'il est estimé qu'un modèle doté d'une résolution plus large que \km{25} ne
@@ -464,6 +455,15 @@ cohabitation nécessaire entre le RCM et son GCM forceur n'est pas sans inconvé
 entre la grande et la fine échelle n'est pas forcément assurée entre les deux composants, incohérence illustrée par exemple avec la sous-estimation dans les RCM
 de la réponse au forçage anthropique suggérée par les GCM sur l'Europe continentale \parencite{boe_large_2020,taranu_mechanisms_2023}. Le gain de résolution
 apporté par l'utilisation de modèles à aire limitée est donc contrebalancé par l'introduction de nouvelles incertitudes et difficultés associées.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{grille_arpege_stretchee_C3AF.png}
+    \caption{Exemple d'utilisation de la grille ARPEGE dans sa configuration tournée étirée, où le pôle est positionné sur une région d'intérêt et un facteur
+    d'étirement est appliqué pour y augmenter localement la résolution (ici égal à \num{3.5}) au détriment de l'antipode. Figure issue de
+    \cite{chauvin_future_2020}.}
+    \label{fig:rotated_streched}
+\end{figure}
 
 Comme alternative aux modèles à aire limitée pour bénéficier d'une résolution accrue, le modèle ARPEGE dispose de la capacité à déformer sa grille horizontale
 de telle sorte à augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, la position du pôle est
