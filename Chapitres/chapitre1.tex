@@ -232,8 +232,8 @@ déjà le paramètre de Coriolis, noté $f$, auquel le module de la force épony
 \end{equation*}
 \noindent où $\zeta_R$ est la vorticité relative, définie comme le rotationel du vent tel que mesuré dans le référentiel de la Terre, $\Omega$ la période de
 rotation de la Terre et $\phi$ la latitude. L'inverse du cisaillement vertical est pris de telle façon à ce que des valeurs élevées indiquent des régions
-favorables à la cyclogénèse et la SST est présentée ici comme la différence entre la SST et la température de surface moyenne entre \ang{20}S et \ang{20}N
----~nommée la SST relative~--- pour faire apparaître les variations saisonnières plus nettement.
+favorables à la cyclogénèse et la SST est présentée ici comme la différence entre la SST et la SST moyenne entre \ang{20}S et \ang{20}N
+---~nommée la SST relative~--- pour faire apparaître les variations locales plus nettement.
 %
 \begin{figure}[tp]
     \centering
@@ -302,13 +302,13 @@ de cyclogénèse, et qui seront abordés plus en détails dans la \cref{sec:intr
 \subsection{Bases de données observationnelles et tendances historiques}
 
 Un pré-requis pour pouvoir traiter de changement climatique, quelque soit l'objet d'étude, est de disposer de données observationnelles le plus fiables
-possibles, et sur la plus longue période possible. Un des problèmes fondamentaux avec les réseaux d'observation météorologiques en général, est que les
-instruments s'améliorent avec le temps, les réseaux s'étendent et se densifient, ce qui donne lieu à des fortes hétérogénéités et ruptures temporelles dans la
-qualité des données. L'observation des cyclones tropicaux ne fait pas exception à cette règle. Les cyclones étant des phénomènes prenant place sur mer, les
-premiers relevés météorologiques de cyclones tropicaux étaient réalisés par les marins et consignés dans leurs journaux de bords
-\parencite{knapp_international_2010}. Avec le temps, et étant donné le fort potentiel d'impact de ces systèmes, les sources d'observations se sont multipliées
-et diversifiées, de manière très inégale selon les régions. Les États-Unis déploient par exemple des avions de reconnaissances dédiés à la recherche et à
-l'observation des cyclones tropicaux au large des côtes atlantiques depuis \num{1946}, bassin océanique qui est encore à ce jour le seul à bénéficier de ce type
+possibles, et sur la plus longue période possible. Or, les réseaux d'observation s'étendent et se densifient, les instruments se perfectionnent avec le temps,
+de nouvelles techniques de mesure émergent et donc les incertitudes associées aux observations tendent à diminuer, ce qui donne alors lieu à de fortes
+hétérogénéités et ruptures temporelles dans la qualité des données. L'observation des cyclones tropicaux ne fait pas exception à cette règle. Les cyclones étant
+des phénomènes prenant place sur mer, les premiers relevés météorologiques de cyclones tropicaux étaient réalisés par les marins et consignés dans leurs journaux
+de bords \parencite{knapp_international_2010}. Avec le temps, et étant donné le fort potentiel d'impact de ces systèmes, les sources d'observations se sont
+multipliées et diversifiées, de manière très inégale selon les régions. Les États-Unis déploient par exemple des avions de reconnaissance dédiés à la recherche et
+à l'observation des cyclones tropicaux au large des côtes atlantiques depuis \num{1946}, bassin océanique qui est encore à ce jour le seul à bénéficier de ce type
 d'observations de manière régulière. D'autres sources d'observations incluent notamment les stations météorologiques terrestres, bouées instrumentées, radars et
 enfin radio sondages, ces derniers pouvant être réalisés par largage aérien directement dans le cyclone. Néanmoins, la véritable rupture technologique a lieu
 avec l'ère satellitaire, réellement entérinée à la fin des années 70. L'observation par satellite permet d'une part de détecter la quasi totalité des cyclones,
@@ -379,7 +379,7 @@ faible à l'échelle globale, indiquant donc un changement vers des systèmes pl
 fortes disparités régionales, avec notamment une très forte tendance positive dans le NAtl ---~pouvant s'expliquer au moins en partie par l'augmentation
 constatée des SST dans la région due à la phase ascendante actuelle de l'oscillation atlantique multidécénnale (OAM, ou AMO en anglais)
 \parencite{ting_forced_2009}~--- et au contraire une diminution de l'intensité dans le bassin EPac. En répétant l'exercice avec des données étendues jusqu'en
-\num{2017}, \cite{kossin_global_2020} confirme une tendance à la hausse dans la probabilité de dépassement des TC majeurs et établit une significativité
+\num{2017}, \cite{kossin_global_2020} confirment une tendance à la hausse dans la probabilité de dépassement des TC majeurs et établit une significativité
 supérieure à \SI{95}{\percent} pour l'échelle globale, et de \SI{99}{\percent} pour le NAtl. Parmi les autres bassins, seul le SInd présente une significativité
 d'au moins \SI{90}{\percent}. Cette propension vers des cyclones plus intenses est accompagnée d'une augmentation du taux d'intensification des TC ainsi que de
 la fréquence de cas d'intensification rapide \parencite{balaguru_increasing_2018,kishtawal_tropical_2012}. Dans le bassin WPac, si aucune tendance très nette
@@ -396,21 +396,23 @@ froide des SST équatoriales dans le Pacifique centre. Par ailleurs, si la quant
 la baisse est reconnue en Australie de l'est depuis la fin du \num{19}\ieme~siècle \parencite{knutson_tropical_2019,callaghan_variability_2011}. Enfin,
 \cite{kossin_global_2018,kossin_reply_2019} a établi une tendance significative à une baisse de la vitesse de translation des TC, présentée sur la
 \cref{fig:observed_trends_other}, encadré \textbf{d} et évaluée à \SI{10}{\percent} entre \num{1949} et \num{2016}. Un ralentissement des TC pourrait avoir des
-conséquences désastreuses dans la mesure où ces derniers aurait alors plus de temps pour causer des dégâts dans les zones habitées. Si la confiance accordée à
-la détectabilité de cette tendance est jugée bonne \parencite{knutson_tropical_2019,seneviratne_weather_2021}, il est à souligner que ce résultat est néanmoins
-contesté, notamment par \cite{lanzante_uncertainties_2019,moon_climate_2019} qui estiment que cette tendance pourrait être causée par l'hétérogénéité des
-données, et plus spécifiquement par l'introduction de données satellitaire à partir de \num{1965}.
+conséquences désastreuses dans la mesure où ces derniers auraient alors plus de temps pour causer des dégâts dans les zones habitées. Bien que ce résultat ait
+été repris dans des rapports de référence \parencite{knutson_tropical_2019,seneviratne_weather_2021}, il est néanmoins contesté, notamment par
+\cite{lanzante_uncertainties_2019,moon_climate_2019} qui estiment d'une part que cette tendance pourrait être causée par par l'hétérogénéité des données, et
+plus spécifiquement par l'introduction de données satellitaire à partir de \num{1965}, et d'autre part parce que le ralentissement concernerait d'avantage les
+systèmes les plus éloignés de l'équateur, c'est à dire ceux qui sont en général les moins forts.
 
 \subsection{Les modèles de climat}\label{sec:modèles}
 
-Le terme \textquote{modèle de climat} est souvent utilisé comme un terme parapluie puisqu'il peut se référer aussi bien à un ensemble de modèles fonctionnant en
-configuration couplée, c'est à dire de façon à ce que chaque composante puisse interagir avec les autres afin de mieux simuler les rétroactions, comme il peut
-se référer à une seule composante, celle-ci étant en général la composante atmosphérique, à fortiori lorsqu'il s'agit d'étudier les cyclones tropicaux. Dans cet
-ouvrage, sauf indication contraire, c'est ce second usage du terme qui sera privilégié. Les modèles de climat, ou modèles de circulation atmosphériques, sont
+Le terme \textquote{modèle de climat} est vaste puisqu'il en existe une très large variété, de complexités différentes, selon les besoins et les questions que l'on
+souhaite élucider. Dans le cas de l'étude des cyclones tropicaux, il s'agit de modèles de circulation atmosphérique, qui peuvent soit fonctionner de manière dite
+forcée, c'est à dire où les conditions limites à la surface (SST, flux d'échange de chaleur de matière avec l'océan...) sont prescrites (on parle aussi de couplage
+\textquote{offline}), auquel cas l'atmosphère ne peut pas influencer l'océan en retour, ou bien de manière dite couplée (respectivement, couplage \textquote{online})
+où un modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à mieux représenter les diverses rétroactions. Ces modèles sont
 des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas de temps régulier, sur chacune
 des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie dynamique du modèle consiste en
 la résolution à chaque pas de temps d'un jeu d'équations différentielles décrivant la circulation atmosphérique, tandis que la physique et les processus prenant
-place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisées. Les modèles de climat peuvent soit simuler l'atmosphère sur
+place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisés. Les modèles de climat peuvent soit simuler l'atmosphère sur
 l'entièreté du globe, auquel cas il s'agit de modèles de circulation globaux (\textit{Global Circulation Model}, GCM), ou bien ne simuler qu'un domaine
 spécifique~---~il s'agit alors de modèles à aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM).
 %
@@ -432,7 +434,10 @@ part au sixième et plus récent exercice d'intercomparaison des modèles coupl�
 ARPEGE existe néanmoins et est utilisée dans le modèle couplé CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021}, participant au projet d'intercomparaison des
 modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une une résolution
 horizontale de \km{50} ---~les autre modèles participants se situant entre \km{20} et \km{80} \parencite[][Tableau AII.6]{ipcc_annex_2021}. Ainsi, de manière
-générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle à haute résolution.
+générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle de climat à haute résolution. La finesse de
+la résolution des modèles de climat est en pratique limitée par le temps de calcul dont ils ont besoin, si bien que les diverses résolutions des modèles de climat modernes
+témoignent de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations climatiques de l'ordre d'une
+centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, en dépit de la grande capacité des supercalculateurs d'aujourd'hui\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme place du classement mondial lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}}
 %
 \begin{figure}[t]
     \centering
@@ -483,7 +488,7 @@ La spécificité de sa grille place ARPEGE dans le cercle très restreint des GC
 \parencite{mcgregor_recent_2013}, et ARPEGE est le premier d'entre eux à avoir été utilisé pour réaliser des simulations climatiques
 \parencite{deque_high_1995}. Cette technique a été maintes fois employée pour l'étude des cyclones tropicaux
 \parencite{chauvin_response_2006,chauvin_atlantic_2017,chauvin_future_2020,daloz_impact_2012,cattiaux_projected_2020}, y compris en changement climatique, et
-permet donc de profiter des bénéfices de la haute résolution sans les inconvénients des modèles à aire limitée.
+permet donc de profiter des bénéfices de la haute résolution sur un domaine cible donné sans les inconvénients des modèles à aire limitée.
 
 \subsection{Les cyclones dans les modèles de climat}\label{sec:cyclones_dans_modèles}
 
@@ -514,7 +519,7 @@ microphysique propre aux TC en résultant font qu'il est très difficile de simu
 \cite{broccoli_can_1990} ont ensuite pour la première fois essayé d'utiliser un modèle de climat pour étudier l'influence du changement climatique sur
 l'activité cyclonique, en analysant les HTV dans le modèle du GFDL (\textit{Geophysical Fluid Dynamics Laboratory}) via des expériences à deux résolutions
 différentes (\ang{4.5}\times\ang{7.5} et \ang{2.25}\times\ang{3.75}, en latitude et longitude, respectivement), \num{9} niveaux verticaux, avec et sans
-rétro-actions nuageuses et dans lesquelles la concentration en \ce{CO2} est doublée. Ils notèrent ainsi un changement à la baisse en
+rétroactions nuageuses et dans lesquelles la concentration en \ce{CO2} est doublée. Ils notèrent ainsi un changement à la baisse en
 \ensuremath{2\times\ce{CO2}} dans la simulation avec rétro-action nuageuse, et au contraire une augmentation lorsque la nébulosité est prescrite, indépendamment
 de la résolution utilisée. Ces expériences, bien que peu concluantes, validèrent le principe de l'utilisation de GCM pour l'étude des TC en changement
 climatique. \cite{haarsma_tropical_1993,bengtsson_will_1996} procédèrent à de nouvelles expériences en \ensuremath{2\times\ce{CO2}} et notèrent une augmentation
@@ -568,12 +573,12 @@ présente les relations vent~--~pression (\textit{Wind-Pressure Relationship}, W
 vent~--~pression sont couramment utilisés comme diagnostique pour comparer la relation entre ces deux variables ---~reliées entre elles par l'équilibre du vent
 gradient~--- avec celle issue des observations et mesurée pour la première fois par \cite{atkinson_tropical_1977}. Avec la \cref{fig:roberts_PV_resolution},
 \cite{roberts_impact_2020} montre une intensification des HTV lors du passage à des résolutions supérieures, comprises entre \km{25} et \km{50}, sans pour
-autant parvenir à reproduire la plage de valeur observée puisque la plupart des modèles peinent à dépasser la catégorie \num{2}~--~\num{3}. Ici encore, le
+autant parvenir à reproduire la plage de valeurs observée puisque la plupart des modèles peinent à dépasser la catégorie \num{2}~--~\num{3}. Ici encore, le
 modèle CNRM-CM-6-1-HR constitue l'exception en simulant des TC particulièrement intenses, dépassant même les observations dans le bassin WPac. Dans le NAtl,
 \cite{chauvin_future_2020} montre que l'intensité des HTV est encore accrue lorsque le modèle est utilisé dans sa configuration tournée-étirée pour atteindre
 \km{15} de résolution (voir \cref{fig:rotated_streched}). Ce cas constitue une anomalie, d'autant plus que la version précédente du modèle utilisée dans les
 simulations de \cite{daloz_impact_2012} ---~également en configuration tournée-étirée, à \km{50}~--- ne produit pas de HTV aussi intenses. Cette particularité
-serait probablement liée aux différences de paramétrisation physiques entre les deux versions \parencite{chauvin_future_2020}, auquel cas il est possible que la
+serait probablement liée aux différences de paramétrisations physiques entre les deux versions \parencite{chauvin_future_2020}, auquel cas il est possible que la
 capacité du modèle ARPEGE à simuler des TC de catégorie \num{4} et \num{5} soit due à de mauvaises raisons. Il est néanmoins à noter que, bien qu'ils soient peu
 nombreux, d'autres modèles à très haute résolution sont en mesure d'atteindre de tels niveaux d'intensité. C'est notamment le cas du modèle MRI-AGCM~3.2 avec
 sa grille à \km{20} \parencite{murakami_future_2012}, le modèle HiFLOR du GFDL à \km{25} \parencite{murakami_simulation_2015} ainsi que CAM~5.1 dans sa
@@ -585,7 +590,8 @@ les composent et le couplage avec diverses composantes, tous deux permettant de 
 les représenter dans les modèles. Si les modèles ne permettent toujours pas, pour la plupart, de reproduire pleinement l'amplitude de l'intensité observée, et
 si les différences dans leur capacité à représenter les TC et leur activité sont encore grandes, ils n'ont néanmoins jamais été aussi aptes à
 simuler l'activité cyclonique et sa variabilité de manière réaliste qu'aujourd'hui. Les modèles de climat constituent par conséquent le meilleur outil pour
-tenter d'évaluer l'impact du réchauffement climatique sur l'activité cyclonique.
+tenter d'évaluer l'impact du réchauffement climatique sur l'activité cyclonique. L'état de l'art sur les projections climatiques de l'activité cyclonique est présenté 
+dans la \cref{sec:projections_futures}.
 
 \subsection{Approche directe et indirecte pour l'étude de l'activité cyclonique}\label{sec:tracking_vs_indices}
 
@@ -653,10 +659,10 @@ détection, ses divers seuils et autres spécificités viennent ajouter autant d
 l'activité cyclonique, mais également sur les projections climatiques issues de ces modèles, et s'ajoutent à l'incertitude propre à ces derniers dans les
 projections.
 
-\subsubsection{Approche indirecte : Indices de cyclogénèses}\label{sec:intro_indices}
+\subsubsection{Approche indirecte : Indices de cyclogénèse}\label{sec:intro_indices}
 
 Plutôt que de mesurer les HTV directement dans les modèles, l'approche indirecte consiste à inférer l'activité cyclonique en analysant l'environnement de grande
-échelle via les variables, ou prédicteurs, associés à cette activité. Pour ce faire, la façon la plus commune consiste à utiliser un indice de cyclogénèse
+échelle via les variables, ou prédicteurs, associés à cette activité (voir \cref{sec:conditions_cyclogenese}). Pour ce faire, la façon la plus commune consiste à utiliser un indice de cyclogénèse
 \parencite{camargo_tropical_2016}. Les indices sont nombreux et tous possèdent des formulations différentes, mais le principe est toujours le même : Un indice de
 cyclogénèse combine des prédicteurs thermiques (par exemple la SST, ou l'humidité relative) et des prédicteurs dynamiques (cisaillement, vorticité...) pour
 décrire l'environnement favorable à la cyclogénèse et est normalisé, ou calibré, de telle sorte à être homogène à une quantité de TC ainsi que pour reproduire l'amplitude de
