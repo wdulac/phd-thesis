@@ -404,18 +404,18 @@ systèmes les plus éloignés de l'équateur, c'est à dire ceux qui sont en gé
 
 \subsection{Les modèles de climat}\label{sec:modèles}
 
-Le terme \textquote{modèle de climat} est vaste puisqu'il en existe une très large variété, de complexités différentes, selon les besoins et les questions que l'on
-souhaite élucider. Dans le cas de l'étude des cyclones tropicaux, il s'agit de modèles de circulation atmosphérique, qui peuvent soit fonctionner de manière dite
-forcée, c'est à dire où les conditions limites à la surface (SST, flux d'échange de chaleur de matière avec l'océan...) sont prescrites (on parle aussi de couplage
-\textquote{offline}), auquel cas l'atmosphère ne peut pas influencer l'océan en retour, ou bien de manière dite couplée (respectivement, couplage \textquote{online})
-où un modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à mieux représenter les diverses rétroactions. Ces modèles sont
-des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas de temps régulier, sur chacune
-des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie dynamique du modèle consiste en
-la résolution à chaque pas de temps d'un jeu d'équations différentielles décrivant la circulation atmosphérique, tandis que la physique et les processus prenant
-place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisés. Les modèles de climat peuvent soit simuler l'atmosphère sur
-l'entièreté du globe, auquel cas il s'agit de modèles de circulation globaux (\textit{Global Circulation Model}, GCM), ou bien ne simuler qu'un domaine
-spécifique~---~il s'agit alors de modèles à aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM).
-%
+Le terme \textquote{modèle de climat} est vaste puisqu'il en existe une très large variété, de complexités différentes, selon les besoins et les questions que
+l'on souhaite élucider. Dans le cas de l'étude des cyclones tropicaux, il s'agit de modèles de circulation atmosphérique, qui peuvent soit fonctionner de
+manière dite forcée, ou bien de manière dite couplée. Dans le premier cas, les conditions limites à la surface (SST, flux d'échange de chaleur de matière avec
+l'océan...) sont prescrites (on parle aussi de couplage \textit{offline}) et l'atmosphère ne peut donc pas influencer l'océan en retour. Dans le second cas
+(aussi appelé couplage \textit{online}), le modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à mieux représenter les diverses
+rétroactions. Ces modèles sont des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas
+de temps régulier, sur chacune des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie
+dynamique du modèle consiste en la résolution à chaque pas de temps d'un jeu d'équations différentielles décrivant la circulation atmosphérique, tandis que la
+physique et les processus prenant place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisés. Les modèles de climat peuvent
+soit simuler l'atmosphère sur l'entièreté du globe, auquel cas il s'agit de modèles de circulation globaux (\textit{Global Circulation Model}, GCM), ou bien ne
+simuler qu'un domaine spécifique~---~il s'agit alors de modèles à aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM).
+
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{cnrm-cm6.jpg}
@@ -423,7 +423,7 @@ spécifique~---~il s'agit alors de modèles à aire limitée, ou modèles régio
     celle du modèle système-terre CNRM-ESM \parencite{seferian_evaluation_2019}. Illustration issue de \cite{voldoire_evaluation_2019}.}
     \label{fig:cnrm-cm6}
 \end{figure}
-%
+
 Au CNRM, le modèle atmosphérique global est nommé ARPEGE-Climat \parencite[Action de Recherche Petite Échelle Grande Échelle,][]{deque_arpege_1994} et est
 dérivé du modèle de prévision numérique du temps ARPEGE/IFS \parencite[\textit{Integrated Forecast System},][]{courtier_arpege_1991}, développé conjointement
 par Météo-France et le CEPMMT. En tant que composante atmosphérique dans le modèle couplé océan-atmosphère \nolinebreak CNRM-CM6-1
@@ -434,38 +434,13 @@ part au sixième et plus récent exercice d'intercomparaison des modèles coupl�
 ARPEGE existe néanmoins et est utilisée dans le modèle couplé CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021}, participant au projet d'intercomparaison des
 modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une une résolution
 horizontale de \km{50} ---~les autre modèles participants se situant entre \km{20} et \km{80} \parencite[][Tableau AII.6]{ipcc_annex_2021}. Ainsi, de manière
-générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle de climat à haute résolution. La finesse de
-la résolution des modèles de climat est en pratique limitée par le temps de calcul dont ils ont besoin, si bien que les diverses résolutions des modèles de climat modernes
-témoignent de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations climatiques de l'ordre d'une
-centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, en dépit de la grande capacité des supercalculateurs d'aujourd'hui\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme place du classement mondial lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}}
-%
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.8\textwidth]{dynamical_downscaling.png}
-    \caption{Illustration schématique du raffinement en résolution permis par l'utilisation d'un modèle à aire limitée. Ce dernier nécessite que des
-    conditions limites lui soient fournies aux bords du domaine simulé à chaque pas de temps, le plus souvent par l'intermédiaire d'un GCM, à travers une zone
-    tampon, ici représentée par le maillage entourant le domaine du RCM. Illustration issue de \hbox{\cite{giorgi_regional_2015}}.}
-    \label{fig:dynamical_downscaling}
-\end{figure}
+générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle de climat à haute résolution. La finesse de la
+résolution des modèles de climat est en pratique limitée par le temps de calcul nécessaire à leur fonctionnement, et la résolution relativement grossière des modèles de climat
+modernes témoigne de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations climatiques de
+l'ordre d'une centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, malgré la grande capacité des
+supercalculateurs\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme~place du
+classement mondial lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}.}.
 
-La résolution d'un modèle est déterminante dans sa capacité à simuler une activité cyclonique réaliste \parencite{roberts_impact_2020}, aussi bien pour ce qui
-est de la fréquence d'occurrence que pour l'intensité des systèmes simulés, puisqu'il est estimé qu'un modèle doté d'une résolution plus large que \km{25} ne
-saurait produire une quantité réaliste de cyclones de catégorie 4 sur l'échelle de Saffir-Simpson \parencite{davis_resolving_2018}, ce qui laisse entendre que
-la majorité des GCM à haute résolution n'en sont donc pas capables. Il est cependant possible d'accroître la résolution des modèles de circulation
-atmosphérique. Une des solutions consiste à utiliser un modèle dit à aire limitée (RCM). En ne simulant l'évolution de l'atmosphère que sur un domaine
-restreint, ces derniers sont en mesure d'opérer à des résolutions nettement plus fines avec des temps de calcul raisonnables, typiquement de l'ordre de \km{25}
-sur des bassins cycloniques \parencite{torres-alavez_future_2021}. Toutefois, un RCM ne peut pas fonctionner de manière purement autonome car il a besoin de
-connaître l'état de l'atmosphère aux limites de son domaine. Ces informations sont fournies par un autre modèle qui l'englobe, souvent un GCM, ou parfois même
-un autre RCM si le saut de résolution est trop important (constituant donc une chaîne à trois modèles). La cohabitation nécessaire entre le RCM et son GCM
-forceur n'est pas sans inconvénients, car le RCM est alors très sensible à ces conditions limites \parencite{wu_estimating_2005} et donc au choix du GCM. La
-réciproque n'est cependant pas vraie puisque le RCM ne peut pas communiquer en retour au GCM, ce qui peut donner lieu à des incohérences si la simulation du RCM
-s'éloigne trop des champs fournis par la grande échelle du fait des différences dans la dynamique et la physique des deux composants. Des techniques existent
-pour imposer cette cohérence \parencite{storch_spectral_2000,biner_nesting_2000}, mais des doutes subsistent sur le bienfondé de la démarche, puisque cela
-pourrait revenir à inhiber la capacité du RCM à produire de la valeur ajoutée \parencite{alexandru_sensitivity_2009,separovic_impact_2012,omrani_spectral_2012}
-dans la mesure où il est permis de penser que c'est la liberté propre du modèle qui est à l'origine des détails de fine échelle réalistes et de leur évolution,
-celles-ci étant précisément issues de son implémentation et donc de ses différences avec le GCM forceur. Le gain de résolution apportée par l'utilisation de
-modèles à aire limitée est donc contrebalancé par l'introduction de nouvelles incertitudes et difficultés associées.
-%
 \begin{figure}[tb]
     \centering
     \includegraphics[width=0.8\textwidth]{grille_arpege_stretchee_C3AF.png}
@@ -474,6 +449,21 @@ modèles à aire limitée est donc contrebalancé par l'introduction de nouvelle
     \cite{chauvin_future_2020}.}
     \label{fig:rotated_streched}
 \end{figure}
+
+La résolution d'un modèle est déterminante dans sa capacité à simuler une activité cyclonique réaliste \parencite{roberts_impact_2020}, aussi bien pour ce qui
+est de la fréquence d'occurrence que pour l'intensité des systèmes simulés, puisqu'il est estimé qu'un modèle doté d'une résolution plus large que \km{25} ne
+saurait produire une quantité réaliste de cyclones de catégorie 4 sur l'échelle de Saffir-Simpson \parencite{davis_resolving_2018}, ce qui laisse entendre que
+la majorité des GCM à haute résolution n'en sont donc pas capables. Il est cependant possible d'accroître la résolution des modèles de circulation
+atmosphérique. Une des solutions consiste à utiliser un modèle dit à aire limitée (RCM). En ne simulant l'évolution de l'atmosphère que sur un domaine
+restreint, ces derniers sont en mesure d'opérer à des résolutions nettement plus fines avec des temps de calcul raisonnables, typiquement de l'ordre de \km{25}
+sur des bassins cycloniques \parencite{redmond_projected_2015,gallo_highresolution_2019,torres-alavez_future_2021}. Toutefois, un RCM ne peut pas fonctionner de
+manière purement autonome car il a besoin de connaître l'état de l'atmosphère aux limites de son domaine. Ces informations sont fournies par un autre modèle qui
+l'englobe, souvent un GCM, ou parfois même un autre RCM si le saut de résolution est trop important (constituant donc une chaîne à trois modèles). La
+cohabitation nécessaire entre le RCM et son GCM forceur n'est pas sans inconvénients, car le RCM est alors très sensible à ces conditions limites
+\parencite{wu_estimating_2005} et donc au choix du GCM. De plus, les différences dans la dynamique et la physique entre le GCM et le RCM font que la cohérence
+entre la grande et la fine échelle n'est pas forcément assurée entre les deux composants, incohérence illustrée par exemple avec la sous-estimation dans les RCM
+de la réponse au forçage anthropique suggérée par les GCM sur l'Europe continentale \parencite{boe_large_2020,taranu_mechanisms_2023}. Le gain de résolution
+apporté par l'utilisation de modèles à aire limitée est donc contrebalancé par l'introduction de nouvelles incertitudes et difficultés associées.
 
 Comme alternative aux modèles à aire limitée pour bénéficier d'une résolution accrue, le modèle ARPEGE dispose de la capacité à déformer sa grille horizontale
 de telle sorte à augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, la position du pôle est
