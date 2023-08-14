@@ -438,7 +438,7 @@ générale un GCM disposant d'une résolution horizontale plus fine que \km{100}
 résolution des modèles de climat est en pratique limitée par le temps de calcul nécessaire à leur fonctionnement, et la résolution relativement grossière des
 modèles de climat modernes témoigne de l'importance de leurs besoins en puissance de calcul, puisqu'il est aujourd'hui difficile de produire des simulations
 climatiques de l'ordre d'une centaine d'années avec une résolution en dessous de \km{50} en un temps de calcul raisonnable, malgré la grande capacité des
-supercalculateurs\footnote{Le supercalculateur actuel dédié à la recherche de Météo-France, nommé Belenos, occupait la \num{55}\ieme~place du classement mondial
+supercalculateurs\footnote{Le supercalculateur sur lequel ARPEGE-Climat opère actuellement, nommé Belenos, occupait la \num{55}\ieme~place du classement mondial
 lors de sa mise en fonctionnement en Juin \num{2021} \parencite{belenos_top500}.}.
 
 La résolution d'un modèle est déterminante dans sa capacité à simuler une activité cyclonique réaliste \parencite{roberts_impact_2020}, aussi bien pour ce qui
@@ -661,7 +661,8 @@ unité de temps, et s'apparente à une densité surfacique :
 %
 \begin{align*}
     N_{\text{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
-    \rho &= \underbrace{\vphantom{X_{\text{Dyn}}}A}_{\text{Calibration}} \times \underbrace{\vphantom{X_{\text{Dyn}}}X_{\text{Th}}}_{\text{Thermique}} \times \underbrace{X_{\text{Dyn}}}_{\text{Dynamique}}
+    \rho &= \underbrace{\vphantom{X_{\text{Dyn}}}A}_{\text{Calibration}} \times \underbrace{\vphantom{X_{\text{Dyn}}}X_{\text{Th}}}_{\text{Thermique}} \times
+    \underbrace{X_{\text{Dyn}}}_{\text{Dynamique}}
 \end{align*}
 %
 Où $\rho$ est exprimé sur un domaine géographique $D$ et dépend de la latitude $\phi$ et de la longitude $\lambda$. Comme mentionné dans la
@@ -673,38 +674,60 @@ formulation du SGP est donc plus sophistiquée que le simple produit des quatre 
 prédicteurs. Le SGP tel que défini dans \cite{gray_tropical_1975} s'exprime en TC par boîte de \ang{5}$\times$\ang{5} par 20 ans et est capable de reproduire
 fidèlement la densité de cyclones observés sur la période \num{1952}~--~\num{1971}.
 
-L'étude des conditions de grande échelle favorables comme alternative à la mesure directe des HTV était alors
-particulièrement pertinente dans la mesure où la résolution des GCM de l'époque ne permettaient pas de les simuler correctement, malgré les résultats
-encourageants de \cite{broccoli_can_1990} évoqués précédemment. C'est notamment pour cette raison que \hbox{\cite{ryan_tropical_1992}} ont utilisé pour la première
-fois le SGP, ainsi qu'une variante annuelle appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux
-indiquèrent une très forte augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique
-dans la run de contrôle (\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \cite{ryan_tropical_1992} l'ont appliqué à leur modèle.} dans la run de contrôle à \num{440} TC par an dans la
-run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ \SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les
-directions. Ce résultat s'explique en grande partie par la forte dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST
-globale moyenne de \SI{4.8}{\degreeCelsius}.
+L'étude des conditions de grande échelle favorables comme alternative à la mesure directe des HTV était alors particulièrement pertinente dans la mesure où la
+résolution des GCM de l'époque ne permettaient pas de les simuler correctement, malgré les résultats encourageants de \cite{broccoli_can_1990} évoqués
+précédemment. C'est notamment pour cette raison que \hbox{\cite{ryan_tropical_1992}} ont utilisé pour la première fois le SGP, ainsi qu'une variante annuelle
+appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux indiquèrent une très forte
+augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique dans la run de contrôle
+(\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \cite{ryan_tropical_1992}
+l'ont appliqué à leur modèle.} dans la run de contrôle à \num{440} TC par an dans la run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ
+\SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les directions. Ce résultat s'explique en grande partie par la forte
+dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}.
+\mbox{\cite{watterson_seasonal_1995}} cherchèrent à évaluer le pouvoir prédictif du SGP à l'échelle saisonnière et inter-annuelle et établirent que l'indice
+était capable de reproduire l'effet de l'épisode El Niño de \num{1982}~--~\num{83}, effet visible  aussi bien dans la partie thermique que dynamique de
+l'indice, marquée par une augmentation de l'activité dans le Pacifique central. Néanmoins, il notèrent une faible capacité à reproduire la variabilité
+inter-annuelle de l'activité dans différents bassins ---~ce qui est encore valable aujourd'hui \parencite{camargo_tropical_2007,camargo_tropical_2016}~--- et
+soulignèrent notamment l'amplitude réduite du signal inféré par le SGP par rapport aux observations. La \cref{fig:GP_resolution} issue de
+\cite{camargo_tropical_2007} présente l'impact de la résolution du modèle sur la capacité d'un indice à reproduire le cycle annuel de l'activité cyclonique, et
+montre une robustesse de la climatologie mensuelle à la résolution. En effet, les auteurs notèrent une augmentation variant de \SI{15}{\percent} à
+\SI{50}{\percent} entre les deux extrêmes de résolution, selon le mois et le bassin, avec le passage de \km{310} à \km{210} de résolution présentant le plus
+fort impact, puisque les différences sont ensuite moindres jusqu'à la résolution de \km{83}. Cette figure, à travers ses similitudes avec la
+\cref{fig:saisons_TC} de la \cref{sec:bassins_saisons}, met également en évidence la capacité de l'indice à reproduire la saisonnalité des bassins océaniques.
+\cite{mcdonald_tropical_2005,chauvin_response_2006} montrèrent enfin via des expériences à haute résolution et avec une variante du YGP moins dépendante à la SST
+que les indices de cyclogénèse pouvaient apporter de l'information utile quant à l'évolution future de l'activité cyclonique dans des simulations basse
+résolution.
 
-\newpage
-\subsection{Les cyclones dans les projections climatiques}\label{sec:projections_futures}
-
-Les exercices d'intercomparaison de modèles (MIP) existent sous de multiples formes ; modèles couplés océan-atmosphère (CMIP), modèles atmosphériques seuls
-(AMIP), océaniques seuls (OMIP),  modèles à hautes résolutions (HighResMIP), pour n'en citer que quelques uns. Les MIP sont des programmes définis par une série
-d'expériences numériques dont les protocoles sont établis à l'avance et auxquels les divers centres de modélisation à travers le monde peuvent participer. La
-mutualisation des données produites par les centres participants constituent de grands ensembles sur lesquels la communauté scientifique peut alors se baser
-pour évaluer divers aspects du réchauffement anthropique sur le système climatique. Le Groupe d'experts intergouvernemental d'experts sur le climat
-(GIEC, en anglais ; \textit{Intergovernmental Panel on Climate Change}, IPCC) produit ensuite une revue de littérature faisant la synthèse des études exploitant ces
-ensembles multi-modèles pour exprimer le consensus scientifique (ou son absence) sur chacun des sujets étudiés, notamment au travers de rapports d'évaluation
-(\textit{Assessment Reports}, AR). Dans le cas de l'étude de l'acitvité cyclonique, le WMO mandate également des rapports auprès d'un panel d'experts dont les
-conclusions sont reprises par le GIEC. Ainsi, les incertitudes associées aux projections climatiques sur l'activité cyclonique présentées ici représentent la
-dispersion des résultats issus des groupes travaillant sur les ensembles multi-modèles de simulations aux protocoles standardisés.
-%
 \begin{figure}[tb]
     \centering
-    \includegraphics[width=0.7\textwidth]{CMIP6-design.png}
-    \caption{Schéma de fonctionnement de CMIP6. L'anneau intérieur représente les simulations de diagnostiques, d'évaluation et de caractérisation du climat
-    (DECK) ainsi que les simulations historiques. Les anneaux extérieurs présentent les thèmes de recherche abordés dans CMIP6 et adressées par les différents
-    MIP partenaires. Diagramme issu de \cite{eyring_overview_2016}.}
-    \label{fig:CMIP6-design}
+    \includegraphics[width=0.8\textwidth]{camargo_tropical_2007_resolution.png}
+    \caption{Cycle annuel de l'activité cyclonique inférée par l'indice de cyclogénèse de \cite{emanuel_tropical_2004} dans les bassins WPac (a), NAtl (b), NInd
+    (c) et SInd (d) sur la période \num{1978}~--~\num{1999} et à des résolutions de \km{310} (T42), \km{210} (T63), \km{155} (T85), \km{125} (T106) et \km{83}
+    (T159) dans le modèle ECHAM5 \parencite{roeckner_atmospheric_2003}. Figure issue de \cite{camargo_tropical_2007}.}
+    \label{fig:GP_resolution}
 \end{figure}
+
+
+Ainsi, l'approche indirecte consistant en l'étude de l'environnement de grande échelle favorable à l'activité cyclonique via les indices de cyclogénèse présente
+l'intérêt de pouvoir être appliquée à des simulations dont la résolution ne permet pas nécessairement de représenter correctement les TC, et dans lesquelles une
+approche directe par détection objecte serait vraisemblablement sujette à un déficit de TC. Cela représente également une certaine économie, puisque le temps de
+calcul est le facteur limitant de la résolution des modèles, et peut aussi se montrer plus facile à appliquer à des simulations diverses issues de modèles
+différents que la mise en place d'un schéma de détection homogénéisé. Néanmoins, des incertitudes demeurent sur les poids accordés aux différents prédicteurs,
+ainsi que sur le choix des prédicteurs eux-mêmes. De même, l'utilisation d'indices de cyclogénèse pour l'étude de l'activité cyclonique en climat futur suppose
+la stationnarité des relations qui sont calibrées sur le climat présent, une hypothèse qui pourrait être erronée, selon
+\cite{nolan_increased_2008,murakami_changes_2013}.
+
+\subsection{Les cyclones dans les projections climatiques}\label{sec:projections_futures}
+
+Les projections futures sur l'activité cyclonique tropicale sont, le plus souvent, issues de grands programmes d'intercomparaison de modèles (MIP). Le plus
+notable d'entre eux est sans doute le projet CMIP, dont la plus récente itération (CMIP6) définit un socle commun pour de nombreux autres MIP, comme par exemple
+HighResMIP. Ces projets sont définis par une série d'expériences numériques aux protocoles pré-établis et auxquels les divers centres de modélisation à travers
+le monde peuvent participer. La mutualisation des données produites par les centres participants constituent alors de grands ensembles que la communauté
+scientifique peut ensuite exploiter afin d'étudier divers aspects du forçage anthropique sur le système climatique. Ainsi, les projections futures des divers
+métriques décrivant l'activité cyclonique présentées ici sont caractérisées par la moyenne (ou la médiane) des résultats issus des groupes travaillant le plus
+souvent sur ces ensembles de simulations aux protocoles standardisés, et les incertitudes associées représentent leur dispersion. Les projections les plus à
+jour pour les quatre métriques d'intérêt primordial que sont la fréquence d'occurrence des TC, toutes catégories confondues ; la fréquence d'occurrence des TC
+les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) ; L'intensité, exprimée en vitesse maximale de vent à la surface (LMI) et les précipitations
+cycloniques sont présentées sur la \cref{fig:projections_TC}, issue de \cite{knutson_tropical_2020}.
 
 \cite{christensen_climate_2013,knutson_tropical_2020,seneviratne_weather_2021}
 
