@@ -299,7 +299,7 @@ de cyclogénèse, et qui seront abordés plus en détails dans la \cref{sec:intr
 %----------------------------------------------------------------------------------------------------------------------
 \section{Cyclones tropicaux et changement climatique}
 
-\subsection{Bases de données observationnelles et tendances historiques}
+\subsection{Bases de données observationnelles et tendances historiques}\label{sec:observations}
 
 Un pré-requis pour pouvoir traiter de changement climatique, quelque soit l'objet d'étude, est de disposer de données observationnelles le plus fiables
 possibles, et sur la plus longue période possible. Or, les réseaux d'observation s'étendent et se densifient, les instruments se perfectionnent avec le temps,
@@ -727,10 +727,10 @@ métriques décrivant l'activité cyclonique présentées ici sont caractérisé
 souvent sur ces ensembles de simulations aux protocoles standardisés, et les incertitudes associées représentent leur dispersion. Les projections les plus à
 jour pour les quatre métriques d'intérêt primordial que sont la fréquence d'occurrence des TC, toutes catégories confondues ; la fréquence d'occurrence des TC
 les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) ; L'intensité, exprimée en vitesse maximale de vent à la surface (LMI) et les précipitations
-cycloniques sont présentées sur la \cref{fig:projections_TC}, issue de \cite{knutson_tropical_2020}.
-
-\cite{christensen_climate_2013,knutson_tropical_2020,seneviratne_weather_2021}
-
+cycloniques sont présentées sur la \cref{fig:projections_TC}. Les projections futures de ces métriques sont commentées ci-dessous, en regroupant les
+précipitations, le LMI et la fréquence des cyclones les plus forts ensemble, tandis que la question de la fréquence des TC toutes catégories confondues est
+traitée séparément.
+%
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{knutson_2020_projections.png}
@@ -742,7 +742,81 @@ cycloniques sont présentées sur la \cref{fig:projections_TC}, issue de \cite{k
     \label{fig:projections_TC}
 \end{figure}
 
+\subsubsection{Fréquence des cyclones forts, intensité maximale et précipitations}
+
+Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est plus ambigu que
+le signal sur la fréquence d'occurrence des TC de toutes les catégories. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est
+sensible à la résolution des modèles utilisées, puisque \cite{knutson_tropical_2020} soulignent que les modèles de résolution relativement basses (par rapport
+aux études considérées, c'est à dire avec des résolutions de l'ordre de \km{50}~--~\km{60}) tendent à indiquer une diminution de la fréquence des TC intenses,
+tandis que les modèles à très haute résolution indiquent au contraire une augmentation. En revanche, lorsqu'est considérée la proportion de ces TC, relativement
+à la fréquence des TC de toutes catégories (non montré ici), alors les résultats des différentes études convergent nettement vers une intensification, avec une
+hausse médiane de \SI{13}{\percent} de la proportion de TC de catégories 4 ou 5 à l'échelle globale sous un scénario de réchauffement de \SI{2}{\degreeCelsius}.
+
+Cette augmentation relative de la fréquence des cyclones les plus forts s'explique par la combinaison de la baisse de la fréquence globale des TC ainsi que de
+l'augmentation de l'intensité maximale atteinte par les TC dans les projections. L'augmentation de l'intensité maximale des TC constitue là aussi une réponse
+particulièrement robuste de l'activité cyclonique au réchauffement climatique, puisque même les valeurs minimales et maximales de la distribution des résultats
+à l'échelle globale sont de même signe, avec une hausse moyenne de l'intensité de \SI{5}{\percent} et comprise entre \SI{1}{\percent} et \SI{10}{\percent}
+(respectivement \SI{2}{\percent} et \SI{8}{\percent} pour les pourcentiles \SI{10}{\percent} et \SI{90}{\percent} présentés sur la \cref{fig:projections_TC}).
+Localement, seul le bassin le bassin Sud-ouest Pacifique présente une incertitude conséquente sur le signe du changement. La confiance dans ce signal est
+renforcée par le fait qu'une tendance à l'intensification est déjà constatée dans les observations (voir \cref{sec:observations}) et qu'il est estimé que les
+activités anthropiques y ont contribué \parencite{knutson_tropical_2019}. En outre, une augmentation du LMI dans un climat plus chaud est cohérent avec la
+théorie de l'intensité potentielle (\textit{Potential Intensity}, PI) de \cite{emanuel_dependence_1987}.
+
+La \cref{fig:projections_TC} présente le changement relatif dans le débit des précipitations (et non pas dans le cumul) mesurées dans la vicinité des cyclones
+tropicaux issus des simulations climatiques. Cette métrique présente le plus grand consensus parmi les quatre présentées sur cette figure, avec notamment
+l'ensemble des \num{16} projections utilisées pour quantifier le changement à l'échelle globale indiquant une hausse des précipitations cycloniques comprise
+entre \SI{6}{\percent} et \SI{22}{\percent} (respectivement environ \SI{7}{\percent} et \SI{18}{\percent} pour les pourcentiles \SI{10}{\percent} et
+\SI{90}{\percent} de la \cref{fig:projections_TC}) et une augmentation médiane de \SI{14}{\percent}. La relation de Clausius-Clapeyron relie la pression de
+vapeur saturante à la température de l'air, et permet de montrer que la capacité de l'atmosphère à contenir de la vapeur d'eau augmente d'environ
+\SI{7}{\percent} par degré de réchauffement. Une hausse des précipitations cycloniques de \SI{14}{\percent} pour un réchauffement de \SI{2}{\degreeCelsius} est
+donc en accord avec cette relation. Le processus physique menant à une augmentation des précipitations cycloniques est par ailleurs bien compris. D'une part,
+l'humidité relative est vue comme stable en changement climatique, tandis que la SST et la troposphère se réchauffent, impliquant une augmentation du contenu en
+vapeur d'eau de l'atmosphère. De plus, la grande majorité de la vapeur d'eau dans un TC est apportée par la circulation secondaire (radiale, donc convergence
+d'humidité). Ainsi, les précipitations cycloniques sont proportionnelles au contenu au vapeur d'eau de l'atmosphère.
+
+\subsubsection{Fréquence d'occurrence}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{knutson_2020_TCfreq.png}
+    \caption{Synthèse des estimations du changement relatif dans la fréquence d'occurrence des TC toutes catégories dans les \num{59} études utilisées pour ces
+        projections, certaines produisant plusieurs estimations, et listées dans \cite[][documents supplémentaires, tableau ES1]{knutson_tropical_2020}, (a) à
+        l'échelle globale, où les résultats obtenus par l'approche statistico-dynamique de \cite{emanuel_downscaling_2013} sont séparés des autres études (gris)
+        (27 études fournissent des estimations globales). (b) Distributions des changements relatifs dans la fréquence des TC à l'échelle globale et pour chaque
+        bassin océanique, incluant \cite{emanuel_downscaling_2013}. Pour (a) comme pour (b), les estimations sont homogénéisées pour être cohérentes avec un
+        réchauffement global de \SI{2}{\degreeCelsius} quand nécessaire. Figure issue de \cite{knutson_tropical_2020}.}
+    \label{fig:TC_freq_summary}
+\end{figure}
+
+La diminution de la fréquence d'occurrence des cyclones tropicaux à l'échelle globale, toutes catégories confondues, constitue un signal robuste du
+réchauffement climatique sur l'activité cyclonique, puisque \num{22} des \num{27} études utilisées présentent un tel signal. Sur la
+\cref{fig:TC_freq_summary}.b, le changement médian global est de \SI{-14}{\percent}, avec une plage de valeurs (incluant le minimum et maximal) allant de
+\SI{-28}{\percent} à $+$\SI{22}{\percent}. Le \num{4}\ieme~rapport d'évaluation (AR4) du GIEC (Groupe d'experts intergouvernemental sur l’évolution du climat)
+indiquait déjà une possible diminution de l'activité globale, sans avancer de chiffre \parencite{meehl_global_2007}, tandis que l'AR5 concluait à une diminution
+probable de l'ordre de \SI{-20}{\percent} \parencite{christensen_climate_2013}. L'AR6 (le dernier en date), quant à lui, reprend les conclusions de
+\cite{knutson_tropical_2020} \parencite{seneviratne_weather_2021}, avec donc une révision à la hausse de la diminution de l'ordre de \num{6} points. En effet,
+plusieurs équipes ont obtenus, dans certains cas, des résultats indiquant au contraire une augmentation de la fréquence d'occurrence des TC depuis l'AR6
+\parencite{camargo_global_2013,emanuel_downscaling_2013,wehner_resolution_2015,bhatia_projected_2018}. Les résultats de \cite{emanuel_downscaling_2013}, basés sur
+une méthode combinant un générateur stochastique de trajectoires et une descente d'échelle dynamique, appliqués à des expériences CMIP5 sont présentés sur la
+\cref{fig:TC_freq_summary}.a en gris. Ses résultats se situent dans la queue de la distribution, et dépendent de l'hypothèse voulant que la fréquence des
+perturbations servant de précurseurs aux TC soit invariante en climat future, ce qui n'est pas vérifiable. Néanmoins, comme \cite{knutson_tropical_2020} le
+soulignent, les autres études indiquant une augmentation de l'activité ne sont pas dépendants de cette hypothèse. À l'échelle des bassins océaniques, le signal
+est nettement moins robuste et les projections fluctuent d'un bassin à l'autre, avec toutefois les bassins Sud Indien et Sud-ouest Pacifique indiquant une
+baisse probable.
+
+Les projections sur le changement dans le fréquence d'occurrence globale présentées sur les \cref{fig:TC_freq_summary,fig:projections_TC} sont basées sur une
+approche directe (voir \cref{sec:intro_tracking}). Or, la majorité des travaux appliquant les indices de cyclogénèse à des simulations de changement climatique
+indiquent également une augmentation de la fréquence d'occurrence des cyclones tropicaux
+\parencite{zhang_changes_2010,emanuel_downscaling_2013,camargo_testing_2014,wehner_resolution_2015,chauvin_future_2020,cattiaux_projected_2020}. Par conséquent,
+et bien que la balance penche du côté d'une diminution de l'activité cyclonique, l'incertitude quant au signe du changement persiste. Cette incertitude est par
+ailleurs renforcée par l'absence d'un consensus sur le processus physique pouvant expliquer une diminution, avec d'un côté une théorie sur la diminution du flux
+de masse ascendant en climat future qui en serait à l'origine \parencite{sugi_decreasing_2012,satoh_constraint_2015}, et de l'autre côté la théorie du déficit
+de saturation d'humidité (qui augmente dans une atmosphère plus chaude) \parencite{emanuel_hurricanes_2008,camargo_testing_2014,tang_environmental_2014}. De
+même, l'absence de preuves indiquant que les activités humaines aient pu avoir une influence sur la fréquence observée \parencite{knutson_tropical_2019}, ainsi
+que le fait que seule l'étude récente de \cite{klotzbach_trends_2022} mesure une tendance à la baisse de la fréquence globale dans les observations, contribuent
+à l'incertitude sur le signe du changement de la fréquence des TC dans un climat plus chaud.
+
 %----------------------------------------------------------------------------------------------------------------------
-\section{Synthèse}
+%\section{Synthèse}
 
 \end{document}
