@@ -29,6 +29,8 @@
 
 \usepackage{float}
 
+\usepackage{pdfpages} % Pour importer mon article
+
 %%%%%% Biblatex settings
 
 \usepackage[backend=biber, style=authoryear-comp, autocite=inline, maxbibnames=20, minbibnames=20, maxcitenames=2, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false, sortcites=false]{biblatex} %uniquename=full
@@ -65,7 +67,7 @@
 \usepackage[locale=FR]{siunitx}
 \sisetup{%
     mode=math,
-    detect-all
+    detect-all,
 }
 \addto\extrasfrenchb{\sisetup{locale = FR}}
 \usepackage[version=4]{mhchem}
@@ -113,6 +115,7 @@
 
 \usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
 \usepackage[french]{minitoc}
+\setcounter{minitocdepth}{5}
 %\usepackage[nottoc]{tocbibind}
 \usepackage{enumitem}
 \setlist[itemize]{nosep, label={--}}
