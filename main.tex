@@ -115,7 +115,10 @@
 
 \usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
 \usepackage[french]{minitoc}
-\setcounter{minitocdepth}{5}
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
+\setcounter{minitocdepth}{3}
+
 %\usepackage[nottoc]{tocbibind}
 \usepackage{enumitem}
 \setlist[itemize]{nosep, label={--}}
@@ -152,7 +155,7 @@ Abstract goes here (in english)
 
 \subfile{Chapitres/introduction}
 
-\chapter{Cyclones tropicaux}\label{cha:chapitre_1}
+\chapter{Cyclones tropicaux}\label{chap:chapitre_1}
 \subfile{Chapitres/chapitre1}
 
 \chapter{Détection objective de cyclones tropicaux dans les simulations}\label{chap:chapitre_2}

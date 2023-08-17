@@ -162,7 +162,7 @@ montgomery_tropical_1993, gray_formation_1998, tory_tropical_2010}, il existe n�
 \cite{gray_global_1968}, complétés dans \cite{gray_tropical_1975}, constituent, à partir des observations disponibles à l'époque, une étude globale sur
 l'origine des cyclones tropicaux et font référence en la matière. Six facteurs sont ainsi identifiés et brièvement présentés ci-dessous.
 
-\subsubsection{Vorticité relative en basses couches}
+\subsubsection*{Vorticité relative en basses couches}
 
 Les cyclones tropicaux se forment toujours à partir de perturbations atmosphériques préexistantes. Ce sont souvent des petits systèmes dépressionnaires
 provenant de la zone de convergence intertropicale (ZCIT) \parencite{gray_global_1968}, ou encore des ondes d'est tropicales, comme dans le cas de l'océan
@@ -172,7 +172,7 @@ couche limite atmosphérique. Cette vapeur est entrainée en altitude par mouvem
 troposphère, contribuant ainsi à entretenir le fonctionnement du cyclone. Ce mécanisme constitue la source principale d'énergie des cyclones tropicaux
 \parencite{emanuel_dependence_1987}.
 
-\subsubsection{Rotation de la Terre}
+\subsubsection*{Rotation de la Terre}
 
 La rotation de la Terre induit, du point de vue d'un observateur appartenant au même référentiel, une force sur tous les objets se déplaçant à la surface de la
 planète et appelée force de Coriolis. Cette force, qualifiée d'inertielle ou de fictionnelle, en ce sens qu'elle n'est le résultat que du fait que le
@@ -188,7 +188,7 @@ mètres par secondes \parencite{gray_tropical_1975}. La force de Coriolis permet
 l'équateur, et les observations historiques indiquent qu'une distance à l'équateur de \num{4}~à~\ang{5} est requise pour qu'un cyclone tropical puisse se
 développer \parencite{gray_global_1968}.
 
-\subsubsection{Faible cisaillement vertical du vent}
+\subsubsection*{Faible cisaillement vertical du vent}
 
 Le cisaillement du vent, ou plus précisément ici, le cisaillement vertical du vent horizontal, exprime la manière dont le vent horizontal varie avec l'altitude,
 en intensité comme en direction. Dans le cas des cyclones tropicaux, on le mesure (ou le calcule) sur toute la hauteur de la troposphère, c'est à dire entre la
@@ -196,7 +196,7 @@ tropopause à \hPa{200} et la basse troposphère, typiquement à \hPa{850}. Le c
 troposphère sont ventilées, ventilation qui limite donc la capacité du système à accumuler de la chaleur en son cœur \parencite{gray_tropical_1975}. Le
 cisaillement vertical est donc très défavorable à la cyclogénèse.
 
-\subsubsection{Température de surface de la mer}
+\subsubsection*{Température de surface de la mer}
 
 Un cyclone tropical consomme environ \SI{15}{\mega\joule} par jour de chaleur sensible et latente extraite de la surface océanique
 \parencite{gray_tropical_1975}. De plus, la circulation cyclonique produit une remontée d'eau océanique (upwelling) autour du centre du système. Pour ces
@@ -206,7 +206,7 @@ raisons, la cyclogénèse nécessite non seulement que la température de surfac
 seuil de SST n'est atteint qu'en surface, le phénomène d'upwelling apportera de l'eau plus froide qui ne permettra plus d'alimenter le système. Ce besoin
 important en chaleur a généralement pour conséquence la désintensification rapide du TC mature lorsqu'il atteint les terres.
 
-\subsubsection{Humidité relative et instabilité atmosphérique}
+\subsubsection*{Humidité relative et instabilité atmosphérique}
 
 Ces deux derniers facteurs que sont l'humidité relative en moyenne troposphère, c'est à dire autour de \hPa{600}, et la notion de stabilité atmosphérique, sont,
 dans le cadre de la cyclogénèse, étroitement liés. La stabilité de l'atmosphère, à fortiori lorsqu'elle est chargée en vapeur d'eau, dépend du gradient vertical
@@ -217,7 +217,7 @@ atmosphère instable. Par ailleurs, la convection profonde est favorisée par un
 égale, une parcelle d'air humide possède une plus grande flottabilité qu'une parcelle d'air sec. Enfin, toujours d'après \cite{gray_tropical_1975}, une humidité
 relative élevée en haute troposphère favorise les précipitations et donc la libération d'enthalpie qui vient renforcer le cœur chaud du système.
 
-\subsubsection{Climatologies}\label{sec:climato_ingredients}
+\subsubsection*{Climatologies}\label{sec:climato_ingredients}
 
 La \cref{fig:clim_ingredients} présente les climatologies saisonnières de quatre des éléments favorables à la cyclogénèse que sont la vorticité absolue à
 \hPa{850}, notée $\zeta_{\text{\hPa{850}}}$; l'humidité relative à \hPa{600}, $\text{RH}_{\text{\hPa{600}}}$ ; l'inverse du cisaillement vertical du vent
@@ -590,17 +590,17 @@ l'approche utilisée pour la description des HTV présentées dans la \cref{sec:
 \cref{sec:modèles} lorsqu'il est fait mention de l'importance de la résolution, peut être vue comme la mesure la plus directe possible, puisqu'il s'agit
 d'identifier les HTV et d'aller directement analyser leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon de procéder
 repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations, à l'aide d'un schéma (ou algorithme) de détection et de
-suivi objectif, aussi appelés algorithmes de tracking. Basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995}, ces algorithmes consistent pour la
-plupart\footnote{Une exception à ce mode opératoire est proposée par \cite{tory_development_2013} et brièvement présentée dans le \cref{chap:chapitre_2},
-\cref{sec:tour_horizon_tracking}.} à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de détection puis à relier
-les points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques
-de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats d'un tel travail. La
-\cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts
-importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur
-le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les
-fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier
-est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans
-le nord.
+suivi objectif, aussi appelés algorithmes de tracking. Basés sur les méthodologies de \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995}, ces algorithmes
+consistent pour la plupart\footnote{Une exception à ce mode opératoire est proposée par \cite{tory_development_2013} et brièvement présentée dans le
+\cref{chap:chapitre_2}, \cref{sec:tour_horizon_tracking}.} à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de
+détection puis à relier les points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes
+et de calculer des statistiques de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats
+d'un tel travail. La \cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et
+montre des écarts importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par
+bassin mais aussi sur le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à
+\num{2} entre les fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit
+lorsque ce dernier est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans
+l'hémisphère sud que dans le nord.
 
 \begin{figure}[htbp]
     \centering
@@ -740,7 +740,7 @@ traitée séparément.
     \label{fig:projections_TC}
 \end{figure}
 
-\subsubsection{Fréquence des cyclones forts, intensité maximale et précipitations}
+\subsubsection*{Fréquence des cyclones forts, intensité maximale et précipitations}
 
 Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est plus ambigu que
 le signal sur la fréquence d'occurrence des TC de toutes les catégories. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est
@@ -772,7 +772,7 @@ l'humidité relative est vue comme stable en changement climatique, tandis que l
 vapeur d'eau de l'atmosphère. De plus, la grande majorité de la vapeur d'eau dans un TC est apportée par la circulation secondaire (radiale, donc convergence
 d'humidité). Ainsi, les précipitations cycloniques sont proportionnelles au contenu au vapeur d'eau de l'atmosphère.
 
-\subsubsection{Fréquence d'occurrence}
+\subsubsection*{Fréquence d'occurrence}
 
 \begin{figure}[htb]
     \centering
