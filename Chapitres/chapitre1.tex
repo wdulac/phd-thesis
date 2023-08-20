@@ -591,16 +591,15 @@ l'approche utilisée pour la description des HTV présentées dans la \cref{sec:
 d'identifier les HTV et d'aller directement analyser leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon de procéder
 repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations, à l'aide d'un schéma (ou algorithme) de détection et de
 suivi objectif, aussi appelés algorithmes de tracking. Basés sur les méthodologies de \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995}, ces algorithmes
-consistent pour la plupart\footnote{Une exception à ce mode opératoire est proposée par \cite{tory_development_2013} et brièvement présentée dans le
-\cref{chap:chapitre_2}, \cref{sec:tour_horizon_tracking}.} à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de
-détection puis à relier les points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes
-et de calculer des statistiques de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats
-d'un tel travail. La \cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et
-montre des écarts importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par
-bassin mais aussi sur le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à
-\num{2} entre les fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit
-lorsque ce dernier est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans
-l'hémisphère sud que dans le nord.
+consistent pour la plupart à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de détection puis à relier les
+points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des
+statistiques de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats d'un tel travail. La
+\cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts
+importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur
+le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les
+fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier
+est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans
+le nord.
 
 \begin{figure}[htbp]
     \centering
@@ -619,7 +618,7 @@ l'expérience à SST accrues (a), pour le traqueur proposé dans \cite{zhao_simu
 méthodologie de \cite{camargo_improving_2002} ---~deux algorithmes qui, comme beaucoup d'autres, ont pourtant en commun le fait de chercher à diagnostiquer la
 présence d'un tourbillon, d'un cœur chaud et d'un minimum local de SLP\footnote{Si la finalité de ces diagnostiques est la même entre les deux méthodes, leurs
 implémentations exactes sont toutefois très différentes. Le cas de la méthode de \cite{camargo_improving_2002} est explicité davantage dans la
-\cref{sec:tour_horizon_tracking}.}. Outre le signe du changement, c'est aussi son amplitude qui se voit affectée par ce choix méthodologique, comme par exemple
+\cref{sec:intro_chap2}.}. Outre le signe du changement, c'est aussi son amplitude qui se voit affectée par ce choix méthodologique, comme par exemple
 pour le cas du modèle GFS (\textit{Global Forecast System}) du \textit{National Centers for Environmental Predictions} (NCEP) et désigné sous cet acronyme dans
 la \cref{fig:horn_2014_projections}, en particulier dans les expériences (a) et (b), où la réponse du signal est plus de trois fois supérieures avec le traqueur
 de \cite{zhao_simulations_2009} qu'avec le schéma de détection ici nommé CSIRO. Les deux schémas se distinguent l'un de l'autre principalement par le fait que
