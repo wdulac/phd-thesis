@@ -119,7 +119,74 @@ La version publiée de \cite{dulac_assessing_2023} est présentée dans la \cref
 
 \subsection{Métriques d'évaluation de la similarité des trajectoires}\label{sec:similarité}
 
+\subsubsection*{Introduction}
 
+Les travaux réalisés dans \cite{dulac_assessing_2023} et présentés dans la \cref{sec:papier} font appel aux notions de FAR et POD pour évaluer la performance de
+le schéma de détection de TC du CNRM. Le calcul du POD s'appuie sur un algorithme qui associe les trajectoires détectées dans ERA5 à celles présentes dans la
+base de données IBTrACS par correspondance spatio-temporelle. Si en moyenne le taux de recouvrement des trajectoires appariés (\textquote{\textit{matched}} dans
+\cite{dulac_assessing_2023}) ---~c'est à dire le nombre de points ERA5 situés à moins de \km{300} d'IBTrACS rapporté au nombre d'échéances de la trajectoire
+IBTrACS, tel que défini dans la \cref{sec:papier_data_methods}~--- est de \prct{68} (médiane à \prct{71}), il suffit dans l'absolu d'un seul pas de temps
+remplissant la condition pour que la trajectoire ERA5 soit appariée à une trajectoire présente dans les observations, et donc pour que la trajectoire détectée
+contribue au POD. Ce cas est néanmoins rare puisqu'il concerne en tout et pour tout \num{7} paires de trajectoires ERA5 / IBTrACS, mais on note cependant que
+près de \prct{4} de nos trajectoires ERA5 ont un taux de recouvrement inférieur ou égal à \prct{25}. Par ailleurs, le taux de recouvrement des couples de
+trajectoires ainsi formés tend à augmenter avec l'intensité des cyclones observés, comme le montre la \cref{fig:coverage_ratio} encadré (a), et qui s'explique
+par le fait que les cyclones les plus intenses sont les plus facilement détectables par le traqueur. Cette tendance à de meilleurs recouvrements pour les
+cyclones les plus forts n'empêchent pas une certaine dispersion des valeurs. Par exemple \prct{5} des trajectoires appariés à des TC de catégorie \num{3} ont un
+taux de recouvrement inférieur ou égal à \prct{31}. Une partie de la variance dans ces scores peut s'expliquer par le fait que le traqueur du CNRM est
+susceptible de manquer le début et la fin du cycle de vie des trajectoires observées, en dépit du mécanisme de relaxation des paramètres utilisé dans le schéma
+de détection \parencite[][Figure 8]{bourdin_intercomparison_2022}, auquel cas le recouvrement s'en voit mécaniquement réduit. L'autre facteur est que les
+trajectoires ERA5 peuvent localement s'éloigner à plus de \km{300} d'IBTrACS. La \cref{fig:coverage_ratio} encadré (b) montre la distribution de la fraction des
+points ERA5 situés à plus de \km{300} des observations pour chaque paire de trajectoire et montre qu'en moyenne \prct{5.8} des points détectés par le traqueur
+parmi les trajectoires appariés à IBTrACS sont au delà de la limite d'appariement. De plus, \prct{5} des trajectoires détectées dans ERA5 ont une fraction
+divergente d'au moins \prct{26}. Par conséquent, la trajectoire détectée dans la réanalyse n'est pas toujours identique à celle du catalogue des best tracks,
+soit parce que le traqueur n'en détecte qu'une partie, soit parce que la trajectoire détectée diverge des observations, ou encore par une combinaison quelconque
+de ces deux éléments. Enfin, bien que le taux de recouvrement donne une indication sur la similarité des deux trajectoires, il n'apporte pas d'information sur
+les variations locales dans la direction de déplacement, si bien que ce dernier n'est pas adapté pour évaluer quantitativement la ressemblance entre les
+trajectoires détectées dans la réanalyse et celles issues des observations.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{coverage_ratio_and_missed.png}
+    \caption{(a) Distributions des taux de recouvrement des trajectoires appariées entre ERA5 / IBTrACS pour chaque classe d'intensité des TC observés. (b)
+    Distribution de la fraction de points détectés situés à plus de \km{300} d'IBTrACS parmi les trajectoires appariés.}
+    \label{fig:coverage_ratio}
+\end{figure}
+
+Dans cette section, trois métriques de similarité des trajectoires sont définies et comparées sur le jeu de données composé des trajectoires détectées dans la
+réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS ---~celui-là même utilisé dans \cite{dulac_assessing_2023}. En particulier, cette
+analyse vise à déterminer si le réglage des seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des
+trajectoires peu ressemblantes, du fait de la formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires. Leur utilisation comme
+possible métrique d'optimisation d'un schéma de détection est discutée.
+
+\subsubsection*{La similarité angulaire}
+
+Une trajectoire de cyclone tropical est une série temporelle composée des positions successives du système et accompagnées de diverses informations permettant la
+caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non pas
+les positions discrètes du système, mais la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
+
+Soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions $p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
+%
+\begin{align*}
+    C &= ((p_1, t_1), (p_2, t_2), ...\,, (p_{M+1}, t_{M+1}))\\
+      &= (c_1, c_2, ..., c_{M+1})
+\end{align*}
+%
+Alors la série des vecteurs de déplacement équivalente $C_{\text{vec}}$ est donnée par :
+\begin{align*}
+    C_{vec} &= ((c_2 - c_1), (c_3 - c_2), ... \,, (c_{M+1} - c_M))\\
+            &= (\vec{c_1}, \vec{c_2}, ..., \vec{c_M})
+\end{align*}
+%
+Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de $N$ vecteurs. On définit la similarité cosinus $S_C$ entre
+deux des vecteurs individuels $\vec{c}_i$ et $\vec{q}_j$ issus respectivement de $C_{\text{vec}}$ et $Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même
+temps $t$ par :
+%
+\begin{equation*}
+    S_C(\vec{c}_i, \vec{q}_j) := \cos \theta = \frac{\vec{c}_i \cdot \vec{q}_j}{\lVert \vec{c}_i \rVert \lVert \vec{q}_j \rVert} \in [-1; 1]
+\end{equation*}
+%
+Ainsi la similarité cosinus caractérise l'angle formé par les vecteurs de déplacement issus de deux trajectoires à un instant donné. Pour obtenir une valeur
+définie sur $[0; 1]$....
 
 %--------------------------------------
 \section{Synthèse}
