@@ -187,9 +187,9 @@ Alors la série des vecteurs de déplacement équivalente $C_{\text{vec}}$ est d
             &= (\vec{c_1}, \vec{c_2}, \ldots, \vec{c_M})
 \end{align*}
 %
-Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de $N$ vecteurs. On définit la similarité cosinus $S_C$ entre
-deux des vecteurs individuels $\vec{c}_i$ et $\vec{q}_j$ issus respectivement de $C_{\text{vec}}$ et $Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même
-temps $t$ par :
+Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de $N$ vecteurs. L'angle $\theta$ entre deux vecteurs individuels
+$\vec{c}_i$ et $\vec{q}_j$ issus respectivement de $C_{\text{vec}}$ et $Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même temps $t$ est donné par le
+produit scalaire des deux vecteurs. $\cos \theta$ est aussi appelé similarité cosinus et est noté $S_C$ :
 %
 \begin{equation*}
     S_C(\vec{c}_i, \vec{q}_j) = \cos \theta = \frac{\vec{c}_i \cdot \vec{q}_j}{\lVert \vec{c}_i \rVert \lVert \vec{q}_j \rVert} \in [-1; 1] 
@@ -219,6 +219,16 @@ temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet i
 ou au contraire si la trajectoire détectée est plus longue que celle observée. On appelle donc l'intersection des trajectoires $C \cap Q$ le sous-ensemble des
 pas de temps dans lequel les deux trajectoires co-existent. Réciproquement, l'union $C \cup Q$ contient l'ensemble des échéances des deux trajectoires. Enfin,
 la différence symétrique des deux trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois.
+
+En première approche, on peut définir la similarité intégrée entre deux trajectoires $C$ et $Q$ comme la moyenne de la similarité angulaire $S_\theta$ sur $C
+\cap Q$, notée $\bar{S_\theta}^\cap$ :
+%
+\begin{equation}
+    \bar{S_\theta}^\cap = \frac{1}{N^\cap} \sum_{i=1}^{N^\cap} S_\theta (\vec{c}_i, \vec{q}_i)
+\end{equation}
+%
+Cette première métrique de similarité angulaire moyenne (\textit{Mean Angular Similarity}, MAS) se concentre donc sur les échéances où les deux trajectoires
+coexistent, les échéances non-détectées ainsi que celles en trop par rapport aux observations n'étant pas compatiblisées.
 
 
 %--------------------------------------
