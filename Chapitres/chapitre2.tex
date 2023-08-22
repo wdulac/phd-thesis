@@ -147,34 +147,44 @@ trajectoires détectées dans la réanalyse et celles issues des observations.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{coverage_ratio_and_missed.png}
-    \caption{(a) Distributions des taux de recouvrement des trajectoires appariées entre ERA5 / IBTrACS pour chaque classe d'intensité des TC observés. (b)
-    Distribution de la fraction de points détectés situés à plus de \km{300} d'IBTrACS parmi les trajectoires appariés.}
+    \caption{\textbf{(a)} Distributions des taux de recouvrement des trajectoires appariées entre ERA5 / IBTrACS pour chaque classe d'intensité des TC observés.
+    \textbf{(b)} Histogramme de la fraction de points détectés situés à plus de \km{300} d'IBTrACS parmi les trajectoires appariés.}
     \label{fig:coverage_ratio}
 \end{figure}
 
-Dans cette section, trois métriques de similarité des trajectoires sont définies et comparées sur le jeu de données composé des trajectoires détectées dans la
-réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS ---~celui-là même utilisé dans \cite{dulac_assessing_2023}. En particulier, cette
-analyse vise à déterminer si le réglage des seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des
-trajectoires peu ressemblantes, du fait de la formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires. Leur utilisation comme
-possible métrique d'optimisation d'un schéma de détection est discutée.
+Il existe dans la littérature des algorithmes d'évaluation de la similarité de séries temporelles
+\parencite{faloutsos_fast_1994,das_finding_1997,frentzos_indexbased_2007}, mais ces derniers sont plutôt conçus pour des séries uni-dimensionnelles que pour des
+trajectoires spatiales car sont souvent basés sur la distance euclidienne qui les sépare. \cite{nakamura_shapebased_2013} proposent une approche basée plutôt
+sur la mesure de la similarité de la forme entre deux séries par l'analyse de l'angle formé par les séries, métrique nommée \textit{Angular Metric for Shape
+Similarity} (AMSS). Bien que leur approche soit pleinement capable de s'appliquer à des trajectoires spatiales, certaines propriétés de leur métrique ne sont
+pas pertinentes (voire pas souhaitables), dans le cas précis des trajectoires de cyclones tropicaux, telles qu'une forte résilience à un décalage temporel entre
+les deux séries (pas applicable à des trajectoires appariées entre réanalyse et observations), ainsi qu'une robustesse à des changements isolés de direction.
+Ces propriétés rendent par ailleurs leur algorithme très couteux en temps de calcul. Néanmoins, l'aspect novateur derrière les travaux de
+\cite{nakamura_shapebased_2013} est repris ici, à savoir la décomposition de la trajectoire en série de vecteurs, détaillée ci-après. Dans cette section, trois
+métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \cite{dulac_assessing_2023} et composé des trajectoires
+détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS. En particulier, cette analyse vise à déterminer si le réglage des
+seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des trajectoires peu ressemblantes, du fait de la
+formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires. Leur utilisation comme possible métrique d'optimisation d'un schéma
+de détection est discutée.
 
 \subsubsection*{La similarité angulaire}
 
-Une trajectoire de cyclone tropical est une série temporelle composée des positions successives du système et accompagnées de diverses informations permettant la
-caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non pas
-les positions discrètes du système, mais la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
+Une trajectoire de cyclone tropical est une série temporelle composée des positions successives du système et accompagnées de diverses informations permettant
+la caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non
+pas les positions discrètes du système, mais plutôt la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
 
-Soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions $p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
+Reprenant le formalise de \cite{nakamura_shapebased_2013} ; soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions
+$p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
 %
 \begin{align*}
-    C &= ((p_1, t_1), (p_2, t_2), ...\,, (p_{M+1}, t_{M+1}))\\
-      &= (c_1, c_2, ..., c_{M+1})
+    C &= ((p_1, t_1), (p_2, t_2), \ldots, (p_{M+1}, t_{M+1}))\\
+      &= (c_1, c_2, \ldots, c_{M+1})
 \end{align*}
 %
 Alors la série des vecteurs de déplacement équivalente $C_{\text{vec}}$ est donnée par :
 \begin{align*}
-    C_{vec} &= ((c_2 - c_1), (c_3 - c_2), ... \,, (c_{M+1} - c_M))\\
-            &= (\vec{c_1}, \vec{c_2}, ..., \vec{c_M})
+    C_{vec} &= ((c_2 - c_1), (c_3 - c_2), \ldots, (c_{M+1} - c_M))\\
+            &= (\vec{c_1}, \vec{c_2}, \ldots, \vec{c_M})
 \end{align*}
 %
 Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de $N$ vecteurs. On définit la similarité cosinus $S_C$ entre
@@ -182,11 +192,34 @@ deux des vecteurs individuels $\vec{c}_i$ et $\vec{q}_j$ issus respectivement de
 temps $t$ par :
 %
 \begin{equation*}
-    S_C(\vec{c}_i, \vec{q}_j) := \cos \theta = \frac{\vec{c}_i \cdot \vec{q}_j}{\lVert \vec{c}_i \rVert \lVert \vec{q}_j \rVert} \in [-1; 1]
+    S_C(\vec{c}_i, \vec{q}_j) = \cos \theta = \frac{\vec{c}_i \cdot \vec{q}_j}{\lVert \vec{c}_i \rVert \lVert \vec{q}_j \rVert} \in [-1; 1] 
 \end{equation*}
 %
-Ainsi la similarité cosinus caractérise l'angle formé par les vecteurs de déplacement issus de deux trajectoires à un instant donné. Pour obtenir une valeur
-définie sur $[0; 1]$....
+Ainsi la similarité cosinus caractérise l'angle formé par les vecteurs de déplacement issus de deux trajectoires à un instant donné. On peut ensuite définir la
+distance angulaire, ou angle normalisé, qui est une distance formelle au sens où l'inégalité de Cauchy-Schwartz est respectée, par :
+%
+\begin{equation*}
+    D_\theta = \frac{\theta}{\pi}
+\end{equation*}
+%
+Et son complément, appelé similarité angulaire par :
+%
+\begin{equation*}
+    S_\theta = 1 - D_\theta = 1 - \frac{\theta}{\pi} \in [0; 1]
+\end{equation*}
+%
+C'est cette dernière distance $S_\theta$ qui est utilisée dans cette analyse. De cette façon, la plus faible similarité entre deux vecteurs est atteinte
+lorsqu'ils sont parallèles mais de sens opposés, tandis que la similarité est maximale si deux vecteurs parallèles sont de même sens.
+
+\subsubsection*{Métriques de similarité intégrée}
+
+Avant de détailler les trois métriques, il est important de distinguer trois membres dans un couple de trajectoires appariées. En effet, la similarité angulaire
+$S_\theta$ est définie ci-dessus pour deux vecteurs correspondants aux déplacements entre deux positions successives, pour deux trajectoires prises au même
+temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé l'entièreté de la trajectoire
+ou au contraire si la trajectoire détectée est plus longue que celle observée. On appelle donc l'intersection des trajectoires $C \cap Q$ le sous-ensemble des
+pas de temps dans lequel les deux trajectoires co-existent. Réciproquement, l'union $C \cup Q$ contient l'ensemble des échéances des deux trajectoires. Enfin,
+la différence symétrique des deux trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois.
+
 
 %--------------------------------------
 \section{Synthèse}
