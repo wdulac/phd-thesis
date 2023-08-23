@@ -59,7 +59,7 @@
 \usepackage[french]{babel}
 \usepackage[style=french]{csquotes}
 
-\usepackage[no-math]{fontspec}
+\usepackage[]{fontspec}
 \setmainfont{Times New Roman}
 \usepackage{amsmath,amsfonts,amssymb,bm}
 \usepackage{textcomp} %Required to use \textdegree
@@ -71,8 +71,6 @@
 }
 \addto\extrasfrenchb{\sisetup{locale = FR}}
 \usepackage[version=4]{mhchem}
-
-\usepackage{unicode-math-luatex}
 
 %% Declare common units macros
 \newcommand{\km}[1]{\SI{#1}{\kilo\metre}}
@@ -115,7 +113,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[capitalize, nameinlink, noabbrev, french]{cleveref}
+\usepackage[nameinlink, noabbrev, french]{cleveref}
 \usepackage[french]{minitoc}
 \setcounter{secnumdepth}{3}
 \renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}

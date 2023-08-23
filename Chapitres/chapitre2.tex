@@ -211,25 +211,97 @@ Et son complément, appelé similarité angulaire par :
 C'est cette dernière distance $S_\theta$ qui est utilisée dans cette analyse. De cette façon, la plus faible similarité entre deux vecteurs est atteinte
 lorsqu'ils sont parallèles mais de sens opposés, tandis que la similarité est maximale si deux vecteurs parallèles sont de même sens.
 
-\subsubsection*{Métriques de similarité intégrée}
+\subsubsection*{Métriques de similarité intégrée}\label{sec:definition_MAS}
 
-Avant de détailler les trois métriques, il est important de distinguer trois membres dans un couple de trajectoires appariées. En effet, la similarité angulaire
+Avant de définir les trois métriques, il est important de distinguer trois membres dans un couple de trajectoires appariées. En effet, la similarité angulaire
 $S_\theta$ est définie ci-dessus pour deux vecteurs correspondants aux déplacements entre deux positions successives, pour deux trajectoires prises au même
-temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé l'entièreté de la trajectoire
-ou au contraire si la trajectoire détectée est plus longue que celle observée. On appelle donc l'intersection des trajectoires $C \cap Q$ le sous-ensemble des
-pas de temps dans lequel les deux trajectoires co-existent. Réciproquement, l'union $C \cup Q$ contient l'ensemble des échéances des deux trajectoires. Enfin,
-la différence symétrique des deux trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois.
+temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé l'entièreté de la trajectoire ou
+au contraire si la trajectoire détectée est plus longue que celle observée, aussi bien en amont qu'en aval. On appelle donc l'intersection des trajectoires $C
+\cap Q$ le sous-ensemble des pas de temps dans lequel les deux trajectoires co-existent et où chaque paire de points correspond au même temps $t$.
+Réciproquement, l'union $C \cup Q$ contient l'entièreté des échéances consistuant le couple de trajectoires. Enfin, la différence symétrique des deux
+trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois.
 
 En première approche, on peut définir la similarité intégrée entre deux trajectoires $C$ et $Q$ comme la moyenne de la similarité angulaire $S_\theta$ sur $C
-\cap Q$, notée $\bar{S_\theta}^\cap$ :
+\cap Q$, notée $\bar{S_\theta}^\cap$ (\textit{Mean Angular Similarity}, MAS):
 %
 \begin{equation}
-    \bar{S_\theta}^\cap = \frac{1}{N^\cap} \sum_{i=1}^{N^\cap} S_\theta (\vec{c}_i, \vec{q}_i)
+    \bar{S_\theta}^\cap = \frac{1}{N_\cap} \sum_{i=1}^{N_\cap} S_\theta (\vec{c}_i, \vec{q}_i) \tag*{MAS$^\cap$}
 \end{equation}
 %
-Cette première métrique de similarité angulaire moyenne (\textit{Mean Angular Similarity}, MAS) se concentre donc sur les échéances où les deux trajectoires
-coexistent, les échéances non-détectées ainsi que celles en trop par rapport aux observations n'étant pas compatiblisées.
+Cette première métrique de similarité se concentre donc sur les échéances où les deux trajectoires coexistent, les échéances non-détectées ainsi que celles en
+trop par rapport aux observations n'étant pas compatiblisées.
 
+Comme variante, on définit aussi le MAS sur l'union des deux trajectoires en remplaçant le dénominateur par $N_\cup = N_\cap + N_\ominus$. Cela revient
+à considérer que les echéances sur $C \ominus Q$ ont une similarité angulaire artificiellement fixée à \num{0} :
+%
+\begin{equation}
+    \bar{S_\theta}^\cup = \frac{1}{N_\cup} \sum_{i=1}^{N_\cap} S_\theta (\vec{c}_i, \vec{q}_i) \tag*{MAS$^\cup$}
+\end{equation}
+%
+Ainsi, cette seconde métrique de similarité considère l'entièreté des deux trajectoires constituant le couple ERA5 / IBTrACS dans le calcul de la similarité, au
+risque d'être très punitif si $N_\ominus \neq 0$.
+
+On définit enfin une troisième métrique de similarité, pensée comme un hybride entre MAS$^\cap$ et MAS$^\cup$ dans sa prise en compte des échéances sur $C
+\ominus Q$. Cette dernière métrique, nommée wMAS (\textit{weighted}), considère toujours comme nulle la similarité sur $C \ominus Q$, mais introduit deux
+coefficients $w_1$ et $w_2$, en concurrence l'un contre l'autre, qui vont peser différemment sur $C \cap Q$ et $C \ominus Q$ respectivement, et qui s'expriment
+comme fonction de $\bar{S_\theta}^\cap$ :
+%
+\begin{equation*}
+    \text{wMAS} = \frac{ w_1\sum_{i=1}^{N_\cap} S_{\theta}(\vec{c_i}, \vec{q_i}) }{ w_1 N_\cap + w_2 N_\ominus}\quad\quad \tag*{wMAS}
+    \begin{cases}
+        w_1 = a + \bar{S_\theta}^\cap \. , \;\; a \geq 0 \\
+        w_2 = b - \bar{S_\theta}^\cap \. , \;\; b \geq 1 \\
+    \end{cases}
+\end{equation*}
+%
+Le wMAS vise à fournir une valeur quantitative du ressenti qualitatif de la similarité d'une paire de trajectoires, en ce sens que le plus la similarité moyenne
+sur $C \cap Q$ est élevée, le moins la taille de $C \ominus Q$ a d'importance dans la similarité totale, et réciproquement. Le wMAS traduit donc l'idée
+subjective que la similarité sur l'intersection des trajectoires peut compenser partiellement la différence de taille entre une trajectoire détectée associée à
+une trajectoire observée. Le degré d'intensité de cette compensation (ou respectivement de pénalisation) peut être ajusté via les paramètres $a$ et $b$. Ici ces
+paramètres sont empiriquement fixés à $a=1$ et $b=2$. Par construction, on a :
+%
+\begin{equation*}
+    \text{MAS}^\cap \geq \text{wMAS} \geq \text{MAS}^\cup
+\end{equation*}
+
+\subsubsection*{Application}
+
+La \cref{fig:MAS_Ndiff} présente la similarité des trajectoires appariées entre ERA5 et IBTrACS en fonction du nombre d'échéances non partagées entre elles,
+c'est à dire pour les temps où une seule des deux est définie, $N_\ominus$.
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{MAS_vs_Ndiff.png}
+    \caption{Caractérisation de la relation entre la similarité des trajectoires et le nombre d'échéances \num{6}-horaires contenu dans $C \ominus Q$, pour les trois métriques
+    MAS$^\cap$, MAS$^\cup$ et wMAS, dans lequel $a=1$ et $b=2$, évaluées sur \num{2244} paires de trajectoires ERA5 / IBTrACS et présentées dans les encadrés \textbf{(a)}, \textbf{(b)} et \textbf{(c)} respectivement.}
+    \label{fig:MAS_Ndiff}
+\end{figure}
+%
+De par sa définition, le MAS$^\cap$ ne dépend que des vecteurs de déplacement sur l'intersection des trajectoires, si bien qu'aucune relation avec $N_\ominus$
+ne se dégage. L'encadré (a) met également en évidence une grande similarité angulaire moyenne, avec un MAS$^\cap$ moyen et médian à \prct{83} et \prct{85},
+respectivement. La dispersion de ces scores est également très faible, avec un écart type à \prct{9}. Toutefois, la distribution jointe de MAS$^\cap$ montre
+également le défaut de cette métrique, puisqu'une similarité évaluée à plus de \prct{80} lorsque $N_\ominus$ est large (jusqu'à $10 N_\cap$) pose question sur
+le sens de cette mesure. C'est en réponse à ce constat que le MAS$^\cup$ a été défini, dont la distribution jointe avec $N_\ominus$ est présentée sur la
+\cref{fig:MAS_Ndiff}, encadré (b). Pour cette seconde métrique, les scores de similarité sont d'une part diminués, et également largement dispersés. Le
+MAS$^\cup$ présente en effet une moyenne et une médiane tous deux à \prct{42} ---~soit près de deux fois moins qu'avec MAS$^\cap$~--- tandis que l'écart-type
+est de \prct{18}. En outre, cette métrique présente une relation très marquée avec $N_\ominus$, quasi-linéaire jusqu'à environ $N_\ominus = 20$, au delà de quoi
+la similarité apparaît comme légèrement moins sensible à la différence de taille. La différence entre MAS$^\cap$ et MAS$^\cup$ est particulièrement prononcée,
+et l'impact de $N_\ominus$ sur MAS$^\cup$ est très fort, à tel point que le problème inverse à celui de MAS$^\cap$ peut se poser, à savoir que la
+comptabilisation des échéances sur $C \ominus Q$ avec le même poids que celles sur $C \cap Q$ peut parfois s'avérer très punitive, comme illustré sur les trois
+exemples de la \cref{fig:exemple_MAS}. Le wMAS (\cref{fig:MAS_Ndiff} encadré \textbf{c}) vise donc à compenser cette propriété du MAS$^\cup$ via ses
+coefficients de pondération qui modifient la contribution de $C \cap Q$ et de $C \ominus Q$ en fonction de la similarité moyenne obtenue sur l'intersection. La
+distribution du wMAS est intermédiaire entre MAS$^\cap$ et MAS$^\cup$, avec \prct{59} en moyenne et \prct{62} en valeur médiane. Si on distingue toujours une
+relation linéaire entre wMAS et $N_\ominus$, la dispersion des valeurs de $N_\ominus$ autour du score moyen est plus élevée que dans le cas de MAS$^\cup$,
+indiquant que le wMAS parvient en effet à compenser des valeurs larges de $N_\ominus$ lorsque $\bar{S_\theta}^\cap$ est élevé. Les exemples de la
+\cref{fig:exemple_MAS} illustrent ce point. Ce faisant, le wMAS perd néanmoins en interprétabilité. 
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{exemple_MAS_3_tracks.png}
+    \caption{Exemple de trois paires de trajectoires sélectionnées parmi les \num{2244}, avec leurs scores de similarité pour chacune des trois métriques
+    indiqués dans l'encadré en haut à gauche.}
+    \label{fig:exemple_MAS}
+\end{figure}
 
 %--------------------------------------
 \section{Synthèse}
