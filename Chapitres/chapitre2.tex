@@ -79,9 +79,8 @@ performances du traqueur du CNRM ainsi que sa sensibilité à ses divers seuils 
 évaluée, via une analyse de leurs caractéristiques en termes d'intensité, de cycle de vie et également via l'étude de leur profiles verticaux. Ces travaux sont
 présentés par la publication scientifique dont ils ont fait l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les tracks issues de
 quatre schémas de détection appliqués à ERA5, dont celui du CNRM \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier} présente des
-considérations sur le filtrage de systèmes de moyennes latitudes ---~source de biais important dans les schémas de détection de TC---~ ainsi qu'une possible
-alternative au FAR et au POD comme métrique d'optimisation, via l'évaluation de la similarité des trajectoires détectées dans ERA5 par rapport aux trajectoires
-historiques.
+considérations sur le filtrage de systèmes de moyennes latitudes ---~source de biais important dans les schémas de détection de TC~--- et introduit trois
+métriques visant à évaluer la ressemblance des trajectoires détectées dans ERA5 avec les trajectoires historiques
 
 \section{Évaluation du traqueur CNRM sur ERA5 par rapport à IBTrACS}\label{sec:eval_tracker_ERA5}
 
@@ -141,8 +140,8 @@ parmi les trajectoires appariés à IBTrACS sont au delà de la limite d'apparie
 divergente d'au moins \prct{26}. Par conséquent, la trajectoire détectée dans la réanalyse n'est pas toujours identique à celle du catalogue des best tracks,
 soit parce que le traqueur n'en détecte qu'une partie, soit parce que la trajectoire détectée diverge des observations, ou encore par une combinaison quelconque
 de ces deux éléments. Enfin, bien que le taux de recouvrement donne une indication sur la similarité des deux trajectoires, il n'apporte pas d'information sur
-les variations locales dans la direction de déplacement, si bien que ce dernier n'est pas adapté pour évaluer quantitativement la ressemblance entre les
-trajectoires détectées dans la réanalyse et celles issues des observations.
+les variations locales dans la direction de déplacement, ni ne quantifie les cas où la trajectoire ERA5 dépasse celle observée en amont ou en aval, si bien que
+ce dernier n'est pas adapté pour évaluer quantitativement la ressemblance entre les trajectoires détectées dans la réanalyse et celles issues des observations.
 
 \begin{figure}[tb]
     \centering
@@ -164,8 +163,7 @@ Ces propriétés rendent par ailleurs leur algorithme très couteux en temps de 
 métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \cite{dulac_assessing_2023} et composé des trajectoires
 détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS. En particulier, cette analyse vise à déterminer si le réglage des
 seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des trajectoires peu ressemblantes, du fait de la
-formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires. Leur utilisation comme possible métrique d'optimisation d'un schéma
-de détection est discutée.
+formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires.
 
 \subsubsection*{La similarité angulaire}
 
@@ -269,7 +267,7 @@ paramètres sont empiriquement fixés à $a=1$ et $b=2$. Par construction, on a 
 La \cref{fig:MAS_Ndiff} présente la similarité des trajectoires appariées entre ERA5 et IBTrACS en fonction du nombre d'échéances non partagées entre elles,
 c'est à dire pour les temps où une seule des deux est définie, $N_\ominus$.
 %
-\begin{figure}[htbp]
+\begin{figure}[htpb]
     \centering
     \includegraphics[width=\textwidth]{MAS_vs_Ndiff.png}
     \caption{Caractérisation de la relation entre la similarité des trajectoires et le nombre d'échéances \num{6}-horaires contenu dans $C \ominus Q$, pour les trois métriques
@@ -295,13 +293,88 @@ relation linéaire entre wMAS et $N_\ominus$, la dispersion des valeurs de $N_\o
 indiquant que le wMAS parvient en effet à compenser des valeurs larges de $N_\ominus$ lorsque $\bar{S_\theta}^\cap$ est élevé. Les exemples de la
 \cref{fig:exemple_MAS} illustrent ce point. Ce faisant, le wMAS perd néanmoins en interprétabilité. 
 
-\begin{figure}[htpb]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{exemple_MAS_3_tracks.png}
     \caption{Exemple de trois paires de trajectoires sélectionnées parmi les \num{2244}, avec leurs scores de similarité pour chacune des trois métriques
     indiqués dans l'encadré en haut à gauche.}
     \label{fig:exemple_MAS}
 \end{figure}
+
+Pour déterminer si l'ajustement des paramètres de détection dont a fait l'objet le traqueur dans le but de maximiser la probabilité de détection a affecté la
+similarité des trajectoires, on calcule les valeurs des trois métriques de MAS pour les couples de trajectoires ERA5 / IBTrACS obtenus avant l'optimisation pour
+les comparer aux similarités que les trajectoires actuelles présentent avec les mêmes trajectoires IBTrACS. Le jeu de trajectoires ERA5, dites
+\textquote{non-optimisées} et prises comme référence ici ont été obtenues avec les seuils \textbf{VOR}~$=$~\SI{5e-5}{\per\second}, \textbf{RES}~$=$~\ms{15},
+\textbf{TANOM}~$=$~\SI{1}{\kelvin}, \textbf{PT}~$=$~\SI{-2}{\kelvin} et \textbf{PW}~$=$~\ms{5}. Ces valeurs seuils se distinguent de celles utilisées dans
+\cite{dulac_assessing_2023} et \cite{bourdin_intercomparison_2022} par la vorticité (respectivement \SI{15e-5}{\per\second}), le seuil de vent (respectivement
+\ms{5}) ainsi que le profil vertical de température (respectivement \SI{-1}{\kelvin}). Le paramètre de relaxation est maintenu à \SI{25e-5}{\per\second} entre
+les deux jeux de données. La solution non-optimisée présente un POD moyen sur les cinq bassins d'intérêt diminué de plus de \num{10} points de pourcentage,
+l'impact le plus prononcé étant sur les bassins NAtl et EPac. Cette diminution du POD avec ces trajectoires se traduit par un déficit de \num{465} couples ERA5
+/ IBTrACS, puisque \num{1779} trajectoires ERA5 sont appariées avec ce jeu de données. Parmi ces paires de trajectoires, \num{1649} d'entre elles partagent la
+même composante IBTrACS, signifiant que \num{130} paires sont manquantes dans les trajectoires dites \textquote{optimisées}. Cette perte peut s'expliquer par le
+coût non-négligeable en POD du filtre de systèmes de moyennes latitudes utilisé dans \cite{dulac_assessing_2023}. En effet, le schéma de détection optimisé
+consiste essentiellement en un relâchement des contraintes définissant un cyclone tropical, conduisant à un plus grand nombre de systèmes détectés et appariées,
+notamment des systèmes peu intenses qui parfois ne présentent pas un cœur chaud suffisamment marqué selon le paramètre $V_U^T$ de \cite{hart_cyclone_2003}. Il
+reste donc \num{1649} cyclones observés dans IBTrACS pour lesquelles nous disposons de deux trajectoires ERA5 issues de paramètres de détection différents. On
+compare alors la similarité de chacune d'elles évaluée sur le cyclone observé, et pour les trois métriques de similarité présentées précédemment. La première
+ligne de la \cref{fig:delta_MAS} présente les distributions de ces changements par rapport aux trajectoires issues du schéma de détection non-optimisé.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{delta_MAS.png}
+    \caption{Distributions du changement dans la similarité des couples de trajectoires ERA5 / IBTrACS (première ligne), par rapport au schéma de détection
+    non-optimisé, et pour chacune des trois métriques de similarité (colonnes). Bins de \num{-70} points à \num{70} points avec une largeur de \num{2}
+    points. Changement dans la similarité des couples de trajectoires en fonction du changement dans le nombre d'échéances $N_\ominus$ (seconde ligne).}
+    \label{fig:delta_MAS}
+\end{figure}
+
+Les trois distributions mettent en avant des changements de similarité pour l'essentiel centrés autour de \num{0}. En particulier, la distribution de $\Delta
+\text{MAS}^\cap$ présente une moyenne à $+$\num{0.3} points de pourcentage (p.p), et une médiane à $+$\num{0.14} p.p. Si cette moyenne apparaît comme
+significativement différente de \num{0} avec test à \prct{95} (valeur-p $=$ \num{0.008}), ce changement est néanmoins insignifiant et peut s'expliquer par la
+légère tendance à la baisse de $N_\ominus$, visible sur la seconde ligne de la \cref{fig:delta_MAS}. Cette baisse se traduit en effet par une augmentation
+réciproque du $N^\cap$ moyen, si bien que la similarité angulaire moyennée sur $C \cap Q$ devient moins sensible aux petites incohérences locales entre les deux
+trajectoires. Les deux métriques prenant en considération les échéances sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours
+faible, vers une amélioration de la similarité, et plus prononcée dans le cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement une
+moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Comme pour MAS$^\cap$, cette évolution est largement liée au changement de $N_\ominus$, avec une relation
+linéaire évidente avec $\Delta N_\ominus$. Un ajustement linéaire sur cette quantité pour les deux métriques indique que le $\Delta N_\ominus$ explique
+\prct{74} de la variance dans le cas de MAS$^\cup$, et \prct{72} dans le cas de wMAS~---~une fraction plus faible de la variance expliquée du $\Delta
+\text{wMAS}$ par régression linéaire comparé au $\Delta \text{MAS}^\cup$ est cohérente avec le fait que la dépendance du wMAS avec $N_\ominus$ n'est pas
+linéaire. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$
+mesure la différence dans la temporalité des deux trajectoires, si bien qu'une diminution du $\Delta N_\ominus$ indique que les trajectoires détectées dans le
+schéma optimisé ont en général un début et une fin plus proche de la trajectoire observée. Ainsi, un $N_\ominus$ à la baisse avec un MAS$^\cap$ maintenu
+constant constitue en soi une amélioration, et c'est ce que traduit l'information combinée de ces métriques. Par ailleurs, il est intéressant de constater sur
+la seconde ligne de la \cref{fig:delta_MAS} que, pour les trois métriques considérées, le changement dans la similarité pour les cas où $\Delta N_\ominus = 0$
+indique un changement moyen, certes extrêmement faible, mais systématiquement positif. En effet, le $\Delta \text{MAS}$ moyen pris à $\Delta N_\ominus = 0$ ($n
+= 721$) vaut respectivement $+$\num{0.55} p.p, $+$\num{0.34} p.p et $+$\num{0.46} p.p, indiquant que l'optimisation du schéma de détection de cyclones tropicaux
+dans le but de maximiser la probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par ailleurs, très légèrement améliorer la
+similarité des trajectoires détectées avec celles observées, selon la définition de la similarité utilisée ici.
+
+\subsubsection*{Discussion}
+
+En définitive, trois métriques de similarité des trajectoires, toutes basées sur la similarité angulaire $S_\theta$ définie entre deux vecteurs de déplacement
+relatif, mais se distinguant par leur prise en charge (ou l'absence) des pas de temps pour lesquels une seule des deux trajectoires existe, sont définis ou
+comparés. Étant donné que la similarité de deux trajectoires comporte une part importante de subjectivité, il n'est pas possible de conclure sur les
+performances de chacune. Le choix de la métrique dépend en effet de l'usage qui lui est destinée. Le MAS$^\cap$ ne considère que les échéances pour lesquelles
+les deux trajectoires coexistent, et peut donc indiquer un excellent score pour des trajectoires pourtant extrêmement différentes. Le MAS$^\cup$ suit la
+démarche inverse de compter comme nulle la similarité angulaire sur les échéances où une seule trajectoire existe, si bien qu'une faible différence dans la
+taille des trajectoires peut conduire à un score sensiblement diminué. Le wMAS quant à lui, vise à accomplir la tâche pourtant impossible de quantifier avec une
+métrique objective une impression subjective de similarité. Si cette approche est par nature vouée à l'échec, le wMAS remplit néanmoins parfaitement son rôle
+consistant à nuancer le MAS$^\cup$, se situant ainsi entre les deux autres, et accomplit cela en pondérant les similarités nulles sur $C \ominus Q$ en fonction des
+performances sur $C \cap Q$, au détriment de l'interprétabilité de la mesure. Cette caractéristique commune aux trois métriques d'être basées sur une valeur moyenne de
+la similarité angulaire présente toutefois l'inconvénient d'être peu sensible aux incohérences locales, ce qui est d'autant plus vrai que les trajectoires sont
+longues. En tout état de cause, ces deux catégories de métriques ---~celles basées uniquement sur $C \cap Q$ et celles prenant en considération $C \ominus
+Q$~--- ne sont pas à mettre en opposition, car l'usage d'une de chaque peut s'avérer porteur d'informations complémentaires importantes.
+
+Cette analyse visait à déterminer si la recherche des seuils de détection maximisant la probabilité de détection dans la réanalyse ne s'était pas faite au
+détriment de la capacité du schéma de détection à fidèlement identifier les trajectoires cycloniques, dans la mesure où la condition implicitement suffisante à
+remplir dans la fonction d'objectif que représente le POD dans ce contexte ne consiste qu'à identifier un seul point se trouvant à moins de \km{300} d'une
+trajectoire observée. Les résultats de l'étude indiquent que non seulement la similarité n'a, dans l'ensemble, pas diminuée suite à l'optimisation du traqueur,
+mais aussi que cette optimisation s'est accompagnée en moyenne d'une amélioration marginale. Cette dernière est en grande partie due au fait que la taille des
+trajectoires détectées par le traqueur optimisé sont souvent plus proches de celles observées que celles issues du traqueur de référence, mais bien qu'une
+diminution de $N_\ominus$ s'accompagne mécaniquement en moyenne d'une similarité accrue pour la raison évoquée précédemment, il est important de souligner que
+l'augmentation équivalente de $N_\cap$ à similarité constante constitue également une amélioration. De plus, une petite amélioration est visible pour les cas où
+la longueur est inchangée entre les deux jeux de données. L'analyse suggère par conséquent que l'impact de l'optimisation du traqueur sur la ressemblance des
+trajectoires de la réanalyse avec celles observées est au mieux, marginalement positif, au pire inexistant.
 
 %--------------------------------------
 \section{Synthèse}
