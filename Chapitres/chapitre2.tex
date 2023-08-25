@@ -167,6 +167,14 @@ formulation de la condition nécessaire et suffisante à l'appariement de deux t
 
 \subsubsection*{La similarité angulaire}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{schema_vec_sequence.png}
+    \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a).
+    Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$. Inspiré de \cite{nakamura_shapebased_2013}.}
+    \label{fig:schema_trajectoires}
+\end{figure}
+
 Une trajectoire de cyclone tropical est une série temporelle composée des positions successives du système et accompagnées de diverses informations permettant
 la caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non
 pas les positions discrètes du système, mais plutôt la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
@@ -181,16 +189,17 @@ $p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
 %
 Alors la série des vecteurs de déplacement équivalente $C_{\text{vec}}$ est donnée par :
 \begin{align*}
-    C_{vec} &= ((c_2 - c_1), (c_3 - c_2), \ldots, (c_{M+1} - c_M))\\
-            &= (\vec{c_1}, \vec{c_2}, \ldots, \vec{c_M})
+    C_{\text{vec}} &= ((c_2 - c_1), (c_3 - c_2), \ldots, (c_{M+1} - c_M))\\
+            &= (\mathbf{c}_1, \mathbf{c}_2, \ldots, \mathbf{c}_M)
 \end{align*}
 %
-Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de $N$ vecteurs. L'angle $\theta$ entre deux vecteurs individuels
-$\vec{c}_i$ et $\vec{q}_j$ issus respectivement de $C_{\text{vec}}$ et $Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même temps $t$ est donné par le
-produit scalaire des deux vecteurs. $\cos \theta$ est aussi appelé similarité cosinus et est noté $S_C$ :
+tel qu'illustré par la \cref{fig:schema_trajectoires}, encadré (a). Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de
+$M^\prime$ vecteurs. L'angle $\theta$ entre deux vecteurs individuels $\mathbf{c}_i$ et $\mathbf{q}_j$ issus respectivement de $C_{\text{vec}}$ et
+$Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même temps $t$ est donné par le produit scalaire des deux vecteurs. $\cos \theta$ est aussi appelé
+similarité cosinus et est noté $S_C$ :
 %
 \begin{equation*}
-    S_C(\vec{c}_i, \vec{q}_j) = \cos \theta = \frac{\vec{c}_i \cdot \vec{q}_j}{\lVert \vec{c}_i \rVert \lVert \vec{q}_j \rVert} \in [-1; 1] 
+    S_C(\mathbf{c}_i, \mathbf{q}_j) = \cos \theta = \frac{\mathbf{c}_i \cdot \mathbf{q}_j}{\lVert \mathbf{c}_i \rVert \lVert \mathbf{q}_j \rVert} \in [-1; 1] 
 \end{equation*}
 %
 Ainsi la similarité cosinus caractérise l'angle formé par les vecteurs de déplacement issus de deux trajectoires à un instant donné. On peut ensuite définir la
@@ -217,13 +226,14 @@ temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet i
 au contraire si la trajectoire détectée est plus longue que celle observée, aussi bien en amont qu'en aval. On appelle donc l'intersection des trajectoires $C
 \cap Q$ le sous-ensemble des pas de temps dans lequel les deux trajectoires co-existent et où chaque paire de points correspond au même temps $t$.
 Réciproquement, l'union $C \cup Q$ contient l'entièreté des échéances consistuant le couple de trajectoires. Enfin, la différence symétrique des deux
-trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois.
+trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois. La \cref{fig:schema_trajectoires} encadré (b)
+illustre schématiquement ces notions.
 
 En première approche, on peut définir la similarité intégrée entre deux trajectoires $C$ et $Q$ comme la moyenne de la similarité angulaire $S_\theta$ sur $C
 \cap Q$, notée $\bar{S_\theta}^\cap$ (\textit{Mean Angular Similarity}, MAS):
 %
 \begin{equation}
-    \bar{S_\theta}^\cap = \frac{1}{N_\cap} \sum_{i=1}^{N_\cap} S_\theta (\vec{c}_i, \vec{q}_i) \tag*{MAS$^\cap$}
+    \bar{S_\theta}^\cap = \frac{1}{N_\cap} \sum_{i=1}^{N_\cap} S_\theta (\mathbf{c}_i, \mathbf{q}_i) \tag*{MAS$^\cap$}
 \end{equation}
 %
 Cette première métrique de similarité se concentre donc sur les échéances où les deux trajectoires coexistent, les échéances non-détectées ainsi que celles en
@@ -233,7 +243,7 @@ Comme variante, on définit aussi le MAS sur l'union des deux trajectoires en re
 à considérer que les echéances sur $C \ominus Q$ ont une similarité angulaire artificiellement fixée à \num{0} :
 %
 \begin{equation}
-    \bar{S_\theta}^\cup = \frac{1}{N_\cup} \sum_{i=1}^{N_\cap} S_\theta (\vec{c}_i, \vec{q}_i) \tag*{MAS$^\cup$}
+    \bar{S_\theta}^\cup = \frac{1}{N_\cup} \sum_{i=1}^{N_\cap} S_\theta (\mathbf{c}_i, \mathbf{q}_i) \tag*{MAS$^\cup$}
 \end{equation}
 %
 Ainsi, cette seconde métrique de similarité considère l'entièreté des deux trajectoires constituant le couple ERA5 / IBTrACS dans le calcul de la similarité, au
@@ -245,7 +255,7 @@ coefficients $w_1$ et $w_2$, en concurrence l'un contre l'autre, qui vont peser 
 comme fonction de $\bar{S_\theta}^\cap$ :
 %
 \begin{equation*}
-    \text{wMAS} = \frac{ w_1\sum_{i=1}^{N_\cap} S_{\theta}(\vec{c_i}, \vec{q_i}) }{ w_1 N_\cap + w_2 N_\ominus}\quad\quad \tag*{wMAS}
+\text{wMAS} = \frac{ w_1\sum_{i=1}^{N_\cap} S_{\theta}(\mathbf{c}_i, \mathbf{q}_i) }{ w_1 N_\cap + w_2 N_\ominus}\quad\quad \tag*{wMAS}
     \begin{cases}
         w_1 = a + \bar{S_\theta}^\cap \. , \;\; a \geq 0 \\
         w_2 = b - \bar{S_\theta}^\cap \. , \;\; b \geq 1 \\
@@ -319,7 +329,7 @@ reste donc \num{1649} cyclones observés dans IBTrACS pour lesquelles nous dispo
 compare alors la similarité de chacune d'elles évaluée sur le cyclone observé, et pour les trois métriques de similarité présentées précédemment. La première
 ligne de la \cref{fig:delta_MAS} présente les distributions de ces changements par rapport aux trajectoires issues du schéma de détection non-optimisé.
 
-\begin{figure}[htbp]
+\begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{delta_MAS.png}
     \caption{Distributions du changement dans la similarité des couples de trajectoires ERA5 / IBTrACS (première ligne), par rapport au schéma de détection
@@ -330,24 +340,29 @@ ligne de la \cref{fig:delta_MAS} présente les distributions de ces changements 
 
 Les trois distributions mettent en avant des changements de similarité pour l'essentiel centrés autour de \num{0}. En particulier, la distribution de $\Delta
 \text{MAS}^\cap$ présente une moyenne à $+$\num{0.3} points de pourcentage (p.p), et une médiane à $+$\num{0.14} p.p. Si cette moyenne apparaît comme
-significativement différente de \num{0} avec test à \prct{95} (valeur-p $=$ \num{0.008}), ce changement est néanmoins insignifiant et peut s'expliquer par la
-légère tendance à la baisse de $N_\ominus$, visible sur la seconde ligne de la \cref{fig:delta_MAS}. Cette baisse se traduit en effet par une augmentation
-réciproque du $N^\cap$ moyen, si bien que la similarité angulaire moyennée sur $C \cap Q$ devient moins sensible aux petites incohérences locales entre les deux
-trajectoires. Les deux métriques prenant en considération les échéances sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours
-faible, vers une amélioration de la similarité, et plus prononcée dans le cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement
-une moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Comme pour MAS$^\cap$, cette évolution est largement liée au changement de $N_\ominus$, avec une relation
-linéaire évidente avec $\Delta N_\ominus$. Un ajustement linéaire sur cette quantité pour les deux métriques indique que le $\Delta N_\ominus$ explique
-\prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72} dans le cas de wMAS. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces
-deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$ mesure la différence dans la temporalité des deux trajectoires, si bien que $\Delta
-N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la trajectoire ERA5 issue du schéma optimisé présente un début et une fin plus proche de la
-trajectoire observée. Ainsi, un $N_\ominus$ à la baisse avec un MAS$^\cap$ inchangé constitue en soi une amélioration de la ressemblance des trajectoires. Par
-ailleurs, il est intéressant de constater sur la seconde ligne de la \cref{fig:delta_MAS} que, pour les trois métriques considérées, le changement dans la
-similarité pour les cas où $\Delta N_\ominus = 0$ indique un changement moyen, certes extrêmement faible, mais systématiquement positif. En effet, le $\Delta
-\text{MAS}$ moyen pris à $\Delta N_\ominus = 0$ ($n = 721$) vaut respectivement $+$\num{0.55} p.p, $+$\num{0.34} p.p et $+$\num{0.46} p.p. Cette hausse ne
-saurait s'expliquer par la sensibilité de $\bar{S}_\theta^\cap$ à $N_\cap$, puisque ces cas correspondent à des trajectoires ERA5 définies exactement sur les
-mêmes temps dans les deux jeux de données, et semble donc indiquer que l'optimisation du schéma de détection de cyclones tropicaux dans le but de maximiser la
-probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par ailleurs, très légèrement améliorer la similarité des trajectoires
-détectées avec celles observées, selon la définition de la similarité utilisée ici.
+significativement différente de \num{0} avec test à \prct{95} (valeur-p $=$ \num{0.008}), ce changement est néanmoins insignifiant et peut probablement
+s'expliquer par le fait que $N_\cap$ tend à augmenter avec le schéma optimisé ($+$\num{1.9} pas de temps en moyenne), si bien que la similarité angulaire
+moyennée sur $C \cap Q$ devient moins sensible aux incohérences locales entre les deux trajectoires. Les deux métriques prenant en considération les échéances
+sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours faible, vers une amélioration de la similarité, et plus prononcée dans le
+cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement une moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Cette évolution est
+largement liée au changement de $N_\ominus$ ($-$\num{0.8} pas de temps en moyenne), avec une relation linéaire évidente avec $\Delta N_\ominus$. Un ajustement
+linéaire sur cette quantité pour les deux métriques indique que le $\Delta N_\ominus$ explique \prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72}
+dans le cas de wMAS. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que
+$N_\ominus$ mesure la différence dans la temporalité des deux trajectoires, si bien que $\Delta N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la
+trajectoire ERA5 issue du schéma optimisé présente un début et/ou une fin plus proche de la trajectoire observée. Ainsi, une diminution de $N_\ominus$ avec un
+MAS$^\cap$ inchangé constitue en soi une amélioration de la ressemblance des trajectoires. Par ailleurs, il est intéressant de constater sur la seconde ligne de
+la \cref{fig:delta_MAS} que, pour les trois métriques considérées, les distributions des changements dans la similarité pour les cas où $\Delta N_\ominus = 0$
+sont faiblement décentrées du côté positif.
+moyen, certes extrêmement faible, mais systématiquement positif. Précisions que $\Delta N_\ominus =0$ ne signifie pas nécessairement
+que les deux trajectoires ERA5 partagent la même temporalité. Pour le comprendre, il suffit d'imaginer une trajectoire ERA5 qui, dans un jeu de
+données, ne détecterait pas la dernière échéance de la trajectoire observée, tandis que la trajectoire équivalente dans le second jeu de données en détecterait
+une de trop. Une telle situation serait caractérisée par $\Delta N_\ominus = 0$ et $\Delta N_\cap = +1$. Pour déterminer le changement moyen pour les cas où les
+deux trajectoires ERA5 sont définies sur exactement les mêmes dates, il faut donc considérer $\Delta N_\ominus = 0$ et $\Delta N_\cap$ = 0, ce qui correspond à
+\num{691} cas (\num{721} cas pour la condition $\Delta N_\ominus = 0$ seule). Le changement moyen de similarité lorsque ces deux conditions sont réunies vaut
+$+$\num{0.57} p.p, $+$\num{0.34} p.p et $+$\num{0.54} p.p pour MAS$^\cap$, MAS$^\cup$ et wMAS respectivement. Il semble par conséquent que l'optimisation du
+schéma de détection de cyclones tropicaux dans le but de maximiser la probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par
+ailleurs, très légèrement améliorer la similarité des trajectoires détectées avec celles observées, selon la définition de la similarité utilisée ici.
+
 
 \subsubsection*{Discussion}
 
@@ -369,12 +384,11 @@ Cette analyse visait à déterminer si la recherche des seuils de détection max
 détriment de la capacité du schéma de détection à fidèlement identifier les trajectoires cycloniques, dans la mesure où la condition implicitement suffisante à
 remplir dans la fonction d'objectif que représente le POD dans ce contexte ne consiste qu'à identifier un seul point se trouvant à moins de \km{300} d'une
 trajectoire observée. Les résultats de l'étude indiquent que non seulement la similarité n'a, dans l'ensemble, pas diminuée suite à l'optimisation du traqueur,
-mais aussi que cette optimisation s'est accompagnée en moyenne d'une amélioration marginale. Cette dernière est en grande partie due au fait que la taille des
-trajectoires détectées par le traqueur optimisé sont souvent plus proches de celles observées que celles issues du traqueur de référence, mais bien qu'une
-diminution de $N_\ominus$ s'accompagne mécaniquement en moyenne d'une similarité accrue pour la raison évoquée précédemment, il est important de souligner que
-l'augmentation équivalente de $N_\cap$ à similarité constante constitue également une amélioration. De plus, une petite amélioration est visible pour les cas où
-la longueur est inchangée entre les deux jeux de données. L'analyse suggère par conséquent que l'impact de l'optimisation du traqueur sur la ressemblance des
-trajectoires de la réanalyse avec celles observées est au mieux, marginalement positif, au pire inexistant.
+mais aussi que cette optimisation s'est accompagnée en moyenne d'une amélioration marginale. Cette dernière est en grande partie due au fait que la temporalité
+trajectoires détectées par le traqueur optimisé sont souvent plus proches de celles observées que celles issues du traqueur de référence, aussi bien à travers
+$N_\ominus$ que $N_\cap$. Cependant, une petite amélioration est visible pour les cas où la longueur est inchangée entre les deux jeux de données. L'analyse
+suggère par conséquent que l'impact de l'optimisation du traqueur sur la ressemblance des trajectoires de la réanalyse avec celles observées est au mieux,
+marginalement positif, au pire inexistant.
 
 %--------------------------------------
 \section{Synthèse}
