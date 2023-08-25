@@ -224,14 +224,16 @@ horizontal entre \hPa{200} et \hPa{850}, noté $1/S_z$ et enfin la SST relative 
 les prévisions météorologiques à moyen terme (CEPMMT, ou juste CEP ; en anglais \textit{European Centre for Medium-Range Weather Forecasts}, ECMWF)
 \parencite{hersbach_era5_2020}, laquelle est décrite plus en détails dans la \cref{sec:eval_tracker_ERA5}. Notons que la vorticité absolue $\zeta$ à \hPa{850} intègre
 déjà le paramètre de Coriolis, noté $f$, auquel le module de la force éponyme est proportionnel, puisque la vorticité absolue est définie comme
+%
 \begin{equation*}
     \zeta = \zeta_R + \underbrace{2 \Omega \sin \phi}_{f}
 \end{equation*}
-\noindent où $\zeta_R$ est la vorticité relative, définie comme le rotationel du vent tel que mesuré dans le référentiel de la Terre, $\Omega$ la période de
+%
+où $\zeta_R$ est la vorticité relative, définie comme le rotationel du vent tel que mesuré dans le référentiel de la Terre, $\Omega$ la période de
 rotation de la Terre et $\phi$ la latitude. L'inverse du cisaillement vertical est pris de telle façon à ce que des valeurs élevées indiquent des régions
 favorables à la cyclogénèse et la SST est présentée ici comme la différence entre la SST et la SST moyenne entre \ang{20}S et \ang{20}N
 ---~nommée la SST relative~--- pour faire apparaître les variations locales plus nettement.
-%
+
 \begin{figure}[tp]
     \centering
     \includegraphics[width=\textwidth]{clim_saison_hurel_rotu_shear_sst.png}
@@ -240,7 +242,7 @@ favorables à la cyclogénèse et la SST est présentée ici comme la différenc
     moyennes mensuelles de la réanalyse ERA5 entre 1979 et 2020 et avec une résolution horizontale de \ang{1}.}
     \label{fig:clim_ingredients}
 \end{figure}
-%
+
 Au premier abord, la SST apparaît comme un des facteurs prédominants dans la répartition spatiale et temporelle de l'activité cyclonique, puisqu'on retrouve sur
 ces cartes de SST relatives la structure géographique des trajectoires de cyclones tropicaux observés présentés sur la \cref{fig:bassins_TC}. L'humidité
 relative et le cisaillement laissent également apparaître cette répartition spatiale, avec toutefois quelques nuances supplémentaires, notamment dans les
