@@ -334,20 +334,20 @@ significativement différente de \num{0} avec test à \prct{95} (valeur-p $=$ \n
 légère tendance à la baisse de $N_\ominus$, visible sur la seconde ligne de la \cref{fig:delta_MAS}. Cette baisse se traduit en effet par une augmentation
 réciproque du $N^\cap$ moyen, si bien que la similarité angulaire moyennée sur $C \cap Q$ devient moins sensible aux petites incohérences locales entre les deux
 trajectoires. Les deux métriques prenant en considération les échéances sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours
-faible, vers une amélioration de la similarité, et plus prononcée dans le cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement une
-moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Comme pour MAS$^\cap$, cette évolution est largement liée au changement de $N_\ominus$, avec une relation
+faible, vers une amélioration de la similarité, et plus prononcée dans le cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement
+une moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Comme pour MAS$^\cap$, cette évolution est largement liée au changement de $N_\ominus$, avec une relation
 linéaire évidente avec $\Delta N_\ominus$. Un ajustement linéaire sur cette quantité pour les deux métriques indique que le $\Delta N_\ominus$ explique
-\prct{74} de la variance dans le cas de MAS$^\cup$, et \prct{72} dans le cas de wMAS~---~une fraction plus faible de la variance expliquée du $\Delta
-\text{wMAS}$ par régression linéaire comparé au $\Delta \text{MAS}^\cup$ est cohérente avec le fait que la dépendance du wMAS avec $N_\ominus$ n'est pas
-linéaire. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$
-mesure la différence dans la temporalité des deux trajectoires, si bien qu'une diminution du $\Delta N_\ominus$ indique que les trajectoires détectées dans le
-schéma optimisé ont en général un début et une fin plus proche de la trajectoire observée. Ainsi, un $N_\ominus$ à la baisse avec un MAS$^\cap$ maintenu
-constant constitue en soi une amélioration, et c'est ce que traduit l'information combinée de ces métriques. Par ailleurs, il est intéressant de constater sur
-la seconde ligne de la \cref{fig:delta_MAS} que, pour les trois métriques considérées, le changement dans la similarité pour les cas où $\Delta N_\ominus = 0$
-indique un changement moyen, certes extrêmement faible, mais systématiquement positif. En effet, le $\Delta \text{MAS}$ moyen pris à $\Delta N_\ominus = 0$ ($n
-= 721$) vaut respectivement $+$\num{0.55} p.p, $+$\num{0.34} p.p et $+$\num{0.46} p.p, indiquant que l'optimisation du schéma de détection de cyclones tropicaux
-dans le but de maximiser la probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par ailleurs, très légèrement améliorer la
-similarité des trajectoires détectées avec celles observées, selon la définition de la similarité utilisée ici.
+\prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72} dans le cas de wMAS. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces
+deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$ mesure la différence dans la temporalité des deux trajectoires, si bien que $\Delta
+N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la trajectoire ERA5 issue du schéma optimisé présente un début et une fin plus proche de la
+trajectoire observée. Ainsi, un $N_\ominus$ à la baisse avec un MAS$^\cap$ inchangé constitue en soi une amélioration de la ressemblance des trajectoires. Par
+ailleurs, il est intéressant de constater sur la seconde ligne de la \cref{fig:delta_MAS} que, pour les trois métriques considérées, le changement dans la
+similarité pour les cas où $\Delta N_\ominus = 0$ indique un changement moyen, certes extrêmement faible, mais systématiquement positif. En effet, le $\Delta
+\text{MAS}$ moyen pris à $\Delta N_\ominus = 0$ ($n = 721$) vaut respectivement $+$\num{0.55} p.p, $+$\num{0.34} p.p et $+$\num{0.46} p.p. Cette hausse ne
+saurait s'expliquer par la sensibilité de $\bar{S}_\theta^\cap$ à $N_\cap$, puisque ces cas correspondent à des trajectoires ERA5 définies exactement sur les
+mêmes temps dans les deux jeux de données, et semble donc indiquer que l'optimisation du schéma de détection de cyclones tropicaux dans le but de maximiser la
+probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par ailleurs, très légèrement améliorer la similarité des trajectoires
+détectées avec celles observées, selon la définition de la similarité utilisée ici.
 
 \subsubsection*{Discussion}
 
