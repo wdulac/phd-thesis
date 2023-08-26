@@ -170,8 +170,8 @@ formulation de la condition nécessaire et suffisante à l'appariement de deux t
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{schema_vec_sequence.png}
-    \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a).
-    Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$. Inspiré de \cite{nakamura_shapebased_2013}.}
+    \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a),
+    inspirée de \cite{nakamura_shapebased_2013}. Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
     \label{fig:schema_trajectoires}
 \end{figure}
 
@@ -280,8 +280,9 @@ c'est à dire pour les temps où une seule des deux est définie, $N_\ominus$.
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=\textwidth]{MAS_vs_Ndiff.png}
-    \caption{Caractérisation de la relation entre la similarité des trajectoires et le nombre d'échéances \num{6}-horaires contenu dans $C \ominus Q$, pour les trois métriques
-    MAS$^\cap$, MAS$^\cup$ et wMAS, dans lequel $a=1$ et $b=2$, évaluées sur \num{2244} paires de trajectoires ERA5 / IBTrACS et présentées dans les encadrés \textbf{(a)}, \textbf{(b)} et \textbf{(c)} respectivement.}
+    \caption{Caractérisation de la relation entre la similarité des trajectoires en pourcentage et le nombre $N_\ominus$ d'échéances \num{6}-horaires contenu
+    dans $C \ominus Q$, pour les trois métriques MAS$^\cap$, MAS$^\cup$ et wMAS de gauche à droite respectivement (a,b et c), évaluées sur \num{2244} paires de
+    trajectoires ERA5 / IBTrACS.}
     \label{fig:MAS_Ndiff}
 \end{figure}
 %
@@ -296,12 +297,12 @@ est de \prct{18}. En outre, cette métrique présente une relation très marqué
 la similarité apparaît comme légèrement moins sensible à la différence de taille. La différence entre MAS$^\cap$ et MAS$^\cup$ est particulièrement prononcée,
 et l'impact de $N_\ominus$ sur MAS$^\cup$ est très fort, à tel point que le problème inverse à celui de MAS$^\cap$ peut se poser, à savoir que la
 comptabilisation des échéances sur $C \ominus Q$ avec le même poids que celles sur $C \cap Q$ peut parfois s'avérer très punitive, comme illustré sur les trois
-exemples de la \cref{fig:exemple_MAS}. Le wMAS (\cref{fig:MAS_Ndiff} encadré \textbf{c}) vise donc à compenser cette propriété du MAS$^\cup$ via ses
-coefficients de pondération qui modifient la contribution de $C \cap Q$ et de $C \ominus Q$ en fonction de la similarité moyenne obtenue sur l'intersection. La
-distribution du wMAS est intermédiaire entre MAS$^\cap$ et MAS$^\cup$, avec \prct{59} en moyenne et \prct{62} en valeur médiane. Si on distingue toujours une
-relation linéaire entre wMAS et $N_\ominus$, la dispersion des valeurs de $N_\ominus$ autour du score moyen est plus élevée que dans le cas de MAS$^\cup$,
-indiquant que le wMAS parvient en effet à compenser des valeurs larges de $N_\ominus$ lorsque $\bar{S_\theta}^\cap$ est élevé. Les exemples de la
-\cref{fig:exemple_MAS} illustrent ce point. Ce faisant, le wMAS perd néanmoins en interprétabilité. 
+exemples de la \cref{fig:exemple_MAS}. Le wMAS (\cref{fig:MAS_Ndiff} encadré c) vise donc à compenser cette propriété du MAS$^\cup$ via ses coefficients de
+pondération qui modifient la contribution de $C \cap Q$ et de $C \ominus Q$ en fonction de la similarité moyenne obtenue sur l'intersection. La distribution du
+wMAS est intermédiaire entre MAS$^\cap$ et MAS$^\cup$, avec \prct{59} en moyenne et \prct{62} en valeur médiane. Si on distingue toujours une relation linéaire
+entre wMAS et $N_\ominus$, la dispersion des valeurs de $N_\ominus$ autour du score moyen est plus élevée que dans le cas de MAS$^\cup$, indiquant que le wMAS
+parvient en effet à compenser des valeurs larges de $N_\ominus$ lorsque $\bar{S_\theta}^\cap$ est élevé. Les exemples de la \cref{fig:exemple_MAS} illustrent ce
+point. Ce faisant, le wMAS perd néanmoins en interprétabilité.
 
 \begin{figure}[htbp]
     \centering
@@ -312,21 +313,22 @@ indiquant que le wMAS parvient en effet à compenser des valeurs larges de $N_\o
 \end{figure}
 
 Pour déterminer si l'ajustement des paramètres de détection dont a fait l'objet le traqueur dans le but de maximiser la probabilité de détection a affecté la
-similarité des trajectoires, on calcule les valeurs des trois métriques de MAS pour les couples de trajectoires ERA5 / IBTrACS obtenus avant l'optimisation pour
-les comparer aux similarités que les trajectoires actuelles présentent avec les mêmes trajectoires IBTrACS. Le jeu de trajectoires ERA5, dites
+similarité des trajectoires, on calcule les valeurs des trois métriques de MAS pour les couples de trajectoires ERA5 / IBTrACS obtenus avant l'optimisation afin
+de les comparer aux similarités que les trajectoires actuelles présentent avec ces mêmes trajectoires IBTrACS. Les tracjectoires ERA5 dites
 \textquote{non-optimisées} et prises comme référence ici ont été obtenues avec les seuils \textbf{VOR}~$=$~\SI{5e-5}{\per\second}, \textbf{RES}~$=$~\ms{15},
 \textbf{TANOM}~$=$~\SI{1}{\kelvin}, \textbf{PT}~$=$~\SI{-2}{\kelvin} et \textbf{PW}~$=$~\ms{5}. Ces valeurs seuils se distinguent de celles utilisées dans
 \cite{dulac_assessing_2023} et \cite{bourdin_intercomparison_2022} par la vorticité (respectivement \SI{15e-5}{\per\second}), le seuil de vent (respectivement
 \ms{5}) ainsi que le profil vertical de température (respectivement \SI{-1}{\kelvin}). Le paramètre de relaxation est maintenu à \SI{25e-5}{\per\second} entre
 les deux jeux de données. La solution non-optimisée présente un POD moyen sur les cinq bassins d'intérêt diminué de plus de \num{10} points de pourcentage,
-l'impact le plus prononcé étant sur les bassins NAtl et EPac. Cette diminution du POD avec ces trajectoires se traduit par un déficit de \num{465} couples ERA5
-/ IBTrACS, puisque \num{1779} trajectoires ERA5 sont appariées avec ce jeu de données. Parmi ces paires de trajectoires, \num{1649} d'entre elles partagent la
-même composante IBTrACS, signifiant que \num{130} paires sont manquantes dans les trajectoires dites \textquote{optimisées}. Cette perte peut s'expliquer par le
-coût non-négligeable en POD du filtre de systèmes de moyennes latitudes utilisé dans \cite{dulac_assessing_2023}. En effet, le schéma de détection optimisé
-consiste essentiellement en un relâchement des contraintes définissant un cyclone tropical, conduisant à un plus grand nombre de systèmes détectés et appariées,
-notamment des systèmes peu intenses qui parfois ne présentent pas un cœur chaud suffisamment marqué selon le paramètre $V_U^T$ de \cite{hart_cyclone_2003}. Il
-reste donc \num{1649} cyclones observés dans IBTrACS pour lesquelles nous disposons de deux trajectoires ERA5 issues de paramètres de détection différents. On
-compare alors la similarité de chacune d'elles évaluée sur le cyclone observé, et pour les trois métriques de similarité présentées précédemment. La première
+l'impact le plus prononcé étant sur les bassins NAtl et EPac. Cette diminution du POD se traduit par un déficit de \num{465} couples ERA5 / IBTrACS par rapport
+aux trajectoires optimisées, puisque \num{1779} trajectoires ERA5 sont appariées avec les trajectoires de référence. Parmi ces paires de trajectoires,
+\num{1649} d'entre elles partagent la même composante IBTrACS, indiquant que \num{130} paires sont manquantes dans les trajectoires dites
+\textquote{optimisées}. Cette perte peut s'expliquer par le coût non-négligeable en POD du filtre de systèmes de moyennes latitudes utilisé dans
+\cite{dulac_assessing_2023}, filtre non appliqué sur les trajectoires de référence. En effet, le schéma de détection optimisé consiste essentiellement en un
+relâchement des contraintes définissant un cyclone tropical, conduisant à un plus grand nombre de systèmes détectés et appariés, notamment des systèmes peu
+intenses qui parfois ne présentent pas un cœur chaud suffisamment marqué selon le paramètre $V_U^T$ de \cite{hart_cyclone_2003} sur lequel est fondé le filtre.
+Il reste donc \num{1649} cyclones observés dans IBTrACS pour lesquels nous disposons de deux trajectoires ERA5 issues de paramètres de détection différents.
+On compare alors la similarité de chacune d'elles évaluée sur le cyclone observé, et pour les trois métriques de similarité présentées précédemment. La première
 ligne de la \cref{fig:delta_MAS} présente les distributions de ces changements par rapport aux trajectoires issues du schéma de détection non-optimisé.
 
 \begin{figure}[htb]
@@ -346,15 +348,14 @@ moyennée sur $C \cap Q$ devient moins sensible aux incohérences locales entre 
 sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours faible, vers une amélioration de la similarité, et plus prononcée dans le
 cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement une moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Cette évolution est
 largement liée au changement de $N_\ominus$ ($-$\num{0.8} pas de temps en moyenne), avec une relation linéaire évidente avec $\Delta N_\ominus$. Un ajustement
-linéaire sur cette quantité pour les deux métriques indique que le $\Delta N_\ominus$ explique \prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72}
-dans le cas de wMAS. Mais cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que
-$N_\ominus$ mesure la différence dans la temporalité des deux trajectoires, si bien que $\Delta N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la
-trajectoire ERA5 issue du schéma optimisé présente un début et/ou une fin plus proche de la trajectoire observée. Ainsi, une diminution de $N_\ominus$ avec un
-MAS$^\cap$ inchangé constitue en soi une amélioration de la ressemblance des trajectoires. Par ailleurs, il est intéressant de constater sur la seconde ligne de
-la \cref{fig:delta_MAS} que, pour les trois métriques considérées, les distributions des changements dans la similarité pour les cas où $\Delta N_\ominus = 0$
-sont faiblement décentrées du côté positif.
-moyen, certes extrêmement faible, mais systématiquement positif. Précisions que $\Delta N_\ominus =0$ ne signifie pas nécessairement
-que les deux trajectoires ERA5 partagent la même temporalité. Pour le comprendre, il suffit d'imaginer une trajectoire ERA5 qui, dans un jeu de
+linéaire des deux métriques avec $\Delta N_\ominus$ permet d'expliquer \prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72} dans le cas de wMAS. Mais
+cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$ mesure la
+différence dans la temporalité des deux trajectoires, si bien que $\Delta N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la trajectoire ERA5 issue
+du schéma optimisé présente un début et/ou une fin plus proche de la trajectoire observée. Ainsi, une diminution de $N_\ominus$ avec un MAS$^\cap$ inchangé
+constitue en soi une amélioration de la ressemblance des trajectoires. Par ailleurs, il est intéressant de constater sur la seconde ligne de la
+\cref{fig:delta_MAS} que, pour les trois métriques considérées, les distributions des changements dans la similarité pour les cas où $\Delta N_\ominus = 0$ sont
+faiblement décentrées du côté positif. moyen, certes extrêmement faible, mais systématiquement positif. Précisions que $\Delta N_\ominus =0$ ne signifie pas
+nécessairement que les deux trajectoires ERA5 partagent la même temporalité. Pour le comprendre, il suffit d'imaginer une trajectoire ERA5 qui, dans un jeu de
 données, ne détecterait pas la dernière échéance de la trajectoire observée, tandis que la trajectoire équivalente dans le second jeu de données en détecterait
 une de trop. Une telle situation serait caractérisée par $\Delta N_\ominus = 0$ et $\Delta N_\cap = +1$. Pour déterminer le changement moyen pour les cas où les
 deux trajectoires ERA5 sont définies sur exactement les mêmes dates, il faut donc considérer $\Delta N_\ominus = 0$ et $\Delta N_\cap$ = 0, ce qui correspond à
