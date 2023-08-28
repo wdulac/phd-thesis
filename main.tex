@@ -60,7 +60,7 @@
 \usepackage[style=french]{csquotes}
 
 \usepackage[]{fontspec}
-\setmainfont{Times New Roman}
+\setmainfont{Tex Gyre Termes}
 \usepackage{amsmath,amsfonts,amssymb,bm}
 \usepackage{textcomp} %Required to use \textdegree
 \usepackage{url}
@@ -70,6 +70,7 @@
     detect-all,
 }
 \addto\extrasfrenchb{\sisetup{locale = FR}}
+\DeclareSIUnit{\knot}{kt} % Remplace kn par kt, qui est plus communément utilisé (même si pas SI).
 \usepackage[version=4]{mhchem}
 
 %% Declare common units macros
