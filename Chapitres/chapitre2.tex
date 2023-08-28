@@ -354,22 +354,8 @@ différence dans la temporalité des deux trajectoires, si bien que $\Delta N_\o
 du schéma optimisé présente un début et/ou une fin plus proche de la trajectoire observée. Ainsi, une diminution de $N_\ominus$ avec un MAS$^\cap$ inchangé
 constitue en soi une amélioration de la ressemblance des trajectoires. Par ailleurs, il est intéressant de constater sur la seconde ligne de la
 \cref{fig:delta_MAS} que, pour les trois métriques considérées, les distributions des changements dans la similarité pour les cas où $\Delta N_\ominus = 0$ sont
-Les trois distributions mettent en avant des changements de similarité pour l'essentiel centrés autour de \num{0}. En particulier, la distribution de $\Delta
-\text{MAS}^\cap$ présente une moyenne à $+$\num{0.3} points de pourcentage (p.p), et une médiane à $+$\num{0.14} p.p. Si cette moyenne apparaît comme
-significativement différente de \num{0} avec test à \prct{95} (valeur-p $=$ \num{0.008}), ce changement est néanmoins insignifiant et peut probablement
-s'expliquer par le fait que $N_\cap$ tend à augmenter avec le schéma optimisé ($+$\num{1.9} pas de temps en moyenne), si bien que la similarité angulaire
-moyennée sur $C \cap Q$ devient moins sensible aux incohérences locales entre les deux trajectoires. Les deux métriques prenant en considération les échéances
-sur $C \ominus Q$ présentent quant à elles une tendance plus claire, bien que toujours faible, vers une amélioration de la similarité, et plus prononcée dans le
-cas de MAS$^\cup$ que pour le wMAS. Ces deux distributions indiquent respectivement une moyenne à $+$\num{2.4} p.p et $+$\num{2.05} p.p. Cette évolution est
-largement liée au changement de $N_\ominus$ ($-$\num{0.8} pas de temps en moyenne), avec une relation linéaire évidente avec $\Delta N_\ominus$. Un ajustement
-linéaire des deux métriques avec $\Delta N_\ominus$ permet d'expliquer \prct{74} de la variance dans le cas de MAS$^\cup$ et \prct{72} dans le cas de wMAS. Mais
-cela ne signifie pas pour autant que l'augmentation constatée dans ces deux métriques n'est qu'un artefact. En effet, rappelons que $N_\ominus$ mesure la
-différence dans la temporalité des deux trajectoires, si bien que $\Delta N_\ominus < 0$ pour une même trajectoire IBTrACS indique que la trajectoire ERA5 issue
-du schéma optimisé présente un début et/ou une fin plus proche de la trajectoire observée. Ainsi, une diminution de $N_\ominus$ avec un MAS$^\cap$ inchangé
-constitue en soi une amélioration de la ressemblance des trajectoires. Par ailleurs, il est intéressant de constater sur la seconde ligne de la
-\cref{fig:delta_MAS} que, pour les trois métriques considérées, les distributions des changements dans la similarité pour les cas où $\Delta N_\ominus = 0$ sont
 faiblement décentrées du côté positif. Précisions toutefois que $\Delta N_\ominus =0$ ne signifie pas nécessairement que les deux trajectoires ERA5 partagent la
-même temporalité. Pour s'en convaincre, il suffit d'imaginer une trajectoire ERA5 qui, dans un jeu de données, ne détecterait pas la dernière échéance de la
+même temporalité. Pour s'en convaincre, il suffit de considérer une trajectoire ERA5 qui, dans un jeu de données, ne détecterait pas la dernière échéance de la
 trajectoire observée, tandis que la trajectoire équivalente dans le second jeu de données en détecterait une de trop. Une telle situation serait caractérisée
 par $\Delta N_\ominus = 0$ et $\Delta N_\cap = +1$. Pour déterminer le changement moyen pour les cas où les deux trajectoires ERA5 sont définies sur exactement
 les mêmes dates, il faut donc considérer $\Delta N_\ominus = 0$ et $\Delta N_\cap$ = 0, ce qui correspond à \num{691} cas (\num{721} cas pour la condition
@@ -377,7 +363,6 @@ $\Delta N_\ominus = 0$ seule). Le changement moyen de similarité lorsque ces de
 $+$\num{0.54} p.p pour MAS$^\cap$, MAS$^\cup$ et wMAS respectivement. Il semble par conséquent que l'optimisation du schéma de détection de cyclones tropicaux
 dans le but de maximiser la probabilité de détection dans ERA5 par rapport à IBTrACS a pu, toutes choses égales par ailleurs, très légèrement améliorer la
 similarité des trajectoires détectées avec celles observées, selon la définition de la similarité utilisée ici.
-
 
 \subsubsection*{Discussion}
 
