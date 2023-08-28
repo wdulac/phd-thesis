@@ -398,12 +398,12 @@ systèmes les plus éloignés de l'équateur, c'est à dire ceux qui sont en gé
 
 Le terme \textquote{modèle de climat} est vaste puisqu'il en existe une très large variété, de complexités différentes, selon les besoins et les questions que
 l'on souhaite élucider. Dans le cas de l'étude des cyclones tropicaux, il s'agit de modèles de circulation atmosphérique, qui peuvent soit fonctionner de
-manière dite forcée, ou bien de manière dite couplée. Dans le premier cas, les conditions limites à la surface (SST, flux d'échange de chaleur de matière avec
-l'océan...) sont prescrites (on parle aussi de couplage \textit{offline}) et l'atmosphère ne peut donc pas influencer l'océan en retour. Dans le second cas
+manière dite forcée, ou bien de manière dite couplée. Dans le premier cas, les conditions aux limites, à la surface (SST, flux d'échange de chaleur et de matière avec
+l'océan...), sont prescrites (on parle aussi de couplage \textit{offline}) et l'atmosphère ne peut donc pas influencer l'océan en retour. Dans le second cas
 (aussi appelé couplage \textit{online}), le modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à mieux représenter les diverses
 rétroactions. Ces modèles sont des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas
 de temps régulier, sur chacune des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie
-dynamique du modèle consiste en la résolution à chaque pas de temps d'un jeu d'équations différentielles décrivant la circulation atmosphérique, tandis que la
+dynamique du modèle consiste en la résolution à chaque pas de temps des équations de la mécanique des fluides décrivant la circulation atmosphérique, tandis que la
 physique et les processus prenant place à une échelle caractéristique plus petite que la taille d'une maille sont paramétrisés. Les modèles de climat peuvent
 soit simuler l'atmosphère sur l'entièreté du globe, auquel cas il s'agit de modèles de circulation globaux (\textit{Global Circulation Model}, GCM), ou bien ne
 simuler qu'un domaine spécifique~---~il s'agit alors de modèles à aire limitée, ou modèles régionaux (\textit{Regional Circulation Model}, RCM).
@@ -424,7 +424,7 @@ niveaux verticaux. Cela situe donc ARPEGE à peu près dans la moyenne des modè
 part au sixième et plus récent exercice d'intercomparaison des modèles couplés (\textit{Coupled Model Intercomparison Project}, CMIP, ici CMIP6)
 \parencite{eyring_overview_2016} varie entre \km{80} et \km{250} \parencite[][Tableau AII.5]{ipcc_annex_2021}. Une version dite haute-résolution du modèle
 ARPEGE existe néanmoins et est utilisée dans le modèle couplé CNRM-CM6-1-HR \parencite{saint-martin_tracking_2021}, participant au projet d'intercomparaison des
-modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une une résolution
+modèles haute résolution (\textit{High Resolution Model Intercomparison Project}, HighResMIP) \parencite{haarsma_high_2016} et fonctionnant à une résolution
 horizontale de \km{50} ---~les autre modèles participants se situant entre \km{20} et \km{80} \parencite[][Tableau AII.6]{ipcc_annex_2021}. Ainsi, de manière
 générale un GCM disposant d'une résolution horizontale plus fine que \km{100} peut être considéré comme un modèle de climat à haute résolution. La finesse de la
 résolution des modèles de climat est en pratique limitée par le temps de calcul nécessaire à leur fonctionnement, et la résolution relativement grossière des
