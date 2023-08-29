@@ -253,10 +253,6 @@ Mars~-~Avril~-~Mai (MAM), où la partie sud présente une anomalie spatiale plus
 cyclonique y est quasi nulle (c.f \cref{fig:saisons_TC}). En effet, cette saison correspond à la mousson d'été en Inde, laquelle apporte du fort cisaillement
 vertical, si bien que $1/S_z$ avoisine zéro. Cela illustre à nouveau le rôle essentiel du cisaillement dans le processus de cyclogénèse et
 souligne le fait que c'est bien la combinaison de tous les ingrédients qui mène à la cyclogénèse.
-%\noindent La climatologie de ces ingrédients fournit par ailleurs des indices sur la rareté des cyclones tropicaux dans l'océan Atlantique sud. La SST ne
-%s'éloigne guère de la moyenne tropicale tout au long de l'année, l'humidité y est beaucoup moins présente que dans les autres bassin d'activité et la région
-%présente par ailleurs du cisaillement, avec une baisse durant DJF. Selon \cite{gray_global_1968}, il n'y a généralement pas de ZCIT dans ce secteur non plus,
-%ce qui prive la région des précurseurs qui peuvent en être issus. 
 
 En première approche, il est possible d'estimer la climatologie spatiale et saisonnière des zones où les conditions favorables sont réunies en prenant
 simplement le produit des quatre variables présentées sur la \cref{fig:clim_ingredients}. C'est ce que montre la \cref{fig:produit_ingredients}, avec en
@@ -520,8 +516,8 @@ un lien clair entre la résolution du modèle d'une part, et l'intensité ainsi 
     \caption{Fréquence annuelle moyenne du nombre de TC dans des simulations historiques couplées océan-atmosphère HighResMIP (tiers 2) sur la période
         \num{1974}~--~\num{2014} (deux premières lignes) ainsi que pour cinq réanalyses et dans les observations (dernière ligne). Moyenne annuelle entre Mai et
         Novembre dans l'hémisphère nord et Octobre~--~Mai dans l'hémisphère sud. Les modèles couplés sont par paire basse / haute résolution. Les deux valeurs
-        centrales de chaque disque présentent la moyenne dans les deux hémisphères et les tranches de couleur présentent le pourcentage de HTV de l'hémisphère
-        nord pour chaque bassin d'activité. L'épaisseur des disques est calibrée sur le nombre annuel de TC observé dans l'hémisphère nord. Figure issue de
+        centrales de chaque disque présentent la moyenne dans les deux hémisphères et les tranches de couleur précisent le pourcentage de HTV de l'hémisphère
+        nord pour chaque bassin d'activité. L'épaisseur des disques est calibrée sur le nombre annuel de TC observés dans l'hémisphère nord. Figure issue de
         \hbox{\cite{roberts_projected_2020}}.}
         \label{fig:NTC_HighResMIP}
 \end{figure}
@@ -548,12 +544,12 @@ de la fréquence, puisque deux des paires de modèles sur la \cref{fig:NTC_HighR
 leur version haute résolution (EC-Earth3P, \cite{haarsma_highresmip_2020} et MPI-ESM1-2, \cite{gutjahr_max_2019}). La figure met aussi en évidence de fortes
 différences de fréquence relatives à l'échelle des bassins géographiques. Le modèle CNRM-CM6-1 est par exemple le seul à surestimer l'activité dans le bassin
 NAtl, aussi bien dans version basse que haute résolution\footnote{Dans CNRM-CM6-1, la surestimation de la fréquence relative dans le NAtl pour la version basse
-résolution semble due au couplage océan-atmosphère, car \cite{roberts_impact_2020,roberts_projected_2020} montre en effet que l'expérience réalisée avec des
+résolution semble due au couplage océan-atmosphère, car \cite{roberts_impact_2020,roberts_projected_2020} montrent en effet que l'expérience réalisée avec des
 SST prescrites produit une activité relative de \SI{11}{\percent}. En revanche pour les autres modèles, le couplage tend à réduire l'activité dans cette
 région.} avec respectivement \SI{28}{\percent} et \SI{26}{\percent}, contre \SI{21}{\percent} dans les observations. La \cref{fig:roberts_PV_resolution}
 présente les relations vent~--~pression (\textit{Wind-Pressure Relationship}, WPR) pour les modèles présentés dans la \cref{fig:NTC_HighResMIP}. Les diagrammes
 vent~--~pression sont couramment utilisés comme diagnostique pour comparer la relation entre ces deux variables ---~reliées entre elles par l'équilibre du vent
-gradient~--- avec celle issue des observations et mesurée pour la première fois par \cite{atkinson_tropical_1977}. Avec la \cref{fig:roberts_PV_resolution},
+cyclostrophique~--- avec celle issue des observations et mesurée pour la première fois par \cite{atkinson_tropical_1977}. Avec la \cref{fig:roberts_PV_resolution},
 \cite{roberts_impact_2020} montre une intensification des HTV lors du passage à des résolutions supérieures, comprises entre \km{25} et \km{50}, sans pour
 autant parvenir à reproduire la plage de valeurs observée puisque la plupart des modèles peinent à dépasser la catégorie \num{2}~--~\num{3}. Ici encore, le
 modèle CNRM-CM-6-1-HR constitue l'exception en simulant des TC particulièrement intenses, dépassant même les observations dans le bassin WPac. Dans le NAtl,
@@ -582,18 +578,18 @@ dans la \cref{sec:projections_futures}.
 Il existe plusieurs façons d'évaluer l'activité cyclonique dans les modèles et qui peuvent être classées comme directes ou indirectes. En particulier,
 l'approche utilisée pour la description des HTV présentées dans la \cref{sec:cyclones_dans_modèles}, et qui est également implicitement référée dans la
 \cref{sec:modèles} lorsqu'il est fait mention de l'importance de la résolution, peut être vue comme la mesure la plus directe possible, puisqu'il s'agit
-d'identifier les HTV et d'aller directement analyser leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon de procéder
-repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations, à l'aide d'un schéma (ou algorithme) de détection et de
-suivi objectif, aussi appelés algorithmes de tracking. Basés sur les méthodologies de \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995}, ces algorithmes
-consistent pour la plupart à identifier les points de grille qui satisfont certaines conditions, exprimées comme des seuils de détection puis à relier les
-points entre eux de façon à former des trajectoires (tracks). Ces données permettent ensuite d'analyser le cycle de vie des systèmes et de calculer des
-statistiques de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut avoir un impact considérable sur les résultats d'un tel travail. La
-\cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts
-importants non seulement sur la quantité de HTV détectés, mais également sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur
-le ratio de la fréquence entre les deux hémisphères. Par exemple, là où le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les
-fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier
-est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR, l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans
-le nord.
+d'identifier les HTV dans les simulations et d'analyser directement leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon
+de procéder repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations à l'aide d'un schéma (ou algorithme) de
+détection et de suivi objectif, aussi appelés algorithmes de tracking ou encore traqueurs. Basés sur les méthodologies de
+\cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995}, ces algorithmes consistent pour la plupart à identifier les points de grille qui satisfont certaines
+conditions, exprimées comme des seuils de détection puis à relier les points entre eux de façon à former des trajectoires (tracks). Ces données permettent
+ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques de l'activité cyclonique. Néanmoins, le choix de l'algorithme de tracking peut
+avoir un impact considérable sur les résultats d'un tel travail. La \cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la
+\cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts importants non seulement sur la quantité de HTV détectés, mais également
+sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur le ratio de la fréquence entre les deux hémisphères. Par exemple, là où
+le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un
+ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR,
+l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans le nord.
 
 \begin{figure}[htbp]
     \centering
@@ -713,7 +709,7 @@ Les projections futures sur l'activité cyclonique tropicale sont, le plus souve
 notable d'entre eux est sans doute le projet CMIP, dont la plus récente itération (CMIP6) définit un socle commun pour de nombreux autres MIP, comme par exemple
 HighResMIP. Ces projets sont définis par une série d'expériences numériques aux protocoles pré-établis et auxquels les divers centres de modélisation à travers
 le monde peuvent participer. La mutualisation des données produites par les centres participants constituent alors de grands ensembles que la communauté
-scientifique peut ensuite exploiter afin d'étudier divers aspects du forçage anthropique sur le système climatique. Ainsi, les projections futures des divers
+scientifique peut ensuite exploiter afin d'étudier divers aspects du forçage anthropique sur le système climatique. Ainsi, les projections futures des diverses
 métriques décrivant l'activité cyclonique présentées ici sont caractérisées par la moyenne (ou la médiane) des résultats issus des groupes travaillant le plus
 souvent sur ces ensembles de simulations aux protocoles standardisés, et les incertitudes associées représentent leur dispersion. Les projections les plus à
 jour pour les quatre métriques d'intérêt primordial que sont la fréquence d'occurrence des TC, toutes catégories confondues ; la fréquence d'occurrence des TC
@@ -735,16 +731,19 @@ traitée séparément.
 
 \subsubsection*{Fréquence des cyclones forts, intensité maximale et précipitations}
 
-Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est plus ambigu que
-le signal sur la fréquence d'occurrence des TC de toutes les catégories. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est
-sensible à la résolution des modèles utilisées, puisque \cite{knutson_tropical_2020} soulignent que les modèles de résolution relativement basses (par rapport
-aux études considérées, c'est à dire avec des résolutions de l'ordre de \km{50}~--~\km{60}) tendent à indiquer une diminution de la fréquence des TC intenses,
-tandis que les modèles à très haute résolution indiquent au contraire une augmentation. En revanche, lorsqu'est considérée la proportion de ces TC, relativement
-à la fréquence des TC de toutes catégories (non montré ici), alors les résultats des différentes études convergent nettement vers une intensification, avec une
+Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est ambigu et ni
+l'échelle globale, ni les projections locales n'indiquent un changement clair dans cette métrique. Certains bassins ont un changement médian négatif, comme dans
+le WPac et SPac, tandis que les autres régions présentent au contraire une médiane positive. L'incertitude est grande dans les deux cas, plus large que celle
+sur la fréquence d'occurrence des TC toutes catégories confondues. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est sensible
+à la résolution des modèles utilisées, puisque \cite{knutson_tropical_2020} soulignent que les modèles de résolution relativement basses (par rapport aux études
+considérées, c'est à dire avec des résolutions de l'ordre de \km{50}~--~\km{60}) tendent à indiquer une diminution de la fréquence des TC intenses, tandis que
+les modèles à très haute résolution indiquent au contraire une augmentation. En revanche, lorsqu'est considérée la proportion de ces TC, relativement à la
+fréquence des TC de toutes catégories (non montré ici), alors les résultats des différentes études convergent nettement vers une intensification, avec une
 hausse médiane de \SI{13}{\percent} de la proportion de TC de catégories 4 ou 5 à l'échelle globale sous un scénario de réchauffement de \SI{2}{\degreeCelsius}.
-
 Cette augmentation relative de la fréquence des cyclones les plus forts s'explique par la combinaison de la baisse de la fréquence globale des TC ainsi que de
-l'augmentation de l'intensité maximale atteinte par les TC dans les projections. L'augmentation de l'intensité maximale des TC constitue là aussi une réponse
+l'augmentation de l'intensité maximale atteinte par les TC dans les projections.
+
+L'augmentation de l'intensité maximale des TC constitue là aussi une réponse
 particulièrement robuste de l'activité cyclonique au réchauffement climatique, puisque même les valeurs minimales et maximales de la distribution des résultats
 à l'échelle globale sont de même signe, avec une hausse moyenne de l'intensité de \SI{5}{\percent} et comprise entre \SI{1}{\percent} et \SI{10}{\percent}
 (respectivement \SI{2}{\percent} et \SI{8}{\percent} pour les pourcentiles \SI{10}{\percent} et \SI{90}{\percent} présentés sur la \cref{fig:projections_TC}).
@@ -836,7 +835,7 @@ est leur résolution. Jusqu'à récemment, la résolution des modèles rendait i
 également à produire des cyclones de taille plus importantes que ceux observés. De plus, tous les modèles ne reproduisent pas la climatologie observée des TC,
 aussi bien en fréquence annuelle que dans l'activité relative de chaque région, avec des différences plus ou moins importantes selon les modèles (voir
 \cref{sec:cyclones_dans_modèles}), causées entre autre par la résolution, mais aussi par la façon dont les composantes atmosphériques et océaniques sont
-couplées entre elles, ainsi que par la dynamique et les paramétrisations physiques propres à chaue modèle. À cela s'ajoute une incertitude non négligeable sur
+couplées entre elles, ainsi que par la dynamique et les paramétrisations physiques propres à chaque modèle. À cela s'ajoute une incertitude non négligeable sur
 les méthodologies employées pour évaluer l'activité cyclonique dans les modèles, en cela que le choix du schéma de détection et de suivi des cyclones peut avoir
 une influence considérable sur l'activité mesurée d'une part, ainsi que sur le signe même du changement dans les projections climatiques d'autre part (voir
 \cref{sec:intro_tracking}). Si malgré tout les projections climatiques sur la fréquence d'occurrence des cyclones tropicaux, basées sur une mesure directe de
