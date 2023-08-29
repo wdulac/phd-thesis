@@ -44,16 +44,20 @@ problématique que TRACK vise à solutionner est néanmoins bien réelle. La ré
 que les traqueurs doivent souvent être ajustés pour chaque résolution. Une autre alternative se trouve dans \cite{camargo_improving_2002} où les auteurs ont
 proposé une méthode de détection de HTV dont les seuils pour chacune des variables sont déterminées à partir de la climatologie du modèle. Spécifiquement, ces
 derniers s'expriment sous la forme $\alpha \sigma + \beta$, où $\alpha$ et $\beta$ sont issues de la climatologie globale du modèle, et où $\sigma$ représente
-l'écart type de la variable à l'échelle de chaque bassin océanique. La méthode de \cite{camargo_improving_2002} n'est cependant pas largement répandue,
-possiblement parce que d'une part, les valeurs $\alpha$ et $\beta$ pour chacune des variables se déterminent par les densités de probabilités bivariées dont
-l'estimation est complexe et laborieuse, et d'autre part parce que cette approche représente un paradigme très différent des traqueurs mentionnés précédemment.
-En effet, les traqueurs à seuils fixes visent à appliquer un schéma de fonctionnement conceptuel d'un cyclone tropical au modèle, ce qui permet ensuite
-d'établir dans quelle mesure le modèle est capable de simuler des systèmes réalistes, là où la méthode de \cite{camargo_improving_2002} cherche au contraire à
-s'affranchir des biais intrinsèques au modèle, en considérant que les TC constituent dans tous les cas les extrêmes des distribution des variables d'intérêt. Il
-faut cependant noter que si les traqueurs à seuils absolus permettent d'évaluer des biais de représentation des TC, ils ont également le défaut de rendre
-indiscernables les erreurs issues du modèle de celles issues du schéma de détection lui-même, contribuant aux incertitudes quant à l'évolution future de la
-fréquence des cyclones tropicaux dans un climat plus chaud mentionnées dans le \cref{chap:chapitre_1}, \cref{sec:intro_tracking}. Ces deux catégories de
-traqueurs ont donc chacun leurs avantages et leurs inconvénients.
+l'écart type de la variable à l'échelle de chaque bassin océanique. Le schéma de détection de \cite{camargo_improving_2002} possdède par ailleurs la
+fonctionnalité intéressante visant à compléter en amont et en aval les trajectoires détectées. Pour ce faire les contraintes sur les paramètres de détection
+sont relâchées et le traqueur cherche alors à suivre un signal de vorticité jusqu'à que cette dernière tombe en dessous d'un certain seuil prévu à cet effet. Ce
+processus de relaxation permet de prolonger les trajectoires détectées, qui sont sinon souvent courtes, et permet notamment d'éviter de scinder en deux
+trajectoires un système dont une ou plusieurs variables seraient temporairement passées en dessous des seuils de détection. La méthode des seuils de détection
+climato-statistiques de \cite{camargo_improving_2002} n'est cependant pas largement répandue, possiblement parce que d'une part, les valeurs $\alpha$ et $\beta$
+pour chacune des variables se déterminent par les densités de probabilités bivariées dont l'estimation est complexe et laborieuse, et d'autre part parce que
+cette approche représente un paradigme très différent des traqueurs mentionnés précédemment. En effet, les traqueurs à seuils fixes visent à appliquer un schéma
+de fonctionnement conceptuel d'un cyclone tropical au modèle, ce qui permet ensuite d'établir dans quelle mesure le modèle est capable de simuler des systèmes
+réalistes, là où la méthode de \cite{camargo_improving_2002} cherche au contraire à s'affranchir des biais intrinsèques au modèle, en considérant que les TC
+constituent dans tous les cas les extrêmes des distribution des variables d'intérêt. Il faut cependant noter que si les traqueurs à seuils absolus permettent
+d'évaluer des biais de représentation des TC, ils ont également le défaut de rendre indiscernables les erreurs issues du modèle de celles issues du schéma de
+détection lui-même, contribuant aux incertitudes quant à l'évolution future de la fréquence des cyclones tropicaux dans un climat plus chaud mentionnées dans le
+\cref{chap:chapitre_1}, \cref{sec:intro_tracking}. Ces deux catégories de traqueurs ont donc chacun leurs avantages et leurs inconvénients.
 
 Ainsi, pour espérer comprendre la divergence entre les projections issues de l'approche directe et indirecte, il est nécessaire de pouvoir évaluer
 quantitativement la performance d'un schéma de détection et de suivi objectif de cyclones tropicaux. Une solution consiste à appliquer un schéma de détection à
@@ -67,20 +71,23 @@ l'intégralité~--- des cyclones tropicaux observés et référencés dans la ba
 
 Dans ce chapitre, on considère le schéma de détection du CNRM, à l'origine conçu pour suivre les dépressions de moyennes latitudes par
 \cite{ayrault_nouvelle_2000} puis adapté aux cyclones tropicaux dans \cite{chauvin_response_2006}, et utilisé à cette fin par
-\cite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Des descriptions détaillées du fonctionnement de cet algorithme sont
-disponibles dans \cite{chauvin_response_2006}, ainsi que dans la \cref{sec:papier_data_methods}. Spécifiquement, le traqueur du CNRM est appliqué à la réanalyse
-ERA5 \parencite{hersbach_era5_2020}. En effet, ERA5 est la dernière en date du CEPMMT et est la première réanalyse mondiale à atteindre une résolution
-horizontale de \km{31}, ici interpolée sur une grille à \ang{0.25}. Elle assimile des données issues de plus d'une vingtaine de satellites d'observations
-météorologiques, totalisant \num{54} instruments. Aux données satellitaires s'ajoutent les observations \textit{in-situ} composées de stations au sol, bouées
-instrumentées, navires marins, radiosondages, radars et avions de reconnaissance. De par sa résolution inédite et la grande diversité des sources observations
-qui y sont assimilées, ERA5 constitue donc le choix idéal pour évaluer la capacité du traqueur à détecter les HTV. Dans la \cref{sec:eval_tracker_ERA5}, les
-performances du traqueur du CNRM ainsi que sa sensibilité à ses divers seuils de détection sont évaluées sur ERA5, en termes de probabilité de détection
-(\textit{Probability of Detection}, POD) et de taux de fausses alarmes (\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à représenter les TC est également
-évaluée, via une analyse de leurs caractéristiques en termes d'intensité, de cycle de vie et également via l'étude de leur profiles verticaux. Ces travaux sont
-présentés par la publication scientifique dont ils ont fait l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les tracks issues de
-quatre schémas de détection appliqués à ERA5, dont celui du CNRM \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier} présente des
-considérations sur le filtrage de systèmes de moyennes latitudes ---~source de biais important dans les schémas de détection de TC~--- et introduit trois
-métriques visant à évaluer la ressemblance des trajectoires détectées dans ERA5 avec les trajectoires historiques
+\cite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Le modèle conceptuel du fonctionnement d'un TC implémanté dans le
+traqueur du CNRM est basé sur \cite{bengtsson_hurricanetype_1995}, avec la particularité de considérer deux disques concentriques, dont les rayons sont évalués
+dynamiquement à chaque pas de temps, plutôt qu'une boîte fixe pour discriminer les HTV de leur environnement, et intègre également le processus de relaxation de
+\cite{camargo_improving_2002}. Des descriptions détaillées du fonctionnement de cet algorithme sont disponibles dans \cite{chauvin_response_2006}, ainsi que
+dans la \cref{sec:papier_data_methods}. Spécifiquement, le traqueur du CNRM est appliqué à la réanalyse ERA5 \parencite{hersbach_era5_2020}. En effet, ERA5 est
+la dernière en date du CEPMMT et est la première réanalyse mondiale à atteindre une résolution horizontale de \km{31}, ici interpolée sur une grille à
+\ang{0.25}. Elle assimile des données issues de plus d'une vingtaine de satellites d'observations météorologiques, totalisant \num{54} instruments. Aux données
+satellitaires s'ajoutent les observations \textit{in-situ} composées de stations au sol, bouées instrumentées, navires marins, radiosondages, radars et avions
+de reconnaissance. De par sa résolution inédite et la grande diversité des sources observations qui y sont assimilées, ERA5 constitue donc le choix idéal pour
+évaluer la capacité du traqueur à détecter les HTV. Dans la \cref{sec:eval_tracker_ERA5}, les performances du traqueur du CNRM ainsi que sa sensibilité à ses
+divers seuils de détection sont évaluées sur ERA5, en termes de probabilité de détection (\textit{Probability of Detection}, POD) et de taux de fausses alarmes
+(\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à représenter les TC est également évaluée, via une analyse de leurs caractéristiques en termes
+d'intensité, de cycle de vie et également via l'étude de leur profiles verticaux. Ces travaux sont présentés par la publication scientifique dont ils ont fait
+l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les tracks issues de quatre schémas de détection appliqués à ERA5, dont celui du
+CNRM \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier} présente des considérations sur le filtrage de systèmes de moyennes
+latitudes ---~source de biais important dans les schémas de détection de TC~--- et introduit trois métriques visant à évaluer la ressemblance des trajectoires
+détectées dans ERA5 avec les trajectoires historiques.
 
 \section{Évaluation du traqueur CNRM sur ERA5 par rapport à IBTrACS}\label{sec:eval_tracker_ERA5}
 
