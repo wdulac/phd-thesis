@@ -400,7 +400,7 @@ Le terme \textquote{modèle de climat} est vaste puisqu'il en existe une très l
 l'on souhaite élucider. Dans le cas de l'étude des cyclones tropicaux, il s'agit de modèles de circulation atmosphérique, qui peuvent soit fonctionner de
 manière dite forcée, ou bien de manière dite couplée. Dans le premier cas, les conditions aux limites, à la surface (SST, flux d'échange de chaleur et de matière avec
 l'océan...), sont prescrites (on parle aussi de couplage \textit{offline}) et l'atmosphère ne peut donc pas influencer l'océan en retour. Dans le second cas
-(aussi appelé couplage \textit{online}), le modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à mieux représenter les diverses
+(aussi appelé couplage \textit{online}), le modèle atmosphérique tourne en parallèle d'un modèle océanique de telle façon à pouvoir représenter les diverses
 rétroactions. Ces modèles sont des programmes informatiques qui simulent l'évolution de variables atmosphériques (température, pression, humidité...) à un pas
 de temps régulier, sur chacune des mailles composant la grille du modèle, et ce en suivant les lois de la dynamique et de la physique atmosphérique. La partie
 dynamique du modèle consiste en la résolution à chaque pas de temps des équations de la mécanique des fluides décrivant la circulation atmosphérique, tandis que la
@@ -442,7 +442,7 @@ restreint, ces derniers sont en mesure d'opérer à des résolutions nettement p
 sur des bassins cycloniques \parencite{redmond_projected_2015,gallo_highresolution_2019,torres-alavez_future_2021}. Toutefois, un RCM ne peut pas fonctionner de
 manière purement autonome car il a besoin de connaître l'état de l'atmosphère aux limites de son domaine. Ces informations sont fournies par un autre modèle qui
 l'englobe, souvent un GCM, ou parfois même un autre RCM si le saut de résolution est trop important (constituant donc une chaîne à trois modèles). La
-cohabitation nécessaire entre le RCM et son GCM forceur n'est pas sans inconvénients, car le RCM est alors très sensible à ces conditions limites
+cohabitation nécessaire entre le RCM et son GCM forceur n'est pas sans inconvénients, car le RCM est alors très sensible à ces conditions aux limites
 \parencite{wu_estimating_2005} et donc au choix du GCM. De plus, les différences dans la dynamique et la physique entre le GCM et le RCM font que la cohérence
 entre la grande et la fine échelle n'est pas forcément assurée entre les deux composants, incohérence illustrée par exemple avec la sous-estimation dans les RCM
 de la réponse au forçage anthropique suggérée par les GCM sur l'Europe continentale \parencite{boe_large_2020,taranu_mechanisms_2023}. Le gain de résolution
@@ -457,9 +457,9 @@ apporté par l'utilisation de modèles à aire limitée est donc contrebalancé 
     \label{fig:rotated_streched}
 \end{figure}
 
-Comme alternative aux modèles à aire limitée pour bénéficier d'une résolution accrue, le modèle ARPEGE dispose de la capacité à déformer sa grille horizontale
-de telle sorte à augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, la position du pôle est
-centrée sur la région désirée avant d'appliquer la transformation de \cite{schmidt_variable_1977} avec un facteur d'étirement $c$. Si \cite{caian_limits_1997}
+Comme alternative aux modèles à aire limitée pour bénéficier d'une résolution accrue, le modèle ARPEGE dispose de la capacité de déformer sa grille horizontale
+de telle sorte à augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, le pôle de la grille est
+placé sur la région désirée avant d'appliquer la transformation de \cite{schmidt_variable_1977} avec un facteur d'étirement $c$. Si \cite{caian_limits_1997}
 ont montré que la précision du modèle demeurait bonne jusqu'à un facteur $c=7$ ---~au delà de quoi l'usage d'un RCM peut être préférable~--- l'étirement est en
 pratique souvent limité à \num{3.5}, valeur pour laquelle le modèle a initialement été validé pour la prévision opérationnelle du temps à court terme
 \parencite{benichou_validation_1992}. Cette capacité permet à ARPEGE d'atteindre localement jusqu'à \km{14} de résolution à l'emplacement du pôle, avec un
@@ -547,13 +547,13 @@ inférieure \parencite{camargo_global_2013,roberts_impact_2020}. Cependant, elle
 de la fréquence, puisque deux des paires de modèles sur la \cref{fig:NTC_HighResMIP} ne présentent qu'une amélioration marginale, voire pas d'amélioration dans
 leur version haute résolution (EC-Earth3P, \cite{haarsma_highresmip_2020} et MPI-ESM1-2, \cite{gutjahr_max_2019}). La figure met aussi en évidence de fortes
 différences de fréquence relatives à l'échelle des bassins géographiques. Le modèle CNRM-CM6-1 est par exemple le seul à surestimer l'activité dans le bassin
-NAtl, aussi bien dans version basse que haute résolution\footnote{Dans CNRM-CM6-1, la surestimation de la fréquence relative dans le NAtl pour la version basse
+NAtl, aussi bien dans sa version basse que haute résolution\footnote{Dans CNRM-CM6-1, la surestimation de la fréquence relative dans le NAtl pour la version basse
 résolution semble due au couplage océan-atmosphère, car \cite{roberts_impact_2020,roberts_projected_2020} montre en effet que l'expérience réalisée avec des
 SST prescrites produit une activité relative de \SI{11}{\percent}. En revanche pour les autres modèles, le couplage tend à réduire l'activité dans cette
 région.} avec respectivement \SI{28}{\percent} et \SI{26}{\percent}, contre \SI{21}{\percent} dans les observations. La \cref{fig:roberts_PV_resolution}
 présente les relations vent~--~pression (\textit{Wind-Pressure Relationship}, WPR) pour les modèles présentés dans la \cref{fig:NTC_HighResMIP}. Les diagrammes
 vent~--~pression sont couramment utilisés comme diagnostique pour comparer la relation entre ces deux variables ---~reliées entre elles par l'équilibre du vent
-gradient~--- avec celle issue des observations et mesurée pour la première fois par \cite{atkinson_tropical_1977}. Avec la \cref{fig:roberts_PV_resolution},
+du gradient~--- avec celle issue des observations et mesurée pour la première fois par \cite{atkinson_tropical_1977}. Avec la \cref{fig:roberts_PV_resolution},
 \cite{roberts_impact_2020} montre une intensification des HTV lors du passage à des résolutions supérieures, comprises entre \km{25} et \km{50}, sans pour
 autant parvenir à reproduire la plage de valeurs observée puisque la plupart des modèles peinent à dépasser la catégorie \num{2}~--~\num{3}. Ici encore, le
 modèle CNRM-CM-6-1-HR constitue l'exception en simulant des TC particulièrement intenses, dépassant même les observations dans le bassin WPac. Dans le NAtl,
