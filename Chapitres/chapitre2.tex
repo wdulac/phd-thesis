@@ -22,18 +22,18 @@ expériences à climat plus chaud. En effet, si tous les traqueurs de TC partage
 néanmoins une très grande diversité. Les premiers schémas de détection étaient basés uniquement sur la MSLP et la vitesse des vents
 \parencite{bengtsson_simulation_1982,broccoli_can_1990}, tandis que \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995} ajoutèrent à cela des critères sur
 la vorticité ainsi qu'un diagnostique sur la présence d'un cœur chaud, dans l'optique de discriminer les perturbations tropicales de leurs homologues
-extra-tropicales. \cite{wu_gcm_1992} utilisèrent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil
-d'humidité relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone,
-ainsi que les perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans
-\cite{bengtsson_hurricanetype_1995}, la méthodologie de détection introduit des tests de structure verticale du système, aussi bien sur le profil de vent que de
-température. En effet, après avoir identifié un centre cyclonique à travers la vorticité, pression minimum locale et vitesse du vent maximale dans une boîte
-autour du système, il s'agit alors de s'assurer de la présence d'une anomalie de température sur l'ensemble de la troposphère, par rapport à la moyenne prise
-dans cette boîte, puis de s'assurer également que l'anomalie à la tropopause est supérieure que celle à la couche limite. Un test similaire est réalisé sur le
-profil vertical de vent, en imposant que le vent moyen à \hPa{850} supérieur à la moyenne du niveau à \hPa{300}, toujours dans la boîte centrée. Beaucoup
-d'algorithmes de détection reprennent cette méthodologie, avec quelques variantes et spécificités. Une grande quantité de méthodologies et de seuils de
-détection sont décrits dans \cite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition
-d'un TC et les valeurs numériques utilisées pour les divers seuils de détection sont souvent choisis de telle sorte à reproduire au mieux la climatologie
-observée \parencite{walsh_objectively_2007,tory_development_2013}.
+extra-tropicales. \cite{wu_gcm_1992} utilisent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil d'humidité
+relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone, ainsi que les
+perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans \cite{bengtsson_hurricanetype_1995},
+la méthodologie de détection introduit des tests de structure verticale du système, aussi bien sur le profil de vent que de température. En effet, après avoir
+identifié un centre cyclonique à travers la vorticité, pression minimum locale et vitesse du vent maximale dans une boîte autour du système, il s'agit alors de
+s'assurer de la présence d'une anomalie de température sur l'ensemble de la troposphère, par rapport à la moyenne prise dans cette boîte, puis de s'assurer
+également que l'anomalie à la tropopause est supérieure que celle à la couche limite. Un test similaire est réalisé sur le profil vertical de vent, en imposant
+que le vent moyen à \hPa{850} supérieur à la moyenne du niveau à \hPa{300}, toujours dans la boîte centrée. Beaucoup d'algorithmes de détection reprennent cette
+méthodologie, avec quelques variantes et spécificités. Une grande quantité de méthodologies et de seuils de détection sont décrits dans
+\cite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition d'un TC et les valeurs
+numériques utilisées pour les divers seuils de détection sont souvent choisis de telle sorte à reproduire au mieux la climatologie observée
+\parencite{walsh_objectively_2007,tory_development_2013}.
 
 Parmi les traqueurs possédant des particularités remarquables, le plus communément utilisé est sans aucun doute le schéma de détection TRACK
 \parencite{hodges_how_2017}. Ce dernier a la particularité de systématiquement interpoler les champs du modèle à une basse résolution (T63, soit \km{210}),
@@ -123,14 +123,58 @@ La version publiée de \cite{dulac_assessing_2023} est présentée dans la \cref
 
 \subsection{Filtrage des systèmes de moyennes latitudes}\label{sec:filtrage_mid_latitudes}
 
+\subsection*{Introduction}
+
+La détection des cyclones tropicaux dans la réanalyse ERA5 et l'appariement de ces derniers avec le catalogue des best tracks, tel que pratiqué dans
+\cite{dulac_assessing_2023} et présenté dans la \cref{sec:papier}, révèle une quantité significative de systèmes identifiés \textquote{faux positifs} par
+l'algorithme d'appariement. Ces cas correspondent à des systèmes détectés dans la réanalyse mais pour lesquels aucune correspondance n'est identifiée dans
+IBTrACS. Dans \cite{dulac_assessing_2023}, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques
+d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace des phases
+de \cite{hart_cyclone_2003} est désactivé, cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_T^U$ est défini comme le gradient vertical entre
+\hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est indicatif de la présence d'un
+vent thermique (induit par la présence d'un cœur chaud) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de discriminer les cyclones tropicaux à
+cœur chaud des tempêtes extra-tropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet parce que la grande majorité des
+faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyenne latitudes. La quantité de ces derniers est en partie un effet secondaire de
+l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la \cref{sec:papier_appendix_A}, mais les faux
+positifs du jeu de trajectoires obtenu avant optimisation, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extra-tropicaux.
+
+La discrimination des cyclones tropicaux des autres systèmes météorologiques tourbillonnaires constitue la difficulté principale de la détection objective de TC
+dans les modèles, et est la raison pour laquelle beaucoup de traqueurs, notamment ceux basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995},
+fournissent une description si détaillée d'un TC à travers les diverses conditions et seuils à respecter, à l'instar du traqueur du CNRM. Force est de constater
+que ce n'est cependant pas suffisant, si bien que d'autres stratégies sont parfois employées. La solution la plus simple consiste à définir une contrainte en
+latitude. Une telle limite est parfois fixée à \ang{30} \parencite{bengtsson_simulation_1982,broccoli_can_1990,mcdonald_tropical_2005}, ou encore entre \ang{40}
+et \ang{45} \parencite{wu_gcm_1992,tsutsui_simulated_1996,tsutsui_implications_2002,oouchi_tropical_2006,zarzycki_multidecadal_2014}. Définir une limite fixe en
+latitude pose toutefois problème lorsqu'il s'agit de chercher à détecter les cyclones tropicaux dans des simulations à climat plus chaud, étant donné
+l'expansion des tropiques \parencite{lucas_expanding_2014,staten_reexamining_2018} et le décalage vers les pôles de l'activité cyclonique
+\parencite{kossin_poleward_2014,knutson_tropical_2020}. Ainsi, un filtre des systèmes de moyennes latitudes pour un schéma de détection ayant vocation à être
+appliqué à des simulation de réchauffement climatique se doit de pouvoir s'adapter à un climat altéré, et donc d'être un filtre dynamique.
+
+Dans cette section, nous discutons de considérations sur le filtrage des systèmes de moyennes latitudes dans le but d'expliquer le choix du filtre utilisé dans
+\cite{dulac_assessing_2023}. Une attention particulière est apportée à une solution envisagée pendant un temps pour le traqueur du CNRM, consistant en
+l'utilisation de la latitude du maximum de gradient méridional de hauteur géopotentielle à \hPa{200}. Cette piste basé est comparée à la méthode employée dans
+\cite{bourdin_intercomparison_2022}, consistant à utiliser la limite équatoriale du jet subtropical.
+
+\subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{geopdy_clim_NH_SH.png}
     \caption{Diagramme de Hovmöller de la climatologie mensuelle de la latitude du gradient maximal de géopotentiel à \hPa{200}, pour l'hémisphère nord (a) et
-    sud (b). Contours de \ang{30}N à \ang{50}N (respectivement Sud) par pas de \ang{2}.}
+    sud (b), calculée de \num{1980} à \num{2020} avec la réanalyse ERA5. Contours de \ang{30}N à \ang{50}N (respectivement Sud) par pas de \ang{2}.
+    L'utilisation de contours dans cette figure rend le diagramme imparfaitement périodique.}
     \label{fig:geopdy_clim}
 \end{figure}
-
+%
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ophelia_geopdy_mean_geopt.png}
+    \caption{Trajectoire détectée dans ERA5 du cyclone Ophelia de la saison cyclonique 2017 sur fond du champ de hauteur géopotentielle à \hPa{200} moyenné
+    entre le 10 Octobre 2017 à 06:00 et le 17 Octobre à 00:00, correspondant respectivement à la première et dernière échéance détectée du système. Le tracé
+    rouge correspond à la latitude du maximum de gradient méridional du champ présenté.}
+    \label{fig:ophelia_z200}
+\end{figure}
+%
+\newpage
 \subsection{Métriques d'évaluation de la similarité des trajectoires}\label{sec:similarité}
 
 \subsubsection*{Introduction}
