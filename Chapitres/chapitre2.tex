@@ -219,7 +219,52 @@ est particulièrement efficace dans le bassin WPac, où le taux de faux positivi
 \cite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
 SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
 $V_U^T$), soit un taux de faux positif presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
-FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin.
+FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin. Ces performances variables, insuffisantes dans le cas du SPac, s'expliquent par le fait
+que le champ de $\partial Z_{200} / \partial \phi$ n'est pas suffisamment lisse en latitude, si bien que la latitude du gradient oscille entre le jet polaire
+---~situé aux alentours de \ang{60}~--- et le jet subtropical, autour de \ang{30}. Si c'est effet n'est pas visible sur sur les
+\cref{fig:ophelia_z200,fig:geopdy_clim}, c'est parce que ces dernières ont fait l'objet d'un lissage agressif. Sur la \cref{fig:ophelia_z200}, le gradient est
+calculé sur le champ de géopotentiel moyenné sur \num{7} jours. Sur la \cref{fig:geopdy_clim}, les moyennes climatologiques pour chaque mois de la latitude du
+gradient maximum sont lissées par filtre gaussien. La \cref{fig:geopdy_random} illustre ce problème à travers six exemples tirés aléatoirement dans l'hémisphère
+sud sur la saison cyclonique 2019. Précisons que les champs de $\partial Z_{200} / \partial \phi$ qui y sont présentés sont calculés sur la hauteur
+géopotentielle elle-même lissée spatialement avec une fenêtre glissante carrée de côté 11, conformément à l'implémentation online qui en est faite dans le
+schéma de détection. Cette figure montre que la chute de la hauteur géopotentielle avec la latitude n'est pas définie de façon suffisamment nette partout,
+résultant en une latitude du gradient maximal en dents de scie. L'effet est amplifié pour les cas où deux bandes de fort gradient sont superposées. Sur la
+\cref{fig:geopdy_random}, cela est particulièrement visible pour la date du 2018--08--26 (1\iere~ligne 2\ieme~colonne) et la date du 2019--06--29 (2\ieme~ligne
+1\iere~colonne), et plus localement pour la date du 2019--06--24 (1\iere~ligne 1\iere~colonne) entre \ang{0}E et \ang{180}, ou encore au 2019--04--21
+(1\iere~ligne 3\ieme~colonne) entre \ang{180} et \ang{120}W. Dans ces cas, la latitude du gradient maximum saute d'un courant atmosphérique à l'autre, séparés
+de \ang{30} l'un de l'autre. Parmi les autres dates, il apparaît que le gradient à la limite des subtropiques n'est souvent pas suffisamment fort par rapport au
+gradient dans les latitudes plus proches du pôle, si bien que la latitude du gradient maximal frôle localement la limite méridionale du domaine de
+fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd)
+ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équivalent à ne pas avoir de filtre.
+%
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{geopdy_random_dates.png}
+    \caption{Gradient méridional de la hauteur géopotentielle à \hPa{200} pour 6 échéances tirées aléatoirement dans la saison 2019 de l'hémisphère sud dans la
+    réanalyse ERA5. Le tracé noir relie les points du gradient maximal pour chaque longitude.}
+    \label{fig:geopdy_random}
+\end{figure}
+
+\subsubsection*{Filtre du jet subtropical}
+
+Le filtre du gradient de géopotentiel à \hPa{200} vise essentiellement à définir un courant jet comme limite méridional des tropiques. D'autres travaux ont
+employé une approche similaire basée sur un diagnostique différent du jet subtropical, en lieu et place d'un seuil fixe en latitude
+\parencite{tory_projected_2013,tory_sea_2015,bell_statistical_2018}, dont la formulation est reprise dans \cite{bourdin_intercomparison_2022}. Spécifiquement,
+le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à \hPa{200} avec une
+fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale $u$ est supérieure
+à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, où en interpolant
+linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne soit pas défini sur une tranche de longitude donnée. Le lissage temporel sur
+30 jours glissants est utile pour avoir un STJ bien défini, mais tout type de lissage temporel rend une implémentation online impossible, si bien que ce type de
+filtre ne peut que s'appliquer comme un post-traitement.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{STJ_mask_random.png}
+    \caption{Principe de fonctionnement du diagnostique du jet subtropical pour les trois dates de la première ligne de la \cref{fig:geopdy_random}. La seconde
+    ligne applique le diagnostique aux trois mêmes dates avec le vent instantané non lissé. Le tracé en tirets rouge indique la limite équatoriale du jet
+    subtropical ainsi déterminé.}
+    \label{fig:STJ_random}
+\end{figure}
 
 \newpage
 \subsection{Métriques d'évaluation de la similarité des trajectoires}\label{sec:similarité}
