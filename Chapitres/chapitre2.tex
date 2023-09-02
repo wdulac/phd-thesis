@@ -207,9 +207,9 @@ latitude, ce qui peut constituer un gain de temps considérable si les systèmes
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{geopdy_clim_NH_SH.png}
-    \caption{Diagramme de Hovmöller de la climatologie mensuelle de la latitude du gradient maximal de géopotentiel à \hPa{200}, pour l'hémisphère nord (a) et
-    sud (b), calculée de \num{1980} à \num{2020} avec la réanalyse ERA5. Contours de \ang{30}N à \ang{50}N (respectivement Sud) par pas de \ang{2}.
-    L'utilisation de contours dans cette figure rend le diagramme imparfaitement périodique.}
+    \caption{Diagramme de Hovmöller de la climatologie mensuelle de la latitude du gradient maximal de géopotentiel à \hPa{200}, lissée par un filtre gaussien,
+    pour l'hémisphère nord (a) et sud (b), calculée de \num{1980} à \num{2020} avec la réanalyse ERA5. Contours de \ang{30}N à \ang{50}N (respectivement Sud)
+    par pas de \ang{2}. L'utilisation de contours dans cette figure rend le diagramme imparfaitement périodique.}
     \label{fig:geopdy_clim}
 \end{figure}
 
@@ -237,11 +237,11 @@ gradient dans les latitudes plus proches du pôle, si bien que la latitude du gr
 fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd)
 ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équivalent à ne pas avoir de filtre.
 %
-\begin{figure}[htpb]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{geopdy_random_dates.png}
-    \caption{Gradient méridional de la hauteur géopotentielle à \hPa{200} pour 6 échéances tirées aléatoirement dans la saison 2019 de l'hémisphère sud dans la
-    réanalyse ERA5. Le tracé noir relie les points du gradient maximal pour chaque longitude.}
+    \caption{Gradient méridional de la hauteur géopotentielle à \hPa{200} pour 6 échéances tirées aléatoirement dans la saison cyclonique 2019 de l'hémisphère
+    sud dans la réanalyse ERA5. Le tracé noir relie les points de gradient maximal pour chaque longitude.}
     \label{fig:geopdy_random}
 \end{figure}
 
@@ -253,17 +253,57 @@ employé une approche similaire basée sur un diagnostique différent du jet sub
 le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à \hPa{200} avec une
 fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale $u$ est supérieure
 à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, où en interpolant
-linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne soit pas défini sur une tranche de longitude donnée. Le lissage temporel sur
-30 jours glissants est utile pour avoir un STJ bien défini, mais tout type de lissage temporel rend une implémentation online impossible, si bien que ce type de
-filtre ne peut que s'appliquer comme un post-traitement.
+linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne serait pas défini sur une tranche de longitude donnée, et en interpolant
+temporellement en dernier recours si aucun point ne remplit les critères à un pas de temps donné. Le lissage temporel sur 30 jours glissants est utile pour
+avoir un STJ bien défini, mais tout type de lissage temporel rend une implémentation online impossible, si bien que ce type de filtre ne peut que s'appliquer
+comme un post-traitement.
 
-\begin{figure}[htpb]
+La \cref{fig:STJ_random} illustre le fonctionnement du filtre du STJ, en montrant pour les trois dates prises comme exemple sur la 1\iere~ligne de la
+\cref{fig:geopdy_random}, la région où $\sqrt{u^2 + v^2} > \ms{25}$ et $u > \ms{15}$, accompagnée de la limite équatoriale de cette zone indiquée par les tirets
+rouges. Le diagnostique du jet subtropical apparaît comme nettement plus lisse que le filtre du gradient de géopotentiel, et est également situé plus proche de
+l'équateur, même en mettant de côté l'effet dents de scie du gradient de $Z_{200}$. La proximité avec l'équateur s'explique par la caractéristique du STJ à
+prendre la limite équatorielle plutôt que le maximum du champ, tandis que le lissage sur 30 jours glissants permet d'atteindre une meilleure homogénéité en
+longitude. En effet la 2\ieme~ligne de la \cref{fig:STJ_random} présente le diagnostique établi sur les trois mêmes dates sur les composantes du vent non
+lissées et montre une plus grande irrégularité dans le placement du STJ. Sur la 3\ieme~colonne, à la date du 2019--04--21, cela se traduit par le même effet que
+pour le filtre précédent, avec des chutes brutales de la limite équatoriale du jet vers le pôle. Le diagnostique réalisé sans lissage temporel met illustre la
+grande proximité conceptuelle entre les deux filtres, puisque la structure des régions remplissant les deux conditions correspond très fidèlement aux zones de
+fort gradient de géopotentiel présentées sur la 1\iere~ligne de la \cref{fig:geopdy_random}, l'intensité des courants jets à \hPa{200} étant directement
+proportionnelle à $\partial Z_{200} / \partial \phi$. Il en résulte que le lissage temporel préalable des champs concernés constitue la différence fondamentale
+entre les deux méthodologies.
+
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{STJ_mask_random.png}
     \caption{Principe de fonctionnement du diagnostique du jet subtropical pour les trois dates de la première ligne de la \cref{fig:geopdy_random}. La seconde
     ligne applique le diagnostique aux trois mêmes dates avec le vent instantané non lissé. Le tracé en tirets rouge indique la limite équatoriale du jet
     subtropical ainsi déterminé.}
     \label{fig:STJ_random}
+\end{figure}
+
+Les performances du STJ sont discutées dans \cite{bourdin_intercomparison_2022}, et l'efficacité de ce système n'est pas à démontrer. En particulier,
+\cite{bourdin_intercomparison_2022} mesure un taux de faux positifs à \prct{15} avec le STJ sur le traqueur du CNRM à l'échelle globale. Notons que le STJ
+appliqué au traqueur CNRM dans \cite{bourdin_intercomparison_2022} produit par ailleurs un FAR d'environ \prct{30} dans le bassin SPac, ce qui est en dessous
+des \prct{42} notés dans \cite{dulac_assessing_2023} avec le $V_U^T$. \cite{bourdin_intercomparison_2022} justifient également le choix du STJ par rapport au
+$V_U^T$ par le coût supplémentaire en probabilité de détection que ce dernier représente. Chercher à diagnostiquer objectivement la présence d'un courant jet
+peut néanmoins parfois mener à des résultats inattendus qui peuvent alors compromettre la définition du seuil en latitude pour le schéma de détection de TC. La
+\cref{fig:geopdy_and_STJ} présente trois cas sélectionnés durant l'année 2017 dans l'hémisphère nord qui illustrent cela, avec d'un côté de la figure une carte
+de l'hémisphère montrant le seuil méridional déterminé par les deux méthodologies, et l'autre côté montrant le courant diagnostiqué à cette échéance. Le premier
+cas (1\iere~ligne) montre un STJ diagnostiqué (encadré de droite) épars avec des parcelles de vent fort à différentes latitudes, si bien que la limite
+équatoriale subit des sauts soudains de plus de \ang{20}, comparables dans leur amplitude aux sauts réalisés par le filtre du gradient de géopotentiel. Le
+second cas (2\ieme~ligne) présente un jet subtropical presque absent, avec deux parcelles principales dont le vent ne dépasse pas \ms{40}, l'un autour de
+\ang{60}E et l'autre centré sur \ang{60}W. Notons que dans ces cas où le jet n'est pas défini sur les extrémités latérales du domaine, l'interpolation linéaire
+se fait temporellement. Les cas où le courant jet est faible et seulement partiellement défini sont nombreux durant la saison estivale, tout du moins durant
+l'année 2017. Dans ces cas là, le caractère lisse de la limite équatoriale du STJ est très largement le résultat de l'interpolation. Le troisième cas
+(3\ieme~ligne) présente une situation où du vent fort est identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostique à \ang{0}N.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{geopdy_and_STJ.png}
+    \caption{Comparaison de la latitude du jet subtropical avec la latitude du maximum de gradient de géopotentiel pour trois échéances de la saison cyclonique
+    2017 de l'hémisphère nord dans lesquels le STJ n'est pas clairement défini. La carte de gauche présente les deux limites en latitude sur fond du champ de
+    hauteur géopotentielle à \hPa{200}, tandis que l'encadré de droite présente le jet subtropical diagnostiqué, dont la limite équatoriale détermine le tracé rouge
+    sur la carte. Pour chaque date, les deux encadrés couvrent l'entièreté de l'hémisphère nord jusqu'à \ang{60}N, en dépit de leur largeur différentes.}
+    \label{fig:geopdy_and_STJ}
 \end{figure}
 
 \newpage
