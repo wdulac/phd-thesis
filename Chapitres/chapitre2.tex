@@ -5,7 +5,7 @@
 \begin{document}
 
 \begin{itshape}
-Ce deuxième chapitre porte de l'approche directe consistant en l'application d'un algorithme de détection et de suivi des cyclones tropicaux dans les modèles
+Ce deuxième chapitre traite de l'approche directe consistant en l'application d'un algorithme de détection et de suivi des cyclones tropicaux dans les modèles
 comme façon de caractériser l'activité cyclonique simulée, ainsi que la façon dont les modèles représentent ces phénomènes. Un cas d'étude est présenté via
 l'application du schéma de détection du CNRM à la réanalyse ERA5.
 \end{itshape}
@@ -64,7 +64,7 @@ quantitativement la performance d'un schéma de détection et de suivi objectif 
 une simulation dont les trajectoires sont à priori connues d'avance, en utilisant une réanalyse atmosphérique. Les réanalyses combinent des prévisions
 météorologiques à court terme avec des observations passées via un modèle et un schéma d'assimilation de données ---~permettant de corriger la trajectoire du
 modèle lorsque ce dernier s'éloigne de l'état connu de l'atmosphère~--- invariants sur toute la période d'analyse. Une réanalyse offre donc une vision globale
-de l'atmosphère qui est cohérente dans le temps et l'espace et qui intègre au mieux l'ensemble des observations qui y sont intégrées, si bien que le produit
+de l'atmosphère qui est cohérente dans le temps et l'espace et qui correspond le mieux possible à l'état connu de l'atmosphère sur cette période, si bien que le produit
 final constitue une excellente estimation de l'état passé de l'atmosphère sur toute la période considérée. Il en résulte que la plupart ---~sinon
 l'intégralité~--- des cyclones tropicaux observés et référencés dans la base données IBTrACS, introduite dans le \cref{chap:chapitre_1},
 \cref{sec:observations}, sont à priori présents dans une réanalyse.
@@ -83,9 +83,8 @@ de reconnaissance. De par sa résolution inédite et la grande diversité des so
 évaluer la capacité du traqueur à détecter les HTV. Dans la \cref{sec:eval_tracker_ERA5}, les performances du traqueur du CNRM ainsi que sa sensibilité à ses
 divers seuils de détection sont évaluées sur ERA5, en termes de probabilité de détection (\textit{Probability of Detection}, POD) et de taux de fausses alarmes
 (\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à représenter les TC est également évaluée, via une analyse de leurs caractéristiques en termes
-d'intensité, de cycle de vie et également via l'étude de leur profiles verticaux. Ces travaux sont présentés par la publication scientifique dont ils ont fait
-l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les tracks issues de quatre schémas de détection appliqués à ERA5, dont celui du
-CNRM \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier} présente des considérations sur le filtrage de systèmes de moyennes
+d'intensité, de cycle de vie et également via l'étude de leur profils verticaux. Ces travaux sont présentés par la publication scientifique dont ils ont fait
+l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les performances du traqueur du CNRM sur ERA5 avec celles de trois autres schémas de détection \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier} présente des considérations sur le filtrage de systèmes de moyennes
 latitudes ---~source de biais important dans les schémas de détection de TC~--- et introduit trois métriques visant à évaluer la ressemblance des trajectoires
 détectées dans ERA5 avec les trajectoires historiques.
 
@@ -154,7 +153,7 @@ ce dernier n'est pas adapté pour évaluer quantitativement la ressemblance entr
     \centering
     \includegraphics[width=\textwidth]{coverage_ratio_and_missed.png}
     \caption{\textbf{(a)} Distributions des taux de recouvrement des trajectoires appariées entre ERA5 / IBTrACS pour chaque classe d'intensité des TC observés.
-    \textbf{(b)} Histogramme de la fraction de points détectés situés à plus de \km{300} d'IBTrACS parmi les trajectoires appariés.}
+    \textbf{(b)} Histogramme de la fraction (en pourcentage) pour chaque trajectoire qui est située à plus de \km{300}, d'IBTrACS parmi les trajectoires appariés.}
     \label{fig:coverage_ratio}
 \end{figure}
 
@@ -165,7 +164,7 @@ sur la mesure de la similarité de la forme entre deux séries par l'analyse de 
 Similarity} (AMSS). Bien que leur approche soit pleinement capable de s'appliquer à des trajectoires spatiales, certaines propriétés de leur métrique ne sont
 pas pertinentes (voire pas souhaitables), dans le cas précis des trajectoires de cyclones tropicaux, telles qu'une forte résilience à un décalage temporel entre
 les deux séries (pas applicable à des trajectoires appariées entre réanalyse et observations), ainsi qu'une robustesse à des changements isolés de direction.
-Ces propriétés rendent par ailleurs leur algorithme très couteux en temps de calcul. Néanmoins, l'aspect novateur derrière les travaux de
+Ces propriétés rendent par ailleurs leur algorithme très coûteux en temps de calcul. Néanmoins, l'aspect novateur derrière les travaux de
 \cite{nakamura_shapebased_2013} est repris ici, à savoir la décomposition de la trajectoire en série de vecteurs, détaillée ci-après. Dans cette section, trois
 métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \cite{dulac_assessing_2023} et composé des trajectoires
 détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS. En particulier, cette analyse vise à déterminer si le réglage des
@@ -186,7 +185,7 @@ Une trajectoire de cyclone tropical est une série temporelle composée des posi
 la caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non
 pas les positions discrètes du système, mais plutôt la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
 
-Reprenant le formalise de \cite{nakamura_shapebased_2013} ; soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions
+Reprenant le formalisme de \cite{nakamura_shapebased_2013} ; soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions
 $p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
 %
 \begin{align*}
@@ -200,7 +199,7 @@ Alors la série des vecteurs de déplacement équivalente $C_{\text{vec}}$ est d
             &= (\mathbf{c}_1, \mathbf{c}_2, \ldots, \mathbf{c}_M)
 \end{align*}
 %
-tel qu'illustré par la \cref{fig:schema_trajectoires}, encadré (a). Soit $Q_{\text{vec}}$ la série des vecteurs de déplacements d'une seconde trajectoire composée de
+tel qu'illustré par la \cref{fig:schema_trajectoires}, encadré (a). Soit $Q_{\text{vec}}$ la série des vecteurs de déplacement d'une seconde trajectoire composée de
 $M^\prime$ vecteurs. L'angle $\theta$ entre deux vecteurs individuels $\mathbf{c}_i$ et $\mathbf{q}_j$ issus respectivement de $C_{\text{vec}}$ et
 $Q_{\text{vec}}$, et où $i$ et $j$ correspondent au même temps $t$ est donné par le produit scalaire des deux vecteurs. $\cos \theta$ est aussi appelé
 similarité cosinus et est noté $S_C$ :
@@ -213,7 +212,7 @@ Ainsi la similarité cosinus caractérise l'angle formé par les vecteurs de dé
 distance angulaire, ou angle normalisé, qui est une distance formelle au sens où l'inégalité de Cauchy-Schwartz est respectée, par :
 %
 \begin{equation*}
-    D_\theta = \frac{\theta}{\pi}
+    D_\theta = \frac{\theta}{\pi} \in [0; 1]
 \end{equation*}
 %
 Et son complément, appelé similarité angulaire par :
@@ -272,7 +271,7 @@ comme fonction de $\bar{S_\theta}^\cap$ :
 Le wMAS vise à fournir une valeur quantitative du ressenti qualitatif de la similarité d'une paire de trajectoires, en ce sens que le plus la similarité moyenne
 sur $C \cap Q$ est élevée, le moins la taille de $C \ominus Q$ a d'importance dans la similarité totale, et réciproquement. Le wMAS traduit donc l'idée
 subjective que la similarité sur l'intersection des trajectoires peut compenser partiellement la différence de taille entre une trajectoire détectée associée à
-une trajectoire observée. Le degré d'intensité de cette compensation (ou respectivement de pénalisation) peut être ajusté via les paramètres $a$ et $b$. Ici ces
+une trajectoire observée. Le degré d'intensité de cette compensation (ou respectivement de pénalisation) peut être ajusté via les paramètres $a$ et $b$. Après expérimentation, ces
 paramètres sont empiriquement fixés à $a=1$ et $b=2$. Par construction, on a :
 %
 \begin{equation*}
@@ -321,7 +320,7 @@ point. Ce faisant, le wMAS perd néanmoins en interprétabilité.
 
 Pour déterminer si l'ajustement des paramètres de détection dont a fait l'objet le traqueur dans le but de maximiser la probabilité de détection a affecté la
 similarité des trajectoires, on calcule les valeurs des trois métriques de MAS pour les couples de trajectoires ERA5 / IBTrACS obtenus avant l'optimisation afin
-de les comparer aux similarités que les trajectoires actuelles présentent avec ces mêmes trajectoires IBTrACS. Les tracjectoires ERA5 dites
+de les comparer aux similarités que les trajectoires actuelles présentent avec ces mêmes trajectoires IBTrACS. Les trajectoires ERA5 dites
 \textquote{non-optimisées} et prises comme référence ici ont été obtenues avec les seuils \textbf{VOR}~$=$~\SI{5e-5}{\per\second}, \textbf{RES}~$=$~\ms{15},
 \textbf{TANOM}~$=$~\SI{1}{\kelvin}, \textbf{PT}~$=$~\SI{-2}{\kelvin} et \textbf{PW}~$=$~\ms{5}. Ces valeurs seuils se distinguent de celles utilisées dans
 \cite{dulac_assessing_2023} et \cite{bourdin_intercomparison_2022} par la vorticité (respectivement \SI{15e-5}{\per\second}), le seuil de vent (respectivement
@@ -380,9 +379,9 @@ performances de chacune. Le choix de la métrique dépend en effet de l'usage qu
 les deux trajectoires coexistent, et peut donc indiquer un excellent score pour des trajectoires pourtant extrêmement différentes. Le MAS$^\cup$ suit la
 démarche inverse de compter comme nulle la similarité angulaire sur les échéances où une seule trajectoire existe, si bien qu'une faible différence dans la
 taille des trajectoires peut conduire à un score sensiblement diminué. Le wMAS quant à lui, vise à accomplir la tâche pourtant impossible de quantifier avec une
-métrique objective une impression subjective de similarité. Si cette approche est par nature vouée à l'échec, le wMAS remplit néanmoins parfaitement son rôle
+métrique objective une impression subjective de similarité. Si cette approche se fait au détriment de l'interprétabilité de la mesure, le wMAS remplit néanmoins parfaitement son rôle
 consistant à nuancer le MAS$^\cup$, se situant ainsi entre les deux autres, et accomplit cela en pondérant les similarités nulles sur $C \ominus Q$ en fonction des
-performances sur $C \cap Q$, au détriment de l'interprétabilité de la mesure. Cette caractéristique commune aux trois métriques d'être basées sur une valeur moyenne de
+performances sur $C \cap Q$. Cette caractéristique commune aux trois métriques d'être basées sur une valeur moyenne de
 la similarité angulaire présente toutefois l'inconvénient d'être peu sensible aux incohérences locales, ce qui est d'autant plus vrai que les trajectoires sont
 longues. En tout état de cause, ces deux catégories de métriques ---~celles basées uniquement sur $C \cap Q$ et celles prenant en considération $C \ominus
 Q$~--- ne sont pas à mettre en opposition, car l'usage d'une de chaque peut s'avérer porteur d'informations complémentaires importantes.
@@ -390,7 +389,7 @@ Q$~--- ne sont pas à mettre en opposition, car l'usage d'une de chaque peut s'a
 Cette analyse visait à déterminer si la recherche des seuils de détection maximisant la probabilité de détection dans la réanalyse ne s'était pas faite au
 détriment de la capacité du schéma de détection à fidèlement identifier les trajectoires cycloniques, dans la mesure où la condition implicitement suffisante à
 remplir dans la fonction d'objectif que représente le POD dans ce contexte ne consiste qu'à identifier un seul point se trouvant à moins de \km{300} d'une
-trajectoire observée. Les résultats de l'étude indiquent que non seulement la similarité n'a, dans l'ensemble, pas diminuée suite à l'optimisation du traqueur,
+trajectoire observée. Les métriques de quantification de la similarité des trajectoires proposées ici apportent par ailleurs une manière alternative d'évaluer les performances d'un schéma de détection, au delà du calcul du FAR et du POD. Les résultats de l'étude indiquent que non seulement la similarité n'a, dans l'ensemble, pas diminuée suite à l'optimisation du traqueur,
 mais aussi que cette optimisation s'est accompagnée en moyenne d'une amélioration marginale. Cette dernière est en grande partie due au fait que la temporalité
 trajectoires détectées par le traqueur optimisé sont souvent plus proches de celles observées que celles issues du traqueur de référence, aussi bien à travers
 $N_\ominus$ que $N_\cap$. Cependant, une petite amélioration est visible pour les cas où la longueur est inchangée entre les deux jeux de données. L'analyse
