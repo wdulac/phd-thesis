@@ -447,20 +447,20 @@ apporté par l'utilisation de modèles à aire limitée est donc contrebalancé 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=0.8\textwidth]{grille_arpege_stretchee_C3AF.png}
-    \caption{Exemple d'utilisation de la grille ARPEGE dans sa configuration tournée étirée, où le pôle est positionné sur une région d'intérêt et un facteur
+    \caption{Exemple d'utilisation de la grille ARPEGE dans sa configuration basculée-étirée, où le pôle est positionné sur une région d'intérêt et un facteur
     d'étirement est appliqué pour y augmenter localement la résolution (ici égal à \num{3.5}) au détriment de l'antipode. Figure issue de
     \cite{chauvin_future_2020}.}
     \label{fig:rotated_streched}
 \end{figure}
 
 Comme alternative aux modèles à aire limitée pour bénéficier d'une résolution accrue, le modèle ARPEGE dispose de la capacité de déformer sa grille horizontale
-de telle sorte à augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, le pôle de la grille est
+afin d'augmenter significativement sa résolution sur une région d'intérêt \parencite{courtier_global_1988}. Pour ce faire, le pôle de la grille est
 placé sur la région désirée avant d'appliquer la transformation de \cite{schmidt_variable_1977} avec un facteur d'étirement $c$. Si \cite{caian_limits_1997}
 ont montré que la précision du modèle demeurait bonne jusqu'à un facteur $c=7$ ---~au delà de quoi l'usage d'un RCM peut être préférable~--- l'étirement est en
 pratique souvent limité à \num{3.5}, valeur pour laquelle le modèle a initialement été validé pour la prévision opérationnelle du temps à court terme
 \parencite{benichou_validation_1992}. Cette capacité permet à ARPEGE d'atteindre localement jusqu'à \km{14} de résolution à l'emplacement du pôle, avec un
 minimum de \km{35} sur un bassin comme le NAtl \parencite[][c.f \cref{fig:rotated_streched}]{chauvin_future_2020} et de \km{50} sur un bassin plus large comme
-le SInd \parencite{cattiaux_projected_2020}\footnote{Dans \cite{cattiaux_projected_2020}, le pôle est placé de telle sorte à maximiser la résolution autour de l'île
+le SInd \parencite{cattiaux_projected_2020}\footnote{Dans \cite{cattiaux_projected_2020}, le pôle est placé de façon à maximiser la résolution autour de l'île
 de La Réunion, au détriment des côtes Ouest de l'Australie. Il serait sinon possible de garantir une résolution inférieure à \km{40} sur l'ensemble du bassin.}.
 La spécificité de sa grille place ARPEGE dans le cercle très restreint des GCM à résolution variable, puisqu'ils sont au nombre de cinq
 \parencite{mcgregor_recent_2013}, et ARPEGE est le premier d'entre eux à avoir été utilisé pour réaliser des simulations climatiques
@@ -482,7 +482,7 @@ différences clefs entre les simulations et les TC observés, notamment pendant 
 convective néanmoins accompagnée d'une absence de cœur chaud et d'une faible vorticité. L'auteur souligne également le lien exacerbé entre la SST et l'activité
 simulée, en dépit des autres facteurs favorables à la cyclogénèse identifiés par \cite{gray_tropical_1975} (voir \cref{sec:conditions_cyclogenese}), et
 qui explique la répartition spatiale et temporelle imparfaite de l'activité simulée. La faible résolution des GCM et la paramétrisation nécessaire de la
-microphysique propre aux TC en résultant font qu'il est très difficile de simuler correctement ces systèmes complexes, si bien que la dénomination de HTV
+physique sous-maille rendent les TC très difficile à simuler correctement, si bien que la dénomination de HTV
 (\textit{Hurricane-Type Vortices}) est parfois préférée pour les désigner
 \parencite{bengtsson_simulation_1982,bengtsson_hurricanetype_1995,chauvin_response_2006}.
 
@@ -500,8 +500,8 @@ différentes (\ang{4.5}\times\ang{7.5} et \ang{2.25}\times\ang{3.75}, en latitud
 rétroactions nuageuses et dans lesquelles la concentration en \ce{CO2} est doublée. Ils notèrent ainsi un changement à la baisse en
 \ensuremath{2\times\ce{CO2}} dans la simulation avec rétro-action nuageuse, et au contraire une augmentation lorsque la nébulosité est prescrite, indépendamment
 de la résolution utilisée. Ces expériences, bien que peu concluantes, validèrent le principe de l'utilisation de GCM pour l'étude des TC en changement
-climatique. \cite{haarsma_tropical_1993,bengtsson_will_1996} procédèrent à de nouvelles expériences en \ensuremath{2\times\ce{CO2}} et notèrent une augmentation
-relative de la fréquence des cyclones les plus forts. \cite{bengtsson_will_1996} observa par ailleurs pour la première fois une réduction de l'activité dans la
+climatique. \cite{haarsma_tropical_1993,bengtsson_will_1996} procédèrent à de nouvelles expériences en \ensuremath{2\times\ce{CO2}} et notèrent tous deux une augmentation
+relative de la fréquence des cyclones les plus forts tandis que \cite{bengtsson_will_1996} observa également une réduction de l'activité dans la
 simulation \ensuremath{2\times\ce{CO2}}. Une réduction de l'activité cyclonique accompagnée d'une augmentation relative de la fréquence d'occurrence des TC les
 plus forts constitue un signal robuste de réponse au changement climatique encore aujourd'hui \parencite[][voir
 \cref{sec:projections_futures}]{walsh_tropical_2016,camargo_tropical_2016,knutson_tropical_2010,knutson_tropical_2010,seneviratne_weather_2021}. À la même
@@ -544,7 +544,7 @@ de la fréquence, puisque deux des paires de modèles sur la \cref{fig:NTC_HighR
 leur version haute résolution (EC-Earth3P, \cite{haarsma_highresmip_2020} et MPI-ESM1-2, \cite{gutjahr_max_2019}). La figure met aussi en évidence de fortes
 différences de fréquence relatives à l'échelle des bassins géographiques. Le modèle CNRM-CM6-1 est par exemple le seul à surestimer l'activité dans le bassin
 NAtl, aussi bien dans sa version basse que haute résolution\footnote{Dans CNRM-CM6-1, la surestimation de la fréquence relative dans le NAtl pour la version basse
-résolution semble due au couplage océan-atmosphère, car \cite{roberts_impact_2020,roberts_projected_2020} montre en effet que l'expérience réalisée avec des
+résolution semble due au couplage océan-atmosphère, car \cite{roberts_impact_2020,roberts_projected_2020} montrent en effet que l'expérience réalisée avec des
 SST prescrites produit une activité relative de \SI{11}{\percent}. En revanche pour les autres modèles, le couplage tend à réduire l'activité dans cette
 région.} avec respectivement \SI{28}{\percent} et \SI{26}{\percent}, contre \SI{21}{\percent} dans les observations. La \cref{fig:roberts_PV_resolution}
 présente les relations vent~--~pression (\textit{Wind-Pressure Relationship}, WPR) pour les modèles présentés dans la \cref{fig:NTC_HighResMIP}. Les diagrammes
@@ -553,9 +553,9 @@ cyclostrophique~--- avec celle issue des observations et mesurée pour la premi�
 \cite{roberts_impact_2020} montre une intensification des HTV lors du passage à des résolutions supérieures, comprises entre \km{25} et \km{50}, sans pour
 autant parvenir à reproduire la plage de valeurs observée puisque la plupart des modèles peinent à dépasser la catégorie \num{2}~--~\num{3}. Ici encore, le
 modèle CNRM-CM-6-1-HR constitue l'exception en simulant des TC particulièrement intenses, dépassant même les observations dans le bassin WPac. Dans le NAtl,
-\cite{chauvin_future_2020} montre que l'intensité des HTV est encore accrue lorsque le modèle est utilisé dans sa configuration tournée-étirée pour atteindre
+\cite{chauvin_future_2020} montre que l'intensité des HTV est encore accrue lorsque le modèle est utilisé dans sa configuration basculée-étirée pour atteindre
 \km{15} de résolution (voir \cref{fig:rotated_streched}). Ce cas constitue une anomalie, d'autant plus que la version précédente du modèle utilisée dans les
-simulations de \cite{daloz_impact_2012} ---~également en configuration tournée-étirée, à \km{50}~--- ne produit pas de HTV aussi intenses. Cette particularité
+simulations de \cite{daloz_impact_2012} ---~également en configuration basculée-étirée, avec une résolution au pôle de \km{50}~--- ne produit pas de HTV aussi intenses. Cette particularité
 serait probablement liée aux différences de paramétrisations physiques entre les deux versions \parencite{chauvin_future_2020}, auquel cas il est possible que la
 capacité du modèle ARPEGE à simuler des TC de catégorie \num{4} et \num{5} soit due à de mauvaises raisons. Il est néanmoins à noter que, bien qu'ils soient peu
 nombreux, d'autres modèles à très haute résolution sont en mesure d'atteindre de tels niveaux d'intensité. C'est notamment le cas du modèle MRI-AGCM~3.2 avec
@@ -573,12 +573,12 @@ dans la \cref{sec:projections_futures}.
 
 \subsection{Approche directe et indirecte pour l'étude de l'activité cyclonique}\label{sec:tracking_vs_indices}
 
-\subsubsection{Approche directe : Détection et suivi objectif}\label{sec:intro_tracking}
+\subsubsection{Approche directe : Détection et suivi objectif des cyclones tropicaux}\label{sec:intro_tracking}
 
 Il existe plusieurs façons d'évaluer l'activité cyclonique dans les modèles et qui peuvent être classées comme directes ou indirectes. En particulier,
 l'approche utilisée pour la description des HTV présentées dans la \cref{sec:cyclones_dans_modèles}, et qui est également implicitement référée dans la
 \cref{sec:modèles} lorsqu'il est fait mention de l'importance de la résolution, peut être vue comme la mesure la plus directe possible, puisqu'il s'agit
-d'identifier les HTV dans les simulations et d'analyser directement leurs caractéristiques, tels qu'ils sont représentés dans les modèles globaux. Cette façon
+d'identifier les HTV dans les simulations et d'analyser directement leurs caractéristiques, tels qu'ils sont représentés dans les modèles. Cette façon
 de procéder repose sur la capacité à correctement identifier et suivre l'évolution des HTV dans les simulations à l'aide d'un schéma (ou algorithme) de
 détection et de suivi objectif, aussi appelés algorithmes de tracking ou encore traqueurs. Basés sur les méthodologies de
 \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995}, ces algorithmes consistent pour la plupart à identifier les points de grille qui satisfont certaines
@@ -587,8 +587,8 @@ ensuite d'analyser le cycle de vie des systèmes et de calculer des statistiques
 avoir un impact considérable sur les résultats d'un tel travail. La \cref{fig:NTC_HighResMIP_TRACK} reproduit l'analyse présentée sur la
 \cref{fig:NTC_HighResMIP} avec un schéma de détection différent, et montre des écarts importants non seulement sur la quantité de HTV détectés, mais également
 sur leur répartition spatiale, en termes d'activité relative par bassin mais aussi sur le ratio de la fréquence entre les deux hémisphères. Par exemple, là où
-le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme ---~un
-ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier est remplacé par TRACK. Dans d'autres cas, comme pour le modèle ECMWF-LR,
+le modèle CNRM-CM6-1-HR présente un rapport légèrement supérieur à \num{2} entre les fréquences annuelles de l'hémisphère nord et sud avec TempestExtreme \parencite{ullrich_tempestextremes_2017,zarzycki_assessing_2017} ---~un
+ratio très proche de celui observé~--- la différence s'amoindrit lorsque ce dernier est remplacé par TRACK \parencite{hodges_how_2017}. Dans d'autres cas, comme pour le modèle ECMWF-LR,
 l'algorithme TRACK indique même une activité plus forte dans l'hémisphère sud que dans le nord.
 
 \begin{figure}[htbp]
@@ -602,7 +602,7 @@ l'algorithme TRACK indique même une activité plus forte dans l'hémisphère su
 
 Ces différences ne se limitent pas à des biais stationnaires dans le temps ---~auquel cas des traqueurs avec différents résultats en climat présent pourraient
 néanmoins indiquer la même tendance relative en climat futur~--- puisque \cite{horn_tracking_2014} ont montré que différents critères de détection peuvent
-aboutir à des changements de signes opposés pour une même expérience. C'est en effet ce que montre la \cref{fig:horn_2014_projections}, avec des changements
+aboutir à des tendances opposés pour une même expérience. C'est en effet ce que montre la \cref{fig:horn_2014_projections}, avec des changements
 relatifs opposés, toutes deux statistiquement significatives à \SI{95}{\percent}, pour le modèle du \textit{Goddard Institute for Space Studies} (GISS) dans
 l'expérience à SST accrues (a), pour le traqueur proposé dans \cite{zhao_simulations_2009}, et les tracks obtenues par le groupe du GISS eux-mêmes, selon la
 méthodologie de \cite{camargo_improving_2002} ---~deux algorithmes qui, comme beaucoup d'autres, ont pourtant en commun le fait de chercher à diagnostiquer la
@@ -617,9 +617,8 @@ fort dans la basse troposphère que dans les couches supérieures \parencite{hor
 entre les schémas de détection sont amoindries lorsque les critères portant sur la durée minimale, les seuils de vitesses de vents et la latitude de cyclogénèse
 sont homogénéisés. Cela illustre donc la difficulté à déterminer les meilleurs critères permettant de discriminer au mieux les HTV d'autres systèmes
 météorologiques qui pourraient avoir des caractéristiques similaires ---~comme par exemple les tempêtes extra-tropicales, qui sont une source fréquente de faux
-positifs \parencite[][voir aussi \cref{sec:filtrage_mid_latitudes}]{dulac_assessing_2023}~--- en faisant toutefois attention à ce que les seuils de détection ne
-soient pas trop restrictifs, sinon quoi le traqueur sera susceptible d'éliminer des systèmes pour de mauvaises raisons, c'est à dire de produire au
-contraire des faux négatifs. 
+positifs, c'est à dire de systèmes détectés par le schéma de détection qui ne sont pas des cyclones tropicaux (voir aussi \cref{sec:filtrage_mid_latitudes})~--- en faisant toutefois attention à ce que les seuils de détection ne
+soient pas trop restrictifs, au risque d'éliminer des systèmes pour de mauvaises raisons.
 
 \begin{figure}[tb]
     \centering
@@ -632,9 +631,7 @@ contraire des faux négatifs.
 
 L'approche consistant à appliquer un schéma de détection objective de HTV dans les modèles de climat dans le but d'y mesurer l'activité cyclonique dispose par
 conséquent de l'avantage non négligeable de constituer justement une mesure directe. Il est néanmoins important de souligner que la conception de l'algorithme de
-détection, ses divers seuils et autres spécificités viennent ajouter autant de sources d'incertitudes, non seulement sur la capacité d'un modèle donné à simuler
-l'activité cyclonique, mais également sur les projections climatiques issues de ces modèles, et s'ajoutent à l'incertitude propre à ces derniers dans les
-projections.
+détection, ses divers seuils et autres spécificités viennent ajouter autant de sources d'incertitudes qui s'ajoutent aux biais des modèles et leur réponse aux différents scénarios d'évolution du climat.
 
 \subsubsection{Approche indirecte : Indices de cyclogénèse}\label{sec:intro_indices}
 
@@ -642,9 +639,9 @@ Plutôt que de mesurer les HTV directement dans les modèles, l'approche indirec
 échelle via les variables, ou prédicteurs, associés à cette activité (voir \cref{sec:conditions_cyclogenese}). Pour ce faire, la façon la plus commune consiste à utiliser un indice de cyclogénèse
 \parencite{camargo_tropical_2016}. Les indices sont nombreux et tous possèdent des formulations différentes, mais le principe est toujours le même : Un indice de
 cyclogénèse combine des prédicteurs thermiques (par exemple la SST, ou l'humidité relative) et des prédicteurs dynamiques (cisaillement, vorticité...) pour
-décrire l'environnement favorable à la cyclogénèse et est normalisé, ou calibré, de telle sorte à être homogène à une quantité de TC ainsi que pour reproduire l'amplitude de
-l'activité observée à une échelle de temps donnée. L'indice peut être alors vu comme un produit indiquant en chaque point de grille un nombre de cyclones par
-unité de temps, et s'apparente à une densité surfacique :
+décrire l'environnement favorable à la cyclogénèse et est normalisé, ou calibré, de afin d'être homogène à une quantité de TC ainsi que de reproduire l'amplitude de
+l'activité observée sur une période donnée. L'indice peut être alors vu comme un produit indiquant en chaque point de grille un nombre de cyclones par
+unité de temps, et s'apparente ainsi à une densité surfacique (puisque le point de grille est représentatif d'une maille du modèle) :
 %
 \begin{align*}
     N_{\text{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
@@ -655,9 +652,9 @@ unité de temps, et s'apparente à une densité surfacique :
 Où $\rho$ est exprimé sur un domaine géographique $D$ et dépend de la latitude $\phi$ et de la longitude $\lambda$. Comme mentionné dans la
 \cref{sec:climato_ingredients}, le premier indice de cyclogénèse a été développé par \cite{gray_tropical_1975}, nommé \textquote{Paramètre de génèse
 saisonnière} (\textit{Seasonal Genesis Parameter}, SGP)\footnote{Le SGP de \cite{gray_tropical_1975} consiste en une combinaison de six prédicteurs auxquels
-sont ajoutés des constantes déterminées empiriquement et choisies de telle sorte à simuler approximativement les variations journalières de ces variables. La
+sont ajoutés des constantes déterminées empiriquement et choisies de manière à simuler approximativement les variations journalières de ces variables. La
 formulation du SGP est donc plus sophistiquée que le simple produit des quatre variables dont les moyennes saisonnières sont tracées sur la
-\cref{fig:produit_ingredients}.}. Comme son nom l'indique, ce dernier est conçu pour prendre en entrée des moyennes saisonnières de ses
+\cref{fig:produit_ingredients}.}. Comme son nom l'indique, ce dernier est conçu pour prendre en entrée des moyennes saisonnières de ces
 prédicteurs. Le SGP tel que défini dans \cite{gray_tropical_1975} s'exprime en TC par boîte de \ang{5}$\times$\ang{5} par 20 ans et est capable de reproduire
 fidèlement la densité de cyclones observés sur la période \num{1952}~--~\num{1971}.
 
@@ -665,9 +662,9 @@ L'étude des conditions de grande échelle favorables comme alternative à la me
 résolution des GCM de l'époque ne permettaient pas de les simuler correctement, malgré les résultats encourageants de \cite{broccoli_can_1990} évoqués
 précédemment. C'est notamment pour cette raison que \hbox{\cite{ryan_tropical_1992}} ont utilisé pour la première fois le SGP, ainsi qu'une variante annuelle
 appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux indiquèrent une très forte
-augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique dans la run de contrôle
+augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique dans le run de contrôle
 (\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \cite{ryan_tropical_1992}
-l'ont appliqué à leur modèle.} dans la run de contrôle à \num{440} TC par an dans la run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ
+l'ont appliqué à leur modèle.} dans le run de contrôle à \num{440} TC par an dans le run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ
 \SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les directions. Ce résultat s'explique en grande partie par la forte
 dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}.
 \mbox{\cite{watterson_seasonal_1995}} cherchèrent à évaluer le pouvoir prédictif du SGP à l'échelle saisonnière et inter-annuelle et établirent que l'indice
@@ -695,7 +692,7 @@ résolution.
 
 Ainsi, l'approche indirecte consistant en l'étude de l'environnement de grande échelle favorable à l'activité cyclonique via les indices de cyclogénèse présente
 l'intérêt de pouvoir être appliquée à des simulations dont la résolution ne permet pas nécessairement de représenter correctement les TC, et dans lesquelles une
-approche directe par détection objecte serait vraisemblablement sujette à un déficit de TC. Cela représente également une certaine économie, puisque le temps de
+approche directe par détection obejctive serait vraisemblablement sujette à un déficit de TC. Cela représente également une certaine économie, puisque le temps de
 calcul est le facteur limitant de la résolution des modèles, et peut aussi se montrer plus facile à appliquer à des simulations diverses issues de modèles
 différents que la mise en place d'un schéma de détection homogénéisé. Néanmoins, des incertitudes demeurent sur les poids accordés aux différents prédicteurs,
 ainsi que sur le choix des prédicteurs eux-mêmes. De même, l'utilisation d'indices de cyclogénèse pour l'étude de l'activité cyclonique en climat futur suppose
@@ -708,14 +705,12 @@ Les projections futures sur l'activité cyclonique tropicale sont, le plus souve
 notable d'entre eux est sans doute le projet CMIP, dont la plus récente itération (CMIP6) définit un socle commun pour de nombreux autres MIP, comme par exemple
 HighResMIP. Ces projets sont définis par une série d'expériences numériques aux protocoles pré-établis et auxquels les divers centres de modélisation à travers
 le monde peuvent participer. La mutualisation des données produites par les centres participants constituent alors de grands ensembles que la communauté
-scientifique peut ensuite exploiter afin d'étudier divers aspects du forçage anthropique sur le système climatique. Ainsi, les projections futures des diverses
+scientifique peut ensuite exploiter afin d'étudier divers aspects du système climatique, de sa variabilité interne et de sa sensibilité aux forçages externes. Ainsi, les projections futures des diverses
 métriques décrivant l'activité cyclonique présentées ici sont caractérisées par la moyenne (ou la médiane) des résultats issus des groupes travaillant le plus
 souvent sur ces ensembles de simulations aux protocoles standardisés, et les incertitudes associées représentent leur dispersion. Les projections les plus à
 jour pour les quatre métriques d'intérêt primordial que sont la fréquence d'occurrence des TC, toutes catégories confondues ; la fréquence d'occurrence des TC
 les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) ; L'intensité, exprimée en vitesse maximale de vent à la surface (LMI) et les précipitations
-cycloniques sont présentées sur la \cref{fig:projections_TC}. Les projections futures de ces métriques sont commentées ci-dessous, en regroupant les
-précipitations, le LMI et la fréquence des cyclones les plus forts ensemble, tandis que la question de la fréquence des TC toutes catégories confondues est
-traitée séparément.
+cycloniques sont présentées sur la \cref{fig:projections_TC}. Les projections futures de ces métriques sont commentées ci-dessous, selon leur ordre d'apparition sur la \cref{fig:projections_TC}, en traitant séparément la question de la fréquence des TC toutes catégories confondues des trois autres métriques.
 %
 \begin{figure}[tb]
     \centering
@@ -727,41 +722,6 @@ traitée séparément.
         \cite{knutson_tropical_2020}.}
     \label{fig:projections_TC}
 \end{figure}
-
-\subsubsection*{Fréquence des cyclones forts, intensité maximale et précipitations}
-
-Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est ambigu et ni
-l'échelle globale, ni les projections locales n'indiquent un changement clair dans cette métrique. Certains bassins ont un changement médian négatif, comme dans
-le WPac et SPac, tandis que les autres régions présentent au contraire une médiane positive. L'incertitude est grande dans les deux cas, plus large que celle
-sur la fréquence d'occurrence des TC toutes catégories confondues. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est sensible
-à la résolution des modèles utilisées, puisque \cite{knutson_tropical_2020} soulignent que les modèles de résolution relativement basses (par rapport aux études
-considérées, c'est à dire avec des résolutions de l'ordre de \km{50}~--~\km{60}) tendent à indiquer une diminution de la fréquence des TC intenses, tandis que
-les modèles à très haute résolution indiquent au contraire une augmentation. En revanche, lorsqu'est considérée la proportion de ces TC, relativement à la
-fréquence des TC de toutes catégories (non montré ici), alors les résultats des différentes études convergent nettement vers une intensification, avec une
-hausse médiane de \SI{13}{\percent} de la proportion de TC de catégories 4 ou 5 à l'échelle globale sous un scénario de réchauffement de \SI{2}{\degreeCelsius}.
-Cette augmentation relative de la fréquence des cyclones les plus forts s'explique par la combinaison de la baisse de la fréquence globale des TC ainsi que de
-l'augmentation de l'intensité maximale atteinte par les TC dans les projections.
-
-L'augmentation de l'intensité maximale des TC constitue là aussi une réponse
-particulièrement robuste de l'activité cyclonique au réchauffement climatique, puisque même les valeurs minimales et maximales de la distribution des résultats
-à l'échelle globale sont de même signe, avec une hausse moyenne de l'intensité de \SI{5}{\percent} et comprise entre \SI{1}{\percent} et \SI{10}{\percent}
-(respectivement \SI{2}{\percent} et \SI{8}{\percent} pour les pourcentiles \SI{10}{\percent} et \SI{90}{\percent} présentés sur la \cref{fig:projections_TC}).
-Localement, seul le bassin le bassin Sud-ouest Pacifique présente une incertitude conséquente sur le signe du changement. La confiance dans ce signal est
-renforcée par le fait qu'une tendance à l'intensification est déjà constatée dans les observations (voir \cref{sec:observations}) et qu'il est estimé que les
-activités anthropiques y ont contribué \parencite{knutson_tropical_2019}. En outre, une augmentation du LMI dans un climat plus chaud est cohérent avec la
-théorie de l'intensité potentielle (\textit{Potential Intensity}, PI) de \cite{emanuel_dependence_1987}.
-
-La \cref{fig:projections_TC} présente le changement relatif dans le débit des précipitations (et non pas dans le cumul) mesurées dans la vicinité des cyclones
-tropicaux issus des simulations climatiques. Cette métrique présente le plus grand consensus parmi les quatre présentées sur cette figure, avec notamment
-l'ensemble des \num{16} projections utilisées pour quantifier le changement à l'échelle globale indiquant une hausse des précipitations cycloniques comprise
-entre \SI{6}{\percent} et \SI{22}{\percent} (respectivement environ \SI{7}{\percent} et \SI{18}{\percent} pour les pourcentiles \SI{10}{\percent} et
-\SI{90}{\percent} de la \cref{fig:projections_TC}) et une augmentation médiane de \SI{14}{\percent}. La relation de Clausius-Clapeyron relie la pression de
-vapeur saturante à la température de l'air, et permet de montrer que la capacité de l'atmosphère à contenir de la vapeur d'eau augmente d'environ
-\SI{7}{\percent} par degré de réchauffement. Une hausse des précipitations cycloniques de \SI{14}{\percent} pour un réchauffement de \SI{2}{\degreeCelsius} est
-donc en accord avec cette relation. Le processus physique menant à une augmentation des précipitations cycloniques est par ailleurs bien compris. D'une part,
-l'humidité relative est vue comme stable en changement climatique, tandis que la SST et la troposphère se réchauffent, impliquant une augmentation du contenu en
-vapeur d'eau de l'atmosphère. De plus, la grande majorité de la vapeur d'eau dans un TC est apportée par la circulation secondaire (radiale, donc convergence
-d'humidité). Ainsi, les précipitations cycloniques sont proportionnelles au contenu au vapeur d'eau de l'atmosphère.
 
 \subsubsection*{Fréquence d'occurrence}
 
@@ -778,13 +738,13 @@ d'humidité). Ainsi, les précipitations cycloniques sont proportionnelles au co
 \end{figure}
 
 La diminution de la fréquence d'occurrence des cyclones tropicaux à l'échelle globale, toutes catégories confondues, constitue un signal robuste du
-réchauffement climatique sur l'activité cyclonique, puisque \num{22} des \num{27} études utilisées présentent un tel signal. Sur la
-\cref{fig:TC_freq_summary}.b, le changement médian global est de \SI{-14}{\percent}, avec une plage de valeurs (incluant le minimum et maximal) allant de
+réchauffement climatique sur l'activité cyclonique, puisque \num{22} des \num{27} études utilisées par \citeauthor{knutson_tropical_2020} présentent un tel signal. Sur la
+\cref{fig:TC_freq_summary}.b, le changement médian global est de \SI{-14}{\percent}, avec une plage de valeurs (incluant le minimum et le maximum) allant de
 \SI{-28}{\percent} à $+$\SI{22}{\percent}. Le \num{4}\ieme~rapport d'évaluation (AR4) du GIEC (Groupe d'experts intergouvernemental sur l’évolution du climat)
 indiquait déjà une possible diminution de l'activité globale, sans avancer de chiffre \parencite{meehl_global_2007}, tandis que l'AR5 concluait à une diminution
 probable de l'ordre de \SI{-20}{\percent} \parencite{christensen_climate_2013}. L'AR6 (le dernier en date), quant à lui, reprend les conclusions de
-\cite{knutson_tropical_2020} \parencite{seneviratne_weather_2021}, avec donc une révision à la hausse de la diminution de l'ordre de \num{6} points. En effet,
-plusieurs équipes ont obtenus, dans certains cas, des résultats indiquant au contraire une augmentation de la fréquence d'occurrence des TC depuis l'AR6
+\cite{knutson_tropical_2020} \parencite{seneviratne_weather_2021}, avec donc une baisse moins prononcée de l'ordre de \num{6} points. En effet,
+plusieurs équipes ont obtenus, dans certains cas, des résultats indiquant au contraire une augmentation de la fréquence d'occurrence des TC depuis l'AR5
 \parencite{camargo_global_2013,emanuel_downscaling_2013,wehner_resolution_2015,bhatia_projected_2018}. Les résultats de \cite{emanuel_downscaling_2013}, basés sur
 une méthode combinant un générateur stochastique de trajectoires et une descente d'échelle dynamique, appliqués à des expériences CMIP5 sont présentés sur la
 \cref{fig:TC_freq_summary}.a en gris. Ses résultats se situent dans la queue de la distribution, et dépendent de l'hypothèse voulant que la fréquence des
@@ -793,7 +753,7 @@ soulignent, les autres études indiquant une augmentation de l'activité ne sont
 est nettement moins robuste et les projections fluctuent d'un bassin à l'autre, avec toutefois les bassins Sud Indien et Sud-ouest Pacifique indiquant une
 baisse probable.
 
-Les projections sur le changement dans le fréquence d'occurrence globale présentées sur les \cref{fig:TC_freq_summary,fig:projections_TC} sont basées sur une
+Les projections sur le changement dans la fréquence d'occurrence globale présentées sur les \cref{fig:TC_freq_summary,fig:projections_TC} sont basées sur une
 approche directe (voir \cref{sec:intro_tracking}). Or, la majorité des travaux appliquant les indices de cyclogénèse à des simulations de changement climatique
 indiquent également une augmentation de la fréquence d'occurrence des cyclones tropicaux
 \parencite{zhang_changes_2010,emanuel_downscaling_2013,camargo_testing_2014,wehner_resolution_2015,chauvin_future_2020,cattiaux_projected_2020}. Par conséquent,
@@ -805,42 +765,77 @@ même, l'absence de preuves indiquant que les activités humaines aient pu avoir
 que le fait que seule l'étude récente de \cite{klotzbach_trends_2022} mesure une tendance à la baisse de la fréquence globale dans les observations, contribuent
 à l'incertitude sur le signe du changement de la fréquence des TC dans un climat plus chaud.
 
+
+\subsubsection*{Fréquence des cyclones forts, intensité maximale et précipitations}
+
+Le changement de fréquence des cyclones les plus forts (catégories 4 et 5 sur l'échelle de Saffir-Simpson) sur la \cref{fig:projections_TC} est ambigu et ni
+l'échelle globale, ni les projections locales n'indiquent un changement clair dans cette métrique. Certains bassins ont un changement médian négatif, comme dans
+le WPac et SPac, tandis que les autres régions présentent au contraire une médiane positive. L'incertitude est grande dans les deux cas, plus large que celle
+sur la fréquence d'occurrence des TC toutes catégories confondues. Une des raisons  à cela réside vraisemblablement dans le fait que ce résultat est sensible
+à la résolution des modèles utilisés, puisque \cite{knutson_tropical_2020} soulignent que les modèles de résolution relativement basses (par rapport aux études
+considérées, c'est à dire avec des résolutions de l'ordre de \km{50}~--~\km{60}) tendent à indiquer une diminution de la fréquence des TC intenses, tandis que
+les modèles à très haute résolution indiquent au contraire une augmentation. En revanche, lorsqu'est considérée la proportion de ces TC, relativement à la
+fréquence des TC de toutes catégories (non montré ici), alors les résultats des différentes études convergent nettement vers une intensification, avec une
+hausse médiane de \SI{13}{\percent} de la proportion de TC de catégories 4 ou 5 à l'échelle globale sous un scénario de réchauffement de \SI{2}{\degreeCelsius}.
+Cette augmentation relative de la fréquence des cyclones les plus forts s'explique par la combinaison de la baisse de la fréquence globale des TC et de
+l'augmentation de l'intensité maximale atteinte par les TC dans les projections.
+
+L'augmentation de l'intensité maximale des TC constitue là aussi une réponse
+particulièrement robuste de l'activité cyclonique au réchauffement climatique, puisque même les valeurs minimales et maximales de la distribution des résultats
+à l'échelle globale sont de même signe, avec une hausse moyenne de l'intensité de \SI{5}{\percent} et comprise entre \SI{1}{\percent} et \SI{10}{\percent}
+(respectivement \SI{2}{\percent} et \SI{8}{\percent} pour les pourcentiles \SI{10}{\percent} et \SI{90}{\percent} présentés sur la \cref{fig:projections_TC}).
+Localement, seul le bassin le bassin Sud-ouest Pacifique présente une incertitude conséquente sur le signe du changement. La confiance dans ce signal est
+renforcée par le fait qu'une tendance à l'intensification est déjà constatée dans les observations (voir \cref{sec:observations}) et qu'il est estimé que les
+activités anthropiques y ont contribué \parencite{knutson_tropical_2019}. En outre, une augmentation du LMI dans un climat plus chaud est cohérent avec la
+théorie de l'intensité potentielle (\textit{Potential Intensity}, PI) de \cite{emanuel_dependence_1987}.
+
+La \cref{fig:projections_TC} présente le changement relatif dans le débit des précipitations mesurées dans la vicinité des cyclones
+tropicaux issus des simulations climatiques. Cette métrique présente le plus grand consensus parmi les quatre présentées sur cette figure, avec notamment
+l'ensemble des \num{16} projections utilisées pour quantifier le changement à l'échelle globale indiquant une hausse des précipitations cycloniques comprise
+entre \SI{6}{\percent} et \SI{22}{\percent} (respectivement environ \SI{7}{\percent} et \SI{18}{\percent} pour les pourcentiles \SI{10}{\percent} et
+\SI{90}{\percent} de la \cref{fig:projections_TC}) et une augmentation médiane de \SI{14}{\percent}. La relation de Clausius-Clapeyron relie la pression de
+vapeur saturante à la température de l'air, et permet de montrer que la capacité de l'atmosphère à contenir de la vapeur d'eau augmente d'environ
+\SI{7}{\percent} par degré de réchauffement. Une hausse des précipitations cycloniques de \SI{14}{\percent} pour un réchauffement de \SI{2}{\degreeCelsius} est
+donc en accord avec cette relation. Le processus physique menant à une augmentation des précipitations cycloniques est par ailleurs bien compris. D'une part,
+l'humidité relative est vue comme stable en changement climatique, tandis que la SST et la troposphère se réchauffent, impliquant une augmentation du contenu en
+vapeur d'eau de l'atmosphère. De plus, la grande majorité de la vapeur d'eau dans un TC est apportée par la circulation secondaire (radiale, donc convergence
+d'humidité). Ainsi, les cyclones tropicaux étant des évènements extrêmes qui mobilisent toute la vapeur d'eau disponible, les précipitations cycloniques sont proportionnelles au contenu en vapeur d'eau de l'atmosphère.
+
 %----------------------------------------------------------------------------------------------------------------------
 \section{Synthèse}
 
 Les cyclones tropicaux sont les phénomènes météorologiques les plus violents et les plus dangereux au monde, capables d'atteindre des vitesses de vent soutenus
-jusqu'à \kmh{300} et sont responsables la mort de centaines de milliers d'individus. Les régions les plus à risque sont les zones côtières densément peuplées,
-et l'impact des cyclones y est d'autant plus fort lorsque que les pays concernés sont moins développés, tandis que les coûts associés, eux, augmentent avec le
+pouvant aller jusqu'à \kmh{300} et sont responsables de la mort de centaines de milliers de personnes. Les régions les plus à risque sont les zones côtières densément peuplées,
+et l'impact des cyclones y est d'autant plus fort que que les pays concernés sont moins développés, tandis que les coûts associés, eux, augmentent avec le
 niveau de développement (voir \cref{sec:risques}). Malgré l'enjeu important associé aux TC, le processus de cyclogénèse par lequel les cyclones viennent à se
 former est encore incompris, constituant par là même une limite importante à leur prévisibilité. À défaut de comprendre parfaitement le processus, les
-conditions favorables à la cyclogénèse sont elles bien connues et impliquent une perturbation initiale, jouant le rôle de précurseur, qui pourra se développer
-en cyclone tropical dans une atmosphère instable si les conditions de température de surface de l'eau, d'humidité en moyenne troposphère, de cisaillement
+conditions de grande échelle favorables à la cyclogénèse sont elles bien connues et impliquent une perturbation initiale, jouant le rôle de précurseur, qui pourra se développer
+en cyclone tropical dans une atmosphère instable voire neutre si les conditions de température de surface de l'eau, d'humidité en moyenne troposphère, de cisaillement
 vertical du vent et de l'effet de Coriolis sont réunies. La répartition géographique et saisonnière de ces conditions favorables explique en effet la
 climatologie observée des cyclones tropicaux (voir \cref{sec:climato_ingredients}). Pour comprendre comment l'activité cyclonique sera affectée par le
-réchauffement climatique, dans le but de pouvoir anticiper et de s'adapter au mieux au monde de demain, il est nécessaire d'une part de disposer de bases de
+réchauffement climatique, dans le but de se donner les moyens de pouvoir s'y préparer, il est nécessaire d'une part de disposer de bases de
 données des cyclones tropicaux historiques, afin de pouvoir caractériser le plus précisément possible l'activité présente et les changements qui ont déjà eu
 lieu, et d'autre part d'être en mesure de simuler correctement les cyclones tropicaux et l'activité cyclonique associée dans les modèles de climat.
 
-L'analyse de l'activité cyclonique historique dans les observations est compliquée par la forte hétérogénéité spatiale et temporelle dont souffrent les données.
+L'analyse de l'activité cyclonique historique dans les bases de données de cyclones est compliquée par la forte hétérogénéité spatiale et temporelle dont souffrent les observations.
 L'hétérogénéité temporelle est causée par l'amélioration avec le temps des méthodes d'observation, et particulièrement par l'avènement de l'ère satellitaire à
 la fin des années \num{70}, véritable point de rupture technologique pour l'observation météorologique. Par ailleurs, puisque les activités de veille cyclonique
 dans chaque bassin d'activité sont sous la responsabilité de centres régionaux spécialisés, eux-mêmes le plus souvent rattachés aux pays concernés, les moyens
-affectés à l'observation peuvent varier d'une région à l'autre, causant donc les hétérogénéités spatiales dans les bases de données observationnelles (voir
+affectés à l'observation peuvent varier d'une région à l'autre, causant donc les hétérogénéités spatiales dans les bases de données observées (voir
 \cref{sec:observations}). Outre la qualité des données, l'analyse des changements passés dans l'activité cyclonique est également compliquée par les différents
-modes de variabilité interne du système climatique qui peuvent affecter les cyclones tropicaux d'une année sur l'autre; d'une décénnie sur l'autre; ou à plus
+modes de variabilité interne du système climatique qui peuvent affecter les cyclones tropicaux d'une année à l'autre; d'une décennie à l'autre; ou à plus
 basse fréquence encore, et ce de manière inégale selon les régions, rendant donc particulièrement difficile la recherche de tendances dans les observations et
 les tentatives d'attribution de ces dernières aux activités humaines. Dans les modèles de climat, le principal frein à une représentation précise des cyclones
-est leur résolution. Jusqu'à récemment, la résolution des modèles rendait impossible la simulation de cyclones de catégories \num{4} et \num{5} et tendait
+est leur résolution spatiale. Jusqu'à récemment, la résolution des modèles rendait impossible la simulation de cyclones de catégories \num{4} et \num{5} et tendait
 également à produire des cyclones de taille plus importantes que ceux observés. De plus, tous les modèles ne reproduisent pas la climatologie observée des TC,
 aussi bien en fréquence annuelle que dans l'activité relative de chaque région, avec des différences plus ou moins importantes selon les modèles (voir
 \cref{sec:cyclones_dans_modèles}), causées entre autre par la résolution, mais aussi par la façon dont les composantes atmosphériques et océaniques sont
 couplées entre elles, ainsi que par la dynamique et les paramétrisations physiques propres à chaque modèle. À cela s'ajoute une incertitude non négligeable sur
-les méthodologies employées pour évaluer l'activité cyclonique dans les modèles, en cela que le choix du schéma de détection et de suivi des cyclones peut avoir
+les méthodologies employées pour évaluer l'activité cyclonique dans les modèles. Le choix du schéma de détection et de suivi des cyclones peut avoir
 une influence considérable sur l'activité mesurée d'une part, ainsi que sur le signe même du changement dans les projections climatiques d'autre part (voir
-\cref{sec:intro_tracking}). Si malgré tout les projections climatiques sur la fréquence d'occurrence des cyclones tropicaux, basées sur une mesure directe de
-l'activité via des schémas de détection objective des TC dans les modèles, laissent entrevoir à quelques exceptions près une diminution de la fréquence dans un
-climat plus chaud, ce n'est en revanche pas le cas de l'approche indirecte ---~consistant à inférer l'activité indrectement via l'environnement de grande
-échelle, avec des indices de cyclogénèse~--- qui tend au contraire à indiquer une tendance à la hause de la fréquence d'occurrence (voir
+\cref{sec:intro_tracking}). Si malgré tout les projections climatiques sur la fréquence d'occurrence des cyclones tropicaux, basées sur les méthodes objectives de détection et de suivi dans les modèles, laissent entrevoir à quelques exceptions près une diminution de la fréquence dans un
+climat plus chaud, ce n'est en revanche pas le cas de l'approche indirecte ---~consistant à inférer l'activité indirectement via l'environnement de grande
+échelle, avec des indices de cyclogénèse~--- qui tend au contraire à indiquer une tendance à la hausse de la fréquence d'occurrence (voir
 \cref{sec:projections_futures}).
 
 C'est précisément sur la différence entre l'approche directe de la détection objective de TC dans les modèles et l'approche indirecte au travers des indices de
@@ -848,6 +843,6 @@ cyclogénèse dans les projections climatiques que porte cette thèse. Le \cref{
 modèles, avec un tour d'horizon des différents traqueurs employés dans la littérature, avec en particulier une application de l'algorithme de suivi du CNRM à la
 réanalyse ERA5 du CEPMMT. Le \cref{chap:chapitre_3} sera consacré aux indices de cyclogénèses, dont un qui sera appliqué sur des simulations ARPEGE en climat
 présent. Enfin le \cref{chap:chapitre_4} traitera de l'application à des simulations en climat futur avec ARPEGE en configuration forcée et avec la grille
-tournée-étirée.
+basculée-étirée.
 
 \end{document}
