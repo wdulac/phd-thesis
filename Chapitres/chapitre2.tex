@@ -22,18 +22,18 @@ expériences à climat plus chaud. En effet, si tous les traqueurs de TC partage
 néanmoins une très grande diversité. Les premiers schémas de détection étaient basés uniquement sur la MSLP et la vitesse des vents
 \parencite{bengtsson_simulation_1982,broccoli_can_1990}, tandis que \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995} ajoutèrent à cela des critères sur
 la vorticité ainsi qu'un diagnostique sur la présence d'un cœur chaud, dans l'optique de discriminer les perturbations tropicales de leurs homologues
-extra-tropicales. \cite{wu_gcm_1992} utilisèrent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil
-d'humidité relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone,
-ainsi que les perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans
-\cite{bengtsson_hurricanetype_1995}, la méthodologie de détection introduit des tests de structure verticale du système, aussi bien sur le profil de vent que de
-température. En effet, après avoir identifié un centre cyclonique à travers la vorticité, pression minimum locale et vitesse du vent maximale dans une boîte
-autour du système, il s'agit alors de s'assurer de la présence d'une anomalie de température sur l'ensemble de la troposphère, par rapport à la moyenne prise
-dans cette boîte, puis de s'assurer également que l'anomalie à la tropopause est supérieure que celle à la couche limite. Un test similaire est réalisé sur le
-profil vertical de vent, en imposant que le vent moyen à \hPa{850} supérieur à la moyenne du niveau à \hPa{300}, toujours dans la boîte centrée. Beaucoup
-d'algorithmes de détection reprennent cette méthodologie, avec quelques variantes et spécificités. Une grande quantité de méthodologies et de seuils de
-détection sont décrits dans \cite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition
-d'un TC et les valeurs numériques utilisées pour les divers seuils de détection sont souvent choisis de telle sorte à reproduire au mieux la climatologie
-observée \parencite{walsh_objectively_2007,tory_development_2013}.
+extratropicales. \cite{wu_gcm_1992} utilisent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil d'humidité
+relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone, ainsi que les
+perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans \cite{bengtsson_hurricanetype_1995},
+la méthodologie de détection introduit des tests de structure verticale du système, aussi bien sur le profil de vent que de température. En effet, après avoir
+identifié un centre cyclonique à travers la vorticité, pression minimum locale et vitesse du vent maximale dans une boîte autour du système, il s'agit alors de
+s'assurer de la présence d'une anomalie de température sur l'ensemble de la troposphère, par rapport à la moyenne prise dans cette boîte, puis de s'assurer
+également que l'anomalie à la tropopause est supérieure que celle à la couche limite. Un test similaire est réalisé sur le profil vertical de vent, en imposant
+que le vent moyen à \hPa{850} supérieur à la moyenne du niveau à \hPa{300}, toujours dans la boîte centrée. Beaucoup d'algorithmes de détection reprennent cette
+méthodologie, avec quelques variantes et spécificités. Une grande quantité de méthodologies et de seuils de détection sont décrits dans
+\cite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition d'un TC et les valeurs
+numériques utilisées pour les divers seuils de détection sont souvent choisis de telle sorte à reproduire au mieux la climatologie observée
+\parencite{walsh_objectively_2007,tory_development_2013}.
 
 Parmi les traqueurs possédant des particularités remarquables, le plus communément utilisé est sans aucun doute le schéma de détection TRACK
 \parencite{hodges_how_2017}. Ce dernier a la particularité de systématiquement interpoler les champs du modèle à une basse résolution (T63, soit \km{210}),
@@ -121,6 +121,220 @@ La version publiée de \cite{dulac_assessing_2023} est présentée dans la \cref
 \section{Compléments}\label{sec:complements_papier}
 
 \subsection{Filtrage des systèmes de moyennes latitudes}\label{sec:filtrage_mid_latitudes}
+
+\subsection*{Introduction}
+
+La détection des cyclones tropicaux dans la réanalyse ERA5 et l'appariement de ces derniers avec le catalogue des best tracks, tel que pratiqué dans
+\cite{dulac_assessing_2023} et présenté dans la \cref{sec:papier}, révèle une quantité significative de systèmes identifiés \textquote{faux positifs} par
+l'algorithme d'appariement. Ces cas correspondent à des systèmes détectés dans la réanalyse mais pour lesquels aucune correspondance n'est identifiée dans
+IBTrACS. Dans \cite{dulac_assessing_2023}, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques
+d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace des phases
+de \cite{hart_cyclone_2003} est désactivé, cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le gradient vertical entre
+\hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est indicatif de la présence d'un
+vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de discriminer les cyclones tropicaux à
+cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet parce que la grande majorité des
+faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyenne latitudes, comme en atteste la \cref{fig:lat_density} qui présente pour les faux
+positifs sans ce filtre un mode principal centré sur \ang{50}N et S pour les deux hémisphères respectifs. L'activation du filtre $V_U^T$
+(\cref{fig:lat_density}.b) inverse la tendance dans l'hémisphère sud, puisque le mode secondaire situé juste en dessous de \ang{25}S devient le mode principal,
+et l'écart entre les deux modes dans l'hémisphère nord se réduit lorsque le filtre est activé. La quantité de ces derniers est en partie un effet secondaire de
+l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la \cref{sec:papier_appendix_A}, mais les faux
+positifs du jeu de trajectoires obtenu avant optimisation, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extratropicaux.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{genesis_lat_density_opti_w_wo_filter.png}
+    \caption{(a) Densités de probabilités estimées par noyau gaussien de la latitude d'origine d'une trajectoire ERA5 selon si elle est appariée avec IBTrACS
+    (trait plein) ou identifée comme faux positif (tirets), réalisées sur les trajectoires issues du schéma de détection optimisé lorsque le filtre basé sur
+    le paramètre $V_U^T$ est désactivé. (b) Densités de probabilités de la latitude d'origine des faux positifs : sans le filtre $V_U^T$ (tirets), identique
+    à l'encadré (a), et avec le filtre $V_U^T$ (pointillés).}
+    \label{fig:lat_density}
+\end{figure}
+
+La discrimination des cyclones tropicaux des autres systèmes météorologiques tourbillonnaires constitue la difficulté principale de la détection objective de TC
+dans les modèles, et est la raison pour laquelle beaucoup de traqueurs, notamment ceux basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995},
+fournissent une description si détaillée d'un TC à travers les diverses conditions et seuils à respecter, à l'instar du traqueur du CNRM. Force est de constater
+que ce n'est cependant pas suffisant, si bien que d'autres stratégies sont parfois employées. La solution la plus simple consiste à définir une contrainte en
+latitude. Une telle limite est parfois fixée à \ang{30} \parencite{bengtsson_simulation_1982,broccoli_can_1990,mcdonald_tropical_2005}, ou encore entre \ang{40}
+et \ang{45} \parencite{wu_gcm_1992,tsutsui_simulated_1996,tsutsui_implications_2002,oouchi_tropical_2006,zarzycki_multidecadal_2014}. Définir une limite fixe en
+latitude pose toutefois problème lorsqu'il s'agit de chercher à détecter les cyclones tropicaux dans des simulations à climat plus chaud, étant donné
+l'expansion des tropiques \parencite{lucas_expanding_2014,staten_reexamining_2018} et le décalage vers les pôles de l'activité cyclonique
+\parencite{kossin_poleward_2014,knutson_tropical_2020}. Ainsi, un filtre des systèmes de moyennes latitudes pour un schéma de détection ayant vocation à être
+appliqué à des simulation de réchauffement climatique se doit de pouvoir s'adapter à un climat altéré, et donc d'être un filtre dynamique.
+
+Dans cette section, nous considérons des filtres alternatifs au $V_U^T$ dans le but d'expliquer les raisons pour lesquelles c'est ce dernier qui a été choisi
+dans \cite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la latitude du maximum de gradient
+méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans \cite{bourdin_intercomparison_2022} qui utilise la limite
+équatoriale du jet subtropical comme limite méridionale.
+
+\subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
+
+Les courants jet stratosphériques, causés par le gradient de température entre les pôles et l'équateur, apportent du cisaillement qui affaiblissent les cyclones
+tropicaux jusqu'à leur faire perdre leurs caractéristiques tropicales et peuvent ensuite transitionner vers l'état de cyclone extratropical. Ces courants sont
+liés au gradient de géopotentiel par la relation du vent thermique si bien que la hauteur géopotentielle à \hPa{200}, $Z_{200}$, s'effondre dans les moyennes
+latitudes. Cela laisse alors apparaître la perspective d'utilisation de la limite en latitude formée par le maximum de $\partial Z_{200} / \phi$, évalué à
+chaque longitude, comme filtre des systèmes de moyennes latitudes. La \cref{fig:ophelia_z200} illustre l'intérêt d'utiliser cette grandeur à travers l'exemple
+du cyclone Ophelia de la saison cyclonique 2017, tel que détecté dans la réanalyse ERA5. Si ce cyclone a terminé sa transition extratropicale le 16 Octobre à
+00:00, à \km{270} du cap Mizen l'extrémité sud de l'Irlande, correspondant au point situé entre \ang{45} et \ang{50}N sur la \cref{fig:ophelia_z200}, cet
+exemple montre néanmoins que ce système a avancé vers le nord dans un méandre de géopotentiel, et est resté en dessous de la latitude du gradient maximal
+jusqu'à l'Écosse, formant une trajectoire détectée à laquelle ne manque que trois échéances par rapport à la best track.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ophelia_geopdy_mean_geopt.png}
+    \caption{Trajectoire détectée dans ERA5 du cyclone Ophelia de la saison cyclonique 2017 sur fond du champ de hauteur géopotentielle à \hPa{200} moyenné
+    entre le 10 Octobre 2017 à 06:00 et le 17 Octobre à 00:00, correspondant respectivement à la première et dernière échéance détectée du système. Le tracé
+    rouge correspond à la latitude du maximum de gradient méridional du champ présenté.}
+    \label{fig:ophelia_z200}
+\end{figure}
+
+L'usage du gradient de $Z_{200}$ comme limite méridionale présente par ailleurs l'intérêt d'évoluer de manière saisonnière. C'est ce que montre la
+\cref{fig:geopdy_clim} avec la climatologie mensuelle de la latitude du maximum de $\partial Z_{200} / \partial \phi$ sur la période \num{1980}~--~\num{2020},
+sous la forme d'un diagramme de Hovmöller. L'encadré (a) de la \cref{fig:geopdy_clim}, correspondant à l'hémisphère nord, montre par exemple que cette limite
+méridionale tend à se déplacer vers le pôle durant la saison estivale, en particulier sur l'océan Atlantique, mais aussi sur l'ensemble de l'océan Pacifique,
+régions sur lesquelles la moyenne sur le mois d'Août est située au delà de \ang{50}. Inversement, la moyenne mensuelle descend à \ang{39}N au cœur de
+l'Atlantique durant le mois de mars. Dans le bassin WPac, la latitude climatologique du maximum de gradient varie entre \ang{33}N au moins de Janvier, et
+\ang{49}N au moins d'août. Dans l'hémisphère sud, présenté sur la \cref{fig:geopdy_clim}.b, la saisonnalité de latitude du gradient maximal est également
+visible sur les bassins SInd et SPac, et varie également entre \ang{40}S et \ang{50} selon les saisons. Un second avantage du filtre du gradient de géopotentiel
+est le fait qu'il ne dépend que du champ de $Z_{200}$ au pas de temps considéré, ce qui le rend d'une part hautement dynamique, mais surtout permet une
+implémentation \textquote{online} du filtre, par opposition à un post-traitement. Une implémentation online permet en effet de potentiellement gagner en temps
+d'exécution du schéma de détection. En pratique, dans la version du traqueur qui intègre ce filtre, le calcul des latitudes en chaque longitude constitue la
+première étape du sous-programme de détection des maximas à chaque nouveau pas de temps. Seuls les points situés en dessous de la limite ainsi définie sont
+testés pour les caractéristiques d'un TC. De cette façon, les tests du schéma de détection, en particulier ceux qui nécessitent le calcul préalable du rayon du
+disque de référence, tel que décrit dans \cite{chauvin_response_2006,dulac_assessing_2023}, ne sont pas réalisés si le point est situé au delà de la limite en
+latitude, ce qui peut constituer un gain de temps considérable si les systèmes extratropicaux sont nombreux, comme ici. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{geopdy_clim_NH_SH.png}
+    \caption{Diagramme de Hovmöller de la climatologie mensuelle de la latitude du gradient maximal de géopotentiel à \hPa{200}, lissée par un filtre gaussien,
+    pour l'hémisphère nord (a) et sud (b), calculée de \num{1980} à \num{2020} avec la réanalyse ERA5. Contours de \ang{30}N à \ang{50}N (respectivement Sud)
+    par pas de \ang{2}. L'utilisation de contours dans cette figure rend le diagramme imparfaitement périodique.}
+    \label{fig:geopdy_clim}
+\end{figure}
+
+Avec ce filtre, le FAR intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins d'activité vaut \prct{36}, soit seulement 12 points de
+pourcentage de plus qu'avec le $V_U^T$. Ses performances à l'échelle des bassins d'activité sont toutefois très variables. Le filtre du gradient de géopotentiel
+est particulièrement efficace dans le bassin WPac, où le taux de faux positivité est réduit à \prct{10} (respectivement \prct{14} dans
+\cite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
+SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
+$V_U^T$), soit un taux de faux positif presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
+FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin. Ces performances variables, insuffisantes dans le cas du SPac, s'expliquent par le fait
+que le champ de $\partial Z_{200} / \partial \phi$ n'est pas suffisamment lisse en latitude, si bien que la latitude du gradient oscille entre le jet polaire
+---~situé aux alentours de \ang{60}~--- et le jet subtropical, autour de \ang{30}. Si c'est effet n'est pas visible sur sur les
+\cref{fig:ophelia_z200,fig:geopdy_clim}, c'est parce que ces dernières ont fait l'objet d'un lissage agressif. Sur la \cref{fig:ophelia_z200}, le gradient est
+calculé sur le champ de géopotentiel moyenné sur \num{7} jours. Sur la \cref{fig:geopdy_clim}, les moyennes climatologiques pour chaque mois de la latitude du
+gradient maximum sont lissées par filtre gaussien. La \cref{fig:geopdy_random} illustre ce problème à travers six exemples tirés aléatoirement dans l'hémisphère
+sud sur la saison cyclonique 2019. Précisons que les champs de $\partial Z_{200} / \partial \phi$ qui y sont présentés sont calculés sur la hauteur
+géopotentielle elle-même lissée spatialement avec une fenêtre glissante carrée de côté 11, conformément à l'implémentation online qui en est faite dans le
+schéma de détection. Cette figure montre que la chute de la hauteur géopotentielle avec la latitude n'est pas définie de façon suffisamment nette partout,
+résultant en une latitude du gradient maximal en dents de scie. L'effet est amplifié pour les cas où deux bandes de fort gradient sont superposées. Sur la
+\cref{fig:geopdy_random}, cela est particulièrement visible pour la date du 2018--08--26 (1\iere~ligne 2\ieme~colonne) et la date du 2019--06--29 (2\ieme~ligne
+1\iere~colonne), et plus localement pour la date du 2019--06--24 (1\iere~ligne 1\iere~colonne) entre \ang{0}E et \ang{180}, ou encore au 2019--04--21
+(1\iere~ligne 3\ieme~colonne) entre \ang{180} et \ang{120}W. Dans ces cas, la latitude du gradient maximum saute d'un courant atmosphérique à l'autre, séparés
+de \ang{30} l'un de l'autre. Parmi les autres dates, il apparaît que le gradient à la limite des subtropiques n'est souvent pas suffisamment fort par rapport au
+gradient dans les latitudes plus proches du pôle, si bien que la latitude du gradient maximal frôle localement la limite méridionale du domaine de
+fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd)
+ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équivalent à ne pas avoir de filtre.
+%
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{geopdy_random_dates.png}
+    \caption{Gradient méridional de la hauteur géopotentielle à \hPa{200} pour 6 échéances tirées aléatoirement dans la saison cyclonique 2019 de l'hémisphère
+    sud dans la réanalyse ERA5. Le tracé noir relie les points de gradient maximal pour chaque longitude.}
+    \label{fig:geopdy_random}
+\end{figure}
+
+\subsubsection*{Filtre du jet subtropical}
+
+Le filtre du gradient de géopotentiel à \hPa{200} vise essentiellement à définir un courant jet comme limite méridional des tropiques. D'autres travaux ont
+employé une approche similaire basée sur un diagnostique différent du jet subtropical, en lieu et place d'un seuil fixe en latitude
+\parencite{tory_projected_2013,tory_sea_2015,bell_statistical_2018}, dont la formulation est reprise dans \cite{bourdin_intercomparison_2022}. Spécifiquement,
+le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à \hPa{200} avec une
+fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale $u$ est supérieure
+à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, où en interpolant
+linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne serait pas défini sur une tranche de longitude donnée, et en interpolant
+temporellement en dernier recours si aucun point ne remplit les critères à un pas de temps donné. 
+
+La \cref{fig:STJ_random} illustre le fonctionnement du filtre du STJ, en montrant pour les trois dates prises comme exemple sur la 1\iere~ligne de la
+\cref{fig:geopdy_random}, la région où $\sqrt{u^2 + v^2} > \ms{25}$ et $u > \ms{15}$, accompagnée de la limite équatoriale de cette zone indiquée par les tirets
+rouges. Le diagnostique du jet subtropical apparaît comme nettement plus lisse que le filtre du gradient de géopotentiel, et est également situé plus proche de
+l'équateur, même en mettant de côté l'effet dents de scie du gradient de $Z_{200}$. La proximité avec l'équateur s'explique par la caractéristique du STJ à
+prendre la limite équatoriale plutôt que le maximum du champ, tandis que le lissage sur 30 jours glissants permet d'atteindre une meilleure homogénéité en
+longitude. En effet la 2\ieme~ligne de la \cref{fig:STJ_random} présente le diagnostique établi sur les trois mêmes dates sur les composantes du vent non
+lissées et montre une plus grande irrégularité dans le placement du STJ. Sur la 3\ieme~colonne, à la date du 2019--04--21, cela se traduit par le même effet que
+pour le filtre précédent, avec des chutes brutales de la limite équatoriale du jet vers le pôle. Le diagnostique réalisé sans lissage temporel met illustre la
+grande proximité conceptuelle entre les deux filtres, puisque la structure des régions remplissant les deux conditions correspond très fidèlement aux zones de
+fort gradient de géopotentiel présentées sur la 1\iere~ligne de la \cref{fig:geopdy_random}, l'intensité des courants jets à \hPa{200} étant directement
+proportionnelle à $\partial Z_{200} / \partial \phi$. Il en résulte que le lissage temporel préalable des champs concernés constitue la différence fondamentale
+entre les deux méthodologies.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{STJ_mask_random.png}
+    \caption{Principe de fonctionnement du diagnostique du jet subtropical pour les trois dates de la première ligne de la \cref{fig:geopdy_random}. La seconde
+    ligne applique le diagnostique aux trois mêmes dates avec le vent instantané non lissé. Le tracé en tirets rouge indique la limite équatoriale du jet
+    subtropical ainsi déterminé.}
+    \label{fig:STJ_random}
+\end{figure}
+
+Les performances du STJ sont discutées dans \cite{bourdin_intercomparison_2022}, et l'efficacité de ce système n'est pas à démontrer. En particulier,
+\cite{bourdin_intercomparison_2022} mesure un taux de faux positifs à \prct{15} avec le STJ sur le traqueur du CNRM à l'échelle globale. Notons que le STJ
+appliqué au traqueur CNRM dans \cite{bourdin_intercomparison_2022} produit par ailleurs un FAR d'environ \prct{30} dans le bassin SPac, ce qui est en dessous
+des \prct{42} notés dans \cite{dulac_assessing_2023} avec le $V_U^T$. \cite{bourdin_intercomparison_2022} justifient également le choix du STJ par rapport au
+$V_U^T$ par le coût supplémentaire en probabilité de détection que ce dernier représente. Chercher à diagnostiquer objectivement la présence d'un courant jet
+peut néanmoins parfois mener à des résultats inattendus qui peuvent alors compromettre la définition du seuil en latitude pour le schéma de détection de TC. La
+\cref{fig:geopdy_and_STJ} présente trois cas sélectionnés durant l'année 2017 dans l'hémisphère nord qui illustrent cela, avec d'un côté de la figure une carte
+de l'hémisphère montrant le seuil méridional déterminé par les deux méthodologies, et l'autre côté montrant le courant diagnostiqué à cette échéance. Le premier
+cas (1\iere~ligne) montre un STJ diagnostiqué (encadré de droite) épars avec des parcelles de vent fort à différentes latitudes, si bien que la limite
+équatoriale subit des sauts soudains de plus de \ang{20}. Dans cet exemple, trois sauts successifs sont constatés dans le bassin EPac autour de \ang{150}W,
+suivi d'une rupture additionnelle dans le bassin NAtl, à \ang{30}W. Ces ruptures sont comparables dans leur amplitude aux sauts constatés dans le filtre du
+gradient de géopotentiel. Le second cas (2\ieme~ligne) présente un jet subtropical presque absent, avec deux parcelles principales dont le vent ne dépasse pas
+\ms{40}, l'un autour de \ang{60}E et l'autre centré sur \ang{60}W. Les cas où le courant jet est faible et donc imparfaitement défini sont nombreux durant la
+saison estivale, le gradient de température Nord-Sud étant affaibli par les fortes températures dans les latitudes subtropicales en été. Dans ces cas là, le
+seuil en latitude issu du diagnostique du STJ est soit parasité par des parcelles de vent éparses, comme dans le premier cas, où bien particulièrement lisse car
+interpolé sur une grande partie du domaine, comme dans le second. Le troisième cas (3\ieme~ligne), quant à lui, présente une situation où du vent fort est
+identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostique à \ang{0}N. Ces cas semblent plus rare, et apparaissent limités à la
+saison hivernale, lorsque le STJ est au plus fort, et l'activité cyclonique est nulle. Bien que ce cas concerne ici l'hémisphère nord, l'hémisphère sud est lui
+aussi concerné par ces situations qui témoignent de la difficulté à diagnostiquer objectivement le courant jet ---~toute méthode de détection objective étant
+nécessairement sujette à des erreurs.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{geopdy_and_STJ.png}
+    \caption{Comparaison de la latitude du jet subtropical avec la latitude du maximum de gradient de géopotentiel pour trois échéances de la saison cyclonique
+    2017 de l'hémisphère nord dans lesquels le STJ n'est pas clairement défini. La carte de gauche présente les deux limites en latitude sur fond du champ de
+    hauteur géopotentielle à \hPa{200}, tandis que l'encadré de droite présente le jet subtropical diagnostiqué, dont la limite équatoriale détermine le tracé rouge
+    sur la carte. Pour chaque date, les deux encadrés couvrent l'entièreté de l'hémisphère nord jusqu'à \ang{60}N, en dépit de leur largeur différentes.}
+    \label{fig:geopdy_and_STJ}
+\end{figure}
+
+\subsubsection*{Conclusion}
+
+Le filtre du gradient méridional de hauteur géopotentielle à \hPa{200} appliqué au schéma de détection de cyclones tropicaux du CNRM fournit des résultats
+variables selon les bassins, avec de bonnes performances dans les bassin WPac et EPac, mais des résultats mitigés dans le NAtl et le SInd. Il est cependant
+extrêmement inefficace dans le bassin SPac. Outre ces résultats, il apparaît que les champs de $\partial Z_{200} / \partial \phi$ ne sont pas suffisamment
+lisses pour permettre leur utilisation dans l'objectif de filtrer les tempêtes extratropicales, puisque la latitude du gradient maximale est sujette à des
+ruptures fréquentes conduisant à une limite méridionale en dents de scie.
+
+Le filtre du STJ quant à lui conduit à de biens meilleures performances, le seuil en latitude qui en résulte étant souvent bien plus proche de l'équateur, et
+accomplit cela principalement grâce au lissage temporel des composantes du vent à \hPa{200}. Le lissage sur 30 jours glissants est nécessaire pour espérer
+mesurer un courant jet bien défini, mais tout type de lissage temporel rend une implémentation online impossible, le schéma de détection n'ayant connaissance
+que de l'état instantané de l'atmosphère. Ce filtre ne peut donc s'appliquer que sous la forme d'un post-traitement. Par ailleurs, diagnostiquer de manière
+objective la présence du courant jet n'est pas toujours facile, notamment car celui-ci est à son plus faible durant la saison chaude, qui correspond pourtant à
+la plus forte activité cyclonique, et donc à la saison où le filtre est le plus nécessaire. Si l'interpolation spatiale et temporelle de la limite
+équatoriale du STJ permet de garantir le bon fonctionnement du filtre dans ces cas là, la solution n'est toutefois pas pleinement satisfaisante.
+
+Pour ces raisons, et en dépit du coût supplémentaire en probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \cite{hart_cyclone_2003} a été
+préféré pour le schéma de détection du CNRM dans \cite{dulac_assessing_2023}. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
+présente aussi l'avantage d'être défini en toute circonstance et de s'appliquer à tous les systèmes détectés. Cela signifie qu'il peut filtrer des systèmes peu
+intenses dans les tropiques également. C'est notamment pour cette raison que \cite{bourdin_intercomparison_2022} indiquent que le filtre $V_U^T$ est plus
+efficace que le STJ lorsqu'appliqué au traqueur OWZ \parencite{tory_importance_2013}, les systèmes de moyennes latitudes n'étant pas majoritaires dans la
+population de faux positifs de ce schéma de détection sur ERA5. Si la définition du filtre du $V_U^T$ rend possible une implémentation online, ce dernier a été
+appliqué comme post-traitement dans \cite{dulac_assessing_2023} pour des raisons de facilité. Une implémentation online dans le schéma de détection du CNRM est
+envisagée, mais nécessite un travail de refonte approfondi du traqueur. En particulier, il semble nécessaire de comprendre précisément pourquoi les critères de
+détection \textbf{PW} et \textbf{PT}, détaillés dans la \cref{sec:papier_data_methods} et qui diagnostiquent la présence d'un profil vertical de température et
+de vent, échouent à filtrer les systèmes extratropicaux là où le paramètre $V_U^T$ y parvient, la combinaison des deux paramètres diagnostiquant
+fondamentalement la même chose que le test de \citeauthor{hart_cyclone_2003}.
 
 \subsection{Métriques d'évaluation de la similarité des trajectoires}\label{sec:similarité}
 
