@@ -254,15 +254,13 @@ le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste �
 fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale $u$ est supérieure
 à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, où en interpolant
 linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne serait pas défini sur une tranche de longitude donnée, et en interpolant
-temporellement en dernier recours si aucun point ne remplit les critères à un pas de temps donné. Le lissage temporel sur 30 jours glissants est utile pour
-avoir un STJ bien défini, mais tout type de lissage temporel rend une implémentation online impossible, si bien que ce type de filtre ne peut que s'appliquer
-comme un post-traitement.
+temporellement en dernier recours si aucun point ne remplit les critères à un pas de temps donné. 
 
 La \cref{fig:STJ_random} illustre le fonctionnement du filtre du STJ, en montrant pour les trois dates prises comme exemple sur la 1\iere~ligne de la
 \cref{fig:geopdy_random}, la région où $\sqrt{u^2 + v^2} > \ms{25}$ et $u > \ms{15}$, accompagnée de la limite équatoriale de cette zone indiquée par les tirets
 rouges. Le diagnostique du jet subtropical apparaît comme nettement plus lisse que le filtre du gradient de géopotentiel, et est également situé plus proche de
 l'équateur, même en mettant de côté l'effet dents de scie du gradient de $Z_{200}$. La proximité avec l'équateur s'explique par la caractéristique du STJ à
-prendre la limite équatorielle plutôt que le maximum du champ, tandis que le lissage sur 30 jours glissants permet d'atteindre une meilleure homogénéité en
+prendre la limite équatoriale plutôt que le maximum du champ, tandis que le lissage sur 30 jours glissants permet d'atteindre une meilleure homogénéité en
 longitude. En effet la 2\ieme~ligne de la \cref{fig:STJ_random} présente le diagnostique établi sur les trois mêmes dates sur les composantes du vent non
 lissées et montre une plus grande irrégularité dans le placement du STJ. Sur la 3\ieme~colonne, à la date du 2019--04--21, cela se traduit par le même effet que
 pour le filtre précédent, avec des chutes brutales de la limite équatoriale du jet vers le pôle. Le diagnostique réalisé sans lissage temporel met illustre la
@@ -289,12 +287,17 @@ peut néanmoins parfois mener à des résultats inattendus qui peuvent alors com
 \cref{fig:geopdy_and_STJ} présente trois cas sélectionnés durant l'année 2017 dans l'hémisphère nord qui illustrent cela, avec d'un côté de la figure une carte
 de l'hémisphère montrant le seuil méridional déterminé par les deux méthodologies, et l'autre côté montrant le courant diagnostiqué à cette échéance. Le premier
 cas (1\iere~ligne) montre un STJ diagnostiqué (encadré de droite) épars avec des parcelles de vent fort à différentes latitudes, si bien que la limite
-équatoriale subit des sauts soudains de plus de \ang{20}, comparables dans leur amplitude aux sauts réalisés par le filtre du gradient de géopotentiel. Le
-second cas (2\ieme~ligne) présente un jet subtropical presque absent, avec deux parcelles principales dont le vent ne dépasse pas \ms{40}, l'un autour de
-\ang{60}E et l'autre centré sur \ang{60}W. Notons que dans ces cas où le jet n'est pas défini sur les extrémités latérales du domaine, l'interpolation linéaire
-se fait temporellement. Les cas où le courant jet est faible et seulement partiellement défini sont nombreux durant la saison estivale, tout du moins durant
-l'année 2017. Dans ces cas là, le caractère lisse de la limite équatoriale du STJ est très largement le résultat de l'interpolation. Le troisième cas
-(3\ieme~ligne) présente une situation où du vent fort est identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostique à \ang{0}N.
+équatoriale subit des sauts soudains de plus de \ang{20}. Dans cet exemple, trois sauts successifs sont constatés dans le bassin EPac autour de \ang{150}W,
+suivi d'une rupture additionnelle dans le bassin NAtl, à \ang{30}W. Ces ruptures sont comparables dans leur amplitude aux sauts constatés dans le filtre du
+gradient de géopotentiel. Le second cas (2\ieme~ligne) présente un jet subtropical presque absent, avec deux parcelles principales dont le vent ne dépasse pas
+\ms{40}, l'un autour de \ang{60}E et l'autre centré sur \ang{60}W. Les cas où le courant jet est faible et donc imparfaitement défini sont nombreux durant la
+saison estivale, le gradient de température Nord-Sud étant affaibli par les fortes températures dans les latitudes subtropicales en été. Dans ces cas là, le
+seuil en latitude issu du diagnostique du STJ est soit parasité par des parcelles de vent éparses, comme dans le premier cas, où bien particulièrement lisse car
+interpolé sur une grande partie du domaine, comme dans le second. Le troisième cas (3\ieme~ligne), quant à lui, présente une situation où du vent fort est
+identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostique à \ang{0}N. Ces cas semblent plus rare, et apparaissent limités à la
+saison hivernale, lorsque le STJ est au plus fort, et l'activité cyclonique est nulle. Bien que ce cas concerne ici l'hémisphère nord, l'hémisphère sud est lui
+aussi concerné par ces situations qui témoignent de la difficulté à diagnostiquer objectivement le courant jet ---~toute méthode de détection objective étant
+nécessairement sujette à des erreurs.
 
 \begin{figure}[tb]
     \centering
@@ -306,7 +309,34 @@ l'année 2017. Dans ces cas là, le caractère lisse de la limite équatoriale d
     \label{fig:geopdy_and_STJ}
 \end{figure}
 
-\newpage
+\subsubsection*{Conclusion}
+
+Le filtre du gradient méridional de hauteur géopotentielle à \hPa{200} appliqué au schéma de détection de cyclones tropicaux du CNRM fournit des résultats
+variables selon les bassins, avec de bonnes performances dans les bassin WPac et EPac, mais des résultats mitigés dans le NAtl et le SInd. Il est cependant
+extrêmement inefficace dans le bassin SPac. Outre ces résultats, il apparaît que les champs de $\partial Z_{200} / \partial \phi$ ne sont pas suffisamment
+lisses pour permettre leur utilisation dans l'objectif de filtrer les tempêtes extratropicales, puisque la latitude du gradient maximale est sujette à des
+ruptures fréquentes conduisant à une limite méridionale en dents de scie.
+
+Le filtre du STJ quant à lui conduit à de biens meilleures performances, le seuil en latitude qui en résulte étant souvent bien plus proche de l'équateur, et
+accomplit cela principalement grâce au lissage temporel des composantes du vent à \hPa{200}. Le lissage sur 30 jours glissants est nécessaire pour espérer
+mesurer un courant jet bien défini, mais tout type de lissage temporel rend une implémentation online impossible, le schéma de détection n'ayant connaissance
+que de l'état instantané de l'atmosphère. Ce filtre ne peut donc s'appliquer que sous la forme d'un post-traitement. Par ailleurs, diagnostiquer de manière
+objective la présence du courant jet n'est pas toujours facile, notamment car celui-ci est à son plus faible durant la saison chaude, qui correspond pourtant à
+la plus forte activité cyclonique, et donc à la saison où le filtre est le plus nécessaire. Si l'interpolation spatiale et temporelle de la limite
+équatoriale du STJ permet de garantir le bon fonctionnement du filtre dans ces cas là, la solution n'est toutefois pas pleinement satisfaisante.
+
+Pour ces raisons, et en dépit du coût supplémentaire en probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \cite{hart_cyclone_2003} a été
+préféré pour le schéma de détection du CNRM dans \cite{dulac_assessing_2023}. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
+présente aussi l'avantage d'être défini en toute circonstance et de s'appliquer à tous les systèmes détectés. Cela signifie qu'il peut filtrer des systèmes peu
+intenses dans les tropiques également. C'est notamment pour cette raison que \cite{bourdin_intercomparison_2022} indiquent que le filtre $V_U^T$ est plus
+efficace que le STJ lorsqu'appliqué au traqueur OWZ \parencite{tory_importance_2013}, les systèmes de moyennes latitudes n'étant pas majoritaires dans la
+population de faux positifs de ce schéma de détection sur ERA5. Si la définition du filtre du $V_U^T$ rend possible une implémentation online, ce dernier a été
+appliqué comme post-traitement dans \cite{dulac_assessing_2023} pour des raisons de facilité. Une implémentation online dans le schéma de détection du CNRM est
+envisagée, mais nécessite un travail de refonte approfondi du traqueur. En particulier, il semble nécessaire de comprendre précisément pourquoi les critères de
+détection \textbf{PW} et \textbf{PT}, détaillés dans la \cref{sec:papier_data_methods} et qui diagnostiquent la présence d'un profil vertical de température et
+de vent, échouent à filtrer les systèmes extratropicaux là où le paramètre $V_U^T$ y parvient, la combinaison des deux paramètres diagnostiquant
+fondamentalement la même chose que le test de \citeauthor{hart_cyclone_2003}.
+
 \subsection{Métriques d'évaluation de la similarité des trajectoires}\label{sec:similarité}
 
 \subsubsection*{Introduction}
