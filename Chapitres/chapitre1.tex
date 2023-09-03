@@ -655,16 +655,16 @@ conséquent de l'avantage non négligeable de constituer justement une mesure di
 de détection, ses divers seuils et autres spécificités viennent ajouter autant de sources d'incertitudes qui s'ajoutent aux biais des modèles et leur réponse
 aux différents scénarios d'évolution du climat.
 
-\subsubsection{Approche indirecte : Indices de cyclogénèse}\label{sec:intro_indices}
+\subsubsection{Approche indirecte : Environnement de grande échelle}\label{sec:intro_indices}
 
 Plutôt que de mesurer les HTV directement dans les modèles, l'approche indirecte consiste à inférer l'activité cyclonique en analysant l'environnement de grande
 échelle via les variables, ou prédicteurs, associés à cette activité (voir \cref{sec:conditions_cyclogenese}). Pour ce faire, la façon la plus commune consiste
-à utiliser un indice de cyclogénèse \parencite{camargo_tropical_2016}. Les indices sont nombreux et tous possèdent des formulations différentes, mais le
-principe est toujours le même : Un indice de cyclogénèse combine des prédicteurs thermiques (par exemple la SST, ou l'humidité relative) et des prédicteurs
-dynamiques (cisaillement, vorticité...) pour décrire l'environnement favorable à la cyclogénèse et est normalisé, ou calibré, de afin d'être homogène à une
-quantité de TC ainsi que de reproduire l'amplitude de l'activité observée sur une période donnée. L'indice peut être alors vu comme un produit indiquant en
-chaque point de grille un nombre de cyclones par unité de temps, et s'apparente ainsi à une densité surfacique (puisque le point de grille est représentatif
-d'une maille du modèle) :
+à utiliser un indice de cyclogénèse \parencite{gray_tropical_1975} et permet de s'affranchir des biais qu'ont les modèles à simuler l'activité cyclonique. Les
+indices sont nombreux et tous possèdent des formulations différentes, mais le principe est toujours le même : Un indice de cyclogénèse combine des prédicteurs
+thermiques (par exemple la SST, ou l'humidité relative) et des prédicteurs dynamiques (cisaillement, vorticité...) pour décrire l'environnement favorable à la
+cyclogénèse et est normalisé, ou calibré, de afin d'être homogène à une quantité de TC ainsi que de reproduire l'amplitude de l'activité observée sur une période
+donnée. L'indice peut être alors vu comme un produit indiquant en chaque point de grille un nombre de cyclones par unité de temps, et s'apparente ainsi à une densité
+surfacique (puisque le point de grille est représentatif d'une maille du modèle) :
 %
 \begin{align*}
     N_{\text{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
@@ -689,7 +689,12 @@ augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\
 (\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \cite{ryan_tropical_1992}
 l'ont appliqué à leur modèle.} dans le run de contrôle à \num{440} TC par an dans le run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ
 \SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les directions. Ce résultat s'explique en grande partie par la forte
-dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}.
+dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}. En effet, le SGP de
+\citeauthor{gray_tropical_1975} considère l'écart de SST au seuil empirique de \SI{26}{\degreeCelsius} de \textcite{palmen_formation_1948}, seuil dont la
+stationnarité en climat futur n'est pas assurée. Pour résoudre ce problème, \textcite{royer_gcm_1998} remplacèrent l'ensemble de la composante thermique du
+l'indice par une composante convective, définie par les précipitations convectives sur océan, celles-ci étant un bon marqueur du passage d'un cyclone tropical.
+\textcite{royer_gcm_1998} montrèrent alors que cette variante du SGP, nommée CYGP (\textit{Convective Yearly Genesis Parameter}) ne simulait qu'une augmentation
+modérée de l'activité dans l'hémisphère nord dans leur expérience \ensuremath{2\times\ce{CO2}}, et même une faible diminution dans l'hémisphère sud.
 \mbox{\cite{watterson_seasonal_1995}} cherchèrent à évaluer le pouvoir prédictif du SGP à l'échelle saisonnière et inter-annuelle et établirent que l'indice
 était capable de reproduire l'effet de l'épisode El Niño de \num{1982}~--~\num{83}, effet visible  aussi bien dans la partie thermique que dynamique de
 l'indice, marquée par une augmentation de l'activité dans le Pacifique central. Néanmoins, il notèrent une faible capacité à reproduire la variabilité
