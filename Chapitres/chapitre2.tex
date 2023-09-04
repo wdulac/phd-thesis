@@ -20,18 +20,18 @@ dynamiques associés à un cyclone tropical. Le \cref{chap:chapitre_1}, en parti
 cyclonique mesurée au choix de la méthode de détection et montre que ce choix peut aboutir à des conclusions différentes quant au signe du changement dans des
 expériences à climat plus chaud. En effet, si tous les traqueurs de TC partagent le même objectif, les méthodologies utilisées dans la littérature présentent
 néanmoins une très grande diversité. Les premiers schémas de détection étaient basés uniquement sur la MSLP et la vitesse des vents
-\parencite{bengtsson_simulation_1982,broccoli_can_1990}, tandis que \cite{haarsma_tropical_1993,bengtsson_hurricanetype_1995} ajoutèrent à cela des critères sur
+\parencite{bengtsson_simulation_1982,broccoli_can_1990}, tandis que \textcite{haarsma_tropical_1993,bengtsson_hurricanetype_1995} ajoutèrent à cela des critères sur
 la vorticité ainsi qu'un diagnostique sur la présence d'un cœur chaud, dans l'optique de discriminer les perturbations tropicales de leurs homologues
-extratropicales. \cite{wu_gcm_1992} utilisent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil d'humidité
+extratropicales. \textcite{wu_gcm_1992} utilisent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil d'humidité
 relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone, ainsi que les
-perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans \cite{bengtsson_hurricanetype_1995},
+perturbations barocliniques en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans \textcite{bengtsson_hurricanetype_1995},
 la méthodologie de détection introduit des tests de structure verticale du système, aussi bien sur le profil de vent que de température. En effet, après avoir
 identifié un centre cyclonique à travers la vorticité, pression minimum locale et vitesse du vent maximale dans une boîte autour du système, il s'agit alors de
 s'assurer de la présence d'une anomalie de température sur l'ensemble de la troposphère, par rapport à la moyenne prise dans cette boîte, puis de s'assurer
 également que l'anomalie à la tropopause est supérieure à celle à la couche limite. Un test similaire est réalisé sur le profil vertical de vent, en imposant
 que le vent moyen à \hPa{850} supérieur à la moyenne du niveau à \hPa{300}, toujours dans la boîte centrée. Beaucoup d'algorithmes de détection reprennent cette
 méthodologie, avec quelques variantes et spécificités. Une grande quantité de méthodologies et de seuils de détection sont décrits dans
-\cite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition d'un TC et les valeurs
+\textcite{walsh_objectively_2007} ainsi que dans \cite[][Annexe B]{ullrich_tempestextremes_2017}, schémas dans lesquels la définition d'un TC et les valeurs
 numériques utilisées pour les divers seuils de détection sont souvent choisis de telle sorte à reproduire au mieux la climatologie observée
 \parencite{walsh_objectively_2007,tory_development_2013}.
 
@@ -41,19 +41,19 @@ avant d'appliquer un schéma de détection basé exclusivement sur la vorticité
 résolution du modèle. Cet algorithme a cependant tendance à détecter une quantité parfois anormalement élevée de systèmes (voir \cref{fig:NTC_HighResMIP_TRACK}
 par rapport à la \cref{fig:NTC_HighResMIP}), et est alors particulièrement sujet à la détection de faux-positifs \parencite{bourdin_intercomparison_2022}. La
 problématique que TRACK vise à solutionner est néanmoins bien réelle. La résolution du modèle impacte la représentation des TC dans les modèles ce qui implique
-que les traqueurs doivent souvent être ajustés pour chaque résolution. Une autre alternative se trouve dans \cite{camargo_improving_2002} où les auteurs ont
+que les traqueurs doivent souvent être ajustés pour chaque résolution. Une autre alternative se trouve dans \textcite{camargo_improving_2002} où les auteurs ont
 proposé une méthode de détection de HTV dont les seuils pour chacune des variables sont déterminées à partir de la climatologie du modèle. Spécifiquement, ces
 derniers s'expriment sous la forme $\alpha \sigma + \beta$, où $\alpha$ et $\beta$ sont issues de la climatologie globale du modèle, et où $\sigma$ représente
-l'écart type de la variable à l'échelle de chaque bassin océanique. Le schéma de détection de \cite{camargo_improving_2002} possdède par ailleurs la
+l'écart type de la variable à l'échelle de chaque bassin océanique. Le schéma de détection de \textcite{camargo_improving_2002} possdède par ailleurs la
 fonctionnalité intéressante visant à compléter en amont et en aval les trajectoires détectées. Pour ce faire les contraintes sur les paramètres de détection
 sont relâchées et le traqueur cherche alors à suivre un signal de vorticité jusqu'à que cette dernière tombe en dessous d'un certain seuil prévu à cet effet. Ce
 processus de relaxation permet de prolonger les trajectoires détectées, qui sont sinon souvent courtes, et permet notamment d'éviter de scinder en deux
 trajectoires un système dont une ou plusieurs variables seraient temporairement passées en dessous des seuils de détection. La méthode des seuils de détection
-climato-statistiques de \cite{camargo_improving_2002} n'est cependant pas largement répandue, possiblement parce que d'une part, les valeurs $\alpha$ et $\beta$
+climato-statistiques de \textcite{camargo_improving_2002} n'est cependant pas largement répandue, possiblement parce que d'une part, les valeurs $\alpha$ et $\beta$
 pour chacune des variables se déterminent par les densités de probabilités bivariées dont l'estimation est complexe et laborieuse, et d'autre part parce que
 cette approche représente un paradigme très différent des traqueurs mentionnés précédemment. En effet, les traqueurs à seuils fixes visent à appliquer un schéma
 de fonctionnement conceptuel d'un cyclone tropical au modèle, ce qui permet ensuite d'établir dans quelle mesure le modèle est capable de simuler des systèmes
-réalistes, là où la méthode de \cite{camargo_improving_2002} cherche au contraire à s'affranchir des biais intrinsèques au modèle, en considérant que les TC
+réalistes, là où la méthode de \textcite{camargo_improving_2002} cherche au contraire à s'affranchir des biais intrinsèques au modèle, en considérant que les TC
 constituent dans tous les cas les extrêmes des distribution des variables d'intérêt. Il faut cependant noter que si les traqueurs à seuils absolus permettent
 d'évaluer des biais de représentation des TC, ils ont également le défaut de rendre indiscernables les erreurs issues du modèle de celles issues du schéma de
 détection lui-même, contribuant aux incertitudes quant à l'évolution future de la fréquence des cyclones tropicaux dans un climat plus chaud mentionnées dans le
@@ -70,11 +70,11 @@ l'intégralité~--- des cyclones tropicaux observés et référencés dans la ba
 \cref{sec:observations}, sont à priori présents dans une réanalyse.
 
 Dans ce chapitre, on considère le schéma de détection du CNRM, à l'origine conçu pour suivre les dépressions de moyennes latitudes par
-\cite{ayrault_nouvelle_2000} puis adapté aux cyclones tropicaux dans \cite{chauvin_response_2006}, et utilisé à cette fin par
-\cite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Le modèle conceptuel du fonctionnement d'un TC implémanté dans le
-traqueur du CNRM est basé sur \cite{bengtsson_hurricanetype_1995}, avec la particularité de considérer deux disques concentriques, dont les rayons sont évalués
+\textcite{ayrault_nouvelle_2000} puis adapté aux cyclones tropicaux dans \textcite{chauvin_response_2006}, et utilisé à cette fin par
+\textcite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Le modèle conceptuel du fonctionnement d'un TC implémanté dans le
+traqueur du CNRM est basé sur \textcite{bengtsson_hurricanetype_1995}, avec la particularité de considérer deux disques concentriques, dont les rayons sont évalués
 dynamiquement à chaque pas de temps, plutôt qu'une boîte fixe pour discriminer les HTV de leur environnement, et intègre également le processus de relaxation de
-\cite{camargo_improving_2002}. Des descriptions détaillées du fonctionnement de cet algorithme sont disponibles dans \cite{chauvin_response_2006}, ainsi que
+\textcite{camargo_improving_2002}. Des descriptions détaillées du fonctionnement de cet algorithme sont disponibles dans \textcite{chauvin_response_2006}, ainsi que
 dans la \cref{sec:papier_data_methods}. Spécifiquement, le traqueur du CNRM est appliqué à la réanalyse ERA5 \parencite{hersbach_era5_2020}. En effet, ERA5 est
 la dernière en date du CEPMMT et est la première réanalyse mondiale à atteindre une résolution horizontale de \km{31}, ici interpolée sur une grille à
 \ang{0.25}. Elle assimile des données issues de plus d'une vingtaine de satellites d'observations météorologiques, totalisant \num{54} instruments. Aux données
@@ -106,7 +106,7 @@ particulier un retard avec lequel les TC d'ERA5 atteignent leur pic d'intensité
 cyclones les plus forts. Enfin, les structures verticales des TC dans la réanalyse sont analysées et révèlent une intensification nette jusqu'à la catégorie 3
 sur l'échelle de Saffir-Simpson, au delà de quoi les différences sont peu discernables.
 
-La version publiée de \cite{dulac_assessing_2023} est présentée dans la \cref{sec:papier} ci-après, avec la permission de l'éditeur \textit{Springer Nature}.
+La version publiée de \textcite{dulac_assessing_2023} est présentée dans la \cref{sec:papier} ci-après, avec la permission de l'éditeur \textit{Springer Nature}.
 
 \includepdf[pages=-,pagecommand={\thispagestyle{plain}},offset=5mm 0mm,scale=1,addtotoc=
     {1,subsection,1,Article Climate Dynamics,sec:papier,
@@ -126,11 +126,11 @@ La version publiée de \cite{dulac_assessing_2023} est présentée dans la \cref
 \subsection*{Introduction}
 
 La détection des cyclones tropicaux dans la réanalyse ERA5 et l'appariement de ces derniers avec le catalogue des best tracks, tel que pratiqué dans
-\cite{dulac_assessing_2023} et présenté dans la \cref{sec:papier}, révèle une quantité significative de systèmes identifiés \textquote{faux positifs} par
+\textcite{dulac_assessing_2023} et présenté dans la \cref{sec:papier}, révèle une quantité significative de systèmes identifiés \textquote{faux positifs} par
 l'algorithme d'appariement. Ces cas correspondent à des systèmes détectés dans la réanalyse mais pour lesquels aucune correspondance n'est identifiée dans
-IBTrACS. Dans \cite{dulac_assessing_2023}, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques
+IBTrACS. Dans \textcite{dulac_assessing_2023}, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques
 d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace des phases
-de \cite{hart_cyclone_2003} est désactivé, cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le gradient vertical entre
+de \textcite{hart_cyclone_2003} est désactivé, cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le gradient vertical entre
 \hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est indicatif de la présence d'un
 vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de discriminer les cyclones tropicaux à
 cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet parce que la grande majorité des
@@ -152,7 +152,7 @@ positifs du jeu de trajectoires obtenu avant optimisation, avec des seuils plus 
 \end{figure}
 
 La discrimination des cyclones tropicaux des autres systèmes météorologiques tourbillonnaires constitue la difficulté principale de la détection objective de TC
-dans les modèles, et est la raison pour laquelle beaucoup de traqueurs, notamment ceux basés sur la méthodologie de \cite{bengtsson_hurricanetype_1995},
+dans les modèles, et est la raison pour laquelle beaucoup de traqueurs, notamment ceux basés sur la méthodologie de \textcite{bengtsson_hurricanetype_1995},
 fournissent une description si détaillée d'un TC à travers les diverses conditions et seuils à respecter, à l'instar du traqueur du CNRM. Force est de constater
 que ce n'est cependant pas suffisant, si bien que d'autres stratégies sont parfois employées. La solution la plus simple consiste à définir une contrainte en
 latitude. Une telle limite est parfois fixée à \ang{30} \parencite{bengtsson_simulation_1982,broccoli_can_1990,mcdonald_tropical_2005}, ou encore entre \ang{40}
@@ -163,8 +163,8 @@ l'expansion des tropiques \parencite{lucas_expanding_2014,staten_reexamining_201
 appliqué à des simulation de réchauffement climatique se doit de pouvoir s'adapter à un climat altéré, et donc d'être un filtre dynamique.
 
 Dans cette section, nous considérons des filtres alternatifs au $V_U^T$ dans le but d'expliquer les raisons pour lesquelles c'est ce dernier qui a été choisi
-dans \cite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la latitude du maximum de gradient
-méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans \cite{bourdin_intercomparison_2022} qui utilise la limite
+dans \textcite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la latitude du maximum de gradient
+méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans \textcite{bourdin_intercomparison_2022} qui utilise la limite
 équatoriale du jet subtropical comme limite méridionale.
 
 \subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
@@ -201,7 +201,7 @@ implémentation \textquote{online} du filtre, par opposition à un post-traiteme
 d'exécution du schéma de détection. En pratique, dans la version du traqueur qui intègre ce filtre, le calcul des latitudes en chaque longitude constitue la
 première étape du sous-programme de détection des maximas à chaque nouveau pas de temps. Seuls les points situés en dessous de la limite ainsi définie sont
 testés pour les caractéristiques d'un TC. De cette façon, les tests du schéma de détection, en particulier ceux qui nécessitent le calcul préalable du rayon du
-disque de référence, tel que décrit dans \cite{chauvin_response_2006,dulac_assessing_2023}, ne sont pas réalisés si le point est situé au delà de la limite en
+disque de référence, tel que décrit dans \textcite{chauvin_response_2006,dulac_assessing_2023}, ne sont pas réalisés si le point est situé au delà de la limite en
 latitude, ce qui peut constituer un gain de temps considérable si les systèmes extratropicaux sont nombreux, comme ici. 
 
 \begin{figure}[htbp]
@@ -216,7 +216,7 @@ latitude, ce qui peut constituer un gain de temps considérable si les systèmes
 Avec ce filtre, le FAR intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins d'activité vaut \prct{36}, soit seulement 12 points de
 pourcentage de plus qu'avec le $V_U^T$. Ses performances à l'échelle des bassins d'activité sont toutefois très variables. Le filtre du gradient de géopotentiel
 est particulièrement efficace dans le bassin WPac, où le taux de faux positivité est réduit à \prct{10} (respectivement \prct{14} dans
-\cite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
+\textcite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
 SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
 $V_U^T$), soit un taux de faux positif presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
 FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin. Ces performances variables, insuffisantes dans le cas du SPac, s'expliquent par le fait
@@ -249,7 +249,7 @@ ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équiv
 
 Le filtre du gradient de géopotentiel à \hPa{200} vise essentiellement à définir un courant jet comme limite méridional des tropiques. D'autres travaux ont
 employé une approche similaire basée sur un diagnostique différent du jet subtropical, en lieu et place d'un seuil fixe en latitude
-\parencite{tory_projected_2013,tory_sea_2015,bell_statistical_2018}, dont la formulation est reprise dans \cite{bourdin_intercomparison_2022}. Spécifiquement,
+\parencite{tory_projected_2013,tory_sea_2015,bell_statistical_2018}, dont la formulation est reprise dans \textcite{bourdin_intercomparison_2022}. Spécifiquement,
 le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à \hPa{200} avec une
 fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale $u$ est supérieure
 à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, où en interpolant
@@ -278,10 +278,10 @@ entre les deux méthodologies.
     \label{fig:STJ_random}
 \end{figure}
 
-Les performances du STJ sont discutées dans \cite{bourdin_intercomparison_2022}, et l'efficacité de ce système n'est pas à démontrer. En particulier,
-\cite{bourdin_intercomparison_2022} mesure un taux de faux positifs à \prct{15} avec le STJ sur le traqueur du CNRM à l'échelle globale. Notons que le STJ
-appliqué au traqueur CNRM dans \cite{bourdin_intercomparison_2022} produit par ailleurs un FAR d'environ \prct{30} dans le bassin SPac, ce qui est en dessous
-des \prct{42} notés dans \cite{dulac_assessing_2023} avec le $V_U^T$. \cite{bourdin_intercomparison_2022} justifient également le choix du STJ par rapport au
+Les performances du STJ sont discutées dans \textcite{bourdin_intercomparison_2022}, et l'efficacité de ce système n'est pas à démontrer. En particulier,
+\textcite{bourdin_intercomparison_2022} mesure un taux de faux positifs à \prct{15} avec le STJ sur le traqueur du CNRM à l'échelle globale. Notons que le STJ
+appliqué au traqueur CNRM dans \textcite{bourdin_intercomparison_2022} produit par ailleurs un FAR d'environ \prct{30} dans le bassin SPac, ce qui est en dessous
+des \prct{42} notés dans \textcite{dulac_assessing_2023} avec le $V_U^T$. \textcite{bourdin_intercomparison_2022} justifient également le choix du STJ par rapport au
 $V_U^T$ par le coût supplémentaire en probabilité de détection que ce dernier représente. Chercher à diagnostiquer objectivement la présence d'un courant jet
 peut néanmoins parfois mener à des résultats inattendus qui peuvent alors compromettre la définition du seuil en latitude pour le schéma de détection de TC. La
 \cref{fig:geopdy_and_STJ} présente trois cas sélectionnés durant l'année 2017 dans l'hémisphère nord qui illustrent cela, avec d'un côté de la figure une carte
@@ -325,13 +325,13 @@ objective la présence du courant jet n'est pas toujours facile, notamment car c
 la plus forte activité cyclonique, et donc à la saison où le filtre est le plus nécessaire. Si l'interpolation spatiale et temporelle de la limite
 équatoriale du STJ permet de garantir le bon fonctionnement du filtre dans ces cas là, la solution n'est toutefois pas pleinement satisfaisante.
 
-Pour ces raisons, et en dépit du coût supplémentaire en probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \cite{hart_cyclone_2003} a été
-préféré pour le schéma de détection du CNRM dans \cite{dulac_assessing_2023}. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
+Pour ces raisons, et en dépit du coût supplémentaire en probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \textcite{hart_cyclone_2003} a été
+préféré pour le schéma de détection du CNRM dans \textcite{dulac_assessing_2023}. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
 présente aussi l'avantage d'être défini en toute circonstance et de s'appliquer à tous les systèmes détectés. Cela signifie qu'il peut filtrer des systèmes peu
-intenses dans les tropiques également. C'est notamment pour cette raison que \cite{bourdin_intercomparison_2022} indiquent que le filtre $V_U^T$ est plus
+intenses dans les tropiques également. C'est notamment pour cette raison que \textcite{bourdin_intercomparison_2022} indiquent que le filtre $V_U^T$ est plus
 efficace que le STJ lorsqu'appliqué au traqueur OWZ \parencite{tory_importance_2013}, les systèmes de moyennes latitudes n'étant pas majoritaires dans la
 population de faux positifs de ce schéma de détection sur ERA5. Si la définition du filtre du $V_U^T$ rend possible une implémentation online, ce dernier a été
-appliqué comme post-traitement dans \cite{dulac_assessing_2023} pour des raisons de facilité. Une implémentation online dans le schéma de détection du CNRM est
+appliqué comme post-traitement dans \textcite{dulac_assessing_2023} pour des raisons de facilité. Une implémentation online dans le schéma de détection du CNRM est
 envisagée, mais nécessite un travail de refonte approfondi du traqueur. En particulier, il semble nécessaire de comprendre précisément pourquoi les critères de
 détection \textbf{PW} et \textbf{PT}, détaillés dans la \cref{sec:papier_data_methods} et qui diagnostiquent la présence d'un profil vertical de température et
 de vent, échouent à filtrer les systèmes extratropicaux là où le paramètre $V_U^T$ y parvient, la combinaison des deux paramètres diagnostiquant
@@ -341,10 +341,10 @@ fondamentalement la même chose que le test de \citeauthor{hart_cyclone_2003}.
 
 \subsubsection*{Introduction}
 
-Les travaux réalisés dans \cite{dulac_assessing_2023} et présentés dans la \cref{sec:papier} font appel aux notions de FAR et POD pour évaluer la performance de
+Les travaux réalisés dans \textcite{dulac_assessing_2023} et présentés dans la \cref{sec:papier} font appel aux notions de FAR et POD pour évaluer la performance de
 le schéma de détection de TC du CNRM. Le calcul du POD s'appuie sur un algorithme qui associe les trajectoires détectées dans ERA5 à celles présentes dans la
 base de données IBTrACS par correspondance spatio-temporelle. Si en moyenne le taux de recouvrement des trajectoires appariés (\textquote{\textit{matched}} dans
-\cite{dulac_assessing_2023}) ---~c'est à dire le nombre de points ERA5 situés à moins de \km{300} d'IBTrACS rapporté au nombre d'échéances de la trajectoire
+\textcite{dulac_assessing_2023}) ---~c'est à dire le nombre de points ERA5 situés à moins de \km{300} d'IBTrACS rapporté au nombre d'échéances de la trajectoire
 IBTrACS, tel que défini dans la \cref{sec:papier_data_methods}~--- est de \prct{68} (médiane à \prct{71}), il suffit dans l'absolu d'un seul pas de temps
 remplissant la condition pour que la trajectoire ERA5 soit appariée à une trajectoire présente dans les observations, et donc pour que la trajectoire détectée
 contribue au POD. Ce cas est néanmoins rare puisqu'il concerne en tout et pour tout \num{7} paires de trajectoires ERA5 / IBTrACS, mais on note cependant que
@@ -374,14 +374,14 @@ ce dernier n'est pas adapté pour évaluer quantitativement la ressemblance entr
 
 Il existe dans la littérature des algorithmes d'évaluation de la similarité de séries temporelles
 \parencite{faloutsos_fast_1994,das_finding_1997,frentzos_indexbased_2007}, mais ces derniers sont plutôt conçus pour des séries uni-dimensionnelles que pour des
-trajectoires spatiales car sont souvent basés sur la distance euclidienne qui les sépare. \cite{nakamura_shapebased_2013} proposent une approche basée plutôt
+trajectoires spatiales car sont souvent basés sur la distance euclidienne qui les sépare. \textcite{nakamura_shapebased_2013} proposent une approche basée plutôt
 sur la mesure de la similarité de la forme entre deux séries par l'analyse de l'angle formé par les séries, métrique nommée \textit{Angular Metric for Shape
 Similarity} (AMSS). Bien que leur approche soit pleinement capable de s'appliquer à des trajectoires spatiales, certaines propriétés de leur métrique ne sont
 pas pertinentes (voire pas souhaitables), dans le cas précis des trajectoires de cyclones tropicaux, telles qu'une forte résilience à un décalage temporel entre
 les deux séries (pas applicable à des trajectoires appariées entre réanalyse et observations), ainsi qu'une robustesse à des changements isolés de direction.
 Ces propriétés rendent par ailleurs leur algorithme très coûteux en temps de calcul. Néanmoins, l'aspect novateur derrière les travaux de
-\cite{nakamura_shapebased_2013} est repris ici, à savoir la décomposition de la trajectoire en série de vecteurs, détaillée ci-après. Dans cette section, trois
-métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \cite{dulac_assessing_2023} et composé des trajectoires
+\textcite{nakamura_shapebased_2013} est repris ici, à savoir la décomposition de la trajectoire en série de vecteurs, détaillée ci-après. Dans cette section, trois
+métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \textcite{dulac_assessing_2023} et composé des trajectoires
 détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS. En particulier, cette analyse vise à déterminer si le réglage des
 seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des trajectoires peu ressemblantes, du fait de la
 formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires.
@@ -392,7 +392,7 @@ formulation de la condition nécessaire et suffisante à l'appariement de deux t
     \centering
     \includegraphics[width=\textwidth]{schema_vec_sequence.png}
     \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a),
-    inspirée de \cite{nakamura_shapebased_2013}. Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
+    inspirée de \textcite{nakamura_shapebased_2013}. Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
     \label{fig:schema_trajectoires}
 \end{figure}
 
@@ -400,7 +400,7 @@ Une trajectoire de cyclone tropical est une série temporelle composée des posi
 la caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non
 pas les positions discrètes du système, mais plutôt la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
 
-Reprenant le formalisme de \cite{nakamura_shapebased_2013} ; soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions
+Reprenant le formalisme de \textcite{nakamura_shapebased_2013} ; soit $C$ une trajectoire de TC composée de $M+1$ pas de temps et définie par ses positions
 $p_{1...M+1}$ sur une grille géo-référencée et aux temps $t_{1...M+1}$ :
 %
 \begin{align*}
@@ -538,16 +538,16 @@ similarité des trajectoires, on calcule les valeurs des trois métriques de MAS
 de les comparer aux similarités que les trajectoires actuelles présentent avec ces mêmes trajectoires IBTrACS. Les trajectoires ERA5 dites
 \textquote{non-optimisées} et prises comme référence ici ont été obtenues avec les seuils \textbf{VOR}~$=$~\SI{5e-5}{\per\second}, \textbf{RES}~$=$~\ms{15},
 \textbf{TANOM}~$=$~\SI{1}{\kelvin}, \textbf{PT}~$=$~\SI{-2}{\kelvin} et \textbf{PW}~$=$~\ms{5}. Ces valeurs seuils se distinguent de celles utilisées dans
-\cite{dulac_assessing_2023} et \cite{bourdin_intercomparison_2022} par la vorticité (respectivement \SI{15e-5}{\per\second}), le seuil de vent (respectivement
+\textcite{dulac_assessing_2023} et \textcite{bourdin_intercomparison_2022} par la vorticité (respectivement \SI{15e-5}{\per\second}), le seuil de vent (respectivement
 \ms{5}) ainsi que le profil vertical de température (respectivement \SI{-1}{\kelvin}). Le paramètre de relaxation est maintenu à \SI{25e-5}{\per\second} entre
 les deux jeux de données. La solution non-optimisée présente un POD moyen sur les cinq bassins d'intérêt diminué de plus de \num{10} points de pourcentage,
 l'impact le plus prononcé étant sur les bassins NAtl et EPac. Cette diminution du POD se traduit par un déficit de \num{465} couples ERA5 / IBTrACS par rapport
 aux trajectoires optimisées, puisque \num{1779} trajectoires ERA5 sont appariées avec les trajectoires de référence. Parmi ces paires de trajectoires,
 \num{1649} d'entre elles partagent la même composante IBTrACS, indiquant que \num{130} paires sont manquantes dans les trajectoires dites
 \textquote{optimisées}. Cette perte peut s'expliquer par le coût non-négligeable en POD du filtre de systèmes de moyennes latitudes utilisé dans
-\cite{dulac_assessing_2023}, filtre non appliqué sur les trajectoires de référence. En effet, le schéma de détection optimisé consiste essentiellement en un
+\textcite{dulac_assessing_2023}, filtre non appliqué sur les trajectoires de référence. En effet, le schéma de détection optimisé consiste essentiellement en un
 relâchement des contraintes définissant un cyclone tropical, conduisant à un plus grand nombre de systèmes détectés et appariés, notamment des systèmes peu
-intenses qui parfois ne présentent pas un cœur chaud suffisamment marqué selon le paramètre $V_U^T$ de \cite{hart_cyclone_2003} sur lequel est fondé le filtre.
+intenses qui parfois ne présentent pas un cœur chaud suffisamment marqué selon le paramètre $V_U^T$ de \textcite{hart_cyclone_2003} sur lequel est fondé le filtre.
 Il reste donc \num{1649} cyclones observés dans IBTrACS pour lesquels nous disposons de deux trajectoires ERA5 issues de paramètres de détection différents.
 On compare alors la similarité de chacune d'elles évaluée sur le cyclone observé, et pour les trois métriques de similarité présentées précédemment. La première
 ligne de la \cref{fig:delta_MAS} présente les distributions de ces changements par rapport aux trajectoires issues du schéma de détection non-optimisé.
@@ -614,5 +614,7 @@ trajectoires de la réanalyse avec celles observées est au mieux, marginalement
 
 %--------------------------------------
 \section{Synthèse}
+
+
 
 \end{document}
