@@ -615,6 +615,60 @@ trajectoires de la réanalyse avec celles observées est au mieux, marginalement
 %--------------------------------------
 \section{Synthèse}
 
+Dans ce chapitre, le schéma de détection de cyclones tropicaux du CNRM a été utilisé sur la réanalyse ERA5 du CEPMMT entre, première
+réanalyse globale à atteindre une résolution horizontale de l'ordre de \km{25}. Les réanalyses constituent en effet la meilleure estimation globale de l'état
+passé de l'atmosphère, et ce grâce aux multiples observations météorologiques qui y sont assimilées. Il en résulte que ces produits sont d'excellents outils
+pour évaluer les performances d'un algorithme de suivi de cyclones tropicaux, puisque les TC historiques ont toutes les raisons d'être présents dans un tel jeu
+de données. À l'aide d'un algorithme d'appariement des trajectoires détectées dans ERA5 avec celles issues d'IBTrACS, les deux métriques d'évaluation des
+performances que sont la probabilité de détection et le taux de faux-positivité ont été définies, et utilisées pour caractériser la sensibilité du traqueur à
+ses multiples seuils de détection (voir \cref{sec:papier_appendix_A}). Cette étude indique une très grande sensibilité au seuil de vent minimal à la surface
+---~qui définit en quelque sorte une borne supérieure à l'efficacité de détection du schéma~--- ainsi qu'au seuil d'anomalie de température intégré sur la
+troposphère au cœur du cyclone par rapport à son environnement, dont l'influence sur le taux de faux positifs est conséquent. Le rôle des trois autres
+paramètres de détection est moins évident, mais il apparaît que les critères de profils verticaux de vent et d'anomalie de température jouent néanmoins leur
+rôle de filtres, au moins dans une certaine mesure.
 
+L'analyse de sensibilité du traqueur a également permis d'identifier les seuils de détection qui permettent de maximiser la probabilité de détection des TC
+historiques dans la réanalyse, amenant à ce que la majorité des TC historiques soient détectés dans ERA5 par le schéma de détection sur la période
+\num{1981}~--~\num{2019}. Cette bonne efficacité de détection couplée à la capacité permise par l'algorithme d'appariement des trajectoires de ne sélectionner
+que les systèmes ERA5 retrouvés dans IBTrACS ont par ailleurs permis d'évaluer la manière dont les cyclones tropicaux sont représentés dans la réanalyse avec
+une grande robustesse, puisque l'analyse porte sur plus de \num{2200} paires de trajectoires ERA5 / IBTrACS, ce qui totalise près de \num{30000} points de
+données en commun entre les deux jeux de données. Ce travail a alors mis en exergue une forte sous-estimation de l'intensité des vents associés aux TC dans
+ERA5, tandis que les minimums de pression sont quant à eux mieux représentés (voir \cref{sec:papier_results}). Par ailleurs, l'intensité des TC dans ERA5 ne
+reflètent pas nécessairement leur intensité observée, puisqu'il peut arriver qu'un cyclone soit plus intense dans la réanalyse que dans les observations. La
+relation liant la classe d'intensité des TC observés à celle de leur homologues simulées sont en outre variables selon les régions du monde (voir
+\cref{sec:papier_appendix_B}). Parmi les autres caractéristiques notables, on notera que les HTV dans ERA5 ne peuvent pas se maintenir à leur niveau maximal
+d'intensité. De plus, le décalage temporel entre les maximum d'intensité dans ERA5 et IBTrACS ne fait que croître avec l'intensité des cyclones observés,
+indiquant que le plus un cyclone historique est fort, le moins les cycles de vie de la paire sont synchronisés. Cela peut indiquer une difficulté de la
+réanalyse à simuler les intensifications rapides. Néanmoins, la structure interne des HTV dans ERA5 est réaliste, et les profils verticaux présentent des
+structures d'intensification claires avec la classe d'intensité des TC observés jusqu'à la catégorie 3 sur l'échelle de Saffir-Simpson.
+
+La \cref{sec:filtrage_mid_latitudes} discute de trois façons de réduire davantage le taux de fausses alarmes du traqueur du CNRM sur ERA5. En effet, si le taux
+de fausses alarmes n'est pas crucial pour l'étude des HTV dans ERA5 présentée dans la \cref{sec:papier}, puisqu'il est possible de ne sélectionner que les
+systèmes appariés à IBTrACS, la discrimination des TC d'autres systèmes météorologiques constitue néanmoins un enjeu fondamental de la détection objective de TC
+dans les modèles. Les travaux présentés dans la \cref{sec:papier} ainsi que dans \textcite{bourdin_intercomparison_2022} montrent que la difficulté majeure
+concerne les systèmes de moyennes latitudes, si bien que la \cref{sec:filtrage_mid_latitudes} se concentre en particulier sur les deux méthodes de filtrage que
+sont le maximum de gradient méridional de hauteur géopotentielle à \hPa{200} et la limite équatoriale du jet subtropical. Ces deux méthodologies permettent
+ainsi de définir de façon dynamique un seuil en latitude permettant de filtrer les systèmes indésirables. Les deux filtres sont en fait conceptuellement très
+proches, mais très différents dans leur implémentation. De plus, tous deux présentent des défauts, aboutissant à ce qu'une troisième méthode, basée sur le
+diagnostique du vent thermique dans la haute troposphère et issue de \textcite{hart_cyclone_2003} soit utilisée à la place dans \textcite{dulac_assessing_2023}.
+Cette dernière semble en effet la plus intéressante en ce sens qu'elle rend possible une implémentation online au sein même du schéma de détection, et qu'elle
+est également capable de filtrer des systèmes dans la ceinture tropicale, puisqu'à la différence des deux autres elle ne cherche pas à définir un seuil en
+latitude, mais comptabilise le nombre de pas de temps pour lesquels un cœur chaud est diagnostiqué. Ce diagnostique est fortement comparable aux diagnostiques
+de profils verticaux de vent et d'anomalie de température internes au schéma de détection, mais apparait cependant bien plus efficace, avec toutefois un risque
+non-nul d'éliminer des systèmes qui auraient sinon été appariés avec IBTrACS.
+
+Enfin, la \cref{sec:similarité} introduit de nouvelles métriques d'évaluation d'un schéma de détection alternatives à la probabilité de détection et taux de
+faux positifs. Trois métriques basées sur la similarité angulaire moyennée sur les pas de temps en commun d'une paire de trajectoires sont proposées. Elles se
+distinguent par leur manière de prendre en considération (ou non) les échéances pour lesquelles une seule des deux trajectoires est définie. En effet, avec ces
+métriques sont définies les notions d'intersection, d'union et de différence symétrique des deux trajectoires, termes empruntés à la théorie des ensembles et
+qui se réfèrent simplement à trois façons de considérer deux trajectoires de temporalité différente. L'analyse jointe des métriques et de la taille des
+sous-ensembles ainsi définis constitue alors un cadre de travail permettant de quantifier la ressemblance entre deux trajectoires. L'emploi de ces outils est
+illustré à travers une application consistant à comparer la différence dans la similarité des couples de trajectoires ERA5 / IBTrACS pour deux jeux de
+trajectoires détectées issues de paramètres de détection différents. Cette analyse montre notamment que l'optimisation des paramètres de détection du traqueur
+dans le but de maximiser la probabilité de détection s'est accompagnée d'une légère amélioration de la similarité des trajectoires, en particulier pour les
+métriques définies sur l'union des deux trajectoires. La raison principale à cela réside dans le fait que les différences de temporalité s'amoindrissent dans le
+jeu de trajectoires optimisées, tandis que la similarité moyennée sur l'intersection des deux membres ne change pas, ou peu. Cette analyse met alors en évidence
+le caractère complémentaire des deux catégories de métriques : Celles définies uniquement sur les échéances où les deux trajectoires coexistent, et celles
+prenant en considération les échéances où une seul des deux est définie.
 
 \end{document}
