@@ -662,7 +662,7 @@ Plutôt que de mesurer les HTV directement dans les modèles, l'approche indirec
 à utiliser un indice de cyclogénèse \parencite{gray_tropical_1975} et permet de s'affranchir des biais qu'ont les modèles à simuler l'activité cyclonique. Les
 indices sont nombreux et tous possèdent des formulations différentes, mais le principe est toujours le même : Un indice de cyclogénèse combine des prédicteurs
 thermiques (par exemple la SST, ou l'humidité relative) et des prédicteurs dynamiques (cisaillement, vorticité...) pour décrire l'environnement favorable à la
-cyclogénèse et est normalisé, ou calibré, de afin d'être homogène à une quantité de TC ainsi que de reproduire l'amplitude de l'activité observée sur une
+cyclogénèse et est normalisé, ou calibré, afin d'être homogène à une quantité de TC ainsi que de reproduire l'amplitude de l'activité observée sur une
 période donnée. L'indice peut être alors vu comme un produit indiquant en chaque point de grille un nombre de cyclones par unité de temps, et s'apparente ainsi
 à une densité surfacique (puisque le point de grille est représentatif d'une maille du modèle) :
 %
@@ -683,31 +683,30 @@ densité de cyclones observés sur la période \num{1952}~--~\num{1971}.
 
 L'étude des conditions de grande échelle favorables comme alternative à la mesure directe des HTV était alors particulièrement pertinente dans la mesure où la
 résolution des GCM de l'époque ne permettaient pas de les simuler correctement, malgré les résultats encourageants de \textcite{broccoli_can_1990} évoqués
-précédemment. C'est notamment pour cette raison que \hbox{\textcite{ryan_tropical_1992}} ont utilisé pour la première fois le SGP, ainsi qu'une variante annuelle
-appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux indiquèrent une très forte
+précédemment. C'est notamment pour cette raison que \hbox{\textcite{ryan_tropical_1992}} ont utilisé pour la première fois le SGP, ainsi qu'une variante
+annuelle appelée YGP, dans une expérience \ensuremath{2\times\ce{CO2}} sur des simulations couplées de \num{15} ans. Leurs travaux indiquèrent une très forte
 augmentation de la fréquence annuelle de TC ---~passant de \num{149} TC par an\footnote{Cette surévaluation de l'activité cyclonique dans le run de contrôle
-(\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque \textcite{ryan_tropical_1992}
-l'ont appliqué à leur modèle.} dans le run de contrôle à \num{440} TC par an dans le run \ensuremath{2\times\ce{CO2}}, soit une augmentation d'environ
-\SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les directions. Ce résultat s'explique en grande partie par la forte
-dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}. En effet, le SGP de
-\citeauthor{gray_tropical_1975} considère l'écart de SST au seuil empirique de \SI{26}{\degreeCelsius} de \textcite{palmen_formation_1948}, seuil dont la
-stationnarité en climat futur n'est pas assurée. Pour résoudre ce problème, \textcite{royer_gcm_1998} remplacèrent l'ensemble de la composante thermique de
-l'indice par une composante convective, définie par les précipitations convectives sur océan, celles-ci étant un bon marqueur du passage d'un cyclone tropical.
-\textcite{royer_gcm_1998} montrèrent alors que cette variante du SGP, nommée CYGP (\textit{Convective Yearly Genesis Parameter}) ne simulait qu'une augmentation
-modérée de l'activité dans l'hémisphère nord dans leur expérience \ensuremath{2\times\ce{CO2}}, et même une faible diminution dans l'hémisphère sud.
-\mbox{\textcite{watterson_seasonal_1995}} cherchèrent à évaluer le pouvoir prédictif du SGP à l'échelle saisonnière et inter-annuelle et établirent que l'indice
-était capable de reproduire l'effet de l'épisode El Niño de \num{1982}~--~\num{83}, effet visible  aussi bien dans la partie thermique que dynamique de
-l'indice, marquée par une augmentation de l'activité dans le Pacifique central. Néanmoins, il notèrent une faible capacité à reproduire la variabilité
-inter-annuelle de l'activité dans différents bassins ---~ce qui est encore valable aujourd'hui \parencite{camargo_tropical_2007,camargo_tropical_2016}~--- et
-soulignèrent notamment l'amplitude réduite du signal inféré par le SGP par rapport aux observations. La \cref{fig:GP_resolution} issue de
-\textcite{camargo_tropical_2007} présente l'impact de la résolution du modèle sur la capacité d'un indice à reproduire le cycle annuel de l'activité cyclonique, et
-montre une robustesse de la climatologie mensuelle à la résolution. En effet, les auteurs notèrent une augmentation variant de \SI{15}{\percent} à
-\SI{50}{\percent} entre les deux extrêmes de résolution, selon le mois et le bassin, avec le passage de \km{310} à \km{210} de résolution présentant le plus
-fort impact, puisque les différences sont ensuite moindres jusqu'à la résolution de \km{83}. Cette figure, à travers ses similitudes avec la
-\cref{fig:saisons_TC} de la \cref{sec:bassins_saisons}, met également en évidence la capacité de l'indice à reproduire la saisonnalité des bassins océaniques.
-\textcite{mcdonald_tropical_2005,chauvin_response_2006} montrèrent enfin via des expériences à haute résolution et avec une variante du YGP moins dépendante à la
-SST que les indices de cyclogénèse pouvaient apporter de l'information utile quant à l'évolution future de l'activité cyclonique dans des simulations basse
-résolution.
+(\SI{37}{\percent} de plus que dans \cite{gray_tropical_1975}) est symptomatique d'une absence de re-calibration du SGP lorsque
+\textcite{ryan_tropical_1992} l'ont appliqué à leur modèle.} dans le run de contrôle à \num{440} TC par an dans le run \ensuremath{2\times\ce{CO2}}, soit une
+augmentation d'environ \SI{195}{\percent}~--- accompagnée d'un débordement des zones d'activité dans toutes les directions. Ce résultat s'explique en grande
+partie par la forte dépendance du SGP à la SST, leur modèle enregistrant notamment une augmentation de la SST globale moyenne de \SI{4.8}{\degreeCelsius}. En
+effet, le SGP de \citeauthor{gray_tropical_1975} considère l'écart de SST au seuil empirique de \SI{26}{\degreeCelsius} de \textcite{palmen_formation_1948},
+seuil dont la stationnarité en climat futur n'est pas assurée. Pour résoudre ce problème, \textcite{royer_gcm_1998} remplacèrent l'ensemble de la composante
+thermique de l'indice par une composante convective, définie par les précipitations convectives sur océan, celles-ci étant un bon marqueur du passage d'un
+cyclone tropical. \textcite{royer_gcm_1998} montrèrent alors que cette variante du SGP, nommée CYGP (\textit{Convective Yearly Genesis Parameter}) ne simulait
+qu'une augmentation modérée de l'activité dans l'hémisphère nord dans leur expérience \ensuremath{2\times\ce{CO2}}, et même une faible diminution dans
+l'hémisphère sud. \mbox{\textcite{watterson_seasonal_1995}} cherchèrent à évaluer le pouvoir prédictif du SGP à l'échelle saisonnière et inter-annuelle et
+établirent que l'indice était capable de reproduire l'effet de l'épisode El Niño de \num{1982}~--~\num{83}, effet visible  aussi bien dans la partie thermique
+que dynamique de l'indice, marquée par une augmentation de l'activité dans le Pacifique central. Néanmoins, il notèrent une faible capacité à reproduire la
+variabilité inter-annuelle de l'activité dans différents bassins ---~ce qui est encore valable aujourd'hui
+\parencite{camargo_tropical_2007,camargo_tropical_2016}~--- et soulignèrent notamment l'amplitude réduite du signal inféré par le SGP par rapport aux
+observations. La \cref{fig:GP_resolution} issue de \textcite{camargo_tropical_2007} présente l'impact de la résolution du modèle sur la capacité d'un indice à
+reproduire le cycle annuel de l'activité cyclonique, et montre une robustesse de la climatologie mensuelle à la résolution. En effet, les auteurs notèrent une
+augmentation variant de \SI{15}{\percent} à \SI{50}{\percent} entre les deux extrêmes de résolution, selon le mois et le bassin, avec le passage de \km{310} à
+\km{210} de résolution présentant le plus fort impact, puisque les différences sont ensuite moindres jusqu'à la résolution de \km{83}. Cette figure, à travers
+ses similitudes avec la \cref{fig:saisons_TC} de la \cref{sec:bassins_saisons}, met également en évidence la capacité de l'indice à reproduire la saisonnalité
+des bassins océaniques. \textcite{mcdonald_tropical_2005,chauvin_response_2006} montrèrent enfin via des expériences à haute résolution que les indices de
+cyclogénèse pouvaient apporter de l'information utile quant à l'évolution future de l'activité cyclonique dans des simulations basse résolution.
 
 \begin{figure}[tb]
     \centering
