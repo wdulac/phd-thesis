@@ -5,18 +5,73 @@
 \begin{document}
 
 \begin{itshape}
-    Ceci est un troisième chapitre
+    Ce troisième chapitre porte sur les indices de cyclogénèses, de la formulation précise des différents indices utilisés classiquement dans la littérature à
+    des indices définis pour les besoins présents, et de leur application à ERA5. [en cours]
 \end{itshape}
 
 \minitoc
+\newpage
 %--------------------------------------
 \section{Les indices de cyclogénèses}
 
 \subsection{Tour d'horizon des différents indices}
 
+La \cref{sec:intro_indices} du \cref{chap:chapitre_1} introduit le concept de l'indice de cyclogénèse comme un moyen indirect d'étudier l'activité cyclonique
+dans les modèles. Cette approche se place comme une alternative à la mesure directe de la détection et le suivi objectif de TC dans les simulations, introduite
+dans la \cref{sec:intro_tracking} et abordé plus amplement dans le \cref{chapitre_2}. Ce thème de recherche a été initié par les travaux de
+\textcite{gray_global_1968,gray_tropical_1975} qui a identifié les facteurs environnementaux de grande échelle les plus favorables à la cyclogénèse pour ensuite
+les combiner en un produit capable de reproduire la densité climatologique de cyclones observés, avec son indice alors dénommé Paramètre de Genèse Saisonnière,
+ou SGP. Ce dernier (de même que sa variante annuelle le YGP) n'est toutefois plus d'usage aujourd'hui, à fortiori pour des applications en changement
+climatique, à cause de son seuil fixe de SST. Une certaine variété d'indices ont été développés depuis. Ces derniers peuvent être distingués selon si les
+coefficients de pondération associés à chaque prédicteur sont déterminés de manière partiellement empirique, de ceux issus de régression statistiques et qui
+sont donc plus facilement reproductibles. Les plus communément utilisés d'entre eux sont présentés ci-après.
+
 \subsubsection{Relations empiriques}
 
-\subsubsection{Modélisation statistique de l'activité cyclonique par régression de Poisson}
+Déjà mentionné dans la \cref{sec:intro_indices}, le premier indice de cyclogénèse qui a suivi le SGP de \citeauthor{gray_tropical_1975} est le CYGP
+\parencite{royer_gcm_1998}. Ce dernier a été conçu pour résoudre le problème de la dépendance du SGP à un seuil fixe de SST et se définit comme suit.
+%
+\begin{equation*} \mathrm{CYGP} = \underbrace{\lvert f \rvert \, I_\zeta \, I_S}_{\mathrm{Dynamique}} \, \underbrace{\vphantom{I_\zeta}k(P_c -
+P_0)}_{\mathrm{Convectif}} \tag*{CYGP}
+\end{equation*}
+%
+Où $f = 2 \Omega \sin \phi$ est le paramètre de Coriolis, $I_\zeta = \zeta_R \! +\! 5$ où $\zeta_R$ est la vorticité relative, $I_S = (1/S_z \! + \! 3)$, où
+$S_z$ est le cisaillement vertical du vent entre le haut et le bas de la troposphère, $P_c$ sont les précipitations convectives sur océan seuillées sur $P_0$,
+et enfin $k$ étant le coefficient de calibration de l'indice. Les constantes ajoutées au cisaillement et à la vorticité relative sont celles du SGP originel,
+mentionnées dans la \cref{sec:intro_indices}, \cref{note:SGP} et constituent là le caractère empirique de l'indice. Comme son nom le suggère, la particularité
+du CYGP est d'utiliser un potentiel convectif en lieu et place du potentiel thermique du SGP qui, dans \textcite{gray_tropical_1975} est défini avec la
+stabilité atmosphérique (gradient vertical de température virtuelle équivalente), l'humidité relative moyenne entre \hPa{700} et \hPa{500} et l'énergie
+thermique océanique accumulée sur les 60 premiers mètres sous la surface. Le CYGP de \citeauthor{royer_gcm_1998} a servi dans des applications en climat futur
+par \textcite{mcdonald_tropical_2005,cattiaux_projected_2020,chauvin_response_2006,chauvin_future_2020}
+
+L'indice le plus communément utilisé est sans aucun doute le GPI (\textit{Genesis Potential Index}) de \textcite{emanuel_tropical_2004} défini comme suit :
+%
+\begin{equation*}
+    \tag*{GPI}
+    \mathrm{GPI} = \underbrace{\vphantom{\left( \frac{H}{50} \right)^3}\lvert 10^5 \zeta \rvert^{3/2} \, (1 + 0.1 V_{\mathrm{shear}})^{-2}}_{\mathrm{Dynamique}}
+    \underbrace{\left( \frac{H}{50} \right)^3 \left( \frac{V_{\mathrm{pot}}}{70} \right)^3}_{\mathrm{Thermique}}
+\end{equation*}
+%
+Où $\zeta$ représente la vorticité absolue ($\zeta = \zeta_R + f$) exprimée en 10$^{-5}$~s$^{-1}$, $V_{\mathrm{shear}}$ l'amplitude du cisaillement vertical du
+vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{700} et $V_{\mathrm{pot}}$ l'intensité potentielle (\textit{Potential Intensity}, PI)
+\parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice, et
+représente l'intensité maximale théorique à la surface d'un cyclone tropical, exprimée en m s$^{-1}$, lorsque ce dernier est assimilié à un cycle de Carnot
+\parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée comme la
+différence de température aux deux extrémités du cycle~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse
+supplémentaires dont l'énumération dépasse le cadre de ce manuscrit, le PI pouvait être évalué comme suit :
+%
+\begin{equation*}
+    \tag*{PI}
+    V_{\mathrm{pot}}^2 = \frac{T_s}{T_0} \frac{C_k}{C_D} \left[ \mathrm{CAPE}^* - \mathrm{CAPE} \right] \rvert_{\mathrm{RMW}}
+\end{equation*}
+%
+Où $T_s$ est la température de surface, $T_0$ la température de l'air rejeté au sommet du cyclone, $C_k$ est le coefficient d'échange d'enthalpie avec l'océan,
+$C_D$ le coefficient de trainée, CAPE$^*$ l'énergie potentielle convective disponible (\textit{Convective Available Potential Energy}) de l'air saturé et élevé
+jusqu'au niveau de l'air expulsé au sommet du cyclone, et CAPE étant l'énergie potentielle convective de la couche limite atmosphérique ---~CAPE$^*$ et CAPE
+sont tous deux évalués au rayon de vent maximum (\textit{Radius of Maximum Wind}, RMW). En pratique, le calcul de l'intensité potentielle nécessite
+l'utilisation d'un algorithme spécifique complexe et nécessite un temps de calcul conséquent.
+
+\subsubsection{Modélisation statistique de l'activité cyclonique}
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
