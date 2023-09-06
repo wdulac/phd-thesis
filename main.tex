@@ -1,6 +1,6 @@
 % vim: spelllang=fr
 
-\documentclass[12pt,twoside]{book}
+\documentclass[12pt,twoside]{report}
 
 \usepackage{silence}
 \WarningFilter{minitoc(hints)}{W0023}
@@ -127,34 +127,37 @@
 \addbibresource{\subfix{./references.bib}}
 
 %%%% Page de garde
-\usepackage[ED=SDU2E-Oc, Ets=UT3]{tlsflyleaf}
-
+\usepackage[ED=SDU2E-Oc, Ets=UT3, emptypageafter]{tlsflyleaf}
+%
 \title{Évolution future de l'activité cyclonique tropicale}
 \author{William Dulac}
-%\date{2023}
-\defencedate{Décembre 2023}
+%%\date{2023}
+%\defencedate{Décembre 2023}
 \lab{Centre National de Recherches Météorologiques (UMR 3589)}
-
+%
 \nboss{2}
-\makesomeone{boss}{1}{Julien CATTIAUX}
-\makesomeone{boss}{2}{Fabrice CHAUVIN}
-
-%% Referee
-\nreferee{2}
-\makesomeone{referee}{1}{Premier RAPPORTEUR}{}{}
-\makesomeone{referee}{2}{Second RAPPORTEUR}{}{}
-%% Judges
-\njudge{5}
-\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
-\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
-\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-\makesomeone{judge}{5}{Cinqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\makesomeone{boss}{1}{Julien Cattiaux}{}{}
+\makesomeone{boss}{2}{Fabrice Chauvin}{}{}
+%
+%%% Referee
+%\nreferee{2}
+%\makesomeone{referee}{1}{Premier RAPPORTEUR}{}{}
+%\makesomeone{referee}{2}{Second RAPPORTEUR}{}{}
+%%% Judges
+%\njudge{5}
+%\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
+%\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
+%\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+%\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+%\makesomeone{judge}{5}{Cinqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \makeflyleaf
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{%
+\markboth{\thesection.\ \MakeUppercase{#1}}{}}
 
 \dominitoc
 
