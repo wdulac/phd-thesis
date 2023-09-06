@@ -127,12 +127,27 @@
 \usepackage{subfiles}
 \addbibresource{\subfix{./references.bib}}
 
+%%%% Page de garde
+\usepackage[ED=SDU2E-Oc, Ets=UT3]{tlsflyleaf}
+
 \title{Évolution future de l'activité cyclonique tropicale}
 \author{William Dulac}
-\date{2023}
+%\date{2023}
+\defencedate{Décembre 2023}
+\lab{Centre National de Recherches Météorologiques (UMR 3589)}
+
+\nboss{2}
+\makesomeone{boss}{1}{Julien CATTIAUX}
+\makesomeone{boss}{2}{Fabrice CHAUVIN}
+
+% 4ème de couverture
+%\newenvironment{vcenterpage}
+%{\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
+%{\vspace*{\fill}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\makeflyleaf
 \dominitoc
 
 \chapter*{Remerciements}
