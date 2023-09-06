@@ -1,7 +1,6 @@
 % vim: spelllang=fr
 
-\documentclass[12pt,twoside]{report}
-
+\documentclass[12pt,twoside]{book}
 
 \usepackage{silence}
 \WarningFilter{minitoc(hints)}{W0023}
@@ -140,14 +139,23 @@
 \makesomeone{boss}{1}{Julien CATTIAUX}
 \makesomeone{boss}{2}{Fabrice CHAUVIN}
 
-% 4ème de couverture
-%\newenvironment{vcenterpage}
-%{\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
-%{\vspace*{\fill}}
+%% Referee
+\nreferee{2}
+\makesomeone{referee}{1}{Premier RAPPORTEUR}{}{}
+\makesomeone{referee}{2}{Second RAPPORTEUR}{}{}
+%% Judges
+\njudge{5}
+\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
+\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
+\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\makesomeone{judge}{5}{Cinqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+
 \makeflyleaf
+
 \dominitoc
 
 \chapter*{Remerciements}
