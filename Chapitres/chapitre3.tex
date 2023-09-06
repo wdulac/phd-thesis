@@ -54,11 +54,12 @@ L'indice le plus communément utilisé est sans aucun doute le GPI (\textit{Gene
 %
 Où $\zeta$ représente la vorticité absolue ($\zeta = \zeta_R + f$) exprimée en 10$^{-5}$~s$^{-1}$, $V_{\mathrm{shear}}$ l'amplitude du cisaillement vertical du
 vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{700} et $V_{\mathrm{pot}}$ l'intensité potentielle (\textit{Potential Intensity}, PI)
-\parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice, et
-représente l'intensité maximale théorique à la surface d'un cyclone tropical, exprimée en m s$^{-1}$, lorsque ce dernier est assimilié à un cycle de Carnot
-\parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée comme la
-différence de température aux deux extrémités du cycle~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse
-supplémentaires dont l'énumération dépasse le cadre de ce manuscrit, le PI pouvait être évalué comme suit :
+\parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice, le lien
+entre le PI et la SST relative étant établi \parencite{vecchi_effect_2007,swanson_nonlocality_2008}, et représente l'intensité maximale théorique à la
+surface d'un cyclone tropical, exprimée en m s$^{-1}$, lorsque ce dernier est assimilé à un cycle de Carnot \parencite{emanuel_dependence_1987}. Sous cette
+hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la différence de température aux deux extrémités du
+cycle~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse supplémentaires dont l'énumération dépasse le
+cadre de ce manuscrit, le PI pouvait être évalué comme suit :
 %
 \begin{equation*}
     \tag*{PI}
@@ -69,9 +70,38 @@ Où $T_s$ est la température de surface, $T_0$ la température de l'air rejeté
 $C_D$ le coefficient de trainée, CAPE$^*$ l'énergie potentielle convective disponible (\textit{Convective Available Potential Energy}) de l'air saturé et élevé
 jusqu'au niveau de l'air expulsé au sommet du cyclone, et CAPE étant l'énergie potentielle convective de la couche limite atmosphérique ---~CAPE$^*$ et CAPE
 sont tous deux évalués au rayon de vent maximum (\textit{Radius of Maximum Wind}, RMW). En pratique, le calcul de l'intensité potentielle nécessite
-l'utilisation d'un algorithme spécifique complexe et nécessite un temps de calcul conséquent.
+l'utilisation d'un algorithme sophistiqué et dont l'exécution nécessite un temps de calcul conséquent.
+
+Plusieurs autres indices de cyclogénèses ont été dérivés du GPI. \textcite{emanuel_tropical_2010} a lui-même proposé une révision du GPI originel, remplaçant
+l'humidité relative par une mesure adimensionnelle du déficit de saturation d'entropie humide dans la moyenne troposphère, argumentant que cette quantité serait
+un meilleur prédicteur de la fréquence d'occurrence des TC \parencite{emanuel_hurricanes_2008}. \textcite{bruyere_investigating_2012} ont proposé une version
+modifiée du GPI originel \parencite{emanuel_tropical_2004} dans laquelle la vorticité et l'humidité relative sont supprimées. Les auteurs montrent en effet que
+les variations interannuelles de ces deux quantités sont quasi inexsistantes et ne peuvent donc être liées à la fréquence d'occurrence des TC, et suggèrent
+plutôt que la contribution de ces deux prédicteurs consistent en des seuils minimaux nécessaires \parencite{mcgauley_measuring_2011}.
+\citeauthor{bruyere_investigating_2012} suggèrent également que le PI puisse jouer le rôle de proxy de la capacité de l'environnent à favoriser la convergence
+d'humidité. Ces résultats sont parfaitement opposés à ceux de \textcite{camargo_diagnosis_2009} qui montrent que l'humidité relative à \hPa{850} et la vorticité
+absolue sont respectivement les deux facteurs prépondérants dans les anomalies du GPI liées à l'oscillation de Madden-Julian (\textit{Madden-Julian
+Oscillation}, MJO), mode de variabilité principale à l'échelle intra-saisonnière. \textcite{wang_dynamic_2020} proposèrent un indice composé uniquement de
+prédicteurs dynamiques, sans aucune contribution thermique, et montrèrent que la capacité de leur produit à simuler la variabilité interannuelle dans le bassin
+WPac et dans l'hémisphère sud est améliorée par rapport au GPI. Cette grande variété d'indices est représentative de l'incertitude qui entoure le choix des
+prédicteurs dans la formulation des indices de cyclogénèses, choix notamment compliqué par le fait que les paramètres de grande échelles qui influent sur la
+fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
+
 
 \subsubsection{Modélisation statistique de l'activité cyclonique}
+
+Les indices introduits dans la section précédente sont généralement déterminés de manière semi empirique à l'aide de considérations théoriques et en s'appuyant
+sur des régressions multiples entre différents champs modèles, provenant souvent de réanalyses, et l'activité observée. Les relations ainsi établies sont
+ensuite appliquées plus largement sur toutes sortes de simulations. La partie subjective derrière la mise au point des indices empêche la reproductibilité des
+résultats ayant conduits à leur formulation, ce qui contribue probablement à l'émergence de nouvelles variantes de ces mêmes indices, répétant ainsi le même
+schéma. C'est entre autre pour cette raison que \textcite{tippett_poisson_2011} proposèrent une approche différente consistant à définir un indice de
+cyclogénèse purement comme une régression statistique non-linéaire entre l'activité observée et l'environnement, avec une méthodologie objective de sélection des
+prédicteurs.
+
+\textcite{wang_dynamic_2020} ont appliqué une méthode de sélection automatique des prédicteurs parmi \num{11} candidats par régression
+séquentielle \parencite{jennrich_application_1968}, comparable à la méthodologie de \textcite{tippett_poisson_2011}, sur cinq réanalyses, à l'échelle globale et
+pour chaque hémisphère. Leur méthode montre que les prédicteurs dynamiques sont systématiquement sélectionnés, amenant à la définition d'un indice purement
+dynamique dont la capacité à représenter la variabilité interannuelle dans le bassin WPac et l'hémisphère sud est améliorée par rapport au GPI.
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
