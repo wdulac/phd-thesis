@@ -52,14 +52,13 @@ L'indice le plus communément utilisé est sans aucun doute le GPI (\textit{Gene
     \underbrace{\left( \frac{H}{50} \right)^3 \left( \frac{V_{\mathrm{pot}}}{70} \right)^3}_{\mathrm{Thermique}}
 \end{equation*}
 %
-Où $\zeta$ représente la vorticité absolue ($\zeta = \zeta_R + f$) exprimée en 10$^{-5}$~s$^{-1}$, $V_{\mathrm{shear}}$ l'amplitude du cisaillement vertical du
-vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{700} et $V_{\mathrm{pot}}$ l'intensité potentielle (\textit{Potential Intensity}, PI)
-\parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice, le lien
-entre le PI et la SST relative étant établi \parencite{vecchi_effect_2007,swanson_nonlocality_2008}, et représente l'intensité maximale théorique à la
-surface d'un cyclone tropical, exprimée en m s$^{-1}$, lorsque ce dernier est assimilé à un cycle de Carnot \parencite{emanuel_dependence_1987}. Sous cette
-hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la différence de température aux deux extrémités du
-cycle~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse supplémentaires dont l'énumération dépasse le
-cadre de ce manuscrit, le PI pouvait être évalué comme suit :
+Où $\zeta$ représente la vorticité absolue à \hPa{850} ($\zeta = \zeta_R + f$) exprimée en 10$^{-5}$~s$^{-1}$, $V_{\mathrm{shear}}$ l'amplitude du cisaillement
+vertical du vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{700} et $V_{\mathrm{pot}}$ l'intensité potentielle (\textit{Potential Intensity},
+PI) \parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice et
+représente l'intensité maximale théorique à la surface d'un cyclone tropical, exprimée en m s$^{-1}$, lorsque ce dernier est assimilé à un cycle de Carnot
+\parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la
+différence de température aux deux extrémités du cycle~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse
+supplémentaires dont l'énumération dépasse le cadre de ce manuscrit, le PI pouvait être évalué comme suit :
 %
 \begin{equation*}
     \tag*{PI}
@@ -74,19 +73,18 @@ l'utilisation d'un algorithme sophistiqué et dont l'exécution nécessite un te
 
 Plusieurs autres indices de cyclogénèses ont été dérivés du GPI. \textcite{emanuel_tropical_2010} a lui-même proposé une révision du GPI originel, remplaçant
 l'humidité relative par une mesure adimensionnelle du déficit de saturation d'entropie humide dans la moyenne troposphère, argumentant que cette quantité serait
-un meilleur prédicteur de la fréquence d'occurrence des TC \parencite{emanuel_hurricanes_2008}. \textcite{bruyere_investigating_2012} ont proposé une version
-modifiée du GPI originel \parencite{emanuel_tropical_2004} dans laquelle la vorticité et l'humidité relative sont supprimées. Les auteurs montrent en effet que
-les variations interannuelles de ces deux quantités sont quasi inexsistantes et ne peuvent donc être liées à la fréquence d'occurrence des TC, et suggèrent
-plutôt que la contribution de ces deux prédicteurs consistent en des seuils minimaux nécessaires \parencite{mcgauley_measuring_2011}.
-\citeauthor{bruyere_investigating_2012} suggèrent également que le PI puisse jouer le rôle de proxy de la capacité de l'environnent à favoriser la convergence
-d'humidité. Ces résultats sont parfaitement opposés à ceux de \textcite{camargo_diagnosis_2009} qui montrent que l'humidité relative à \hPa{850} et la vorticité
-absolue sont respectivement les deux facteurs prépondérants dans les anomalies du GPI liées à l'oscillation de Madden-Julian (\textit{Madden-Julian
-Oscillation}, MJO), mode de variabilité principale à l'échelle intra-saisonnière. \textcite{wang_dynamic_2020} proposèrent un indice composé uniquement de
-prédicteurs dynamiques, sans aucune contribution thermique, et montrèrent que la capacité de leur produit à simuler la variabilité interannuelle dans le bassin
-WPac et dans l'hémisphère sud est améliorée par rapport au GPI. Cette grande variété d'indices est représentative de l'incertitude qui entoure le choix des
-prédicteurs dans la formulation des indices de cyclogénèses, choix notamment compliqué par le fait que les paramètres de grande échelles qui influent sur la
-fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
-
+un meilleur prédicteur de la fréquence d'occurrence des TC \parencite{emanuel_hurricanes_2008}. \textcite{bruyere_investigating_2012} ont également proposé une
+version modifiée du GPI originel dans laquelle la vorticité et l'humidité relative sont supprimées. Les auteurs montrent en effet que les variations
+interannuelles de ces deux quantités sont quasi inexsistantes et ne peuvent donc être liées à la fréquence d'occurrence des TC, et suggèrent plutôt que la
+contribution de ces deux prédicteurs consistent en des seuils minimaux nécessaires \parencite{mcgauley_measuring_2011}. \citeauthor{bruyere_investigating_2012}
+suggèrent également que le PI puisse jouer le rôle de proxy de la capacité de l'environnent à favoriser la convergence d'humidité. À l'échelle intra-saisonnière
+cette fois, les résultats de \textcite{camargo_diagnosis_2009} arrivent à un constat en parfaite opposition puisque les auteurs montrent que l'humidité relative
+à \hPa{850} et la vorticité absolue sont respectivement les deux facteurs prépondérants dans les anomalies du GPI liées à l'oscillation de Madden-Julian
+(\textit{Madden-Julian Oscillation}, MJO), mode de variabilité principale à cette échelle de temps. \textcite{wang_dynamic_2020} proposent quant à eux un indice
+composé uniquement de prédicteurs dynamiques, sans aucune contribution thermique, et montrèrent que la capacité de leur produit à simuler la variabilité
+interannuelle dans le bassin WPac et dans l'hémisphère sud est améliorée par rapport au GPI. Cette grande variété d'indices est représentative de l'incertitude
+qui entoure le choix des prédicteurs dans la formulation des indices de cyclogénèses, choix notamment compliqué par le fait que les paramètres de grande
+échelles qui influent sur la fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
 
 \subsubsection{Modélisation statistique de l'activité cyclonique}
 
@@ -95,18 +93,47 @@ sur des régressions multiples entre différents champs modèles, provenant souv
 ensuite appliquées plus largement sur toutes sortes de simulations. La partie subjective derrière la mise au point des indices empêche la reproductibilité des
 résultats ayant conduits à leur formulation, ce qui contribue probablement à l'émergence de nouvelles variantes de ces mêmes indices, répétant ainsi le même
 schéma. C'est entre autre pour cette raison que \textcite{tippett_poisson_2011} proposèrent une approche différente consistant à définir un indice de
-cyclogénèse purement comme une régression statistique non-linéaire entre l'activité observée et l'environnement, avec une méthodologie objective de sélection des
-prédicteurs.
+cyclogénèse purement comme une régression non-linéaire entre l'activité observée et l'environnement, avec une méthodologie objective de sélection des
+prédicteurs. L'indice de Tippett, par la suite référé par \textquote{Tipp} ou encore \textquote{TCS}, du nom des trois auteurs (Tippett, Camargo, Sobel) est
+défini comme suit :
+%
+\begin{equation*}
+    \tag*{TCS}
+    \mathrm{TCS} = \exp \Big( b + \underbrace{b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}}}_{\mathrm{Thermique}} + \underbrace{\vphantom{b_\eta}b_H H + b_T
+    T}_{\mathrm{Dynamique}} + \log \cos \phi \Big)
+\end{equation*}
+%
+Où $\eta = \min (\zeta, \num{3.7})$, vorticité absolue à \hPa{850} exprimée en 10$^{-5}$~s$^{-1}$ et bornée à \SI{3.7e-5}{\per\second}, $V_{\mathrm{shear}}$ le
+cisaillement vertical entre \hPa{850} et \hPa{200} exprimé en \ms{}, $H$ l'humidité relative à \hPa{600} en pourcentage et $T$ la SST relative définie comme
+l'écart de température à la SST moyennée entre \ang{20}S et \ang{20}N sur océan. Dans \textcite{tippett_poisson_2011}, cet indice est construit par une
+régression de Poisson entre la climatologie mensuelle des cyclogénèses IBTrACS, définies comme les premières observations des systèmes atteignant au moins le
+stade de tempête tropicale, et la climatologie mensuelle des prédicteurs calculée entre \num{1961} et \num{2000} par le biais de la réanalyse ERA-40
+\parencite{uppala_era40_2005}. La méthodologie de régression, consistant à déterminer les paramètres $b$, est détaillée plus en détails dans la
+\cref{sec:resolution_spatiale_temporelle}. La formulation du prédicteur de vorticité utilisé dans le TCS est différente des autres indices puisqu'elle utilise
+une borne supérieure au tourbillon absolu. \textcite{tippett_poisson_2011} justifient cette approche ainsi que le seuil de \SI{3.7e-5}{\per\second} en montrant
+que le nombre de cyclogénèses n'est plus influencé par la vorticité au delà de cette valeur. L'utilisation d'un prédicteur borné de vorticité absolue à
+\hPa{850} permet alors au TCS d'être plus sensible aux variations de vorticité dans les tropiques que si la vorticité non bornée était considérée, tout en
+réduisant le nombre de cyclogénèses simulé dans les hautes latitudes. Les auteurs indiquent également que l'utilisation de la SST relative plutôt que du PI
+comme prédicteur de l'énergie thermique océanique disponible produit une régression d'une qualité légèrèrement supérieure. L'intérêt principal réside cependant
+dans l'interprétabilité facilitée par la SST relative, le PI n'étant à priori pas relié à la cyclogénèse. Si les deux prédicteurs peuvent être interchangés dans
+le TCS (comme par exemple dans \cite{camargo_tropical_2016}) ---~les deux variables étant largement corrélées \parencite{vecchi_effect_2007,swanson_nonlocality_2008}~---
+la SST relative est cependant considérablement plus simple à calculer.
 
-\textcite{wang_dynamic_2020} ont appliqué une méthode de sélection automatique des prédicteurs parmi \num{11} candidats par régression
-séquentielle \parencite{jennrich_application_1968}, comparable à la méthodologie de \textcite{tippett_poisson_2011}, sur cinq réanalyses, à l'échelle globale et
-pour chaque hémisphère. Leur méthode montre que les prédicteurs dynamiques sont systématiquement sélectionnés, amenant à la définition d'un indice purement
-dynamique dont la capacité à représenter la variabilité interannuelle dans le bassin WPac et l'hémisphère sud est améliorée par rapport au GPI.
+\textcite{wang_dynamic_2020} ont également défini un indice de cyclogénèse par un modèle statistique, cette fois-ci par une régression log-log\footnote{Une
+régression de Poisson peut être vue comme une relation log-linéare, reliant linéairement le logarithme de l'espérance de la quantité $Y$ aux variables
+$\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathrm{E} (Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \mathbf{x}$, tandis que la
+régression log-log utilisée dans \textcite{wang_dynamic_2020} est de type $\log \mathrm{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$},
+ainsi qu'une méthodologie de sélection automatique des prédicteurs parmi \num{11} candidats, comparable à celle utilisée par
+\textcite{tippett_poisson_2011}, sur cinq réanalyse, à l'échelle globale et pour chaque hémisphère. \citeauthor{wang_dynamic_2020} montrent alors que les
+prédicteurs dynamiques sont systématiquement sélectionnés, amenant à la définition d'un indice purement dynamique dont la capacité à représenter la
+variabilité interannuelle dans le bassin WPac et l'hémisphère sud est améliorée par rapport au GPI.
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
 
 \subsection{Choix du pas d'agrégation temporelle : Mensuel versus saisonnier}
+
+\subsection{Effet de la résolution spatiale et temporelle}\label{sec:resolution_spatiale_temporelle}
 
 \subsection{Activité observée versus modèle ARPEGE}
 
