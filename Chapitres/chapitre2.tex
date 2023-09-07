@@ -128,26 +128,37 @@ La version publiée de \textcite{dulac_assessing_2023} est présentée dans la \
 La détection des cyclones tropicaux dans la réanalyse ERA5 et l'appariement de ces derniers avec le catalogue des best tracks, tel que pratiqué dans
 \textcite{dulac_assessing_2023} et présenté dans la \cref{sec:papier}, révèle une quantité significative de systèmes identifiés \textquote{faux positifs} par
 l'algorithme d'appariement. Ces cas correspondent à des systèmes détectés dans la réanalyse mais pour lesquels aucune correspondance n'est identifiée dans
-IBTrACS. Dans \textcite{dulac_assessing_2023}, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques
-d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace des phases
-de \textcite{hart_cyclone_2003} est désactivé, cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le gradient vertical entre
-\hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est indicatif de la présence d'un
-vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de discriminer les cyclones tropicaux à
-cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet parce que la grande majorité des
-faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyenne latitudes, comme en atteste la \cref{fig:lat_density} qui présente pour les faux
-positifs sans ce filtre un mode principal centré sur \ang{50}N et S pour les deux hémisphères respectifs. L'activation du filtre $V_U^T$
-(\cref{fig:lat_density}.b) inverse la tendance dans l'hémisphère sud, puisque le mode secondaire situé juste en dessous de \ang{25}S devient le mode principal,
-et l'écart entre les deux modes dans l'hémisphère nord se réduit lorsque le filtre est activé. La quantité de ces derniers est en partie un effet secondaire de
-l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la \cref{sec:papier_appendix_A}, mais les faux
-positifs du jeu de trajectoires obtenu avant optimisation, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extratropicaux.
+IBTrACS. Il convient, par soucis de clarté, de distinguer les trois jeux de trajectoires ERA5 évoqués par la suite et listés ci-dessous selon la chronologie des
+évènements :
+%
+\begin{itemize}
+    \item Jeu 1 : Trajectoires des systèmes dans ERA5 obtenues initialement, sans optimisation ni filtrage des systèmes de moyennes latitudes.
+    \item Jeu 2 : Trajectoires dites \textquote{optimisées}, où les seuils de détection du schéma de détection sont choisis de façon à maximiser la probabilité
+        de détection (voir \cref{sec:papier_appendix_B}) et où aucun filtrage des systèmes de moyennes latitudes n'est utilisé.
+    \item Jeu 3 : Trajectoires optimisées, comme le jeu 2, où le filtre des systèmes de moyennes latitudes basé sur le paramètre $V_U^T$ est employé. Il s'agit
+        du jeu de trjectoires utilisé dans \textcite{dulac_assessing_2023}.
+\end{itemize}
+%
+Dans \textcite{dulac_assessing_2023}, avec le jeu 3, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins
+océaniques d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace
+des phases de \textcite{hart_cyclone_2003} est désactivé (jeu 2), cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le
+gradient vertical entre \hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est
+indicatif de la présence d'un vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de
+discriminer les cyclones tropicaux à cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet
+parce que la grande majorité des faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyennes latitudes, comme en atteste la
+\cref{fig:lat_density}.a qui présente pour les faux positifs du jeu 2 un mode principal centré sur \ang{50}N et S pour les deux hémisphères respectifs. Pour le
+jeu 3 (\cref{fig:lat_density}.b, en pointillés, avec $V_U^T$), la tendance s'inverse dans l'hémisphère sud, puisque le mode secondaire situé juste en dessous de
+\ang{25}S devient le mode principal, et l'écart entre les deux modes dans l'hémisphère nord se réduit lorsque le filtre est activé. La quantité de ces derniers
+est en partie un effet secondaire de l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la
+\cref{sec:papier_appendix_A}, mais les faux positifs du jeu 1, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extratropicaux.
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{genesis_lat_density_opti_w_wo_filter.png}
     \caption{(a) Densités de probabilités estimées par noyau gaussien de la latitude d'origine d'une trajectoire ERA5 selon si elle est appariée avec IBTrACS
-    (trait plein) ou identifée comme faux positif (tirets), réalisées sur les trajectoires issues du schéma de détection optimisé lorsque le filtre basé sur
-    le paramètre $V_U^T$ est désactivé. (b) Densités de probabilités de la latitude d'origine des faux positifs : sans le filtre $V_U^T$ (tirets), identique
-    à l'encadré (a), et avec le filtre $V_U^T$ (pointillés).}
+    (trait plein) ou identifiée comme faux positif (tirets), réalisées sur les trajectoires issues du schéma de détection optimisé lorsque le filtre basé sur
+    le paramètre $V_U^T$ est désactivé (jeu 2). (b) Densités de probabilités de la latitude d'origine des faux positifs : sans le filtre $V_U^T$ (tirets),
+    identique à l'encadré (a) (jeu 2), et avec le filtre $V_U^T$ (pointillés) (jeu 3).}
     \label{fig:lat_density}
 \end{figure}
 
@@ -162,10 +173,13 @@ l'expansion des tropiques \parencite{lucas_expanding_2014,staten_reexamining_201
 \parencite{kossin_poleward_2014,knutson_tropical_2020}. Ainsi, un filtre des systèmes de moyennes latitudes pour un schéma de détection ayant vocation à être
 appliqué à des simulation de réchauffement climatique se doit de pouvoir s'adapter à un climat altéré, et donc d'être un filtre dynamique.
 
-Dans cette section, nous considérons des filtres alternatifs au $V_U^T$ dans le but d'expliquer les raisons pour lesquelles c'est ce dernier qui a été choisi
-dans \textcite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la latitude du maximum de gradient
-méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans \textcite{bourdin_intercomparison_2022} qui utilise la limite
-équatoriale du jet subtropical comme limite méridionale.
+Dans cette section, nous détaillons les différents filtres qui ont été essayés avant de finalement choisir celui employant le paramètre $V_U^T$ de
+\citeauthor{hart_cyclone_2003} pour \textcite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la
+latitude du maximum de gradient méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans
+\textcite{bourdin_intercomparison_2022} qui utilise la limite équatoriale du jet subtropical comme limite méridionale.
+
+% nous considérons des filtres alternatifs au $V_U^T$ dans le but d'expliquer les raisons pour lesquelles c'est ce dernier qui a été choisi
+% dans \textcite{dulac_assessing_2023}.
 
 \subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
 
@@ -216,8 +230,8 @@ latitude, ce qui peut constituer un gain de temps considérable si les systèmes
 Avec ce filtre, le FAR intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins d'activité vaut \prct{36}, soit seulement 12 points de
 pourcentage de plus qu'avec le $V_U^T$. Ses performances à l'échelle des bassins d'activité sont toutefois très variables. Le filtre du gradient de géopotentiel
 est particulièrement efficace dans le bassin WPac, où le taux de faux positivité est réduit à \prct{10} (respectivement \prct{14} dans
-\textcite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
-SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
+\textcite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl
+et SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
 $V_U^T$), soit un taux de faux positif presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
 FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin. Ces performances variables, insuffisantes dans le cas du SPac, s'expliquent par le fait
 que le champ de $\partial Z_{200} / \partial \phi$ n'est pas suffisamment lisse en latitude, si bien que la latitude du gradient oscille entre le jet polaire
@@ -227,15 +241,16 @@ calculé sur le champ de géopotentiel moyenné sur \num{7} jours. Sur la \cref{
 gradient maximum sont lissées par filtre gaussien. La \cref{fig:geopdy_random} illustre ce problème à travers six exemples tirés aléatoirement dans l'hémisphère
 sud sur la saison cyclonique 2019. Précisons que les champs de $\partial Z_{200} / \partial \phi$ qui y sont présentés sont calculés sur la hauteur
 géopotentielle elle-même lissée spatialement avec une fenêtre glissante carrée de côté 11, conformément à l'implémentation online qui en est faite dans le
-schéma de détection. Cette figure montre que la chute de la hauteur géopotentielle avec la latitude n'est pas définie de façon suffisamment nette partout,
-résultant en une latitude du gradient maximal en dents de scie. L'effet est amplifié pour les cas où deux bandes de fort gradient sont superposées. Sur la
-\cref{fig:geopdy_random}, cela est particulièrement visible pour la date du 2018--08--26 (1\iere~ligne 2\ieme~colonne) et la date du 2019--06--29 (2\ieme~ligne
-1\iere~colonne), et plus localement pour la date du 2019--06--24 (1\iere~ligne 1\iere~colonne) entre \ang{0}E et \ang{180}, ou encore au 2019--04--21
-(1\iere~ligne 3\ieme~colonne) entre \ang{180} et \ang{120}W. Dans ces cas, la latitude du gradient maximum saute d'un courant atmosphérique à l'autre, séparés
-de \ang{30} l'un de l'autre. Parmi les autres dates, il apparaît que le gradient à la limite des subtropiques n'est souvent pas suffisamment fort par rapport au
-gradient dans les latitudes plus proches du pôle, si bien que la latitude du gradient maximal frôle localement la limite méridionale du domaine de
-fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd)
-ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équivalent à ne pas avoir de filtre.
+schéma de détection. Cette figure montre que la latitude à laquelle la pente de $Z_{200}$ est maximale n'est pas une fonction continue de la longitude.
+Autrement dit, il peut exister pour une longitude plusieurs bandes de latitudes où le gradient est fort, et donc plusieurs maxima locaux de $\partial Z_{200} /
+\partial \phi$. Cela résulte en une latitude du gradient maximal en dents de scie. Sur la \cref{fig:geopdy_random}, cela est particulièrement visible pour la
+date du 2018--08--26 (1\iere~ligne 2\ieme~colonne) et la date du 2019--06--29 (2\ieme~ligne 1\iere~colonne), et plus localement pour la date du 2019--06--24
+(1\iere~ligne 1\iere~colonne) entre \ang{0}E et \ang{180}, ou encore au 2019--04--21 (1\iere~ligne 3\ieme~colonne) entre \ang{180} et \ang{120}W. Dans ces cas,
+la latitude du gradient maximum saute d'un courant atmosphérique à l'autre, séparés de \ang{30} l'un de l'autre. Parmi les autres dates, il apparaît que le
+gradient à la limite des subtropiques n'est souvent pas suffisamment fort par rapport au gradient dans les latitudes plus proches du pôle, si bien que la
+latitude du gradient maximal frôle localement la limite méridionale du domaine de fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date
+du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd) ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement
+équivalent à ne pas avoir de filtre.
 %
 \begin{figure}[tb]
     \centering
