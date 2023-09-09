@@ -142,7 +142,7 @@ SST relative et le PI produit la meilleure régression. Ce processus est répét
 l'humidité relative à \hPa{600} et l'humidité relative intégrée sur la colonne atmosphérique. La place du cisaillement vertical dans la régression n'est pas
 remise en cause \parencite{gray_global_1968}. \textcite{wang_dynamic_2020} utilisent quant à eux une régression séquentielle évaluant l'apport de l'ajout de
 chaque variable parmi les \num{11}, attribuant à chacun d'entre eux un score dont la valeur dépend de l'ordre dans lequel ils sont sélectionnés, et ce jusqu'à
-la significativité de l'apport des nouveaux prédicteurs, évaluée par f-test, ne puisse plus être vérifiée. C'est cette méthodologie qui a conduit à la
+ce que la significativité de l'apport des nouveaux prédicteurs, évaluée par f-test, ne puisse plus être vérifiée. C'est cette méthodologie qui a conduit à la
 définition de leur indice constitué des prédicteurs dynamiques suivants, avec des scores du plus élevé au plus faible : le cisaillement vertical entre \hPa{850}
 et \hPa{200} en \ms{}, la vitesse verticale du vent à \hPa{500} en \SI{}{\pascal\per\second}, la vorticité absolue à \hPa{850} en \SI{}{\per\second} et enfin le
 gradient méridional de la composante zonale du vent à \hPa{500} en \SI{}{\per\second}
@@ -150,8 +150,8 @@ gradient méridional de la composante zonale du vent à \hPa{500} en \SI{}{\per\
 \begin{equation*}
     \tag*{DGPI}
     \begin{split}
-        \mathrm{DGPI} = (\num{2,0} +& \num{0,1} \times V_{\mathrm{shear}})^{-1} \left( \num{5,5} - \frac{d u_{500}}{dy} \times 10^5 \right)^{2}\\
-                                    &(\num{5,0} - \num{20} \times \omega_{500})^3 (\num{5,5} + \lvert \zeta_{850} \times 10^5 \rvert )^2 e^{-12} - \num{1.0}
+        \mathrm{DGPI} = (\num{2,0} + & \num{0,1} \times V_{\mathrm{shear}})^{-1} \left( \num{5,5} - \frac{d u_{500}}{dy} \times 10^5 \right)^{2}\\
+                                     &(\num{5,0} - \num{20} \times \omega_{500})^3 (\num{5,5} + \lvert \zeta_{850} \times 10^5 \rvert )^2 e^{-12} - \num{1.0}
     \end{split}
 \end{equation*}
 %
