@@ -12,9 +12,9 @@
 \minitoc
 \newpage
 %--------------------------------------
-\section{Les indices de cyclogénèses}
+\section{Les indices de cyclogénèses}\label{sec:intro_indices}
 
-\subsection{Tour d'horizon des différents indices}
+\subsection{Tour d'horizon des différents indices}\label{sec:tour_horizon_indices}
 
 La \cref{sec:intro_indices} du \cref{chap:chapitre_1} introduit le concept de l'indice de cyclogénèse comme un moyen indirect d'étudier l'activité cyclonique
 dans les modèles. Cette approche se place comme une alternative à la mesure directe de la détection et le suivi objectif de TC dans les simulations, introduite
@@ -120,48 +120,69 @@ vorticité que le retrait de ce prédicteur est justifié dans l'indice de \text
 qualité légèrèrement supérieure. L'intérêt principal réside cependant dans l'interprétabilité facilitée par la SST relative, le PI n'étant à priori pas relié à
 la cyclogénèse. D'un point de vue pratique, si les deux prédicteurs peuvent être interchangés dans le TCS, en remplaçant également $b_T$ par une valeur
 $b_{\mathrm{PI}}$ appropriée, comme par exemple dans \textcite{camargo_testing_2014,camargo_tropical_2016}, étant donné que les deux variables sont largement
-corrélées \parencite{vecchi_effect_2007,swanson_nonlocality_2008}, la SST relative est cependant considérablement plus simple à calculer.
-\textcite{tippett_poisson_2011} montrent enfin que leur indice produit une description de l'activité cyclonique améliorée sur certains aspects par rapport au
-GPI. En particulier, le GPI a tendance à simuler une activité trop forte en dehors de la saison cyclonique active, et la différence entre les deux hémisphères
-n'est pas assez prononcée. Le TCS simule également mieux l'étendue méridionale de l'activité cyclonique par rapport au GPI ---~notamment grâce à l'usage de la
-vorticité bornée~--- ce dernier produit en effet une activité trop prononcée proche de l'équateur et dans les hautes latitudes.
+corrélées \parencite{vecchi_effect_2007,swanson_nonlocality_2008}, la SST relative est cependant considérablement plus simple à calculer. Précisons enfin que la
+méthodologie de sélection dite objective des prédicteurs dans \textcite{tippett_poisson_2011} ne permet pas d'identifier de manière autonome les prédicteurs
+produisant le meilleur indice. En effet, pour le TCS, il est considéré comme acquis que l'indice final se doit d'être une combinaison de prédicteurs thermiques
+et dynamiques, s'inscrivant dans la continuité des travaux de \textcite{gray_tropical_1975}. Dans ce contexte, le processus de sélection consiste à utiliser
+l'estimation de la vraisemblance log (\textit{log likelihood}), que la régression vise à maximiser, et ajustée par le nombre de prédicteurs pour compenser le
+biais positif introduit par l'ajout de variables additionnelles \parencite{akaike_information_1998}, pour ensuite déterminer duquel des deux prédicteurs
+thermiques entre la SST relative et le PI produit la meilleure régression. Ce processus est répété pour la vorticité absolue avec la vorticité absolue bornée,
+ainsi que pour l'humidité relative à \hPa{600} et l'humidité relative intégrée sur la colonne atmosphérique. La place du cisaillement vertical dans la
+régression n'est pas remise en cause \parencite{gray_global_1968}.
+%
+%\textcite{tippett_poisson_2011} montrent alors que leur indice produit une description de l'activité cyclonique améliorée sur certains aspects par rapport au
+%GPI. En particulier, le GPI a tendance à simuler une activité trop forte en dehors de la saison cyclonique active, et la différence entre les deux hémisphères
+%n'est pas assez prononcée. Le TCS simule également mieux l'étendue méridionale de l'activité cyclonique par rapport au GPI ---~notamment grâce à l'usage de la
+%vorticité bornée~--- ce dernier produit en effet une activité trop prononcée proche de l'équateur et dans les hautes latitudes.
 
 \textcite{wang_dynamic_2020} ont également défini un indice de cyclogénèse par un modèle statistique, cette fois ci par une régression log-log\footnote{Une
 régression de Poisson peut être vue comme une relation log-linéare, reliant linéairement le logarithme de l'espérance de la quantité $Y$ aux prédicteurs
 $\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathrm{E} (Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \mathbf{x}$, tandis que la
 régression utilisée par \textcite{wang_dynamic_2020} est de type $\log \mathrm{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$. Bien que
 les auteurs y réfèrent également sous l'appellation de log-linéaire, nous l'appelons ici log-log pour la distinguer de la régression pratiquée par
-\citeauthor{tippett_poisson_2011}.} ainsi qu'une méthodologie de sélection automatique des prédicteurs parmi \num{11} candidats, comparable à celle utilisée par
-\textcite{tippett_poisson_2011}, sur cinq réanalyse, à l'échelle globale et pour chaque hémisphère. \citeauthor{wang_dynamic_2020} montrent alors que les
-prédicteurs dynamiques sont systématiquement sélectionnés, amenant à la définition d'un indice purement dynamique, nommé DGPI (\textit{Dynamic}). En effet, dans
-\textcite{tippett_poisson_2011}, il est considéré comme acquis que l'indice final se doit d'être une combinaison de prédicteurs thermiques et dynamiques,
-s'inscrivant dans la continuité des travaux de \textcite{gray_tropical_1975}. Dans ce contexte, le processus de sélection consiste à utiliser l'estimation de la
-vraisemblance log (\textit{log likelihood}), que la régression vise à maximiser, et ajustée par le nombre de prédicteurs pour compenser le biais positif
-introduit par l'ajout de variables additionnelles \parencite{akaike_information_1998}, pour ensuite déterminer duquel des deux prédicteurs thermiques entre la
-SST relative et le PI produit la meilleure régression. Ce processus est répété pour la vorticité absolue avec la vorticité absolue bornée, ainsi que pour
-l'humidité relative à \hPa{600} et l'humidité relative intégrée sur la colonne atmosphérique. La place du cisaillement vertical dans la régression n'est pas
-remise en cause \parencite{gray_global_1968}. \textcite{wang_dynamic_2020} utilisent quant à eux une régression séquentielle évaluant l'apport de l'ajout de
-chaque variable parmi les \num{11}, attribuant à chacun d'entre eux un score dont la valeur dépend de l'ordre dans lequel ils sont sélectionnés, et ce jusqu'à
-ce que la significativité de l'apport des nouveaux prédicteurs, évaluée par f-test, ne puisse plus être vérifiée. C'est cette méthodologie qui a conduit à la
-définition de leur indice constitué des prédicteurs dynamiques suivants, avec des scores du plus élevé au plus faible : le cisaillement vertical entre \hPa{850}
-et \hPa{200} en \ms{}, la vitesse verticale du vent à \hPa{500} en \SI{}{\pascal\per\second}, la vorticité absolue à \hPa{850} en \SI{}{\per\second} et enfin le
-gradient méridional de la composante zonale du vent à \hPa{500} en \SI{}{\per\second}
-%
-\begin{equation*}
-    \tag*{DGPI}
-    \begin{split}
-        \mathrm{DGPI} = (\num{2,0} + & \num{0,1} \times V_{\mathrm{shear}})^{-1} \left( \num{5,5} - \frac{d u_{500}}{dy} \times 10^5 \right)^{2}\\
-                                     &(\num{5,0} - \num{20} \times \omega_{500})^3 (\num{5,5} + \lvert \zeta_{850} \times 10^5 \rvert )^2 e^{-12} - \num{1.0}
-    \end{split}
-\end{equation*}
-%
-Dans le DGPI, les constantes ajoutées aux prédicteurs servent de normalisation de façon à ce que l'amplitude de leurs variations soient comparables, une fois
-transformées en logarithmes,  Les auteurs précisent toutefois que la définition purement dynamique de l'indice ne signifie pas que les variables thermiques
-n'importent pas dans les processus physique sous-jacents de la cyclogénèse, mais suggèrent plutôt que l'influence de ces derniers est suffisamment bien
-représentée dans les variables dynamiques. Malgré les choix et les pondérations différentes entre l'indice de \textcite{wang_dynamic_2020} et le GPI, les
-performances évaluées sur le climat présent (\num{1980}~--~\num{2017}) sont comparables entre les deux indices. En particulier, \textcite{wang_dynamic_2020}
-soulignent que la corrélation de la variabilité interannuelle du DGPI avec les observations est améliorée dans le bassin WPac et dans l'hémisphère sud, mais
-dégradée dans le bassin EPac.
+\citeauthor{tippett_poisson_2011}.} ainsi qu'une méthodologie de sélection automatique des prédicteurs parmi \num{11} candidats, qui se distingue de celle
+employée par \citeauthor{tippett_poisson_2011} en cela qu'aucune hypothèse n'est faite sur la constitution de l'indice. \citeauthor{wang_dynamic_2020} utilisent
+en effet une régression séquentielle évaluant l'apport de l'ajout de chaque variable parmi les \num{11}, attribuant à chacun d'entre eux un score dont la valeur
+dépend de l'ordre dans lequel ils sont sélectionnés, et ce jusqu'à ce que la significativité de l'apport des nouveaux prédicteurs ne puisse plus être vérifiée.
+Cette méthodologie appliquée à cinq réanalyses, pour l'échelle globale ainsi que pour chaque hémisphère, aboutit systématiquement à un indice exprimé purement
+par des prédicteurs dynamiques. Spécifiquement, les prédicteurs sélectionnées sont le cisaillement vertical, la vitesse verticale du vent à \hPa{500}, la
+vorticité absolue à \hPa{850} et enfin le gradient méridional de la composante zonale du vent à \hPa{500} ---~listés ici par score de sélection décroissant.
+
+%%
+%\begin{equation*}
+%    \tag*{DGPI}
+%    \begin{split}
+%        \mathrm{DGPI} = (\num{2,0} + & \num{0,1} \times V_{\mathrm{shear}})^{-1} \left( \num{5,5} - \frac{d u_{500}}{dy} \times 10^5 \right)^{2}\\
+%                                     &(\num{5,0} - \num{20} \times \omega_{500})^3 (\num{5,5} + \lvert \zeta_{850} \times 10^5 \rvert )^2 e^{-12} - \num{1.0}
+%    \end{split}
+%\end{equation*}
+%%
+%Dans le DGPI, les constantes ajoutées aux prédicteurs servent de normalisation de façon à ce que l'amplitude de leurs variations soient comparables, une fois
+%transformées en logarithmes,  Les auteurs précisent toutefois que la définition purement dynamique de l'indice ne signifie pas que les variables thermiques
+%n'importent pas dans les processus physique sous-jacents de la cyclogénèse, mais suggèrent plutôt que l'influence de ces derniers est suffisamment bien
+%représentée dans les variables dynamiques. Malgré les choix et les pondérations différentes entre l'indice de \textcite{wang_dynamic_2020} et le GPI, les
+%performances évaluées sur le climat présent (\num{1980}~--~\num{2017}) sont comparables entre les deux indices. En particulier, \textcite{wang_dynamic_2020}
+%soulignent que la corrélation de la variabilité interannuelle du DGPI avec les observations est améliorée dans le bassin WPac et dans l'hémisphère sud, mais
+%dégradée dans le bassin EPac.
+
+\subsection{Incertitudes et limitations}
+
+En accord avec la grande diversité des formulations et choix de prédicteurs définissant les divers indices de cyclogénèses présentés dans la
+\cref{sec:tour_horizon_indices}, leurs propriétés sont également variables. La \cref{fig:tcs_cygp_gpi_zonal} présente la distribution méridionale de l'activité
+pour les trois indices explicités dans la \cref{sec:tour_horizon_indices} et évalués sur les moyennes mensuelles ERA5 entre \num{1981} et \num{2019}, comparée à
+celle d'IBTrACS sur la même période. Ici, les indices sont calibrés de la même manière que dans \textcite{menkes_comparison_2012} ---~qui comparent ces trois
+indices (ainsi que le YGP) sur quatre réanalyses atmosphériques antérieures à ERA5~--- à savoir en les normalisant de telle sorte à ce que le nombre de TC moyen
+par an simulé soit égal à la moyenne anuelle de systèmes observés dans IBTrACS entre \ang{30}S et \ang{30}N sur la période considérée, soit 83. Comme indiqué
+par \textcite{menkes_comparison_2012}, les trois indices tendent à sur-évaluer l'activité cyclonique à proximité de l'équateur.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{tcs_cygp_gpi_ibt_zonal_sum_1981_2019.png}
+    \caption{Somme zonale de la moyenne annuelle du TCS, CYGP et du GPI calculés sur les champs mensuels ERA5 interpolés sur une grille
+    régulière de 1° de résolution horizonale, entre 1981 et 2019. Le tracé en tirets indique la somme zonale du décompte annuel moyen des premières observations
+    des systèmes IBTrACS renseignés comme tempêtes tropicales ou subtropicales sur la même période et sur la même grille régulière.}
+    \label{fig:tcs_cygp_gpi_zonal}
+\end{figure}
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
