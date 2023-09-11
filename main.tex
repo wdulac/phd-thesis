@@ -31,6 +31,9 @@
 
 \usepackage{pdfpages} % Pour importer mon article
 
+\usepackage{makecell}
+\usepackage{booktabs}
+
 %%%%%% Biblatex settings
 
 \usepackage[backend=biber, style=authoryear-comp, autocite=inline, maxbibnames=20, minbibnames=20, maxcitenames=2, backref=true, backrefstyle=three, date=year, isbn=false, giveninits=true, uniquelist=false, uniquename=init, natbib=false, sortcites=false]{biblatex} %uniquename=full
@@ -59,6 +62,8 @@
 \usepackage[french]{babel}
 \usepackage[style=french]{csquotes}
 
+\def\frenchtablename{Tableau}
+
 \usepackage[]{fontspec}
 \setmainfont{Tex Gyre Termes}
 \usepackage{amsmath,amsfonts,amssymb,bm}
@@ -82,6 +87,7 @@
 \newcommand{\ms}[1]{\SI{#1}{\metre\per\second}}
 \newcommand{\kmh}[1]{\SI{#1}{\kilo\metre\per\hour}}
 \newcommand{\prct}[1]{\SI{#1}{\percent}}
+\renewcommand{\ang}[1]{\SI{#1}{\textdegree}} % Surcharge la commande \ang existante pour avoir un espace entre la valeur et le symbole °
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
