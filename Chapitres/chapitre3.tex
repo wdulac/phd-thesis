@@ -165,7 +165,7 @@ vorticité absolue à \hPa{850} et enfin le gradient méridional de la composant
 %soulignent que la corrélation de la variabilité interannuelle du DGPI avec les observations est améliorée dans le bassin WPac et dans l'hémisphère sud, mais
 %dégradée dans le bassin EPac.
 
-\subsection{Propriétés des indices et limitations}
+\subsection{Propriétés des indices de cyclogénèses}
 
 Résultat de la diversité des formulations et du choix des prédicteurs définissant les divers indices de cyclogénèses présenté dans la
 \cref{sec:tour_horizon_indices}, la capacité de chacun d'entre eux à simuler l'activité cyclonique moyenne est également variable. Dans cette section sont
@@ -173,7 +173,18 @@ comparés les caractéristiques des trois indices définis précédemment, à sa
 mensuelles ERA5 entre \num{1981} et \num{2019}, interpolées sur une grille régulière de \ang{1} de résolution horizontale. Ils sont ensuite calibrés de façon à
 ce que le nombre de TC moyen par année (calendaire) simulé sur la période soit égal à la fréquence annuelle moyenne observée dans IBTrACS, soit ici \num{84.7}
 TC par an. Pour IBTrACS, on qualifie de cyclogénèses les premières observations des systèmes référencés qui sont renseignés, à un moment de leur cycle de vie,
-comme tempête tropicale ou subtropicale.
+comme tempête tropicale ou subtropicale. Rappelons que les indices de cyclogénèses s'expriment en TC par unité de surface et par unité de temps, si bien qu'il
+est nécessaire d'intégrer spatialement l'indice pour obtenir une quantité homogène à une fréquence. Numériquement, cela implique de calculer la double somme en
+longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude. Reprenant l'équation donnée dans la \cref{sec:intro_tracking}
+du \cref{chap:chapitre_1}, on a alors :
+%
+\begin{align*}
+    N_{\mathrm{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
+                    &= \sum_{i} \sum_{j} \cos \phi_j \, \rho (j, i) 
+\end{align*}
+%
+Où l'indice $\rho(i,j)$, défini sur le domaine géographique $D$ représente la valeur de l'indice au point de grille $(j,i)$, caractérisé par sa latitude
+$\phi_j$ et sa longitude $\lambda_i$.
 
 \subsubsection*{Distribution méridionale}
 
@@ -226,7 +237,7 @@ climatologie observée.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{tcs_cygp_gpi_ibt_clim_mensuel.png}
-    \caption{Climatologie mensuelle de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
+    \caption{Cycle mensuel de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
     ERA5 entre 1981 et 2019. Le tracé en tirets noirs indique la climatologie mensuelle observée d'après IBTrACS sur la même période.}
     \label{fig:tcs_cygp_gpi_clim_mensuel}
 \end{figure}
@@ -307,8 +318,14 @@ et enfin du CYGP à \num{0.62}, tandis que le GPI dans le NAtl atteint la plus h
 honorables d'environ \num{0.7} chacun. Le CYGP se distingue aussi dans le SPac avec une corrélation relativement faible de \num{0.57}, mais meilleure que les
 deux autres indices puisque celles-ci valent \num{0.39} et \num{0.35} pour le GPI et le TCS, respectivement. À plus grande échelle, la variabilité interannuelle
 des indices dans l'hémisphère nord est plus proche que dans le sud, avec dans le premier cas, entre \num{0.27} pour le CYGP et \num{0.43} pour le GPI, tandis
-que dans l'hémisphère sud les trois indices indiquent une corrélation quasi-nulle. À l'échelle globale, seul le GPI indique une très maigre corrélation
-de \num{0.17}, les deux autres indices ne présentant une fois de plus aucun lien avec les observations.
+que dans l'hémisphère sud les trois indices indiquent une corrélation quasi-nulle. À l'échelle globale, seul le GPI indique une très maigre corrélation de
+\num{0.17}, les deux autres indices ne présentant une fois de plus aucun lien avec les observations. Séparer le bassin SInd en deux sous-bassins s'avère
+bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le bassin Sud Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de
+longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre \ang{90} et \ang{135}E. La limite méridionale demeure inchangée,
+entre \ang{0} et \ang{60}S. Ce découpage est plus proche du découpage pratiqué pour la surveillance opérationnelle, comme expliqué dans la
+\cref{sec:bassins_saisons} du \cref{chap:chapitre_1}. Dans ce contexte, le TCS présente une corrélation de \num{0.21} et \num{0.22} pour le SIndW et le SIndE
+respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par conséquent, et pour la suite des travaux présentés dans ce
+document, nous distinguerons toujours les régions SIndW et SIndE.
 
 \begin{figure}[tb]
     \centering
@@ -317,19 +334,44 @@ de \num{0.17}, les deux autres indices ne présentant une fois de plus aucun lie
     \label{fig:tcs_cygp_gpi_variabilite}
 \end{figure}
 
-Séparer le bassin SInd en deux sous-bassins s'avère bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le bassin Sud
-Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre \ang{90} et
-\ang{135}E. La limite méridionale demeure inchangée, entre \ang{0} et \ang{60}S. Ce découpage est plus proche du découpage pratiqué pour la surveillance
-opérationnelle, comme expliqué dans la \cref{sec:bassins_saisons} du \cref{chap:chapitre_1}. Dans ce contexte, le TCS présente une corrélation de \num{0.21} et
-\num{0.22} pour le SIndW et le SIndE respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par conséquent, et pour la
-suite des travaux présentés dans ce document, nous distinguerons toujours les régions SIndW et SIndE. Enfin, il est important de préciser qu'une bonne
-corrélation ne présage en rien de la capacité d'un indice à simuler une amplitude réaliste de sa variabilité interannuelle. La
-\cref{fig:tcs_cygp_gpi_variabilite} présente les séries temporelles de variabilité interannuelles entre les saisons cycloniques \num{1981} et \num{2019} dont
-sont issues les corrélations du \cref{tab:tcs_cygp_gpi}. Dans le bassin NAtl, où la corrélation interannuelle est supérieure à \num{0.7} pour les indices,
-l'amplitude de la variabilité inférée est moindre par rapport aux observations. Cela est particulièrement vrai pour le GPI, présentant un écart-type de
-\num{1.4} TC contre \num{4.8} TC dans IBTrACS. Le TCS présente une amplitude plus forte que le GPI, mais cette dernière reste toutefois faible, avec un
-écart-type de \num{2.3}, soit une dispersion plus de deux fois petite que la dispersion observée. Certains sursauts observés sont cependant capturés par les
-trois indices. C'est notamment le cas de l'année \num{1995} et \num{2005}.
+Enfin, il est important de préciser qu'une bonne corrélation ne présage en rien de la capacité d'un indice à simuler une amplitude réaliste de sa variabilité
+interannuelle. La \cref{fig:tcs_cygp_gpi_variabilite} présente les séries temporelles de variabilité interannuelles entre les saisons cycloniques \num{1981} et
+\num{2019} dont sont issues les corrélations du \cref{tab:tcs_cygp_gpi}. Dans le bassin NAtl, où la corrélation interannuelle est supérieure à \num{0.7} pour
+les indices, l'amplitude de la variabilité inférée est moindre par rapport aux observations. Cela est particulièrement vrai pour le GPI, présentant un
+écart-type de \num{1.4} TC contre \num{4.8} TC dans IBTrACS. Le TCS présente une amplitude plus forte que le GPI, mais cette dernière reste toutefois faible,
+avec un écart-type de \num{2.3}, soit une dispersion plus de deux fois petite que la dispersion observée. Certains sursauts observés sont cependant capturés par
+les trois indices. C'est notamment le cas de l'année \num{1995} et \num{2005}. Dans le Sud Pacifique et Sud Est Indien, le constat est similaire, avec une forte
+sous-estimation de l'amplitude à l'exception de certains pics comme pour la saison \num{1998} dans le SPac. Le sursaut d'activité simulé par le CYGP est par
+ailleurs anormalement élevé, par rapport aux observations ainsi qu'aux deux autres indices, dépassant \num{32} TC. Cette valeur n'est dépassée qu'en \num{1983}
+avec près de \num{34} TC, le GPI et le TCS étant quant à eux en accord sur une valeur de \num{23} TC et \num{22.2} respectivement. Si ces pics notés dans les
+trois indices correspondent à un maximum local dans les observations également, la saison ne se démarque toutefois pas des autres saisons. En revanche, le
+bassin EPac présente un accord remarquable entre la variabilité simulée et la variabilité observée, avec pour seules exceptions l'année \num{1992}, pic majeur
+dans IBTrACS avec \num{31} systèmes, là où les trois indices indiquent entre \num{18.5} TC pour le TCS et \num{16.3} TC pour le GPI. La variabilité inférée par
+les indices est, de manière générale, nettement moins proche d'IBTrACS avant l'année \num{1993}, puisque le seul désaccord au delà de cette année \num{2000}.
+Notons en effet que la corrélation interannuelle pour le bassin EPac pris à partir de \num{1993} est augmentée d'au moins \num{0.1} par rapport aux valeurs
+reinseignées dans le \cref{tab:tcs_cygp_gpi}, atteignant \num{0.81} pour le TCS. Dans l'EPac, SInd (ouest et est), les trois indices présentent des variabilités
+extrêmement semblables, mis à part les différences dans la fréquence moyenne dans le SIndW. Les différences sont plus marquées dans le WPac, en particulier
+entre le GPI et les deux autres. Le CYGP apparait parfois en opposition du signal indiqué par le TCS et le GPI comme par exemple pour les années \num{1988} et
+\num{2007}.
+
+\subsection{Limitations des indices de cyclogénèses}
+
+Les indices de cyclogénèses couramment utilisés dans la littérature et présentés ici présentent une grande capacité à simuler la répartition spatiale et
+temporelle de l'activité cyclonique moyenne. Spatialement, les indices présentent un accord important dans l'hémisphère sud, aussi bien entre eux qu'avec les
+observations. Dans l'hémisphère nord, la répartition méridionale est plus contrastée et tous les indices présentent un biais équatorial plus ou moins
+conséquent. Le TCS se distingue comme le plus apte à simuler cette distribution, ainsi que la répartition de la fréquence annuelle globale entre les deux
+hémisphères. De plus, le TCS et le GPI sont tous deux capables de simuler un cycle annuel réaliste dans les 6 bassins océaniques majeurs, tandis que le CYGP
+montre des faiblesses dans le NInd et dans le NAtl, où l'activité est fortement sous-estimée, ainsi que dans une mesure bien moindre dans le WPac où avec un
+retard d'un mois. Le TCS présente la qualité de discriminer plus finement la saison active de la saison creuse, résultant en une activité cyclonique hors saison
+réduite par rapport aux deux autres indices. La fréquence annuelle à l'échelle régionale, ou plus exactement sa proximité avec la fréquence observée, est
+variable selon les bassins, mais les trois indices apparaissent comme capables de simuler le bon ordre de grandeur pour chacun des bassins (à l'exception NInd,
+probablement en raison du manque de fiabilité des observations dans cette région). Le TCS se démarque toutefois comme produisant la fréquence annuelle la plus
+réaliste dans 5 des 8 échelles spatiales considérées.
+
+À l'échelle interannuelle, les performances des trois indices apparaissent comme nettement moins bonnes. À l'exception de certains bassins, tels que le EPac et
+le NAtl, la corrélation interannuelle demeure très faible, voire inexistante. De plus, les indices peinent souvent à simuler une amplitude réaliste de cette
+variabilité. Ces caractéristiques ne concernent pas seulement la réanalyse ERA5 et sont connues de longue date
+\parencite{watterson_seasonal_1995,camargo_tropical_2007,tippett_poisson_2011,menkes_comparison_2012,cavicchia_tropical_2023a}. 
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
