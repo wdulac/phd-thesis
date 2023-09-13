@@ -169,16 +169,17 @@ vorticité absolue à \hPa{850} et enfin le gradient méridional de la composant
 
 Résultat de la diversité des formulations et du choix des prédicteurs définissant les divers indices de cyclogénèses présenté dans la
 \cref{sec:tour_horizon_indices}, la capacité de chacun d'entre eux à simuler l'activité cyclonique moyenne est également variable. Dans cette section sont
-comparés les caractéristiques des trois indices définis précédemment, à savoir le TCS, le CYGP et le GPI.
+comparés les caractéristiques des trois indices définis précédemment, à savoir le TCS, le CYGP et le GPI. Les trois indices sont calculés sur les moyennes
+mensuelles ERA5 entre \num{1981} et \num{2019}, interpolées sur une grille régulière de \ang{1} de résolution horizontale. Ils sont ensuite calibrés de façon à
+ce que le nombre de TC moyen par année (calendaire) simulé sur la période soit égal à la fréquence annuelle moyenne observée dans IBTrACS, soit ici \num{84.7}
+TC par an. Pour IBTrACS, on qualifie de cyclogénèses les premières observations des systèmes référencés qui sont renseignés, à un moment de leur cycle de vie,
+comme tempête tropicale ou subtropicale.
 
 \subsubsection*{Distribution méridionale}
 
 La \cref{fig:tcs_cygp_gpi_zonal} présente la distribution méridionale de l'activité pour les trois indices explicités dans la \cref{sec:tour_horizon_indices} et
-évalués sur les moyennes mensuelles ERA5 entre \num{1981} et \num{2019}, comparée à celle d'IBTrACS sur la même période. Ici, les indices sont calibrés de la
-même manière que dans \textcite{menkes_comparison_2012} ---~qui comparent ces trois indices (ainsi que le YGP) sur quatre réanalyses atmosphériques antérieures
-à ERA5~--- à savoir en les normalisant de telle sorte à ce que le nombre de TC moyen par an simulé soit égal à la moyenne annuelle de systèmes observés dans
-IBTrACS entre \ang{30}S et \ang{30}N sur la période considérée, soit 83 TC par an.
-
+évalués sur les moyennes mensuelles ERA5 entre \num{1981} et \num{2019}, comparée à celle d'IBTrACS sur la même période. 
+%
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\textwidth]{tcs_cygp_gpi_ibt_zonal_sum_1981_2019.png}
@@ -187,29 +188,31 @@ IBTrACS entre \ang{30}S et \ang{30}N sur la période considérée, soit 83 TC pa
     IBTrACS renseignés comme tempêtes tropicales ou subtropicales sur la même période et sur la même grille spatiale.}
     \label{fig:tcs_cygp_gpi_zonal}
 \end{figure}
+%
+Comme indiqué par \textcite{menkes_comparison_2012}, qui évaluent ces trois mêmes indices (ainsi que le YGP) sur quatre réanalyses antérieures à ERA5, les trois
+indices tendent à surévaluer l'activité cyclonique à proximité de l'équateur, aussi bien dans l'hémisphère nord que dans le sud. Sur ERA5, seul le CYGP atteint
+quasiment 0 à l'équateur (\num{0.05} TC par an à exactement 0° par interpolation quadratique, les points de grille les plus proches étant \ang{0.5}S et
+\ang{0.5}N), tandis que le TCS et le GPI y simulent respectivement \num{0.3} et \num{0.4} TC par an. Dans l'hémisphère sud, les trois indices ainsi que les
+observations sont en bon accord pour ce qui concerne l'amplitude de l'activité méridionale moyenne ainsi que sa position. Le maximum des observations est
+atteint à la latitude \ang{11.5}S avec \num{3.13} TC par an. Le TCS, CYGP et le GPI quant à eux ont une latitude du maximum de respectivement \ang{12.5}S,
+\ang{10.5}S et \ang{10.5}S. Les trois indices atteignent donc leur maximum aux latitudes directement voisines du maximum d'IBTrACS, de part et d'autre de
+celle-ci, l'espacement étant de \ang{1}. Le CYGP simule le pic le plus fort et au plus proche des observations avec \num{2.9} TC par an à la latitude du
+maximum, suivi dans l'ordre du TCS (\num{2.7} TC par an) et enfin du GPI (\num{2.5} TC par an). Notons toutefois que, lorsqu'intégré entre \ang{60}S et
+l'équateur, le TCS produit l'activité la plus proche des observations, avec \num{26.8} TC par an contre \num{26.1} TC par an dans IBTrACS (voir aussi
+\cref{tab:tcs_cygp_gpi}). Les deux autres indices surestiment également l'activité totale de cet hémisphère avec \num{31.9} TC par an pour le CYGP et \num{30.7}
+TC par an pour le GPI. En effet, si les trois indices surévaluent l'activité à proximité de l'équateur, le CYGP et le GPI la surestiment également dans les
+latitudes plus basses, là où le TCS suit fidèlement IBTrACS. Dans l'hémisphère sud, la cohérence entre les trois indices et les observations est améliorée par
+rapport aux résultats obtenus par \textcite{menkes_comparison_2012}, notamment sur ERA-40, distante d'ERA5 de deux générations.
 
-Comme indiqué par \textcite{menkes_comparison_2012}, les trois indices tendent à surévaluer l'activité cyclonique à proximité de l'équateur, aussi bien dans
-l'hémisphère nord que dans le sud. Sur ERA5, seul le CYGP atteint quasiment 0 à l'équateur (\num{0.05} TC par an à exactement 0° par interpolation quadratique,
-les points de grille les plus proches étant \ang{0.5}S et \ang{0.5}N), tandis que le TCS et le GPI y simulent respectivement \num{0.31} et \num{0.38} TC par an.
-Dans l'hémisphère sud, les trois indices ainsi que les observations sont en bon accord pour ce qui concerne l'amplitude de l'activité méridionale moyenne ainsi
-que sa position. Le maximum des observations est atteint à la latitude \ang{11.5}S avec \num{3.13} TC par an. Le TCS, CYGP et le GPI quant à eux ont une
-latitude du maximum de respectivement \ang{12.5}S, \ang{10.5}S et \ang{10.5}S. Les trois indices atteignent donc leur maximum aux latitudes directement voisines
-du maximum d'IBTrACS, de part et d'autre de celle-ci, l'espacement étant de \ang{1}. Le CYGP simule le pic le plus fort et au plus proche des observations avec
-\num{2.82} TC par an à la latitude du maximum, suivi dans l'ordre du TCS (\num{2.65} TC par an) et enfin du GPI (\num{2.47} TC par an). Notons toutefois que,
-lorsqu'intégré entre \ang{60}S et l'équateur, le TCS produit l'activité la plus proche des observations, avec \num{26.3} TC par an contre \num{26.1} TC par an
-dans IBTrACS (voir aussi \cref{tab:tcs_cygp_gpi}). Les deux autres indices surestiment également l'activité totale de cet hémisphère avec \num{31.2} TC par an
-pour le CYGP et \num{30} TC par an pour le GPI. En effet, si les trois indices surévaluent l'activité à proximité de l'équateur, le CYGP et le GPI la
-surestiment également dans les latitudes plus basses, là où le TCS suit fidèlement IBTrACS. Dans l'hémisphère sud, la cohérence entre les trois indices et les
-observations est améliorée par rapport aux résultats obtenus par \textcite{menkes_comparison_2012}, notamment sur ERA-40, distante d'ERA5 de deux générations.\\
 Dans l'hémisphère nord, les performances des trois indices sont nettement plus contrastées. Ni l'amplitude, ni la position du pic d'activité, ni l'étendue
 méridionale des trois indices ne correspondent aux observations. Ils présentent tous un biais équatorial plus ou moins prononcé, avec une différence de \ang{4}
 pour le GPI et de \ang{2} pour le TCS et le CYGP dans la latitude du maximum. Bien que le CYGP et le TCS partagent la même latitude du maximum, le biais
 équatorial du CYGP est distinctement plus prononcé que pour le TCS, ce dernier présentant la meilleure ressemblance avec IBTrACS. Comme pour l'hémisphère sud,
-le TCS présente là aussi la meilleure activité totale intégrée entre \ang{0} et \ang{60}N avec un surplus de seulement \num{0.4} TC par an. Le GPI arrive en
-seconde position avec un déficit de \num{3.4} TC par an tandis que le CYGP présente un déficit conséquent de \num{4.5} TC par an. Le CYGP se distingue également
-par un regain d'activité entre \ang{35}N et \ang{40}N. Ainsi, sur ERA5, les trois indices surestiment l'activité cyclonique annuelle moyenne dans l'hémisphère
-sud, tandis que seul le TCS la surestime également lègrement dans l'hémisphère nord ---~les deux autres la sous-évaluant de manière plus importante. Le TCS
-présente l'activité intégrée la plus proche, ainsi que la meilleure distribution méridionale.
+le TCS présente là aussi la meilleure activité totale intégrée entre \ang{0} et \ang{60}N avec un déficit de \num{0.7} TC par an. Le GPI arrive en seconde
+position avec un déficit de \num{4.5} TC par an tandis que le CYGP présente un déficit plus conséquent de \num{5.7} TC par an. Le CYGP se distingue également
+par un regain d'activité entre \ang{35}N et \ang{40}N, évalué à \num{1.3} TC par an sur cette bande. Ainsi, sur ERA5, les trois indices surestiment l'activité
+cyclonique annuelle moyenne dans l'hémisphère sud, et la sous-estiment dans le nord. Le TCS présente toutefois l'activité intégrée la plus proche, ainsi que la
+meilleure distribution méridionale.
 
 \subsubsection*{Climatologie mensuelle}
 
@@ -274,11 +277,12 @@ plus proche, avec une différence inférieure à \num{0.01}. Le GPI arrive en se
         & WPac & EPac & NAtl & SInd & SPac & NInd & NH & SH & Global\\
         \midrule
         \multicolumn{10}{r}{\textbf{Fréquence (TC par an)}}\\
-        IBTrACS & \num{26} & \num{17.7} & \num{12.7} & \num{15.9} & \num{10.2} & \num{2} & \num{56.3} & \num{26.1} & \num{84.7}\\
+        IBTrACS & \num{26} & \num{17.7} & \num{12.7} & \num{15.9} & \num{10.2} & \num{2} & \num{58.5} & \num{26.1} & \num{84.7}\\
         \midrule
-        TCS & \num{29.1} & \textbf{\num{14.3}} & \num{9.3} & \num{11.7} & \textbf{\num{13.9}} & \textbf{\num{3.9}} & \textbf{\num{56.7}} & \textbf{\num{26.3}} & \num{83}\\
-        CYGP & \textbf{\num{26.4}} & \num{14} & \num{7.1} & \textbf{\num{14.9}} & \num{15.9} & \num{4} & \num{51.8} & \num{31.2} & \num{83}\\
-        GPI & \num{24.2} & \num{13.8} & \textbf{\num{10.5}} & \num{13.3} & \num{15.7} & \num{4.3} & \num{52.9} & \num{30} & \num{83}\\
+        TCS & \num{29.7} & \textbf{\num{14.6}} & \num{9.4} & \num{11.9} & \textbf{\num{14.2}} & \textbf{\num{4}} & \textbf{\num{57.8}} & \textbf{\num{26.9}} &
+        \num{84.7}\\
+        CYGP & \textbf{\num{26.9}} & \num{14.3} & \num{7.3} & \textbf{\num{15.2}} & \num{16.2} & \num{4.2} & \num{52.8} & \num{31.9} & \num{84.7}\\
+        GPI & \num{29.7} & \num{14} & \textbf{\num{10.7}} & \num{13.5} & \num{16} & \num{4.4} & \num{54} & \num{30.7} & \num{84.7}\\
         \midrule
         \multicolumn{10}{r}{\textbf{Corrélation interannuelle avec IBTrACS}}\\
         TCS & \num{0.03} & \textbf{\num{0.7}} & \num{0.71} & \num{-0.13} & \num{0.35} & --- & \num{0.31} & \num{-0.07} & $<$ \num{0.01} \\
@@ -306,19 +310,26 @@ des indices dans l'hémisphère nord est plus proche que dans le sud, avec dans 
 que dans l'hémisphère sud les trois indices indiquent une corrélation quasi-nulle. À l'échelle globale, seul le GPI indique une très maigre corrélation
 de \num{0.17}, les deux autres indices ne présentant une fois de plus aucun lien avec les observations.
 
-Séparer le bassin SInd en deux sous-bassins s'avère bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le bassin Sud
-Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre \ang{90} et
-\ang{135}E. La limite méridionale demeure inchangée, entre \ang{0} et \ang{60}S. Dans ce contexte, le TCS présente une corrélation de \num{0.21} et \num{0.22}
-pour le SIndW et le SIndE respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par conséquent, et pour la suite des
-travaux présentés dans ce document, nous distinguerons toujours les régions SIndW et SIndE. Enfin, il est important de préciser qu'une bonne
-corrélation ne présage en rien de la capacité d'un indice à simuler une amplitude réaliste de sa variabilité interannuelle.
-
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{tcs_cygp_gpi_interannual.png}
     \caption{Variabilité interannuelle entre 1981 et 2019 inférée pour le TCS, le CYGP et le GPI, comparé à IBTrACS.}
     \label{fig:tcs_cygp_gpi_variabilite}
 \end{figure}
+
+Séparer le bassin SInd en deux sous-bassins s'avère bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le bassin Sud
+Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre \ang{90} et
+\ang{135}E. La limite méridionale demeure inchangée, entre \ang{0} et \ang{60}S. Ce découpage est plus proche du découpage pratiqué pour la surveillance
+opérationnelle, comme expliqué dans la \cref{sec:bassins_saisons} du \cref{chap:chapitre_1}. Dans ce contexte, le TCS présente une corrélation de \num{0.21} et
+\num{0.22} pour le SIndW et le SIndE respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par conséquent, et pour la
+suite des travaux présentés dans ce document, nous distinguerons toujours les régions SIndW et SIndE. Enfin, il est important de préciser qu'une bonne
+corrélation ne présage en rien de la capacité d'un indice à simuler une amplitude réaliste de sa variabilité interannuelle. La
+\cref{fig:tcs_cygp_gpi_variabilite} présente les séries temporelles de variabilité interannuelles entre les saisons cycloniques \num{1981} et \num{2019} dont
+sont issues les corrélations du \cref{tab:tcs_cygp_gpi}. Dans le bassin NAtl, où la corrélation interannuelle est supérieure à \num{0.7} pour les indices,
+l'amplitude de la variabilité inférée est moindre par rapport aux observations. Cela est particulièrement vrai pour le GPI, présentant un écart-type de
+\num{1.4} TC contre \num{4.8} TC dans IBTrACS. Le TCS présente une amplitude plus forte que le GPI, mais cette dernière reste toutefois faible, avec un
+écart-type de \num{2.3}, soit une dispersion plus de deux fois petite que la dispersion observée. Certains sursauts observés sont cependant capturés par les
+trois indices. C'est notamment le cas de l'année \num{1995} et \num{2005}.
 
 %--------------------------------------
 \section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
