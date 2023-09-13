@@ -79,7 +79,8 @@ dans la \cref{sec:papier_data_methods}. Spécifiquement, le traqueur du CNRM est
 la dernière en date du CEPMMT et est la première réanalyse mondiale à atteindre une résolution horizontale de \km{31}, ici interpolée sur une grille à
 \ang{0.25}. Elle assimile des données issues de plus d'une vingtaine de satellites d'observations météorologiques, totalisant \num{54} instruments. Aux données
 satellitaires s'ajoutent les observations \textit{in-situ} composées de stations au sol, bouées instrumentées, navires marins, radiosondages, radars et avions
-de reconnaissance. De par sa résolution inédite et la grande diversité des sources observations qui y sont assimilées, ERA5 constitue donc le choix idéal pour
+de reconnaissance. De par sa résolution inédite et la grande diversité     'mathtext.fontset': 'dejavuserif',
+des sources observations qui y sont assimilées, ERA5 constitue donc le choix idéal pour
 évaluer la capacité du traqueur à détecter les HTV. Dans la \cref{sec:eval_tracker_ERA5}, les performances du traqueur du CNRM ainsi que sa sensibilité à ses
 divers seuils de détection sont évaluées sur ERA5, en termes de probabilité de détection (\textit{Probability of Detection}, POD) et de taux de fausses alarmes
 (\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à représenter les TC est également évaluée, via une analyse de leurs caractéristiques en termes
@@ -180,7 +181,7 @@ latitude du maximum de gradient méridional de hauteur géopotentielle à \hPa{2
 
 \subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
 
-Les courants jet stratosphériques, causés par le gradient de température entre les pôles et l'équateur, apportent du cisaillement qui affaiblit les cyclones
+Les courants jet troposphériques, causés par le gradient de température entre les pôles et l'équateur, apportent du cisaillement qui affaiblit les cyclones
 tropicaux jusqu'à leur faire perdre leurs caractéristiques tropicales et peuvent ensuite transitionner vers l'état de cyclone extratropical. Ces courants sont
 liés au gradient de géopotentiel par géostrophisme si bien que la hauteur géopotentielle à \hPa{200}, $Z_{200}$, s'effondre dans les moyennes
 latitudes. Cela laisse alors apparaître la perspective d'utilisation de la limite en latitude formée par le maximum de $\partial Z_{200} / \partial \phi$,
@@ -229,7 +230,7 @@ pourcentage de plus qu'avec le $V_U^T$. Ses performances à l'échelle des bassi
 est particulièrement efficace dans le bassin WPac, où le taux de faux positifs est réduit à \prct{10} (respectivement \prct{14} dans
 \cite{dulac_assessing_2023}). Dans le bassin EPac, il est à peu près aussi efficace que le $V_U^T$ avec \prct{21} (respectivement \prct{20}). Dans le NAtl et
 SInd, le filtre du gradient de géopotentiel produit un FAR de respectivement \prct{37} et \prct{39} (contre respectivement \prct{20} et \prct{21} pour le
-$V_U^T$), soit un taux de faux positifs a presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
+$V_U^T$), soit un taux de faux positifs presque doublé. C'est toutefois dans le SPac que le filtre considéré dans cette section est le moins efficace, avec un
 FAR de \prct{71}, c'est à dire du même ordre que le POD dans ce bassin. Ces performances variables, insuffisantes dans le cas du SPac, s'expliquent par le fait
 que le champ de $\partial Z_{200} / \partial \phi$ n'est pas suffisamment lisse en latitude, si bien que la latitude du gradient oscille entre le jet polaire
 ---~situé aux alentours de \ang{60}~--- et le jet subtropical, autour de \ang{30}. Si cet effet n'est pas visible sur les
@@ -341,8 +342,8 @@ durant la saison chaude, qui correspond pourtant à la plus forte activité cycl
 l'interpolation spatiale et temporelle de la limite équatoriale du STJ permet de garantir le bon fonctionnement du filtre dans ces cas là, la solution n'est
 toutefois pas pleinement satisfaisante.
 
-Pour ces raisons, et en dépit du coût supplémentaire en probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \textcite{hart_cyclone_2003} a été
-préféré dans \textcite{dulac_assessing_2023} pour l'implémentation dans le traqueur du CNRM. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
+Pour ces raisons, et en dépit du coût supplémentaire sur la probabilité de détection, le filtre basé sur le paramètre $V_U^T$ de \textcite{hart_cyclone_2003} a été
+préféré au filtre du STJ dans \textcite{dulac_assessing_2023}. Outre le fait qu'il ne dépend que des champs instantanés de l'atmosphère, il
 présente aussi l'avantage d'être défini en toute circonstance et de s'appliquer à tous les systèmes détectés. Cela signifie qu'il peut filtrer des systèmes peu
 intenses dans les tropiques également. C'est notamment pour cette raison que \textcite{bourdin_intercomparison_2022} indiquent que le filtre $V_U^T$ est plus
 efficace que le STJ lorsqu'appliqué au traqueur OWZ \parencite{tory_importance_2013}, les systèmes de moyennes latitudes n'étant pas majoritaires dans la
@@ -398,8 +399,8 @@ pas pertinentes (voire pas souhaitables), dans le cas précis des trajectoires d
 les deux séries (pas applicable à des trajectoires appariées entre réanalyse et observations), ainsi qu'une robustesse à des changements isolés de direction.
 Ces propriétés rendent par ailleurs leur algorithme très coûteux en temps de calcul. Néanmoins, l'aspect novateur derrière les travaux de
 \textcite{nakamura_shapebased_2013} est repris ici, à savoir la décomposition de la trajectoire en série de vecteurs, détaillée ci-après. Dans cette section, trois
-métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \textcite{dulac_assessing_2023} et composé des trajectoires
-détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS. En particulier, cette analyse vise à déterminer si le réglage des
+métriques de similarité des trajectoires sont définies et comparées sur le jeu de données issu de \textcite{dulac_assessing_2023} (composé des trajectoires
+détectées dans la réanalyse ERA5 qui sont appariées à des trajectoires historiques IBTrACS). En particulier, cette analyse vise à déterminer si le réglage des
 seuils de détection du traqueur de TC du CNRM dans le but de maximiser le POD ne risque pas de produire des trajectoires peu ressemblantes, du fait de la
 formulation de la condition nécessaire et suffisante à l'appariement de deux trajectoires.
 
@@ -409,7 +410,7 @@ formulation de la condition nécessaire et suffisante à l'appariement de deux t
     \centering
     \includegraphics[width=\textwidth]{schema_vec_sequence.png}
     \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a),
-    inspirée de \textcite{nakamura_shapebased_2013}. Représentation visuelle de $C \cap Q$ et de $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
+    inspirée de \textcite{nakamura_shapebased_2013}. Représentation visuelle de l'intersection entre deux trajectoires $C$ et $Q$, notée $C \cap Q$ et de la différence symétrique $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
     \label{fig:schema_trajectoires}
 \end{figure}
 
@@ -460,10 +461,10 @@ lorsqu'ils sont parallèles mais de sens opposés, tandis que la similarité est
 
 Avant de définir les trois métriques, il est important de distinguer trois membres dans un couple de trajectoires appariées. En effet, la similarité angulaire
 $S_\theta$ est définie ci-dessus pour deux vecteurs correspondants aux déplacements entre deux positions successives, pour deux trajectoires prises au même
-temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé l'entièreté de la trajectoire ou
+temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé la totalité de la trajectoire ou
 au contraire si la trajectoire détectée est plus longue que celle observée, aussi bien en amont qu'en aval. On appelle donc l'intersection des trajectoires $C
 \cap Q$ le sous-ensemble des pas de temps dans lequel les deux trajectoires co-existent et où chaque paire de points correspond au même temps $t$.
-Réciproquement, l'union $C \cup Q$ contient l'entièreté des échéances constituant le couple de trajectoires. Enfin, la différence symétrique des deux
+Réciproquement, l'union $C \cup Q$ contient la totalité des échéances constituant le couple de trajectoires. Enfin, la différence symétrique des deux
 trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois. La \cref{fig:schema_trajectoires} encadré (b)
 illustre schématiquement ces notions.
 
@@ -484,7 +485,7 @@ Comme variante, on définit aussi le MAS sur l'union des deux trajectoires en re
     \bar{S_\theta}^\cup = \frac{1}{N_\cup} \sum_{i=1}^{N_\cap} S_\theta (\mathbf{c}_i, \mathbf{q}_i) \tag*{MAS$^\cup$}
 \end{equation}
 %
-Ainsi, cette seconde métrique de similarité considère l'entièreté des deux trajectoires constituant le couple ERA5 / IBTrACS dans le calcul de la similarité, au
+Ainsi, cette seconde métrique de similarité considère la totalité des deux trajectoires constituant le couple ERA5 / IBTrACS dans le calcul de la similarité, au
 risque d'être très punitif si $N_\ominus \neq 0$.
 
 On définit enfin une troisième métrique de similarité, pensée comme un hybride entre MAS$^\cap$ et MAS$^\cup$ dans sa prise en compte des échéances sur $C
@@ -532,7 +533,7 @@ le sens de cette mesure. C'est en réponse à ce constat que le MAS$^\cup$ a ét
 \cref{fig:MAS_Ndiff}, encadré (b). Pour cette seconde métrique, les scores de similarité sont d'une part diminués, et également largement dispersés. Le
 MAS$^\cup$ présente en effet une moyenne et une médiane toutes deux égales à \prct{42} ---~soit près de deux fois moins qu'avec MAS$^\cap$~--- tandis que l'écart-type
 est de \prct{18}. En outre, cette métrique présente une relation très marquée avec $N_\ominus$, quasi-linéaire jusqu'à environ $N_\ominus = 20$, au delà de quoi
-la similarité apparaît comme légèrement moins sensible à la différence de taille. La différence entre MAS$^\cap$ et MAS$^\cup$ est particulièrement prononcée,
+la similarité apparaît comme légèrement moins sensible à la différence de taille, car proche de 0. La différence entre MAS$^\cap$ et MAS$^\cup$ est particulièrement prononcée,
 et l'impact de $N_\ominus$ sur MAS$^\cup$ est très fort, à tel point que le problème inverse à celui de MAS$^\cap$ peut se poser, à savoir que la
 comptabilisation des échéances sur $C \ominus Q$ avec le même poids que celles sur $C \cap Q$ peut parfois s'avérer très punitive, comme illustré sur les trois
 exemples de la \cref{fig:exemple_MAS}. Le wMAS (\cref{fig:MAS_Ndiff} encadré c) vise donc à compenser cette propriété du MAS$^\cup$ via ses coefficients de
