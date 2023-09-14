@@ -137,8 +137,8 @@ régression n'est pas remise en cause \parencite{gray_global_1968}.
 
 \textcite{wang_dynamic_2020} ont également défini un indice de cyclogénèse par un modèle statistique, cette fois ci par une régression log-log\footnote{Une
 régression de Poisson peut être vue comme une relation log-linéare, reliant linéairement le logarithme de l'espérance de la quantité $Y$ aux prédicteurs
-$\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathrm{E} (Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \mathbf{x}$, tandis que la
-régression utilisée par \textcite{wang_dynamic_2020} est de type $\log \mathrm{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$. Bien que
+$\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathbb{E} (Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \mathbf{x}$, tandis que la
+régression utilisée par \textcite{wang_dynamic_2020} est de type $\log \mathbb{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$. Bien que
 les auteurs y réfèrent également sous l'appellation de log-linéaire, nous l'appelons ici log-log pour la distinguer de la régression pratiquée par
 \citeauthor{tippett_poisson_2011}.} ainsi qu'une méthodologie de sélection automatique des prédicteurs parmi \num{11} candidats, qui se distingue de celle
 employée par \citeauthor{tippett_poisson_2011} en cela qu'aucune hypothèse n'est faite sur la constitution de l'indice. \citeauthor{wang_dynamic_2020} utilisent
@@ -175,15 +175,15 @@ ce que le nombre de TC moyen par année (calendaire) simulé sur la période soi
 TC par an. Pour IBTrACS, on qualifie de cyclogénèses les premières observations des systèmes référencés qui sont renseignés, à un moment de leur cycle de vie,
 comme tempête tropicale ou subtropicale. Rappelons que les indices de cyclogénèses s'expriment en TC par unité de surface et par unité de temps, si bien qu'il
 est nécessaire d'intégrer spatialement l'indice pour obtenir une quantité homogène à une fréquence. Numériquement, l'intégrale se calcule comme la somme double
-en longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude. Reprenant l'équation donnée dans la
-\cref{sec:intro_tracking} du \cref{chap:chapitre_1}, on a alors :
+en longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude pour prendre en considération la variation de la surface
+d'une maille avec la latitude. Reprenant l'équation donnée dans la \cref{sec:intro_tracking} du \cref{chap:chapitre_1}, on a alors :
 %
 \begin{align*}
     N_{\mathrm{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
                     &= \sum_{i} \sum_{j} \cos \phi_j \, \rho (j, i) 
 \end{align*}
 %
-Où $\rho(i,j)$, défini sur le domaine géographique $D$ représente la valeur de l'indice $\rho$ au point de grille $(j,i)$, caractérisé par sa latitude $\phi_j$
+Où $\rho(j,i)$, défini sur le domaine géographique $D$ représente la valeur de l'indice $\rho$ au point de grille $(j,i)$, caractérisé par sa latitude $\phi_j$
 et sa longitude $\lambda_i$.
 
 \subsubsection*{Distribution méridionale}
@@ -406,6 +406,40 @@ régressions faites à l'échelle du bassin améliore ou non la variabilité int
 \section{Climatologie saisonnière spatiale et temporelle}
 
 \section{Apport de la résolution spatiale et temporelle}
+
+On s'intéresse dans cette section à l'impact de la résolution spatiale et temporelle sur la variabilité interannuelle d'un indice de cyclogénèse défini comme
+une régression de Poisson, selon \textcite{tippett_poisson_2011}. Pour cela, nous réalisons la régression entre l'activité observée, issue de la base de données
+IBTrACS, et les prédicteurs de grande échelle constituant le TCS à deux résolutions différentes, puis en utilisant des moyennes mensuelles et la climatologie
+mensuelle de ces champs, issus de la réanalyse ERA5. Cela revient donc à recalculer les coefficients $b$ issus de \textcite{tippett_poisson_2011} et donnés
+dans la \cref{sec:modelisation_stat}, qui furent déterminés avec la climatologie mensuelle des prédicteurs des réanalyses NCEP
+\parencite{kalnay_ncep_1996,kistler_ncep_2001} et ERA-40 \parencite{uppala_era40_2005} sur une grille de \ang{2.5} de résolution horizontale.
+
+\subsection{Méthodologie de la régression de Poisson}
+
+Une régression de poisson est un modèle statistique dans lequel la variable de réponse représente des données de comptage, ou de fréquence, sous la forme
+d'entiers positifs (ou nuls). Une variable aléatoire $Y$ possède une distribution de Poisson de paramètre $\lambda$ si la probabilité pour la variable $Y$
+de prendre la valeur $k$ vaut :
+%
+\begin{equation*}
+    P(Y = k \mid \lambda) = \frac{e^{-\lambda} \, \lambda^k}{k!} \quad (k=0, 1, 2, \ldots) 
+\end{equation*}
+%
+Où $\lambda$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
+à la matrice $\mathbf{x}$ de taille $(m \times n^\prime)$, où $n^\prime = n + 1$, composée de $n$ prédicteurs ainsi que d'une constante unitaire, chacun
+avec $m$ observations, par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la façon suivante :
+%
+\begin{align*}
+    \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+    \Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
+\end{align*}
+%
+Dans le cas qui nous intéresse, la variable $Y$ représente un nombre de TC par unité de temps et par unité de surface, si bien qu'on introduit le terme
+d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$, où $\phi$ représente la latitude. On a alors :
+%
+\begin{align*}
+    \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+    \Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log \cos \phi
+\end{align*}
 
 \subsection{Résolution spatiale}
 
