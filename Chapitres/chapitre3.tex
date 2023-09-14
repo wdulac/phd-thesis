@@ -12,7 +12,7 @@
 \minitoc
 \newpage
 %--------------------------------------
-\section{Les indices de cyclogénèses}\label{sec:intro_indices}
+\section{Les indices de cyclogénèses}\label{sec:intro_chap3}
 
 \subsection{Tour d'horizon des différents indices}\label{sec:tour_horizon_indices}
 
@@ -26,7 +26,7 @@ climatique, à cause de son seuil fixe de SST. Une certaine variété d'indices 
 coefficients de pondération associés à chaque prédicteur sont déterminés de manière partiellement empirique, de ceux issus de régression statistiques et qui
 sont donc plus facilement reproductibles. Les plus communément utilisés d'entre eux sont présentés ci-après.
 
-\subsubsection{Relations empiriques}
+\subsubsection{Relations empiriques}\label{sec:relations_empiriques}
 
 Déjà mentionné dans la \cref{sec:intro_indices}, le premier indice de cyclogénèse qui a suivi le SGP de \citeauthor{gray_tropical_1975} est le CYGP
 (\textit{Convective Yearly Genesis Parameter}) \parencite{royer_gcm_1998}. Ce dernier a été conçu pour résoudre le problème de la dépendance du SGP à un seuil
@@ -87,7 +87,7 @@ interannuelle dans le bassin WPac et dans l'hémisphère sud est améliorée par
 qui entoure le choix des prédicteurs dans la formulation des indices de cyclogénèses, choix notamment compliqué par le fait que les paramètres de grande
 échelles qui influent sur la fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
 
-\subsubsection{Modélisation statistique de l'activité cyclonique}
+\subsubsection{Modélisation statistique de l'activité cyclonique}\label{sec:modelisation_stat}
 
 Les indices introduits dans la section précédente sont généralement déterminés de manière semi empirique à l'aide de considérations théoriques et en s'appuyant
 sur des régressions multiples entre différents champs modèles, provenant souvent de réanalyses, et l'activité observée. Les relations ainsi établies sont
@@ -174,17 +174,17 @@ mensuelles ERA5 entre \num{1981} et \num{2019}, interpolées sur une grille rég
 ce que le nombre de TC moyen par année (calendaire) simulé sur la période soit égal à la fréquence annuelle moyenne observée dans IBTrACS, soit ici \num{84.7}
 TC par an. Pour IBTrACS, on qualifie de cyclogénèses les premières observations des systèmes référencés qui sont renseignés, à un moment de leur cycle de vie,
 comme tempête tropicale ou subtropicale. Rappelons que les indices de cyclogénèses s'expriment en TC par unité de surface et par unité de temps, si bien qu'il
-est nécessaire d'intégrer spatialement l'indice pour obtenir une quantité homogène à une fréquence. Numériquement, cela implique de calculer la double somme en
-longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude. Reprenant l'équation donnée dans la \cref{sec:intro_tracking}
-du \cref{chap:chapitre_1}, on a alors :
+est nécessaire d'intégrer spatialement l'indice pour obtenir une quantité homogène à une fréquence. Numériquement, l'intégrale se calcule comme la somme double
+en longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude. Reprenant l'équation donnée dans la
+\cref{sec:intro_tracking} du \cref{chap:chapitre_1}, on a alors :
 %
 \begin{align*}
     N_{\mathrm{TC}} &= \iint\limits_{D} \underbrace{\rho(\phi, \lambda)}_{\text{Indice}} \; d\phi \, d\lambda \\
                     &= \sum_{i} \sum_{j} \cos \phi_j \, \rho (j, i) 
 \end{align*}
 %
-Où l'indice $\rho(i,j)$, défini sur le domaine géographique $D$ représente la valeur de l'indice au point de grille $(j,i)$, caractérisé par sa latitude
-$\phi_j$ et sa longitude $\lambda_i$.
+Où $\rho(i,j)$, défini sur le domaine géographique $D$ représente la valeur de l'indice $\rho$ au point de grille $(j,i)$, caractérisé par sa latitude $\phi_j$
+et sa longitude $\lambda_i$.
 
 \subsubsection*{Distribution méridionale}
 
@@ -371,20 +371,57 @@ réaliste dans 5 des 8 échelles spatiales considérées.
 À l'échelle interannuelle, les performances des trois indices apparaissent comme nettement moins bonnes. À l'exception de certains bassins, tels que le EPac et
 le NAtl, la corrélation interannuelle demeure très faible, voire inexistante. De plus, les indices peinent souvent à simuler une amplitude réaliste de cette
 variabilité. Ces caractéristiques ne concernent pas seulement la réanalyse ERA5 et sont connues de longue date
-\parencite{watterson_seasonal_1995,camargo_tropical_2007,tippett_poisson_2011,menkes_comparison_2012,cavicchia_tropical_2023a}.
+\parencite{watterson_seasonal_1995,camargo_tropical_2007,tippett_poisson_2011,menkes_comparison_2012,wang_dynamic_2020,cavicchia_tropical_2023a}. La question de
+la variabilité interannuelle inférée par les indices apparaît ici comme un élément central pour espérer comprendre la divergence dans les projections futures
+entre les approches directes et indirectes. En effet, outre la question de la stationnarité des relations entre l'environnement de grande échelle et l'activité
+cyclonique en climat futur, on peut aussi se demander quelle confiance accorder dans la tendance du changement de l'activité cyclonique inférée par un indice de
+cyclogénèse dans des scénários climatiques donnés pour la fin du siècle si ce dernier n'est pas en mesure de renseigner le bon changement d'une année sur
+l'autre dans le climat présent, climat sur lequel l'indice est pourtant construit.
 
-\noindent[Rédaction en cours]
+Les indices de cyclogénèses étant principalement conçus pour reproduire la climatologie observée de l'activité cyclonique, il n'est pas nécessairement
+surprenant que ces derniers peinent à simuler la variabilité de l'activité d'une année sur l'autre. De plus, rappelons que ces indices sont établis sur la base
+des climatologies saisonnières (à l'origine) ou mensuelle des champs de grande échelle, et à des résolutions grossières, de \ang{2.8} pour le CYGP
+\parencite{royer_gcm_1998} et \ang{2.5} pour le TCS \parencite{tippett_poisson_2011}, l'applicabilité des indices aux modèles de climat à basses résolutions
+étant en effet un de leurs atouts principaux (voir \cref{sec:intro_indices}). Or, si dans l'ensemble la capacité des indices à simuler l'activité cyclonique
+moyenne est plutôt robuste aux changements de résolution, surtout comparé à la mesure par détection et suivi objectif \parencite[][voir aussi
+\cref{fig:GP_resolution}]{camargo_tropical_2007}, il est tout de même à noter que les indices appliqués à des résolutions plus fines produisent plus de TC. Ce
+point est également corroboré par \textcite{mcdonald_tropical_2005} qui notèrent une meilleure cohérence entre l'activité mesurée par approche directe et celle
+inférée par les indices (spécifiquement avec le YGP et CYGP) pour les résolutions les plus hautes, amenant alors \textcite{camargo_tropical_2007} à spéculer
+qu'une résolution accrue pourrait s'accompagner d'une réponse plus réaliste dans les variations interannuelles du nombre de TC inféré par les indices. Si les
+indices analysés ici sont calculés sur des champs ERA5 à \ang{1} de résolution ne présentent pas d'amélioration sensible en ce sens, on peut touefois se
+demander si un indice construit sur des champs à plus haute résolution (et pas seulement appliqué dessus) améliorerait la variabilité interannuelle inférée par
+les indices. De la même manière, les travaux de \textcite{bruyere_investigating_2012,waters_largescale_2012} suggèrent qu'il pourrait être pertinent pour la
+représentation de la variabilité interannuelle des indices de chercher à les définir à des échelles régionales, ainsi que d'y intégrer de la variabilité à plus
+haute fréquence, plutôt que de les construire sur la climatologie mensuelle globale.
+
+Ce sont ces questions qui sont explorées dans la suite de ce chapitre. Dans un premier temps, nous nous interrogerons sur l'apport de l'utilisation de champs
+mensuels plutôt que saisonniers dans la capacité de l'indice à simuler la climatologie saisonnière spatiale et temporelle, à l'aide des trois indices définis
+dans la \cref{sec:tour_horizon_indices}, à savoir le TCS, le CYGP et le GPI. Ensuite, nous étudierons l'apport de la résolution spatiale et temporelle,
+séparémment, pour la représentation de la variaiblité interannuelle. Spécifiquement, nous utiliserons des indices établis selon le mode opératoire de
+\textcite{tippett_poisson_2011}, à savoir par régression de Poisson, de façon à déterminer comment ces facteurs influent sur les coefficients de la régression,
+et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une aggrégation spatiale de
+régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
 
 %--------------------------------------
-\section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
+\section{Climatologie saisonnière spatiale et temporelle}
 
-\subsection{Choix du pas d'agrégation temporelle : Mensuel versus saisonnier}
+\section{Apport de la résolution spatiale et temporelle}
 
-\subsection{Effet de la résolution spatiale et temporelle}\label{sec:resolution_spatiale_temporelle}
+\subsection{Résolution spatiale}
 
-\subsection{Activité observée versus modèle ARPEGE}
+\subsection{Résolution temporelle}
 
-\subsection{Scores de performances sur la variabilité inter-annuelle}
+\section{Indice de cyclogénèses régional}
+
+%\section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
+%
+%\subsection{Choix du pas d'agrégation temporelle : Mensuel versus saisonnier}
+%
+%\subsection{Effet de la résolution spatiale et temporelle}\label{sec:resolution_spatiale_temporelle}
+%
+%\subsection{Activité observée versus modèle ARPEGE}
+%
+%\subsection{Scores de performances sur la variabilité inter-annuelle}
 
 
 %--------------------------------------
