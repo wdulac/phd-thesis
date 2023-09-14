@@ -100,7 +100,7 @@ défini comme suit :
 %
 \begin{equation*}
     \tag*{TCS}
-    \mathrm{TCS} = \exp \Big( b + \underbrace{b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}}}_{\mathrm{Thermique}} + \underbrace{\vphantom{b_\eta}b_H H + b_T
+    \mathrm{TCS} = \exp \Big( b_0 + \underbrace{b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}}}_{\mathrm{Thermique}} + \underbrace{\vphantom{b_\eta}b_H H + b_T
     T}_{\mathrm{Dynamique}} + \log \cos \phi \Big)
 \end{equation*}
 %
@@ -109,7 +109,7 @@ vorticity}), $V_{\mathrm{shear}}$ le cisaillement vertical entre \hPa{850} et \h
 $T$ la SST relative définie comme l'écart de température à la SST moyennée entre \ang{20}S et \ang{20}N sur océan. Dans \textcite{tippett_poisson_2011}, cet
 indice est construit par une régression de Poisson entre la climatologie mensuelle des cyclogénèses IBTrACS, définies comme les premières observations des
 systèmes atteignant au moins le stade de tempête tropicale, et la climatologie mensuelle des prédicteurs calculée entre \num{1961} et \num{2000} par le biais de
-la réanalyse ERA-40 \parencite{uppala_era40_2005}. Les coefficients de la régression proposée par \citeauthor{tippett_poisson_2011} sont $b = \num{-5.80}$,
+la réanalyse ERA-40 \parencite{uppala_era40_2005}. Les coefficients de la régression proposée par \citeauthor{tippett_poisson_2011} sont $b_0 = \num{-5.80}$,
 $b_{V_{\mathrm{shear}}} = \num{-0.15}$, $b_H = \num{0.05}$ et $b_T = \num{0.56}$. La formulation du prédicteur de vorticité utilisé dans le TCS est différente
 des autres indices puisqu'elle utilise une borne supérieure au tourbillon absolu. \textcite{tippett_poisson_2011} justifient cette approche ainsi que le seuil
 de \SI{3.7e-5}{\per\second} en montrant que le nombre de cyclogénèses n'est plus influencé par la vorticité au delà de cette valeur. L'utilisation d'un
@@ -425,8 +425,9 @@ de prendre la valeur $k$ vaut :
 \end{equation*}
 %
 Où $\lambda$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
-à la matrice $\mathbf{x}$ de taille $(m \times n^\prime)$, où $n^\prime = n + 1$, composée de $n$ prédicteurs ainsi que d'une constante unitaire, chacun
-avec $m$ observations, par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la façon suivante :
+à la matrice $\mathbf{x}$ des prédicteurs, de taille $m \times n^\prime$, où $n^\prime = n + 1$ ---~composée de $n$ variables thermiques ou dynamique, ainsi que
+d'une constante unitaire, chacun avec $m$ réalisations~--- par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la
+façon suivante :
 %
 \begin{align*}
     \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
@@ -438,8 +439,21 @@ d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$
 %
 \begin{align*}
     \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    \Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log \cos \phi
+    \Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
 \end{align*}
+%
+Ce qui revient également à ajouter $\log (\cos \phi)$ comme prédicteur avec un coefficient de pondération fixé à 1.
+
+Pour définir un indice de cyclogénèses par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
+d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Les cyclogénèses sont comptabilisées
+sous la forme d'histogrammes sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces
+histogrammes spatiaux des cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même
+manière que les prédicteurs. Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur
+unidimensionnel de taille $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme
+\textquote{observation}, dans ce contexte, est à comprendre au sens statistique du terme, et ne présage en rien de si les cyclogénèses sont réellement des
+observations historiques ou bien issues d'un schéma de détection appliqué aux sorties d'un modèle de climat ou d'une réanalyse atmosphérique.} $Y$. Le procédé
+est répété pour chacun des $n$ variables de grande échelle qui sont ensuite concaténées, entre elles mais aussi avec le vecteur unitaire de même taille $m$,
+auquel est associé le coefficient $b_0$ dans la formulation du TCS, pour former la matrice $\mathbf{x}$.
 
 \subsection{Résolution spatiale}
 
