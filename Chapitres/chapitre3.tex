@@ -237,7 +237,7 @@ climatologie observée.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{tcs_cygp_gpi_ibt_clim_mensuel.png}
-    \caption{Cycle mensuel de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
+    \caption{Cycle annuel de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
     ERA5 entre 1981 et 2019. Le tracé en tirets noirs indique la climatologie mensuelle observée d'après IBTrACS sur la même période.}
     \label{fig:tcs_cygp_gpi_clim_mensuel}
 \end{figure}
@@ -264,7 +264,6 @@ d'autre part, par la capacité du TCS à capturer plus finement la saison active
 creuse l'écart du TCS par rapport aux deux autres au cœur de la saison active, tandis qu'il est permis de penser que cette propriété tend au contraire à
 compenser l'activité moindre dans le sud. Sans être exempt de tout défaut, le TCS réunit donc, dans l'ensemble, le plus de qualités désirables dans un indice de
 cyclogénèse pour simuler la climatologie mensuelle à l'échelle régionale.
-
 \subsection*{Fréquence annuelle et variabilité}
 
 La première partie du \cref{tab:tcs_cygp_gpi} présente la fréquence annuelle moyenne TC dans les six bassins géographiques ainsi que pour chaque hémisphère et à
@@ -414,46 +413,69 @@ mensuelle de ces champs, issus de la réanalyse ERA5. Cela revient donc à recal
 dans la \cref{sec:modelisation_stat}, qui furent déterminés avec la climatologie mensuelle des prédicteurs des réanalyses NCEP
 \parencite{kalnay_ncep_1996,kistler_ncep_2001} et ERA-40 \parencite{uppala_era40_2005} sur une grille de \ang{2.5} de résolution horizontale.
 
-\subsection{Méthodologie de la régression de Poisson}
+\subsection{Régression de Poisson}
 
 Une régression de poisson est un modèle statistique dans lequel la variable de réponse représente des données de comptage, ou de fréquence, sous la forme
-d'entiers positifs (ou nuls). Une variable aléatoire $Y$ possède une distribution de Poisson de paramètre $\lambda$ si la probabilité pour la variable $Y$
+d'entiers positifs (ou nuls). Une variable aléatoire $Y$ possède une distribution de Poisson de paramètre $\mu$ si la probabilité pour la variable $Y$
 de prendre la valeur $k$ vaut :
 %
 \begin{equation*}
-    P(Y = k \mid \lambda) = \frac{e^{-\lambda} \, \lambda^k}{k!} \quad (k=0, 1, 2, \ldots) 
+    P(Y = k) = \frac{e^{-\mu} \, \mu^k}{k!} \quad (k=0, 1, 2, \ldots) 
 \end{equation*}
 %
-Où $\lambda$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
+Où $\mu$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
 à la matrice $\mathbf{x}$ des prédicteurs, de taille $m \times n^\prime$, où $n^\prime = n + 1$ ---~composée de $n$ variables thermiques ou dynamique, ainsi que
 d'une constante unitaire, chacun avec $m$ réalisations~--- par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la
 façon suivante :
 %
-\begin{align*}
-    \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    \Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
-\end{align*}
+\begin{gather*}
+    \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+    %\Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
+    \Leftrightarrow \quad \mu = e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
+\end{gather*}
 %
 Dans le cas qui nous intéresse, la variable $Y$ représente un nombre de TC par unité de temps et par unité de surface, si bien qu'on introduit le terme
 d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$, où $\phi$ représente la latitude. On a alors :
 %
-\begin{align*}
-    \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    \Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
-\end{align*}
+\begin{equation}
+    \begin{gathered}\label{eq:poisson_reg}
+        \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+        %\Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
+        \Leftrightarrow \quad \log \mu = \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
+    \end{gathered}
+\end{equation}
+
 %
 Ce qui revient également à ajouter $\log (\cos \phi)$ comme prédicteur avec un coefficient de pondération fixé à 1.
 
 Pour définir un indice de cyclogénèses par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
-d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Les cyclogénèses sont comptabilisées
-sous la forme d'histogrammes sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces
-histogrammes spatiaux des cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même
-manière que les prédicteurs. Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur
-unidimensionnel de taille $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme
-\textquote{observation}, dans ce contexte, est à comprendre au sens statistique du terme, et ne présage en rien de si les cyclogénèses sont réellement des
-observations historiques ou bien issues d'un schéma de détection appliqué aux sorties d'un modèle de climat ou d'une réanalyse atmosphérique.} $Y$. Le procédé
-est répété pour chacun des $n$ variables de grande échelle qui sont ensuite concaténées, entre elles mais aussi avec le vecteur unitaire de même taille $m$,
-auquel est associé le coefficient $b_0$ dans la formulation du TCS, pour former la matrice $\mathbf{x}$.
+d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Dans tous les cas, on considère que
+les cyclogénèses sont données par les positions de la première position de chaque trajectoire. Les cyclogénèses sont comptabilisées sous la forme d'histogrammes
+sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces histogrammes spatiaux des
+cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même manière que les prédicteurs.
+Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur unidimensionnel de taille $m =
+N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme \textquote{observation}, dans ce
+contexte, est à comprendre au sens statistique du terme, et ne présage en rien de si les cyclogénèses sont réellement des observations historiques ou bien
+issues d'un schéma de détection appliqué aux sorties d'un modèle de climat ou d'une réanalyse atmosphérique.} $Y$. Le procédé est répété pour chacune des $n$
+variables de grande échelle qui sont ensuite concaténées entre elles ainsi qu'avec le vecteur unitaire de même taille pour former la matrice $\mathbf{x}$. C'est
+à ce vecteur unitaire qu'est associé le coefficient $b_0$ dans la formulation du TCS. L'ajustement de la relation \ref{eq:poisson_reg} sur les données $Y$,
+composées de $m$ observations $Y_i$, et sur $\mathbf{x}$, composée de $m$ réalisations $\mathbf{x}_i$ (c'est à dire les lignes de la matrice $\mathbf{x}$) fournies en entrée
+consiste alors à identifier les coefficients de pondération de $\mathbf{b} = (b_0, b_1, b_2, \, \ldots \, , b_n)$ qui maximisent la fonction de
+log-vraisemblance $\ell (\mathbf{b})$, donnée ci-dessous à titre de référence, et qui est définie comme la somme des logarithmes de la vraisemblance de chacune
+des observations.
+%
+\begin{equation*}
+    \begin{cases}
+        \ell(\mathbf{b}) = \sum_{i = 1}^{m} Y_i \log \mu_i - \mu_i - \log(Y_i !) \\
+        \log \mu_i = \mathbf{b}^{\mathrm{T}} \mathbf{x}_i + \log ( \cos \phi )
+    \end{cases}
+\end{equation*}
+
+Une régression de Poisson présuppose que la variable aléatoire qui est modélisée est régie par une loi de Poisson, et donc que son espérance soit égale à sa
+variance. Il arrive toutefois que cette hypothèse ne soit pas vérifiée. Pour s'en prémunir, on utilise ici la méthode d'estimation de la covariance de
+\textcite{mackinnon_heteroskedasticityconsistent_1985}, possédant la propriété d'être robuste à l'hétéroscédasticité. Seules les estimations de l'erreur
+standard des coefficients $b$ en sont affectées.
+
 
 \subsection{Résolution spatiale}
 
