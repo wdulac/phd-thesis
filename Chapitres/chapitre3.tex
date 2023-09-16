@@ -479,7 +479,10 @@ Une régression de Poisson présuppose que la variable aléatoire qui est modél
 variance. Il arrive toutefois que cette hypothèse ne soit pas vérifiée. Pour s'en prémunir, on utilise ici l'estimation de la covariance de
 \textcite{mackinnon_heteroskedasticityconsistent_1985}, possédant la propriété d'être robuste à l'hétéroscédasticité. L'usage de cette méthode se traduit par un
 intervalle de confiance des coefficients $b$ ajusté, mais n'affecte pas les valeurs des coefficients eux-mêmes. C'est donc une méthode analogue à celle dite
-\textquote{quasi-Poisson} utilisée par \textcite{tippett_poisson_2011}.
+\textquote{quasi-Poisson} utilisée par \textcite{tippett_poisson_2011}. Notons enfin que, comme le souligne \textcite{tippett_poisson_2011}, les coefficients de
+la régression s'interprètent comme des sensibilités. En particulier, un changement unitaire d'une des variables de grande échelle $x_j$, $j = (1, 2, \ldots,
+n)$ se traduit par la modification attendue de la fréquence de cyclogénèses d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 +
+b_j$, soit une modification attendue de $b_j$~\%.
 
 \subsubsection*{Construction des indices}
 
@@ -496,48 +499,59 @@ relation \ref{eq:poisson_reg} sur les champs mensuels ERA5 ou bien sur leurs val
 \ang{2.5}) utilise les moyennes climatologiques des champs de grande échelle ainsi que des cyclogénèses IBTrACS sur une grille de \ang{2.5}. D'un point de vue
 méthodologique, seules la réanalyse utilisée ainsi que la période temporelle considérée distingue les coefficients $b$ de C25 de ceux du TCS, ces derniers étant
 en effet également issus de valeurs climatologiques à cette même résolution. C25 joue alors pour ainsi dire le rôle de groupe témoin, car il est attendu que ses
-coefficients soient les plus proches possibles de ceux du TCS. Notons que pour cet indice, on a $m = \num{48} \times \num{144} \times \num{12}$, et donc une
-matrice $\mathbf{x}$ de taille $\num{82 944} \times \num{5}$. Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes climatologiques,
-mais avec une résolution de \ang{1.0} ($m = \num{518400}$). Le troisième, M25 est construit sur les moyennes mensuelles ($N_{\mathrm{temps}} = \num{480}$) à
-\ang{2.5}, et donc avec $m = \num{3317760}$. Enfin le dernier, M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à maintenant, à une
-régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande matrice $\mathbf{x}$, caractérisée par $m =
-\num{20736000}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le facteur limitant la résolution spatiale. C'est là une des
-raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression sur un nombre de réalisations $m$ plus grand
-nécessiterait des ressources de calcul supplémentaires.
+coefficients soient les plus proches possibles de ceux du TCS. Notons que pour cet indice, on a $m = \num{48} \times \num{144} \times \num{12}$. Toutefois,
+l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de grille masqués sont ignorés. La taille effective, $m_{\mathrm{eff}}$,
+vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes climatologiques, mais avec une
+résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles ($N_{\mathrm{temps}} = \num{480}$) à
+\ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à maintenant,
+à une régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande matrice $\mathbf{x}$, caractérisée par
+$m_{\mathrm{eff}} = \num{13115040}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le facteur limitant la résolution spatiale.
+C'est là une des raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression sur un nombre de réalisations
+$m_{\mathrm{eff}}$ plus grand nécessiterait des ressources de calcul supplémentaires.
 
-Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période.
-Cela signifie que les indices sont évalués sur les mêmes données ayant servi à ajuster la relation, ce qui est d'autant plus vrai pour M10. On ne se préoccupe
-pas de répartir l'ensemble des données entre un jeu d'apprentissage et un jeu d'évaluation dans la mesure où le surapprentissage ne constitue ici pas un risque,
-mais au contraire une propriété désirable.
+Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période,
+indépendant de la résolution spatiale et de l'agrégation temporelle utilisée pour calculer la régression. On ne se préoccupe pas de répartir l'ensemble des
+données entre un jeu d'apprentissage et un jeu d'évaluation dans la mesure où le surapprentissage ne constitue ici pas un risque, mais au contraire une
+propriété désirable.
 
 \subsection{Résultats}
 
 Le \cref{tab:fit_spatial_temporel} présente les coefficients $b$ des multiples régressions qui sont réalisées. Les coefficients du TCS sont rappelés et indiqués
 dans le tableau à titre de référence. Les coefficients sont donnés avec quatre décimales, car celles-ci ne varient pas lorsque les régressions sont répétées.
 Par ailleurs, les intervalles de confiance associés à chaque coefficient sont omis car tous les coefficients apparaissent comme statistiquement significatifs à
-\prct{95}, où sens où les pourcentiles \prct{2.5} et \prct{97.5} sont de même signe que la moyenne estimée.
+\prct{95}, où sens où, à ce niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
 
 \begin{table}[htpb]
     \centering
-    \caption{Estimation de la moyenne des coefficients des régressions de Poisson établies entre les quatre variables de grande échelle du TCS, issues d'ERA5,
-    et l'activité observée issue d'IBTrACS entre 1980 et 2019.}
+    \caption{Estimation des coefficients des régressions de Poisson établies entre les quatre variables de grande échelle du TCS, issues d'ERA5, et l'activité
+    observée issue d'IBTrACS entre 1980 et 2019. La colonne \textquote{Temporelle} correspond à la valeur $N_{\mathrm{temps}}$.}
     \label{tab:fit_spatial_temporel}
 
     \begin{tabular}{crrrrrrrr}
        \toprule\toprule 
        Indice & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Résolution}\\
        \midrule
-              & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & Spatiale     & Temporelle & $m$ \\
+              & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & Spatiale     & Temporelle & $m_{\mathrm{eff}}$ \\
        \midrule
-       C25    & \num{-11.1927} & \num{1.0538} & \num{-0.1051} & \num{0.0653}  & \num{0.4396} & \ang{2.5}  & 12  & \num{82944} \\
-       C10    & \num{-13.1570} & \num{1.0702} & \num{-0.1034} & \num{0.0655}  & \num{0.4584} & \ang{1.0}  & 12  & \num{518400} \\ 
-       M25    & \num{-13.0987} & \num{1.3757} & \num{-0.0976} & \num{0.0726}  & \num{0.3967} & \ang{2.5}  & 480 & \num{3317760} \\
-       M10    & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \ang{1.0}  & 480 & \num{20736000} \\
+       C25    & \num{-11.1927} & \num{1.0538} & \num{-0.1051} & \num{0.0653}  & \num{0.4396} & \ang{2.5}  & 12  & \num{52128} \\
+       C10    & \num{-13.1570} & \num{1.0702} & \num{-0.1034} & \num{0.0655}  & \num{0.4584} & \ang{1.0}  & 12  & \num{327876} \\ 
+       M25    & \num{-13.0987} & \num{1.3757} & \num{-0.0976} & \num{0.0726}  & \num{0.3967} & \ang{2.5}  & 480 & \num{2085120} \\
+       M10    & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \ang{1.0}  & 480 & \num{13115040} \\
        \midrule
        TCS    & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & \ang{2.5}  & 12  & --- \\
        \bottomrule
     \end{tabular}
 \end{table}
+
+Le premier constat concerne le terme d'ordonnée à l'origine $b_0$, largement différent du TCS pour les quatre régressions. Celui-ci est cependant difficile à
+interpréter dans le contexte de la modélisation de la fréquence d'occurrence de cyclogénèses. Il est supposé que ce terme soit lié à l'état moyen des
+prédicteurs, si bien que l'écart entre les régressions faites ici et le TCS pour le terme $b_0$ serait principalement la conséquence de l'utlisation d'une
+réanalyse différente, ainsi que d'une période temporelle différente. L'indice C25 présente les coefficients les plus proches du TCS, à l'exception du prédicteur
+de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est marginalement plus proche de celui du TCS que ne l'est celui de C25. Il est par ailleurs tout à fait
+possible que les différences entre les coefficients de C25 et celles du TCS soit également dues à la réanalyse utilisée pour établir les quatre relations. En
+tout état de cause, la proximité entre les paramètres de C25 et ceux du TCS, relativement aux trois autres régressions, valide la reproduction de l'indice de
+\textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, donne du crédit aux coefficients obtenus pour les trois autres
+régressions.
 
 \subsection{Résolution spatiale}
 
