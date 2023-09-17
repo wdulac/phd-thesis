@@ -480,9 +480,10 @@ variance. Il arrive toutefois que cette hypothèse ne soit pas vérifiée. Pour 
 \textcite{mackinnon_heteroskedasticityconsistent_1985}, possédant la propriété d'être robuste à l'hétéroscédasticité. L'usage de cette méthode se traduit par un
 intervalle de confiance des coefficients $b$ ajusté, mais n'affecte pas les valeurs des coefficients eux-mêmes. C'est donc une méthode analogue à celle dite
 \textquote{quasi-Poisson} utilisée par \textcite{tippett_poisson_2011}. Notons enfin que, comme le souligne \textcite{tippett_poisson_2011}, les coefficients de
-la régression s'interprètent comme des sensibilités. En particulier, un changement unitaire d'une des variables de grande échelle $x_j$, $j = (1, 2, \ldots,
-n)$ se traduit par la modification attendue de la fréquence de cyclogénèses d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 +
-b_j$, soit une modification attendue de $b_j$~\%.
+la régression s'interprètent comme des sensibilités. En particulier, un changement unitaire d'une des variables de grande échelle $x_j$, $j = (1, 2, \ldots, n)$
+se traduit par la modification attendue de la fréquence de cyclogénèses d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 + b_j$,
+soit une modification attendue de $(100 \cdot b_j)$~\%. Par exemple, le coefficient $b_H = \num{0.05}$ du TCS indique une réponse attendue de la fréquence de
+cyclogénèses d'approximativement $+$\prct{5} pour un changement de 1 unité de l'humidité relative à \hPa{600}.
 
 \subsubsection*{Construction des indices}
 
@@ -546,14 +547,44 @@ Par ailleurs, les intervalles de confiance associés à chaque coefficient sont 
 Le premier constat concerne le terme d'ordonnée à l'origine $b_0$, largement différent du TCS pour les quatre régressions. Celui-ci est cependant difficile à
 interpréter dans le contexte de la modélisation de la fréquence d'occurrence de cyclogénèses. Il est supposé que ce terme soit lié à l'état moyen des
 prédicteurs, si bien que l'écart entre les régressions faites ici et le TCS pour le terme $b_0$ serait principalement la conséquence de l'utlisation d'une
-réanalyse différente, ainsi que d'une période temporelle différente. L'indice C25 présente les coefficients les plus proches du TCS, à l'exception du prédicteur
-de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est marginalement plus proche de celui du TCS que ne l'est celui de C25. Il est par ailleurs tout à fait
-possible que les différences entre les coefficients de C25 et celles du TCS soit également dues à la réanalyse utilisée pour établir les quatre relations. En
-tout état de cause, la proximité entre les paramètres de C25 et ceux du TCS, relativement aux trois autres régressions, valide la reproduction de l'indice de
-\textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, donne du crédit aux coefficients obtenus pour les trois autres
-régressions.
+réanalyse différente, ainsi que d'une période temporelle différente. L'indice C25 présente les coefficients les plus proches du TCS, à l'exception, marginale,
+du prédicteur de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est très légèrement plus proche de celui du TCS que ne l'est celui de C25. Les coefficients
+du C25 montrent tout de même des écarts avec ceux du TCS, notamment pour les termes de cisaillement vertical et de SST relative. Spécifiquement,
+$b_{V_{\mathrm{shear}}}$ vaut environ \num{-0.10} pour C25 contre respectivement \num{-0.15} pour le TCS, tandis que $b_T$ est réduit de \num{0.56} pour le TCS
+à environ \num{0.44} pour C25. Cela signifique donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans
+le TCS, et d'autre part que la fréquence d'occurrence des cyclones tropicaux est moins sensible à la SST relative pour C25 que dans le TCS. Comme pour le terme
+d'ordonnée à l'origine, il est là aussi possible que ces différences proviennent de la réanalyse utilisée, mais on note toutefois une certaine sensibilité des
+coefficients de C25 à la période temporelle utilisée. La régression C25 faite sur la période \num{1980}~--~\num{2000} produit en effet des coefficients se
+rapprochant davantage de ceux du TCS, à savoir un $b_T$ réhaussé (\sim~\num{0.47}) et un $b_{V_{\mathrm{shear}}}$ diminué (\sim~\num{-0.11}), tandis que ceux
+obtenus sur la période \num{2000}~--~\num{2019} présentent au contraire une valeur $b_T$ plus faible (\sim~\num{0.42}), et un $b_{V_{\mathrm{shear}}}$ plus
+grand (\sim~\num{-0.09}). En tout état de cause, la proximité entre les paramètres de C25 et ceux du TCS, relativement aux trois autres régressions, valide la
+reproduction de l'indice de \textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, tend également à valider les coefficients
+obtenus pour C10, M25 et M10, moyennant l'effet sus-mentionné de la période considérée.
 
 \subsection{Résolution spatiale}
+
+L'effet de la résolution spatiale sur les régressions se mesure en comparant C25 avec C10, et M25 avec M10. On calcule donc C10 $-$ C25 et M10 $-$ M25 pour
+évaluer l'apport de la résolution spatiale sur la régression. La \cref{fig:impact_spatial} présente les moyennes saisonnières de la différence des indices.
+L'intégrale spatiale est renseignée en bas à droite de chaque panel. Ces valeurs, exprimées en TC par an à l'échelle globale pour chacune des quatre saisons,
+sont anecdotiques, puisque l'impact de la résolution sur cette fréquence varie entre \num{-0.21} TC par an pour la saison SON, et
+$+$\num{0.17} TC par an pour la saison JJA. Sommées sur les quatre saisons, la différence est nulle, par construction. La \cref{fig:impact_spatial} met
+toutefois en évidence un impact non négligeable de la résolution sur la répartition spatiale de l'activité saisonnière inférée par l'indice. Cet effet est
+quasi-identique pour l'indice climatologique et l'indice mensuel.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{impact_spatial.png}
+    \caption{Moyennes saisonnières (lignes) de la différence entre la régression faite à \ang{2.5} et celle à \ang{1.0}, pour l'indice réalisé sur les valeurs
+    climatologiques (première colonne), et celui sur les moyennes mensuelles (deuxième colonne).}
+    \label{fig:impact_spatial}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{impact_temps.png}
+    \caption{Comme pour la \cref{fig:impact_spatial}, mais pour l'effet de l'utilisation des champs mensuels plutôt que climatologiques sur les régressions.}
+    \label{fig:impact_temps}
+\end{figure}
 
 \subsection{Résolution temporelle}
 
