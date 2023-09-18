@@ -485,7 +485,7 @@ se traduit par la modification attendue de la fréquence de cyclogénèses d'un 
 soit une modification attendue de $(100 \cdot b_j)$~\%. Par exemple, le coefficient $b_H = \num{0.05}$ du TCS indique une réponse attendue de la fréquence de
 cyclogénèses d'approximativement $+$\prct{5} pour un changement de 1 unité de l'humidité relative à \hPa{600}.
 
-\subsubsection*{Construction des indices}
+\subsubsection*{Construction des indices}\label{sec:construction_indices}
 
 On s'intéresse ici à la construction d'indices composés des mêmes prédicteurs que le TCS, définis dans la \cref{sec:modelisation_stat}. Rappelons seulement
 brièvement que l'indice est composé de la vorticité absolue bornée $\eta = \min(\zeta, \num{3.7})$, du cisaillement vertical entre \hPa{850} et \hPa{200}
@@ -561,31 +561,57 @@ grand (\sim~\num{-0.09}). En tout état de cause, la proximité entre les param�
 reproduction de l'indice de \textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, tend également à valider les coefficients
 obtenus pour C10, M25 et M10, moyennant l'effet sus-mentionné de la période considérée.
 
-\subsection{Résolution spatiale}
+L'effet de la résolution sur les coefficients $b$, en comparant C25 avec C10, et M25 avec M10, apparait mince. Les coefficients présentent des changements
+faibles, de l'ordre de \num{10}$^{\num{-2}}$, ou inférieur. $b_{\eta}$ est augmenté d'environ \num{0.02} pour l'indice climatologique comme l'indice mensuel.
+L'ordre de grandeur du changement sur $b_{V_{\mathrm{shear}}}$ est d'environ \num{1e-3}. $b_H$ est stable pour l'indice climatologique, et présente une très
+faible baisse pour dans M10 par rapport à M25, d'environ \num{1e-3}, tandis que $b_T$ augmente d'environ \num{2e-2}. L'ajout de variabilité dans la régression,
+en utilisant les champs au pas de temps mensuels plutôt que les moyennes climatologiques, produit un effet plus conséquent sur les coefficients de la
+régression. Le changement apporté à $b_{V_{\mathrm{shear}}}$ est d'un ordre de grandeur plus grand que le changement dû au passage à la résolution plus fine,
+avec environ une augmentation de \num{10}$^{\num{-2}}$, pour l'indice à \ang{2.5} comme celui à \ang{1} de résolution. La sensibilité à l'humidité relative est
+légèrement revue à la hausse lorsque sur les indices M, de l'ordre de \num{5e-3}, là aussi, indépendamment de la résolution. $b_T$ est diminué de manière un peu
+plus importante, d'environ \num{4e-2}. L'impact le plus net se trouve cependant dans la vorticité. Celui-ci passe d'une moyenne de \num{1.062} entre C25 et C10,
+à une moyenne de \num{1.3863} pour M25 et M10, soit une différence de $+$\num{0.3243}, autrement dit une augmentation de \prct{30.5}.
 
-L'effet de la résolution spatiale sur les régressions se mesure en comparant C25 avec C10, et M25 avec M10. On calcule donc C10 $-$ C25 et M10 $-$ M25 pour
-évaluer l'apport de la résolution spatiale sur la régression. La \cref{fig:impact_spatial} présente les moyennes saisonnières de la différence des indices, et
-fait apparaître un effet conséquent de la résolution sur la répartition spatiale de l'activité saisonnière inférée par l'indice. L'effet de la résolution
-quasi-identique pour l'indice climatologique et l'indice mensuel. On note cependant de petites nuances le long des côtes du Mexique dans le bassin EPac, sur les
-saisons JJA et SON.
+\subsubsection{Répartition géographique}
+
+L'effet du passage de \ang{2.5} à \ang{1} pour les régressions climatologiques et mensuelles se détermine en comparant C25 avec C10, et M25 and M10. Les deux
+différences, $\mathrm{C25} - \mathrm{C10}$ et $\mathrm{M25} - \mathrm{M10}$ étant quasiment identiques, on décrit ici l'effet général du passage à une
+résolution plus fine pour un indice construit selon la méthologie de \textcite{tippett_poisson_2011} comme la moyenne des deux différences. Le même constat est
+fait pour l'emploi de champs mensuels dans la régression plutôt que des moyennes climatologiques, si bien que nous considérons la moyenne de $(\mathrm{M10} -
+\mathrm{C10})$ et de $(\mathrm{M25} - \mathrm{C25})$. La moyenne annuelle pour ces deux quantités sont présentées sur la \cref{fig:impact_spatial_temporel},
+avec l'encadré (a) pour l'effet du passage à une résolution plus fine, et l'encadré (b) pour l'emploi de champs mensuels.
 
 \begin{figure}[tb]
     \centering
-    \includegraphics[width=\textwidth]{impact_spatial.png}
-    \caption{Impact de la résolution spatiale sur un indice défini par régression de Poisson : Moyennes saisonnières (lignes) de la différence entre la
-    régression faite à \ang{2.5} et celle à \ang{1.0}, pour l'indice réalisé sur les valeurs climatologiques (première colonne), et celui sur les moyennes
-    mensuelles (deuxième colonne).}
-    \label{fig:impact_spatial}
+    \includegraphics[width=\textwidth]{yearmean_spatial_temporel.png}
+    \caption{Moyenne annuelle de (a) l'effet du passage de \ang{2.5} à \ang{1} de résolution, et (b) de l'effet de l'emploi de moyennes mensuelles plutôt que
+    climatologiques pour les régressions décrites dans la \cref{sec:construction_indices}. Ces cartes sont construites avec la moyenne de (C10 $-$ C25) et de
+    (M10 $-$ M25) pour (a), et avec la moyenne de (M10 $-$ C10) et de (M25 $-$ C25) pour (b). Les bassins géographiques usuels et leurs limites sont listés.}
+    \label{fig:impact_spatial_temporel}
 \end{figure}
 
-\begin{figure}[tb]
-    \centering
-    \includegraphics[width=\textwidth]{impact_temps.png}
-    \caption{Comme pour la \cref{fig:impact_spatial}, mais pour l'effet de l'utilisation des champs mensuels plutôt que climatologiques sur les régressions.}
-    \label{fig:impact_temps}
-\end{figure}
+Notons tout d'abord que si l'effet de la résolution spatiale accrue et celui de l'emploi des moyennes mensuelles partagent des similarités, l'effet des champs
+mensuels dans la régression est un ordre de grandeur plus grand que l'effet de la résolution spatiale. Dans les deux cas, l'apport d'information spatiale plus
+fine et de variabilité temporelle tend à décaler l'activité cyclonique plus loin de l'équateur, avec des spécificités selon les régions. Dans l'encadré (a),
+l'activité, pour le bassin NAtl, l'activité est accrue dans le golf du Mexique (\textit{Gulf of Mexico}, GoM), au détriment de la zone de développement
+principale (\textit{Main Development Region}, MDR, entre \ang{10}N et \ang{20}N et entre \ang{20}W et \ang{60}W.). Dans l'encadré (b) pour ce même bassin, le
+GoM ne présente pas de variation importante, et l'effet de l'ajout de variabilité temporelle sur la MDR est contrasté, avec une baisse du côté de l'équateur
+mais une augmentation la partie nord-est de la MDR. Dans les deux cas, l'intégrale sur le bassin est essentiellement \num{0}. Dans le EPac, l'effet de la
+résolution spatiale accrue est en opposition avec l'effet de la variabilité mensuelle, notamment le long des côtes du Mexique. Les intégrales sont de signe
+opposés, avec \num{-0.16} TC par an sur le panneau (a), et $+$\num{0.50} TC par an. On imagine alors que M10, combinant les deux effets, s'accompagne d'une très
+légère hausse de la fréquence annuelle moyenne dans ce bassin. Dans le bassin WPac, les contributions sont inversées. En effet, si les deux panneaux indiquent
+une hausse de l'acitivité autour de \ang{10}, en mer de Chine méridionale, et une diminution dans la région équatoriale, pour (a) l'augmentation l'emporte, avec
+$+$\num{0.28} TC par an, tandis que pour (b) la diminution équatoriale est plus importante, avec \num{-0.12} TC par an. Dans le NInd, l'augmentation de
+l'activité concerne principalement le golf du Bengale, la mer d'Arabie ne voyant elle que peu de changement, avec peut-être une très légère augmentation pour la
+panneau (a). Les intégrales se compensent avec respectivement $+$\num{0.04} et \num{0.04} TC par an pour (a) et (b). Dans le SIndW, l'augmentation est plus
+prononcée dans le canal du Mozambique, mais le panneau (b) laisse voir une augmentation au niveau de la bande de longitude à \ang{10}S, augmentation relative
+absente du panneau (a). Le SIndE montre dans le (a) une augmentation relative prononcée au niveau des côtes au nord-ouest de l'Australie. Dans le SPac, l'effet
+est comparable entre les deux panneaux, avec la même structure que partout ailleurs, c'est à dire un décalage de l'activité plus loin de la région équatoriale.
+Précisons que par construction, les intégrales des deux champs moyens à l'échelle globale sont nulles.
 
-\subsection{Résolution temporelle}
+\subsubsection{Variabilité interannuelle}
+
+Test
 
 \section{Indice de cyclogénèses régional}
 
