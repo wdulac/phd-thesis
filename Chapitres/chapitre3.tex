@@ -110,15 +110,15 @@ $T$ la SST relative définie comme l'écart de température à la SST moyennée 
 indice est construit par une régression de Poisson entre la climatologie mensuelle des cyclogénèses IBTrACS, définies comme les premières observations des
 systèmes atteignant au moins le stade de tempête tropicale, et la climatologie mensuelle des prédicteurs calculée entre \num{1961} et \num{2000} par le biais de
 la réanalyse ERA-40 \parencite{uppala_era40_2005}. Les coefficients de la régression proposée par \citeauthor{tippett_poisson_2011} sont $b_0 = \num{-5.80}$,
-$b_{V_{\mathrm{shear}}} = \num{-0.15}$, $b_H = \num{0.05}$ et $b_T = \num{0.56}$. La formulation du prédicteur de vorticité utilisé dans le TCS est différente
-des autres indices puisqu'elle utilise une borne supérieure au tourbillon absolu. \textcite{tippett_poisson_2011} justifient cette approche ainsi que le seuil
-de \SI{3.7e-5}{\per\second} en montrant que le nombre de cyclogénèses n'est plus influencé par la vorticité au delà de cette valeur. L'utilisation d'un
-prédicteur borné de vorticité absolue à \hPa{850} permet alors au TCS d'être plus sensible aux variations de vorticité dans les tropiques que si la vorticité
-non bornée était considérée, tout en réduisant le nombre de cyclogénèses simulé dans les hautes latitudes. En outre, c'est par cet effet de seuil de la
-vorticité que le retrait de ce prédicteur est justifié dans l'indice de \textcite{bruyere_investigating_2012}. \citeauthor{tippett_poisson_2011} indiquent
-également que l'utilisation de la SST relative plutôt que du PI comme prédicteur de l'énergie thermique océanique disponible produit une régression d'une
-qualité légèrèrement supérieure. L'intérêt principal réside cependant dans l'interprétabilité facilitée par la SST relative, le PI n'étant à priori pas relié à
-la cyclogénèse. D'un point de vue pratique, si les deux prédicteurs peuvent être interchangés dans le TCS, en remplaçant également $b_T$ par une valeur
+$b_{\eta} = \num{1.03}$ $b_{V_{\mathrm{shear}}} = \num{-0.15}$, $b_H = \num{0.05}$ et $b_T = \num{0.56}$. La formulation du prédicteur de vorticité utilisé dans
+le TCS est différente des autres indices puisqu'elle utilise une borne supérieure au tourbillon absolu. \textcite{tippett_poisson_2011} justifient cette
+approche ainsi que le seuil de \SI{3.7e-5}{\per\second} en montrant que le nombre de cyclogénèses n'est plus influencé par la vorticité au delà de cette valeur.
+L'utilisation d'un prédicteur borné de vorticité absolue à \hPa{850} permet alors au TCS d'être plus sensible aux variations de vorticité dans les tropiques que
+si la vorticité non bornée était considérée, tout en réduisant le nombre de cyclogénèses simulé dans les hautes latitudes. En outre, c'est par cet effet de
+seuil de la vorticité que le retrait de ce prédicteur est justifié dans l'indice de \textcite{bruyere_investigating_2012}. \citeauthor{tippett_poisson_2011}
+indiquent également que l'utilisation de la SST relative plutôt que du PI comme prédicteur de l'énergie thermique océanique disponible produit une régression
+d'une qualité légèrèrement supérieure. L'intérêt principal réside cependant dans l'interprétabilité facilitée par la SST relative, le PI n'étant à priori pas
+relié à la cyclogénèse. D'un point de vue pratique, si les deux prédicteurs peuvent être interchangés dans le TCS, en remplaçant également $b_T$ par une valeur
 $b_{\mathrm{PI}}$ appropriée, comme par exemple dans \textcite{camargo_testing_2014,camargo_tropical_2016}, étant donné que les deux variables sont largement
 corrélées \parencite{vecchi_effect_2007,swanson_nonlocality_2008}, la SST relative est cependant considérablement plus simple à calculer. Précisons enfin que la
 méthodologie de sélection dite objective des prédicteurs dans \textcite{tippett_poisson_2011} ne permet pas d'identifier de manière autonome les prédicteurs
@@ -165,7 +165,7 @@ vorticité absolue à \hPa{850} et enfin le gradient méridional de la composant
 %soulignent que la corrélation de la variabilité interannuelle du DGPI avec les observations est améliorée dans le bassin WPac et dans l'hémisphère sud, mais
 %dégradée dans le bassin EPac.
 
-\subsection{Propriétés des indices de cyclogénèses}
+\subsection{Propriétés des indices de cyclogénèses}\label{sec:proprietes_indices}
 
 Résultat de la diversité des formulations et du choix des prédicteurs définissant les divers indices de cyclogénèses présenté dans la
 \cref{sec:tour_horizon_indices}, la capacité de chacun d'entre eux à simuler l'activité cyclonique moyenne est également variable. Dans cette section sont
@@ -237,7 +237,7 @@ climatologie observée.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{tcs_cygp_gpi_ibt_clim_mensuel.png}
-    \caption{Cycle mensuel de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
+    \caption{Cycle annuel de l'activité cyclonique inférée par les trois indices de cyclogénèses définis dans la \cref{sec:tour_horizon_indices} sur
     ERA5 entre 1981 et 2019. Le tracé en tirets noirs indique la climatologie mensuelle observée d'après IBTrACS sur la même période.}
     \label{fig:tcs_cygp_gpi_clim_mensuel}
 \end{figure}
@@ -264,7 +264,6 @@ d'autre part, par la capacité du TCS à capturer plus finement la saison active
 creuse l'écart du TCS par rapport aux deux autres au cœur de la saison active, tandis qu'il est permis de penser que cette propriété tend au contraire à
 compenser l'activité moindre dans le sud. Sans être exempt de tout défaut, le TCS réunit donc, dans l'ensemble, le plus de qualités désirables dans un indice de
 cyclogénèse pour simuler la climatologie mensuelle à l'échelle régionale.
-
 \subsection*{Fréquence annuelle et variabilité}
 
 La première partie du \cref{tab:tcs_cygp_gpi} présente la fréquence annuelle moyenne TC dans les six bassins géographiques ainsi que pour chaque hémisphère et à
@@ -399,7 +398,7 @@ mensuels plutôt que saisonniers dans la capacité de l'indice à simuler la cli
 dans la \cref{sec:tour_horizon_indices}, à savoir le TCS, le CYGP et le GPI. Ensuite, nous étudierons l'apport de la résolution spatiale et temporelle,
 séparémment, pour la représentation de la variaiblité interannuelle. Spécifiquement, nous utiliserons des indices établis selon le mode opératoire de
 \textcite{tippett_poisson_2011}, à savoir par régression de Poisson, de façon à déterminer comment ces facteurs influent sur les coefficients de la régression,
-et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une aggrégation spatiale de
+et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une agrégation spatiale de
 régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
 
 %--------------------------------------
@@ -412,52 +411,276 @@ une régression de Poisson, selon \textcite{tippett_poisson_2011}. Pour cela, no
 IBTrACS, et les prédicteurs de grande échelle constituant le TCS à deux résolutions différentes, puis en utilisant des moyennes mensuelles et la climatologie
 mensuelle de ces champs, issus de la réanalyse ERA5. Cela revient donc à recalculer les coefficients $b$ issus de \textcite{tippett_poisson_2011} et donnés
 dans la \cref{sec:modelisation_stat}, qui furent déterminés avec la climatologie mensuelle des prédicteurs des réanalyses NCEP
-\parencite{kalnay_ncep_1996,kistler_ncep_2001} et ERA-40 \parencite{uppala_era40_2005} sur une grille de \ang{2.5} de résolution horizontale.
+\parencite{kalnay_ncep_1996,kistler_ncep_2001} et ERA-40 \parencite{uppala_era40_2005} sur une grille de \ang{2.5} de résolution horizontale, et ce dans le but
+d'estimer d'une part l'impact de la résolution spatiale et temporelle sur les coefficients de la régression, mais aussi l'impact des coefficients sur la
+variabilité interannuelle.
 
-\subsection{Méthodologie de la régression de Poisson}
+\subsection{Données et méthodes}
+
+\subsubsection*{Régression de Poisson}\label{sec:regression_poisson}
 
 Une régression de poisson est un modèle statistique dans lequel la variable de réponse représente des données de comptage, ou de fréquence, sous la forme
-d'entiers positifs (ou nuls). Une variable aléatoire $Y$ possède une distribution de Poisson de paramètre $\lambda$ si la probabilité pour la variable $Y$
+d'entiers positifs (ou nuls). Une variable aléatoire $Y$ possède une distribution de Poisson de paramètre $\mu$ si la probabilité pour la variable $Y$
 de prendre la valeur $k$ vaut :
 %
 \begin{equation*}
-    P(Y = k \mid \lambda) = \frac{e^{-\lambda} \, \lambda^k}{k!} \quad (k=0, 1, 2, \ldots) 
+    P(Y = k) = \frac{e^{-\mu} \, \mu^k}{k!} \quad (k=0, 1, 2, \ldots) 
 \end{equation*}
 %
-Où $\lambda$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
+Où $\mu$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
 à la matrice $\mathbf{x}$ des prédicteurs, de taille $m \times n^\prime$, où $n^\prime = n + 1$ ---~composée de $n$ variables thermiques ou dynamique, ainsi que
 d'une constante unitaire, chacun avec $m$ réalisations~--- par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la
 façon suivante :
 %
-\begin{align*}
-    \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    \Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
-\end{align*}
+\begin{gather*}
+    \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+    %\Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
+    \Leftrightarrow \quad \mu = e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
+\end{gather*}
 %
 Dans le cas qui nous intéresse, la variable $Y$ représente un nombre de TC par unité de temps et par unité de surface, si bien qu'on introduit le terme
 d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$, où $\phi$ représente la latitude. On a alors :
 %
-\begin{align*}
-    \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    \Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
-\end{align*}
+\begin{equation}
+    \begin{gathered}\label{eq:poisson_reg}
+        \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
+        %\Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
+        \Leftrightarrow \quad \log \mu = \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
+    \end{gathered}
+\end{equation}
+
 %
 Ce qui revient également à ajouter $\log (\cos \phi)$ comme prédicteur avec un coefficient de pondération fixé à 1.
 
 Pour définir un indice de cyclogénèses par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
-d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Les cyclogénèses sont comptabilisées
-sous la forme d'histogrammes sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces
-histogrammes spatiaux des cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même
-manière que les prédicteurs. Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur
-unidimensionnel de taille $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme
-\textquote{observation}, dans ce contexte, est à comprendre au sens statistique du terme, et ne présage en rien de si les cyclogénèses sont réellement des
-observations historiques ou bien issues d'un schéma de détection appliqué aux sorties d'un modèle de climat ou d'une réanalyse atmosphérique.} $Y$. Le procédé
-est répété pour chacun des $n$ variables de grande échelle qui sont ensuite concaténées, entre elles mais aussi avec le vecteur unitaire de même taille $m$,
-auquel est associé le coefficient $b_0$ dans la formulation du TCS, pour former la matrice $\mathbf{x}$.
+d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Dans tous les cas, on considère que
+les cyclogénèses sont données par les positions de la première position de chaque trajectoire. Les cyclogénèses sont comptabilisées sous la forme d'histogrammes
+sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces histogrammes spatiaux des
+cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même manière que les prédicteurs.
+Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur unidimensionnel de taille $m =
+N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme \textquote{observation}, dans ce
+contexte, est à comprendre au sens statistique du terme, et ne présage en rien de si les cyclogénèses sont réellement des observations historiques ou bien
+issues d'un schéma de détection appliqué aux sorties d'un modèle de climat ou d'une réanalyse atmosphérique.} $Y$. Le procédé est répété pour chacune des $n$
+variables de grande échelle qui sont ensuite concaténées entre elles, ainsi qu'avec le vecteur unitaire de même taille pour former la matrice $\mathbf{x}$.
+C'est à ce vecteur unitaire qu'est associé le coefficient $b_0$ dans la formulation du TCS. L'ajustement de la relation \ref{eq:poisson_reg} sur les données
+$Y$, composées de $m$ observations $Y_i$, et sur $\mathbf{x}$, composée de $m$ réalisations $\mathbf{x}_i$ (c'est à dire les lignes de la matrice $\mathbf{x}$,
+représentant un point de grille quelconque à une échéance temporelle quelconque) fournies en entrée consiste alors à identifier les coefficients de pondération
+de $\mathbf{b} = (b_0, b_1, b_2, \, \ldots \, , b_n)$ qui maximisent la fonction de log-vraisemblance $\ell (\mathbf{b})$, donnée ci-dessous à titre de
+référence, et qui est définie comme la somme des logarithmes de la vraisemblance de chacune des observations.
+%
+\begin{equation*}
+    \begin{cases}
+        \ell(\mathbf{b}) = \sum_{i = 1}^{m} Y_i \log \mu_i - \mu_i - \log(Y_i !) \\
+        \log \mu_i = \mathbf{b}^{\mathrm{T}} \mathbf{x}_i + \log ( \cos \phi )
+    \end{cases}
+\end{equation*}
 
-\subsection{Résolution spatiale}
+Une régression de Poisson présuppose que la variable aléatoire qui est modélisée est régie par une loi de Poisson, et donc que sa moyenne soit égale à sa
+variance. Il arrive toutefois que cette hypothèse ne soit pas vérifiée. Pour s'en prémunir, on utilise ici l'estimation de la covariance de
+\textcite{mackinnon_heteroskedasticityconsistent_1985}, possédant la propriété d'être robuste à l'hétéroscédasticité. L'usage de cette méthode se traduit par un
+intervalle de confiance des coefficients $b$ ajusté, mais n'affecte pas les valeurs des coefficients eux-mêmes. C'est donc une méthode analogue à celle dite
+\textquote{quasi-Poisson} utilisée par \textcite{tippett_poisson_2011}. Notons enfin que, comme le souligne \textcite{tippett_poisson_2011}, les coefficients de
+la régression s'interprètent comme des sensibilités. En particulier, un changement unitaire d'une des variables de grande échelle $x_j$, $j = (1, 2, \ldots, n)$
+se traduit par la modification de la fréquence de cyclogénèses attendue d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 + b_j$,
+soit une modification attendue de $(100 \cdot b_j)$~\%. Par exemple, le coefficient $b_H = \num{0.05}$ du TCS indique une réponse attendue de la fréquence de
+cyclogénèses d'approximativement $+$\prct{5} pour un changement de 1 unité de l'humidité relative à \hPa{600}.
 
-\subsection{Résolution temporelle}
+\subsubsection*{Construction des indices}\label{sec:construction_indices}
+
+On s'intéresse ici à la construction d'indices composés des mêmes prédicteurs que le TCS, définis dans la \cref{sec:modelisation_stat}. Rappelons seulement
+brièvement que l'indice est composé de la vorticité absolue bornée $\eta = \min(\zeta, \num{3.7})$, du cisaillement vertical entre \hPa{850} et \hPa{200}
+$V_{\mathrm{shear}}$, de l'humidité relative à \hPa{600} $H$, et de la SST relative, définie comme l'écart entre la SST et la SST moyennée entre \ang{20}S et
+\ang{20}N. Ces prédicteurs sont issus de la réanalyse ERA5 entre \num{1980} et \num{2019}, et sont pris à l'échelle globale, entre \ang{60}S et \ang{60}N. On
+utilise comme prédictant la base de données IBTrACS, version 4 \parencite{knapp_international_2010}. Spécifiquement, on conserve les positions des premières
+échéances des systèmes renseignés par leurs métadonnées comme étant des tempêtes tropicales ou subtropicales, à un moment donné de leur cycle de vie, de la même
+manière que dans la \cref{sec:proprietes_indices}.
+
+Quatre indices sont construits par régression de Poisson, en utilisant des champs à \ang{1.0} et \ang{2.5}, ainsi qu'en appliquant la régression donnée par la
+relation \ref{eq:poisson_reg} sur les champs mensuels ERA5 ou bien sur leurs valeurs climatologiques. Le premier, nommé C25 (comme \textquote{climatologie}, et
+\ang{2.5}) utilise les moyennes climatologiques des champs de grande échelle ainsi que des cyclogénèses IBTrACS sur une grille de \ang{2.5}. D'un point de vue
+méthodologique, seules la réanalyse utilisée ainsi que la période temporelle considérée distingue les coefficients $b$ de C25 de ceux du TCS, ces derniers étant
+en effet également issus de valeurs climatologiques à cette même résolution. C25 joue alors pour ainsi dire le rôle de groupe témoin, car il est attendu que ses
+coefficients soient les plus proches possibles de ceux du TCS. Notons que pour cet indice, on a $m = \num{48} \times \num{144} \times \num{12}$. Toutefois,
+l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de grille masqués sont ignorés. La taille effective, $m_{\mathrm{eff}}$,
+vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes climatologiques, mais avec une
+résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles ($N_{\mathrm{temps}} = \num{480}$) à
+\ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à maintenant,
+à une régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande matrice $\mathbf{x}$, caractérisée par
+$m_{\mathrm{eff}} = \num{13115040}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le facteur limitant la résolution spatiale.
+C'est là une des raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression sur un nombre de réalisations
+$m_{\mathrm{eff}}$ plus grand nécessiterait des ressources de calcul supplémentaires.
+
+Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période,
+indépendant de la résolution spatiale et de l'agrégation temporelle utilisée pour calculer la régression. On ne se préoccupe pas de répartir l'ensemble des
+données entre un jeu d'apprentissage et un jeu d'évaluation dans la mesure où le surapprentissage ne constitue ici pas un risque, mais au contraire une
+propriété désirable.
+
+\subsection{Résultats}
+
+Le \cref{tab:fit_spatial_temporel} présente les coefficients $b$ des multiples régressions qui sont réalisées. Les coefficients du TCS sont rappelés et indiqués
+dans le tableau à titre de référence. Les coefficients sont donnés avec quatre décimales, car celles-ci ne varient pas lorsque les régressions sont répétées.
+Par ailleurs, les intervalles de confiance associés à chaque coefficient sont omis car tous les coefficients apparaissent comme statistiquement significatifs à
+\prct{95}, où sens où, à ce niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
+
+\begin{table}[htpb]
+    \centering
+    \caption{Estimation des coefficients des régressions de Poisson établies entre les quatre variables de grande échelle du TCS, issues d'ERA5, et l'activité
+    observée issue d'IBTrACS entre 1980 et 2019. La colonne \textquote{Temporelle} correspond à la valeur $N_{\mathrm{temps}}$.}
+    \label{tab:fit_spatial_temporel}
+
+    \begin{tabular}{crrrrrrrr}
+       \toprule\toprule 
+       Indice & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Résolution}\\
+       \midrule
+              & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & Spatiale     & Temporelle & $m_{\mathrm{eff}}$ \\
+       \midrule
+       C25    & \num{-11.1927} & \num{1.0538} & \num{-0.1051} & \num{0.0653}  & \num{0.4396} & \ang{2.5}  & 12  & \num{52128} \\
+       C10    & \num{-13.1570} & \num{1.0702} & \num{-0.1034} & \num{0.0655}  & \num{0.4584} & \ang{1.0}  & 12  & \num{327876} \\ 
+       M25    & \num{-13.0987} & \num{1.3757} & \num{-0.0976} & \num{0.0726}  & \num{0.3967} & \ang{2.5}  & 480 & \num{2085120} \\
+       M10    & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \ang{1.0}  & 480 & \num{13115040} \\
+       \midrule
+       TCS    & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & \ang{2.5}  & 12  & --- \\
+       \bottomrule
+    \end{tabular}
+\end{table}
+
+Le premier constat concerne le terme d'ordonnée à l'origine $b_0$, largement différent du TCS pour les quatre régressions. Celui-ci est cependant difficile à
+interpréter dans le contexte de la modélisation de la fréquence d'occurrence de cyclogénèses. Il est supposé que ce terme soit lié à l'état moyen des
+prédicteurs, si bien que l'écart entre les régressions faites ici et le TCS pour le terme $b_0$ serait principalement la conséquence de l'utlisation d'une
+réanalyse différente, ainsi que d'une période temporelle différente. L'indice C25 présente les coefficients les plus proches du TCS, à l'exception, marginale,
+du prédicteur de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est très légèrement plus proche de celui du TCS que ne l'est celui de C25. Les coefficients
+du C25 montrent tout de même des écarts avec ceux du TCS, notamment pour les termes de cisaillement vertical et de SST relative. Spécifiquement,
+$b_{V_{\mathrm{shear}}}$ vaut environ \num{-0.10} pour C25 contre respectivement \num{-0.15} pour le TCS, tandis que $b_T$ est réduit de \num{0.56} pour le TCS
+à environ \num{0.44} pour C25. Cela signifique donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans
+le TCS, et d'autre part que la fréquence d'occurrence des cyclones tropicaux est moins sensible à la SST relative pour C25 que dans le TCS. Comme pour le terme
+d'ordonnée à l'origine, il est là aussi possible que ces différences proviennent de la réanalyse utilisée, mais on note toutefois une certaine sensibilité des
+coefficients de C25 à la période temporelle utilisée. La régression C25 faite sur la période \num{1980}~--~\num{2000} produit en effet des coefficients se
+rapprochant davantage de ceux du TCS, à savoir un $b_T$ réhaussé (\sim~\num{0.47}) et un $b_{V_{\mathrm{shear}}}$ diminué (\sim~\num{-0.11}), tandis que ceux
+obtenus sur la période \num{2000}~--~\num{2019} présentent au contraire une valeur $b_T$ plus faible (\sim~\num{0.42}), et un $b_{V_{\mathrm{shear}}}$ plus
+grand (\sim~\num{-0.09}). En tout état de cause, la proximité entre les paramètres de C25 et ceux du TCS, relativement aux trois autres régressions, valide la
+reproduction de l'indice de \textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, tend également à valider les coefficients
+obtenus pour C10, M25 et M10, moyennant l'effet sus-mentionné de la période considérée.
+
+L'effet de la résolution sur les coefficients $b$, en comparant C25 avec C10, et M25 avec M10, apparait mince. Les coefficients présentent des changements
+faibles, de l'ordre de \num{10}$^{\num{-2}}$, ou inférieur. $b_{\eta}$ est augmenté d'environ \num{0.02} pour l'indice climatologique comme l'indice mensuel.
+L'ordre de grandeur du changement sur $b_{V_{\mathrm{shear}}}$ est d'environ \num{1e-3}. $b_H$ est stable pour l'indice climatologique, et présente une très
+faible baisse pour dans M10 par rapport à M25, d'environ \num{1e-3}, tandis que $b_T$ augmente d'environ \num{2e-2}. L'ajout de variabilité dans la régression,
+en utilisant les champs au pas de temps mensuels plutôt que les moyennes climatologiques, produit un effet plus conséquent sur les coefficients de la
+régression. Le changement apporté à $b_{V_{\mathrm{shear}}}$ est d'un ordre de grandeur plus grand que le changement dû au passage à la résolution plus fine,
+avec environ une augmentation de \num{10}$^{\num{-2}}$, pour l'indice à \ang{2.5} comme celui à \ang{1} de résolution. La sensibilité à l'humidité relative est
+légèrement revue à la hausse lorsque sur les indices M, de l'ordre de \num{5e-3}, là aussi, indépendamment de la résolution. $b_T$ est diminué de manière un peu
+plus importante, d'environ \num{4e-2}. L'impact le plus net se trouve cependant dans la vorticité. Celui-ci passe d'une moyenne de \num{1.062} entre C25 et C10,
+à une moyenne de \num{1.3863} pour M25 et M10, soit une différence de $+$\num{0.3243}, autrement dit une augmentation de \prct{30.5} du coefficient $b_{\eta}$
+par rapport au TCS.
+
+\subsubsection{Répartition géographique}
+
+L'effet du passage de \ang{2.5} à \ang{1} pour les régressions climatologiques et mensuelles se détermine en comparant C25 avec C10, et M25 and M10. Les deux
+différences, $\mathrm{C25} - \mathrm{C10}$ et $\mathrm{M25} - \mathrm{M10}$ étant quasiment identiques, on décrit ici l'effet général du passage à une
+résolution plus fine pour un indice construit selon la méthologie de \textcite{tippett_poisson_2011} comme la moyenne des deux différences. Le même constat est
+fait pour l'emploi de champs mensuels dans la régression plutôt que des moyennes climatologiques, si bien que nous considérons la moyenne de $(\mathrm{M10} -
+\mathrm{C10})$ et de $(\mathrm{M25} - \mathrm{C25})$. La moyenne annuelle pour ces deux quantités sont présentées sur la \cref{fig:impact_spatial_temporel},
+avec l'encadré (a) pour l'effet du passage à une résolution plus fine, et l'encadré (b) pour l'emploi de champs mensuels.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{yearmean_spatial_temporel.png}
+    \caption{Moyenne annuelle de (a) l'effet du passage de \ang{2.5} à \ang{1} de résolution, et (b) de l'effet de l'emploi de moyennes mensuelles plutôt que
+    climatologiques pour les régressions décrites dans la \cref{sec:construction_indices}. Ces cartes sont construites avec la moyenne de (C10 $-$ C25) et de
+    (M10 $-$ M25) pour (a), et avec la moyenne de (M10 $-$ C10) et de (M25 $-$ C25) pour (b). Les bassins géographiques usuels et leurs limites sont listés.}
+    \label{fig:impact_spatial_temporel}
+\end{figure}
+
+Notons tout d'abord que si l'effet de la résolution spatiale accrue et celui de l'emploi des moyennes mensuelles partagent des similarités, l'effet des champs
+mensuels dans la régression est un ordre de grandeur plus grand que l'effet de la résolution spatiale. Dans les deux cas, l'apport d'information spatiale plus
+fine et de variabilité temporelle tend à décaler l'activité cyclonique plus loin de l'équateur, avec des spécificités selon les régions. Dans l'encadré (a),
+l'activité, pour le bassin NAtl, l'activité est accrue dans le golf du Mexique (\textit{Gulf of Mexico}, GoM), au détriment de la zone de développement
+principale (\textit{Main Development Region}, MDR, entre \ang{10}N et \ang{20}N et entre \ang{20}W et \ang{60}W.). Dans l'encadré (b) pour ce même bassin, le
+GoM ne présente pas de variation importante, et l'effet de l'ajout de variabilité temporelle sur la MDR est contrasté, avec une baisse du côté de l'équateur
+mais une augmentation la partie nord-est de la MDR. Dans les deux cas, l'intégrale sur le bassin est essentiellement \num{0}. Dans le EPac, l'effet de la
+résolution spatiale accrue est en opposition avec l'effet de la variabilité mensuelle, notamment le long des côtes du Mexique. Les intégrales sont de signe
+opposés, avec \num{-0.16} TC par an sur le panneau (a), et $+$\num{0.50} TC par an. On imagine alors que M10, combinant les deux effets, s'accompagne d'une très
+légère hausse de la fréquence annuelle moyenne dans ce bassin. Dans le bassin WPac, les contributions sont inversées. En effet, si les deux panneaux indiquent
+une hausse de l'acitivité autour de \ang{10}, en mer de Chine méridionale, et une diminution dans la région équatoriale, pour (a) l'augmentation l'emporte, avec
+$+$\num{0.28} TC par an, tandis que pour (b) la diminution équatoriale est plus importante, avec \num{-0.12} TC par an. Dans le NInd, l'augmentation de
+l'activité concerne principalement le golf du Bengale, la mer d'Arabie ne voyant elle que peu de changement, avec peut-être une très légère augmentation pour la
+panneau (a). Les intégrales se compensent avec respectivement $+$\num{0.04} et \num{0.04} TC par an pour (a) et (b). Dans le SIndW, l'augmentation est plus
+prononcée dans le canal du Mozambique, mais le panneau (b) laisse voir une augmentation au niveau de la bande de longitude à \ang{10}S, augmentation relative
+absente du panneau (a). Le SIndE montre dans le (a) une augmentation relative prononcée au niveau des côtes au nord-ouest de l'Australie. Dans le SPac, l'effet
+est comparable entre les deux panneaux, avec la même structure que partout ailleurs, c'est à dire un décalage de l'activité plus loin de la région équatoriale.
+Précisons que par construction, les intégrales des deux champs moyens à l'échelle globale sont nulles.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{C25_C10_M25_M10_TCS_IBTrACS_zonal.png}
+    \caption{Comme pour la \cref{fig:tcs_cygp_gpi_zonal}, avec C25, C10, M25, M10 et le TCS, comparé à IBTrACS, ici noté \textquote{Obs}. Les paires de même
+    aggrégation temporelle, c'est à dire C25 avec C10, et M25 avec M10 sont superposées. L'encadré en haut à gauche montre un zoom entre \ang{7.5}S et
+    \ang{7.5}N, et entre 0 et \num{1.5} TC par an.}
+    \label{fig:my_fit_meridional}
+\end{figure}
+
+La \cref{fig:my_fit_meridional} présente la distribution méridionale des quatre indices nouvellement construits, ainsi que pour le TCS et IBTrACS, faite selon
+les mêmes modalités que pour la \cref{fig:tcs_cygp_gpi_zonal}. La \cref{fig:my_fit_meridional} confirme ce que la \cref{fig:impact_spatial_temporel} laissait
+entrevoir, à savoir une nette amélioration du biais équatorial pour les indices dont la régression est basée sur les moyennes mensuelles plutôt que
+climatologiques. Le tracé de C10 est superposé à C25, indiquant que la résolution accrue ne suffit pas à modifier la distribution méridionale moyenne, en dépit
+du signal en ce sens de l'encadré (a) de la \cref{fig:impact_spatial_temporel}. Les tracés pour M10 et M25 sont également superposés, et tous deux bénéficient
+de l'amélioration. Rappelons que l'effet de l'ajout de variabilité temporelle dans la régression est d'un ordre de grandeur plus grand que celui de la
+résolution spatiale plus fine, comme en attestent les échelles de couleur des encadrés (a) et (b) de la \cref{fig:impact_spatial_temporel}. Étant donnés les
+coefficients des régressions du \cref{tab:fit_spatial_temporel}, il semblerait que la sensibilité accrue à la vorticité absolue bornée $\eta$ pour les indices
+M10 et M25, résultant de l'ajout de variabilité temporelle dans la régression, soit à l'origine de la réduction du biais équatorial.
+
+\subsubsection{Variabilité interannuelle}\label{sec:variabilite_5_indices}
+
+Comme pour la \cref{fig:tcs_cygp_gpi_variabilite}, la variabilité interannuelle est calculée pour les saisons cycloniques et non pas pour les années
+calendaires. Cela signifie que pour les bassins de l'hémisphère sud, à savoir le SPac, SIndW et SIndE, les indices et les observations sont, pour la saison $n$,
+intégrées entre juillet de l'année calendaire $n-1$ et juin de l'année calendaire $n$. La \cref{fig:variabilite_basin_5_indices} présente la variabilité
+interannuelle entre les saisons \num{1981} et \num{2019}, pour C25, C10, M25 et M10, ainsi que pour le TCS de \textcite{tippett_poisson_2011}, et IBTrACS (noté
+\textquote{Obs} sur la \cref{fig:variabilite_basin_5_indices}). La colonne de droite sur la figure présente, pour chaque bassin, la matrice de corrélation entre
+les 6 jeux de données.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{basin_variability_C25_C10_M25_M10_TCS_obs.png}
+    \caption{Variabilité interannuelle du C25, C10, M25, M10, TC et d'IBTrACS, noté \textquote{Obs} pour les six bassins océaniques (lignes), NInd exclu, sur
+    les saisons cycloniques de \num{1981} à \num{2019}. Les matrices de corrélation entre indices sont présentées sur la colonne de droite à chaque ligne.}
+    \label{fig:variabilite_basin_5_indices}
+\end{figure}
+
+Il est immédiatement clair sur la \cref{fig:variabilite_basin_5_indices} que la variaiblité interannuelle inférée par les quatre indices du
+\cref{tab:fit_spatial_temporel} est virtuellement inchangée, entre elles, mais aussi par rapport à celle simulée par le TCS. Dans toutes les régions
+considérées, les indices climatologiques, C25 et C10 sont légèrement plus proches du TCS que ne le sont les indices mensuels, comme en attestent les matrices de
+corrélation (5\ieme~colonne, ou ligne, au choix). Dans les bassins de l'hémisphère nord, la différence est marginale, située entre \num{1e-2} et \num{2e-2}.
+L'écart se creuse davantage pour les régions SIndE et SPac, avec un écart de \num{0.05} pour le premier et de \num{0.08} pour le second. C'est en effet pour ce
+bassin que la plus grande différence est constatée entre le TCS et un des quatre nouveaux indices, à savoir M10, avec une corrélation de \num{0.88}. La
+différence est visible sur les séries temporelles, par exemple entre \num{1991} et \num{1995}, ou encore en \num{2003}. Ces écarts ne peuvent toutefois pas être
+qualifiés d'améliorations par rapport aux observations, ni nécessairement de dégradation, tous les indices n'étant que faiblement corrélés à IBTrACS. C'est
+également pour le bassin SPac que le plus grand écart est constaté entre les indices climatologiques et mensuels (lignes 3 et 4 contre colonnes 1 et 2, et
+réciproquement, de la matrice de corrélation), avec la valeur la plus basse à \num{0.96} pour les paires (M10, C25), (M10, C10) et (M25, C25). Partout ailleurs,
+la corrélation est systématiquement de \num{0.99}. Les corrélations entre les paires d'indice de même aggrégation temporelle (climatologique ou mensuelle) mais
+de différentes résolutions (c'est à dire M25 avec M10 et C25 avec C10) sont maximales, à \num{1.00} partout. Cela confirme à nouveau que l'impact le plus
+notable pour les régression de Poisson se trouve dans l'ajout de variabilité temporelle, comme déjà montré par les
+\cref{fig:impact_spatial_temporel,fig:my_fit_meridional}.
+
+Pour ce qui est de la corrélation avec les observations, les nouveaux indices ---~pourtant issus de régression sur ces mêmes données~--- ne se démarquent pas
+particulièrement du TCS. Dans le SPac, la corrélation avec IBTrACS est augmentée de \num{0.04} (\num{0.03} pour M10). Dans le SIndE, la corrélation passe de
+\num{0.14} à \num{0.29} pour C25 et C10 et à \num{0.32} pour M25 et M10. Une corrélation de \num{0.32} n'est toutefois probablement pas statistiquement
+significative. Dans le SPac, la corrélation est augmentée d'environ \num{0.04}, pour C25 et M25, tandis que l'écart avec M10 n'est que de \num{0.03}. Dans le
+SIndW, EPac et le NAtl, la corrélation est essentiellement inchangée. Dans le WPac, la corrélation est même dégradée, passant de \num{0.11} pour TCS à un
+minimum de \num{0.03} pour M10. Il est cependant certains que des valeurs de corrélation aussi basses ne sont pas significatives. Ce bassin présente la plus
+mauvaise corrélation entre les indices et les observations, comme montré précédemment dans le \cref{tab:tcs_cygp_gpi} de la \cref{sec:proprietes_indices}. La
+variabilité interannuelle simulée dans ce bassin présente par ailleurs une étonnante rupture de part d'autre de l'année \num{1998} (visible aussi sur la
+\cref{fig:tcs_cygp_gpi_variabilite}, et concerne également le GPI). En effet, la fréquence annuelle moyenne des quatre indices C25, C10, M25 et M10 (moyennés
+entre eux) avant 1998 est de \num{25.9} TC par an, et monte subitement à \num{32} TC par an post-\num{1998}, soit un écart de \num{6.1} TC par an de part et
+d'autre de la rupture, sans présenter de tendances sur ces deux périodes par ailleurs. Après analyse plus approfondie, il est établit que cette rupture est le
+résultat d'une inhomogénéité temporelle de l'humidité relative issue de la réanalyse ERA5 sur cette région, sans toutefois en connaître la cause exacte. C'est
+notamment pour cela que le CYGP ne subit pas de modification nette de la fréquence annuelle moyenne sur la \cref{fig:tcs_cygp_gpi_variabilite}, ce dernier
+n'étant pas fonction de cette quantité. Qu'elle qu'en soit l'origine, ce défaut d'ERA5 constitue une limitation importante de la réanalyse pour tous les indices
+de cyclogénèses basés sur l'humidité relative dans la région du Pacifique ouest.
+
+\subsection{Conclusion}
+
+Pas facile de faire bouger la variabilité interannuelle. Cela dit c'est chouette d'avoir corrigé le biais équatorial quasiment complètement. Qu'en sera-t-il en
+faisant une régression par bassin ? (Spoiler : C'est un peu pareil)
 
 \section{Indice de cyclogénèses régional}
 
