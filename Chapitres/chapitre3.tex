@@ -387,19 +387,28 @@ moyenne est plutôt robuste aux changements de résolution, surtout comparé à 
 point est également corroboré par \textcite{mcdonald_tropical_2005} qui notèrent une meilleure cohérence entre l'activité mesurée par approche directe et celle
 inférée par les indices (spécifiquement avec le YGP et CYGP) pour les résolutions les plus hautes, amenant alors \textcite{camargo_tropical_2007} à spéculer
 qu'une résolution accrue pourrait s'accompagner d'une réponse plus réaliste dans les variations interannuelles du nombre de TC inféré par les indices. Si les
-indices analysés ici sont calculés sur des champs ERA5 à \ang{1} de résolution ne présentent pas d'amélioration sensible en ce sens, on peut touefois se
+indices analysés ici sont calculés sur des champs ERA5 à \ang{1} de résolution ne présentent pas d'amélioration sensible en ce sens, on peut toutefois se
 demander si un indice construit sur des champs à plus haute résolution (et pas seulement appliqué dessus) améliorerait la variabilité interannuelle inférée par
 les indices. De la même manière, les travaux de \textcite{bruyere_investigating_2012,waters_largescale_2012} suggèrent qu'il pourrait être pertinent pour la
 représentation de la variabilité interannuelle des indices de chercher à les définir à des échelles régionales, ainsi que d'y intégrer de la variabilité à plus
 haute fréquence, plutôt que de les construire sur la climatologie mensuelle globale.
 
-Ce sont ces questions qui sont explorées dans la suite de ce chapitre. Dans un premier temps, nous nous interrogerons sur l'apport de l'utilisation de champs
-mensuels plutôt que saisonniers dans la capacité de l'indice à simuler la climatologie saisonnière spatiale et temporelle, à l'aide des trois indices définis
-dans la \cref{sec:tour_horizon_indices}, à savoir le TCS, le CYGP et le GPI. Ensuite, nous étudierons l'apport de la résolution spatiale et temporelle,
-séparémment, pour la représentation de la variaiblité interannuelle. Spécifiquement, nous utiliserons des indices établis selon le mode opératoire de
-\textcite{tippett_poisson_2011}, à savoir par régression de Poisson, de façon à déterminer comment ces facteurs influent sur les coefficients de la régression,
-et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une agrégation spatiale de
-régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
+Ce sont ces questions qui sont explorées dans la suite de ce chapitre. Dans un premier temps, nous utiliserons la méthodologie de construction d'un indice de
+cyclogénèse de \textcite{tippett_poisson_2011}, c'est à dire une régression de Poisson, pour définir et comparer des variantes du TCS à différentes résolutions
+spatiales et temporelles. Nous chercherons en particulier comme ces facteurs influent sur les coefficients de la régression, et comment ceux-ci influencent en
+retour la variabilité interannuelle. Étant construit comme une régression statistique entre l'environnement de grande échelle et l'activité observée, cet indice
+possède en effet l'avantage d'être reproductible, contrairement aux deux autres qui sont dérivés de manière semi empiriques. Dans une autre partie, nous
+construirons un indice de cyclogénèse régional, ou plus exactement un indice pseudo-global défini comme une aggrégation d'indices régionaux ---~également
+construits par régression de Poisson~--- caractérisés par des coefficients propres à chaque région, pour là aussi voir comment la variabilité interannuelle s'en
+retrouve affectée.
+
+%Dans un premier temps, nous nous interrogerons sur l'apport de l'utilisation de champs
+%mensuels plutôt que saisonniers dans la capacité de l'indice à simuler la climatologie saisonnière spatiale et temporelle, à l'aide des trois indices définis
+%dans la \cref{sec:tour_horizon_indices}, à savoir le TCS, le CYGP et le GPI. Ensuite, nous étudierons l'apport de la résolution spatiale et temporelle,
+%séparémment, pour la représentation de la variaiblité interannuelle. Spécifiquement, nous utiliserons des indices établis selon le mode opératoire de
+%\textcite{tippett_poisson_2011}, à savoir par régression de Poisson, de façon à déterminer comment ces facteurs influent sur les coefficients de la régression,
+%et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une agrégation spatiale de
+%régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
 
 %--------------------------------------
 %\section{Climatologie saisonnière spatiale et temporelle}
@@ -464,9 +473,9 @@ issues d'un schéma de détection appliqué aux sorties d'un modèle de climat o
 variables de grande échelle qui sont ensuite concaténées entre elles, ainsi qu'avec le vecteur unitaire de même taille pour former la matrice $\mathbf{x}$.
 C'est à ce vecteur unitaire qu'est associé le coefficient $b_0$ dans la formulation du TCS. L'ajustement de la relation \ref{eq:poisson_reg} sur les données
 $Y$, composées de $m$ observations $Y_i$, et sur $\mathbf{x}$, composée de $m$ réalisations $\mathbf{x}_i$ (c'est à dire les lignes de la matrice $\mathbf{x}$,
-représentant un point de grille quelconque à une échéance temporelle quelconque) fournies en entrée consiste alors à identifier les coefficients de pondération
-de $\mathbf{b} = (b_0, b_1, b_2, \, \ldots \, , b_n)$ qui maximisent la fonction de log-vraisemblance $\ell (\mathbf{b})$, donnée ci-dessous à titre de
-référence, et qui est définie comme la somme des logarithmes de la vraisemblance de chacune des observations.
+représentant un point de grille quelconque à une date quelconque) fournies en entrée consiste alors à identifier les coefficients de pondération de $\mathbf{b}
+= (b_0, b_1, b_2, \, \ldots \, , b_n)$ qui maximisent la fonction de log-vraisemblance $\ell (\mathbf{b})$, donnée ci-dessous à titre de référence, et qui est
+définie comme la somme des logarithmes de la vraisemblance de chacune des observations.
 %
 \begin{equation*}
     \begin{cases}
@@ -481,7 +490,7 @@ variance. Il arrive toutefois que cette hypothèse ne soit pas vérifiée. Pour 
 intervalle de confiance des coefficients $b$ ajusté, mais n'affecte pas les valeurs des coefficients eux-mêmes. C'est donc une méthode analogue à celle dite
 \textquote{quasi-Poisson} utilisée par \textcite{tippett_poisson_2011}. Notons enfin que, comme le souligne \textcite{tippett_poisson_2011}, les coefficients de
 la régression s'interprètent comme des sensibilités. En particulier, un changement unitaire d'une des variables de grande échelle $x_j$, $j = (1, 2, \ldots, n)$
-se traduit par la modification de la fréquence de cyclogénèses attendue d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 + b_j$,
+se traduit par la modification de la fréquence attendue de cyclogénèses d'un facteur $e^{b_j}$. Pour des faibles valeurs de $b$, on a $e^{b_j} \approx 1 + b_j$,
 soit une modification attendue de $(100 \cdot b_j)$~\%. Par exemple, le coefficient $b_H = \num{0.05}$ du TCS indique une réponse attendue de la fréquence de
 cyclogénèses d'approximativement $+$\prct{5} pour un changement de 1 unité de l'humidité relative à \hPa{600}.
 
