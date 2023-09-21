@@ -402,7 +402,7 @@ et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, n
 régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
 
 %--------------------------------------
-\section{Climatologie saisonnière spatiale et temporelle}
+%\section{Climatologie saisonnière spatiale et temporelle}
 
 \section{Apport de la résolution spatiale et temporelle}
 
@@ -415,7 +415,7 @@ dans la \cref{sec:modelisation_stat}, qui furent déterminés avec la climatolog
 d'estimer d'une part l'impact de la résolution spatiale et temporelle sur les coefficients de la régression, mais aussi l'impact des coefficients sur la
 variabilité interannuelle.
 
-\subsection{Données et méthodes}
+\subsection{Données et méthodes}\label{sec:apport_res_methodes}
 
 \subsubsection*{Régression de Poisson}\label{sec:regression_poisson}
 
@@ -528,6 +528,7 @@ Par ailleurs, les intervalles de confiance associés à chaque coefficient sont 
     observée issue d'IBTrACS entre 1980 et 2019. La colonne \textquote{Temporelle} correspond à la valeur $N_{\mathrm{temps}}$.}
     \label{tab:fit_spatial_temporel}
 
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{crrrrrrrr}
        \toprule\toprule 
        Indice & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Résolution}\\
@@ -542,6 +543,7 @@ Par ailleurs, les intervalles de confiance associés à chaque coefficient sont 
        TCS    & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & \ang{2.5}  & 12  & --- \\
        \bottomrule
     \end{tabular}
+    }
 \end{table}
 
 Le premier constat concerne le terme d'ordonnée à l'origine $b_0$, largement différent du TCS pour les quatre régressions. Celui-ci est cependant difficile à
@@ -573,7 +575,7 @@ plus importante, d'environ \num{4e-2}. L'impact le plus net se trouve cependant 
 à une moyenne de \num{1.3863} pour M25 et M10, soit une différence de $+$\num{0.3243}, autrement dit une augmentation de \prct{30.5} du coefficient $b_{\eta}$
 par rapport au TCS.
 
-\subsubsection{Répartition géographique}
+\subsubsection{Répartition géographique}\label{sec:repartition_geographique}
 
 L'effet du passage de \ang{2.5} à \ang{1} pour les régressions climatologiques et mensuelles se détermine en comparant C25 avec C10, et M25 and M10. Les deux
 différences, $\mathrm{C25} - \mathrm{C10}$ et $\mathrm{M25} - \mathrm{M10}$ étant quasiment identiques, on décrit ici l'effet général du passage à une
@@ -677,10 +679,128 @@ notamment pour cela que le CYGP ne subit pas de modification nette de la fréque
 n'étant pas fonction de cette quantité. Qu'elle qu'en soit l'origine, ce défaut d'ERA5 constitue une limitation importante de la réanalyse pour tous les indices
 de cyclogénèses basés sur l'humidité relative dans la région du Pacifique ouest.
 
+\subsubsection{Apport de l'utilisation de coefficients \textquote{maison}}\label{sec:diagnostique_rang}
+
+Comme vu précédemment, l'indice C25 est le plus proche du TCS du point de vue méthodologique, car construit sur les moyennes climatologiques des observations et
+des champs de grande échelle, tous deux interpolés sur une grille de \ang{2.5} de reésolution. Néanmoins, ses coefficients $b$ sensiblement différents du TCS.
+C'est notamment le cas du $b_{V_{\mathrm{shear}}}$ et du $b_T$, ainsi que de l'ordonnée à l'origine $b_0$. Étant établi que C25 n'améliore (ni ne modifie
+significativement) la variabilité interannuelle (voir \cref{fig:variabilite_basin_5_indices}), et qu'il ne modifie pas non plus la distribution méridionale
+moyenne, en particulier dans la région équatoriale (voir \cref{fig:my_fit_meridional}), on peut alors se demander si ces coefficients sont porteurs de
+plus-value quelconque par rapport au TCS. Pour le déterminer, on cherche à mesurer dans quelle proportion les indices sont activés aux points de grille et
+échéances correspondants à des cyclogénèses observées.
+
+Pour cela, on introduit un nouveau diagnostique indiquant la moyenne et médiane de la distribution des rangs de la valeur prise par un indice, au point de
+grille et à la date d'une cyclogénèse observée, relativement aux valeurs prises par cet indice au même point et même mois pour les autres années.
+Spécifiquement, pour chaque évènement de cyclogénèse dans notre jeu de données IBTrACS, caractérisé par un point de grille, un mois et une année, nous extrayons
+la série temporelle de l'indice en ce point de grille, composée des valeurs au même mois de toutes les années ($n = \num{40}$). Les valeurs composant la série
+sont ensuite ordonnées de la plus grande à la plus petite, de façon à connaître le rang de la valeur correspondant à la date de l'évènement observé. Enfin, le
+rang est rapporté en un pourcentage, où chacun des rangs parmi les \num{40} vaut \prct{2.5}, constituant donc la distribution des pourcentiles pour toutes les
+cyclogénèses observées. La \cref{fig:percentile_genesis_all} présente ces distributions calculées à partir des \num{2789} évènements de
+cyclogénèses\footnote{Le/la lecteur·trice aura peut-être remarqué que \num{2789} cyclogénèses sur \num{40} années fait une moyenne bien différente de celle de
+\num{84.7} TC par an évoquée à plusieurs reprises dans ce chapitre. La raison à cela provient du fait que certaines observations sont perdues en raison du
+masque terre-mer assez conservatif utilisé, puisque l'indice n'est pas défini en ces points.} issues d'IBTrACS entre \num{1980} et \num{2019}, toutes
+régions confondues.
+
+\begin{figure}[tp]
+    \centering
+    \includegraphics[width=\textwidth]{percentile_genesis_all_5_2.png}
+    \caption{Distribution des rangs par rapport aux autres années pour les indices pris aux points de grille et aux dates de cyclogénèses observées. L'encadré à
+    gauche de la séparation verticale présente la distribution associée au TCS évaluée sur les cyclogénèses IBTrACS, avec une largeur de \prct{5}. Les quatre
+    encadrés à droite de la séparation présentent les distributions pour C25, C10 (1\iere~colonne) et M25 et M10 (2\ieme~colonne).}
+    \label{fig:percentile_genesis_all}
+\end{figure}
+
+Toutes les distributions présentées sur la \cref{fig:percentile_genesis_all} partagent la même allure, avec une augmentation plus ou moins régulière du nombre
+de cas avec des rangs élevés, puis une rupture pour la tranche 95~--~\prct{100}, tranche regroupant le plus grand nombre de cas pour tous les indices. Cette
+allure indique que tous les indices présentent une activité supérieure à leur état moyen lorsqu'un évènement a lieu. Un indice ne présentant aucune corrélation
+avec l'activité observée à l'échelle du point de grille présenterait au contraire une distribution uniforme. Le TCS, sur la partie gauche de la
+\cref{fig:percentile_genesis_all} présente une moyenne et une médiane de \prct{67.1} et \prct{72.5}, respectivement. Un pourcentile de \prct{72.5} correspond à
+un rang de \num{11} sur \num{40}. Il y a donc autant de cyclogénèses pour lesquelles le TCS se classe au delà de la \num{11}\ieme~place que de cas où elle se
+place avant. Les quatre indices construits dans cette section présentent une médiane à \prct{75}. Cette augmentation de \num{2.5} points de pourcentages est
+équivalente à un rang amélioré d'une place, puisque \prct{75} correspond au rang \num{10} sur \num{40}. Notons que les deux indices climatologiques, C25 et C10
+partagent la valeur moyenne de \prct{68.2}, tandis que les deux indices mensuels M25 et M10 partagent la valeur de \prct{68.8}. Ainsi, l'apport de variabilité
+temporelle dans la régression améliore marginalement la capacité de l'indice à réagir à un évènement de cyclogénèse par rapport aux indices climatologiques.
+Cependant, la valeur moyenne comme la médiane de C25 sont supérieures à celles du TCS.
+
+Le \cref{tab:percentiles_indices_all} présente la moyenne et la médiane des quatre indices ainsi que du TCS pour les six régions bassins océaniques. Dans le
+NAtl, C25, C10 et M25 partagent les mêmes paramètres de la distribution, avec une moyenne à \prct{64.1}, tandis que M10 atteint une moyenne de \prct{64.4}. Ces
+valeurs sont toutes supérieures à la moyenne du TCS, valent \prct{63.2}. La médiane pour les cinq indices est de \prct{70}, inchangée. Dans le WPac, on note une
+première amélioration de \prct{68} à \prct{68.1} entre C25 et C10 pour la moyenne, puis \prct{68.8} pour M25 et M10. Là encore, ces valeurs sont supérieures au
+TCS. La médiane est également augmentée de \num{2.5} points de pourcentages pour les quatre indices par rapport au TCS. Le bassin EPac constitue un cas un peu
+plus particulier, puisqu'il est le seul bassin pour lequel le rang médian perd une place entre les indices mensuels et climatologiques, en dépit d'une hausse
+(marginale) de la valeur moyenne. Le bassin SPac atteint un rang médian de \prct{82.5} pour les indices mensuels et de \prct{80} pour les indices
+climatologiques, soit respectivement la \num{7}\ieme~et \num{8}\ieme~place. Enfin, pour SIndW et SIndE, les quatre indices présentent tous une médiane \num{2.5}
+plus élevée que le TCS, soit un rang amélioré d'une place. Là encore le rang moyen tend à augmenter pour les indices mensuels.
+
+\begin{table}[tb]
+    \centering
+    \caption{Valeurs moyennes (médianes), exprimées en pourcentage, de la distribution des pourcentiles du rang de l'indice pour les cyclogénèses observées, et
+    pour chaque bassin océanique.}
+    \begin{tabular}{lrrrrrr}
+        \toprule\toprule
+        Indice & \multicolumn{6}{c}{Région}\\
+        \midrule
+               & NAtl & WPac & EPac & SPac & SIndW & SIndE \\
+        \midrule 
+        C25 & \num{64.1} (\num{70}) & \num{68} (\num{75}) & \num{66.1} (\num{72.5}) & \num{74.7} (\num{80}) & \num{71.8} (\num{77.5}) & \num{67.9} (\num{72.5}) \\
+        C10 & \num{64.1} (\num{70}) & \num{68.1} (\num{75}) & \num{66.1} (\num{72.5}) & \num{74.6} (\num{80}) & \num{71.8} (\num{77.5}) & \num{67.9} (\num{72.5}) \\
+        M25 & \num{64.1} (\num{70}) & \num{68.8} (\num{75}) & \num{66.4} (\num{70}) & \num{75.3} (\num{82.5}) & \num{72.3} (\num{77.5}) & \num{68.5} (\num{72.5}) \\
+        M10 & \num{64.4} (\num{70}) & \num{68.8} (\num{75})& \num{66.4} (\num{70}) & \num{75.4} (\num{82.5}) & \num{72.3} (\num{77.5}) & \num{68.8} (\num{72.5}) \\
+        \midrule
+        TCS & \num{63.2} (\num{70}) & \num{66.6} (\num{72.5}) & \num{65.5} (\num{70}) & \num{74.2} (\num{80}) & \num{69.9} (\num{75}) & \num{66.5} (\num{70}) \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:percentiles_indices_all}
+\end{table}
+
+Pour résumer, tous les indices présentent un rang médian au moins égal à ceux du TCS, tandis que le rang moyen est toujours supérieur. Les indices construits
+sur les champs mensuels, M25 et M10 présentent systématiquement un rang moyen amélioré par rapport aux indices C25 et C10, à l'exception de M25 dans le NAtl qui
+demeure inchangé. Le rang médian est lui souvent inchangé pour les indices mensuels, à l'exception du bassin SPac où M25 et M10 prennent tous deux une place,
+tandis qu'ils en perdent une dans le bassin EPac.
+
 \subsection{Conclusion}
 
-Pas facile de faire bouger la variabilité interannuelle. Cela dit c'est chouette d'avoir corrigé le biais équatorial quasiment complètement. Qu'en sera-t-il en
-faisant une régression par bassin ? (Spoiler : C'est un peu pareil)
+Dans cette section, quatre indices de cyclogénèses ont été construits en reproduisant la méthodologie de \textcite{tippett_poisson_2011}, à savoir la régression
+de Poisson (voir \cref{sec:apport_res_methodes}), en utilisant les mêmes prédicteurs de grande échelle que sont la vorticité absolue bornée, le cisaillement
+vertical du vent, l'humidité relative et la SST relative. Ces indices sont construits entre d'une part la réanalyse atmosphérique ERA5, et de l'autre la base de
+données observationelle IBTrACS. Outre la période temporelle utilisée ici, différente de celle utilisée pour déterminer les coefficients $b$ du TCS, les indices
+nouvellement définis se distinguent par la résolution spatiale des champs (de grande échelle, comme de l'activité cyclonique observée), ainsi que par la
+résolution temporelle. En effet, deux des indices sont construits sur les moyennes climatologiques des champs atmosphériques et des observations IBTrACS (C25 et
+C10), tandis que les deux autres sont construits directement à partir des moyennes mensuelles (M25 et M10), ce qui revient à apporter de la variabilité
+temporelle à plus haute fréquence dans la régression statistique. De la même façon, deux indices sont construits sur des champs à la résolution grossière de
+\ang{2.5} (C25 et M25), tandis que les deux autres sont établis à \ang{1} de résolution horizontale (C10 et M10). En pratique, les quatre indices se
+distinguent, entre eux mais aussi du TCS, par les coefficients $b$ qui les caractérisent, puisque tous sont évalués et comparés sur les champs mensuels ERA5 à
+\ang{1} de résolution, indépendamment de la manière dont la régression a été menée.
+
+Comme attendu, les coefficients de C25 sont les plus proches de TCS, avec notablement une sensibilité diminuée à la SST relative, et au contraire une
+sensibilité accrue au cisaillement vertical. S'il est possible qu'une partie de ces différences provienne de l'utilisation d'un jeu de données d'origine
+différente, il semblerait que la période temporelle utilisée joue un rôle important, puisque ces deux coefficients s'éloignent du TCS au fur et à mesure que la
+période temporelle est lointaine de celle utilisée par \textcite{tippett_poisson_2011} (\num{1961}~--~\num{2000}). Si cette tendance venait à être confirmée, le
+décalage si rapide dans le temps des coefficients de l'indice questionnerait sérieusement le bienfondé de l'application des indices de cyclogénèses pour l'étude
+du climat futur. L'apport de la résolution spatiale accrue, comme celui de l'ajout de variabilité temporelle dans la régression se traduisent tous deux par une
+diminution de l'activité à proximité immédiate de l'équateur, au profit des régions de basses latitudes immédiatement attenantes. L'effet de la variabilité
+temporelle est dominant, les deux étant séparés d'un ordre de grandeur (voir \cref{sec:repartition_geographique}, \cref{fig:impact_spatial_temporel}). De plus,
+l'utilisation de données mensuelles dans la régression produit un coefficient associé à la vorticité absolue bornée augmenté de plus de \prct{30}. Il apparaît
+que cet ordre de grandeur de $b_\eta$, à environ \num{1.39} contre \num{1.03} pour le TCS, permette la correction quasi complète du biais équatorial dont le TCS
+souffre sinon (voir \cref{fig:my_fit_meridional}).
+
+Si les coefficients $b$ des indices définis par régression de Poisson ne sont que modérément robustes ---~selon la variable considérée~--- la variabilité
+interannuelle inférée par ces mêmes indices l'est quant à elle très fortement. En effet, ni la résolution horizontale accrue, ni l'introduction de variabilité
+temporelle à plus haute fréquence dans la régression, et donc les variations de coefficients qui en résultent, ne changent de manière significative la
+variabilité interannuelle. Cela suggère par conséquent que le choix des prédicteurs est le facteur principal influençant la variabilité interannuelle, bien plus
+que les coefficients de pondération qui leur sont associés. Par ailleurs, cette analyse a mis en évidence un problème d'homogénéité temporelle dans le champ
+d'humidité relative de la réanalyse ERA5 dans la région du Pacifique ouest, résultant en une modification brutale de la fréquence moyenne annuelle de part et
+d'autre de l'année \num{1998}. Ce problème compromet considérablement l'utilisation d'indices définis en fonction de l'humidité relative pour l'étude de
+l'activité cyclonique dans cette région avec ERA5. Ce problème est également visible dans l'analyse qui est faite dans la \cref{sec:proprietes_indices},
+notamment pour le GPI, et n'est donc pas limité au TCS et à ses variantes.
+
+En dépit de l'effet particulièrement marginal de la résolution spatiale et temporelle sur la variabilité interannuelle, il est montré dans la
+\cref{sec:diagnostique_rang} que l'estimation de nouveaux coefficients $b$, supposément mieux adaptés au jeu de donnée cible, apporte tout de même une
+plus-value. Le nouveau diagnostique qui y est introduit, consistant en la mesure des paramètres de la distribution des rangs des valeurs prises par l'indice aux
+points de grille et aux dates des cyclogénèses observées, montre en effet une réactivité systématiquement accrue pour les indices construits sur nos jeux de
+données, par rapport aux coefficients du TCS. Dans le contexte précis de l'étude réalisée ici, le gain est cependant marginal, et il n'est en outre pas certain
+que cette légère amélioration de la cohérence l'indice et les observations justifie à elle seule la quantité de travail requise à l'estimation de nouveaux
+coefficients.
 
 \section{Indice de cyclogénèses régional}
 
