@@ -413,7 +413,7 @@ retrouve affectée.
 %--------------------------------------
 %\section{Climatologie saisonnière spatiale et temporelle}
 
-\section{Apport de la résolution spatiale et temporelle}
+\section{Apport de la résolution spatiale et temporelle}\label{sec:apport_res_temporel_spatial}
 
 On s'intéresse dans cette section à l'impact de la résolution spatiale et temporelle sur la variabilité interannuelle d'un indice de cyclogénèse défini comme
 une régression de Poisson, selon \textcite{tippett_poisson_2011}. Pour cela, nous réalisons la régression entre l'activité observée, issue de la base de données
@@ -812,6 +812,58 @@ que cette légère amélioration de la cohérence l'indice et les observations j
 coefficients.
 
 \section{Indice de cyclogénèses régional}
+
+Après avoir défini de nouveaux indices construits à partir de champs à différentes résolutions spatiales et temporelles dans la
+\cref{sec:apport_res_temporel_spatial}, on s'intéresse dans cette question à la construction d'indices de cyclogénèses régionaux. Comme précédemment, les
+indices régionaux sont construits par régression de Poisson, dont le fonctionnement est détaillé dans la \cref{sec:apport_res_methodes}. Toutefois, au lieu de
+déterminer une relation entre l'environnement de grande échelle et l'activité cyclonique observée à l'échelle globale, la régression est appliquée à l'échelle
+du bassin cyclonique. Les coefficients $b$ de la régression se s'interprétant comme des sensibilités, on s'intéresse notamment à l'information apportée par les
+différentes valeurs prises par chacun des coefficients dans chacune des régions géographiques.
+
+\subsection{Méthodes}
+
+Pour cet exercice, les bassins océaniques usuels sont utilisés, c'est à dire ceux présentés sur la \cref{fig:impact_spatial_temporel}. Les premières
+observations des systèmes issus d'IBTrACS, version 4, sont assimilés aux cyclogénèses (vecteur $Y$ de la relation \ref{eq:poisson_reg}), dès lors que ces
+systèmes atteignent à un moment de leur cycle de vie le stade de tempête tropicale ou subtropicale. Comme précédemment, on se limite pour la régression aux
+données entre \num{1980} et \num{2019}. Les indices régionaux sont construits selon la même méthodologie que pour l'indice M10 décrit dans la
+\cref{sec:apport_res_methodes}, c'est à dire sur les champs de grande échelle ERA5 mensuels à \ang{1} de résolution. En effet, comme vu précédemment,
+l'introduction de variabilité à plus haute fréquence dans la régression peut apporter de l'information qui serait sinon manquée avec des moyennes
+climatologiques. Par ailleurs, bien que les indices basés sur des champs mensuels n'impactent pas la variabilité interannuelle simulée, il semble déraisonnable
+de d'espérer pouvoir l'améliorer sans introduire de variabilité temporelle dans la régression. Quant à la résolution, nous utilisons les champs à \ang{1} de
+résolution, malgré l'impact marginal du passage depuis \ang{2.5}, car le masque terre-mer à \ang{2.5} risquerait de réduire trop fortement le nombre de points
+de grille utiles pour des régression réalisées à cette échelle. Les mêmes prédicteurs que pour le TCS sont utilisés, et décrits dans la
+\cref{sec:apport_res_methodes}, de façon à voir la sensibilité de l'activité cyclonique de chaque bassin à ces derniers.
+
+
+\subsection{Coefficients régionaux}
+
+Test
+
+\begin{table}[htpb]
+    \centering
+    \caption{Caption}
+    \label{tab:coefs_fit_bassin}
+
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrrrrrrrr}
+       \toprule\toprule 
+       \multicolumn{1}{c}{Bassin} & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Détails}\\
+       \midrule
+               & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & $N_{\mathrm{lon}}$     & $N_{\mathrm{lat}}$ & $m_{\mathrm{eff}}$ \\
+       \midrule
+       NAtl    & \num{-17.3713} & \num{2.1677} & \num{-0.0594} & \num{0.0651}  & \num{0.3313} & \num{96}  & \num{60}  & \num{1510560} \\
+       WPac    & \num{-14.2693} & \num{0.9547} & \num{-0.0715} & \num{0.0760}  & \num{0.4860} & \num{77}  & \num{60}  & \num{1244640} \\ 
+       EPac    & \num{-16.2217} & \num{1.5829} & \num{-0.0805} & \num{0.0748}  & \num{0.6970} & \num{102} & \num{60}  & \num{1862400} \\
+       SPac    & \num{-15.6428} & \num{1.5562} & \num{-0.1282} & \num{0.0666}  & \num{0.5208} & \num{160} & \num{60}  & \num{3742080} \\
+       SIndW   & \num{-16.7210} & \num{1.8837} & \num{-0.0590} & \num{0.0686}  & \num{0.5779} & \num{70}  & \num{60}  & \num{1605120} \\
+       SIndE   & \num{-15.0059} & \num{1.5269} & \num{-0.0706} & \num{0.0640}  & \num{0.4298} & \num{45}  & \num{60}  & \num{932640} \\
+       \midrule
+       M10  & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \num{360} & \num{120} & \num{13115040} \\
+       TCS  & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & ---  & ---  & --- \\
+       \bottomrule
+    \end{tabular}
+    }
+\end{table}
 
 %\section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
 %
