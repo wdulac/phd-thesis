@@ -58,7 +58,7 @@ vertical du vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{
 PI) \parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice et
 représente l'intensité maximale théorique d'un cyclone tropical, exprimée en vitesse de vent à la surface (\ms{}), lorsque ce dernier est assimilé à un cycle de
 Carnot \parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la
-différence de température à ses deux extrémités~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse
+différence de température à ses deux extrémités~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèses
 supplémentaires dont l'énumération dépasse le cadre de ce manuscrit, le PI pouvait être évalué comme suit :
 %
 \begin{equation*}
@@ -524,12 +524,13 @@ indépendant de la résolution spatiale et de l'agrégation temporelle utilisée
 données entre un jeu d'apprentissage et un jeu d'évaluation dans la mesure où le surapprentissage ne constitue ici pas un risque, mais au contraire une
 propriété désirable.
 
-\subsection{Résultats}
+\subsection{Résultats}\label{sec:apport_resultat}
 
 Le \cref{tab:fit_spatial_temporel} présente les coefficients $b$ des multiples régressions qui sont réalisées. Les coefficients du TCS sont rappelés et indiqués
 dans le tableau à titre de référence. Les coefficients sont donnés avec quatre décimales, car celles-ci ne varient pas lorsque les régressions sont répétées.
-Par ailleurs, les intervalles de confiance associés à chaque coefficient sont omis car tous les coefficients apparaissent comme statistiquement significatifs à
-\prct{95}, où sens où, à ce niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
+Les erreurs standard issues de la régression pour chacun des coefficients et des indices sont également indiqués, comparés à ceux indiqués dans
+\textcite{tippett_poisson_2011} pour le TCS. Tous les coefficients estimés ici apparaissent comme statistiquement significatifs à \prct{95}, au sens où, à ce
+niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
 
 \begin{table}[htpb]
     \centering
@@ -540,16 +541,25 @@ Par ailleurs, les intervalles de confiance associés à chaque coefficient sont 
     \resizebox{\textwidth}{!}{
     \begin{tabular}{crrrrrrrr}
        \toprule\toprule 
-       Indice & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Résolution}\\
+       \textbf{Indice} & \multicolumn{5}{c}{\textbf{Coefficients}} & \multicolumn{3}{c}{\textbf{Résolution}}\\
        \midrule
               & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & Spatiale     & Temporelle & $m_{\mathrm{eff}}$ \\
        \midrule
+              & \multicolumn{5}{l}{Estimations} & & & \\
        C25    & \num{-11.1927} & \num{1.0538} & \num{-0.1051} & \num{0.0653}  & \num{0.4396} & \ang{2.5}  & 12  & \num{52128} \\
        C10    & \num{-13.1570} & \num{1.0702} & \num{-0.1034} & \num{0.0655}  & \num{0.4584} & \ang{1.0}  & 12  & \num{327876} \\ 
        M25    & \num{-13.0987} & \num{1.3757} & \num{-0.0976} & \num{0.0726}  & \num{0.3967} & \ang{2.5}  & 480 & \num{2085120} \\
        M10    & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \ang{1.0}  & 480 & \num{13115040} \\
        \midrule
        TCS    & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & \ang{2.5}  & 12  & --- \\
+       \midrule
+              &\multicolumn{5}{l}{Erreur standard} & & &\\
+        C25 & \num{0.194} & \num{0.029} & \num{0.005} & \num{0.002} & \num{0.019} & & &\\
+        C10 & \num{0.164} & \num{0.026} & \num{0.004} & \num{0.002} & \num{0.017} & & &\\
+        M25 & \num{0.161} & \num{0.031} & \num{0.004} & \num{0.002} & \num{0.015} & & &\\
+        M10 & \num{0.162} & \num{0.032} & \num{0.004} & \num{0.002} & \num{0.015} & & &\\
+        \midrule
+        TCS & \num{0.19} & \num{0.026} & \num{0.01} & \num{0.003} & \num{0.021} & & &\\
        \bottomrule
     \end{tabular}
     }
@@ -829,41 +839,138 @@ données entre \num{1980} et \num{2019}. Les indices régionaux sont construits 
 \cref{sec:apport_res_methodes}, c'est à dire sur les champs de grande échelle ERA5 mensuels à \ang{1} de résolution. En effet, comme vu précédemment,
 l'introduction de variabilité à plus haute fréquence dans la régression peut apporter de l'information qui serait sinon manquée avec des moyennes
 climatologiques. Par ailleurs, bien que les indices basés sur des champs mensuels n'impactent pas la variabilité interannuelle simulée, il semble déraisonnable
-de d'espérer pouvoir l'améliorer sans introduire de variabilité temporelle dans la régression. Quant à la résolution, nous utilisons les champs à \ang{1} de
+d'espérer pouvoir l'améliorer sans introduire de variabilité temporelle dans la régression. Quant à la résolution, nous utilisons les champs à \ang{1} de
 résolution, malgré l'impact marginal du passage depuis \ang{2.5}, car le masque terre-mer à \ang{2.5} risquerait de réduire trop fortement le nombre de points
 de grille utiles pour des régression réalisées à cette échelle. Les mêmes prédicteurs que pour le TCS sont utilisés, et décrits dans la
 \cref{sec:apport_res_methodes}, de façon à voir la sensibilité de l'activité cyclonique de chaque bassin à ces derniers.
 
+Une fois les coefficients déterminés, les relations établies pour chaque bassin sont appliquées aux champs mensuels ERA5 à \ang{1}. La calibration des indices
+régionaux est faite de façon à ce que l'intégrale de chaque indice régional soit égal à l'intégrale de l'indice M10 sur ce bassin (ce dernier étant calibré sur
+IBTrACS à l'échelle globale).
+
 
 \subsection{Coefficients régionaux}
 
-Test
+Le \cref{tab:coefs_fit_bassin} présente les coefficients $b$ pour les six régression régionales. Comme pour la \cref{sec:apport_res_temporel_spatial},
+l'interprétation de l'ordonnée à l'origine $b_0$ est mise de côté. Au delà de ce coefficient, les régressions à l'échelle du bassin mettent en évidence des
+sensibilités aux variables de grande échelle très différentes selon les bassin, variant du simple au double pour certaines variables, et de manière plus modeste
+pour d'autres.
 
 \begin{table}[htpb]
     \centering
-    \caption{Caption}
+    \caption{Estimation des coefficients $b$ et de leur erreur standard pour chaque régression faite à l'échelle du bassin océanique. Les deux dernières lignes
+    présentent les coefficients pour l'indice M10 de la \cref{sec:apport_res_temporel_spatial} et du TCS. La colonne Fréquence indique le nombre annuel moyen de
+    TC pour les indices régionaux, calibrés pour simuler la même fréquence que l'indice M10 dans chacun des bassins.}
     \label{tab:coefs_fit_bassin}
 
     \resizebox{\textwidth}{!}{
-    \begin{tabular}{lrrrrrrrr}
+    \begin{tabular}{lrrrrrr}
        \toprule\toprule 
-       \multicolumn{1}{c}{Bassin} & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Détails}\\
+       \multicolumn{1}{c}{Bassin} & \multicolumn{5}{c}{Coefficients} & \multicolumn{1}{c}{Fréquence}\\
        \midrule
-               & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & $N_{\mathrm{lon}}$     & $N_{\mathrm{lat}}$ & $m_{\mathrm{eff}}$ \\
+               & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ &  \\
        \midrule
-       NAtl    & \num{-17.3713} & \num{2.1677} & \num{-0.0594} & \num{0.0651}  & \num{0.3313} & \num{96}  & \num{60}  & \num{1510560} \\
-       WPac    & \num{-14.2693} & \num{0.9547} & \num{-0.0715} & \num{0.0760}  & \num{0.4860} & \num{77}  & \num{60}  & \num{1244640} \\ 
-       EPac    & \num{-16.2217} & \num{1.5829} & \num{-0.0805} & \num{0.0748}  & \num{0.6970} & \num{102} & \num{60}  & \num{1862400} \\
-       SPac    & \num{-15.6428} & \num{1.5562} & \num{-0.1282} & \num{0.0666}  & \num{0.5208} & \num{160} & \num{60}  & \num{3742080} \\
-       SIndW   & \num{-16.7210} & \num{1.8837} & \num{-0.0590} & \num{0.0686}  & \num{0.5779} & \num{70}  & \num{60}  & \num{1605120} \\
-       SIndE   & \num{-15.0059} & \num{1.5269} & \num{-0.0706} & \num{0.0640}  & \num{0.4298} & \num{45}  & \num{60}  & \num{932640} \\
+       NAtl    & \mypm{-17.3713}{0.735} & \mypm{2.1677}{0.163} & \mypm{-0.0594}{0.010} & \mypm{0.0651}{0.004}  & \mypm{0.3313}{0.022} & $\num{8.6}$  \\
+       WPac    & \mypm{-14.2693}{0.303} & \mypm{0.9547}{0.045} & \mypm{-0.0715}{0.008} & \mypm{0.0760}{0.003}  & \mypm{0.4860}{0.041} & $\num{29.2}$ \\ 
+       EPac    & \mypm{-16.2217}{0.409} & \mypm{1.5829}{0.076} & \mypm{-0.0805}{0.009} & \mypm{0.0748}{0.004}  & \mypm{0.6970}{0.042} & $\num{17.7}$  \\
+       SPac    & \mypm{-15.6428}{0.555} & \mypm{1.5562}{0.115} & \mypm{-0.1282}{0.016} & \mypm{0.0666}{0.006}  & \mypm{0.5208}{0.055} & $\num{12.5}$   \\
+       SIndW   & \mypm{-16.7210}{0.578} & \mypm{1.8837}{0.130} & \mypm{-0.0590}{0.014} & \mypm{0.0686}{0.005}  & \mypm{0.5779}{0.102} & $\num{7}$   \\
+       SIndE   & \mypm{-15.0059}{0.643} & \mypm{1.5269}{0.155} & \mypm{-0.0706}{0.014} & \mypm{0.0640}{0.005}  & \mypm{0.4298}{0.052} & $\num{4.8}$   \\
        \midrule
-       M10  & \num{-15.0496} & \num{1.3968} & \num{-0.0960} & \num{0.0718}  & \num{0.4142} & \num{360} & \num{120} & \num{13115040} \\
-       TCS  & \num{-5.8}     & \num{1.03}   & \num{-0.15}   & \num{0.05}    & \num{0.56}   & ---  & ---  & --- \\
+       %\multicolumn{1}{c}{Indices} & \multicolumn{5}{c}{Coefficients} & \multicolumn{3}{c}{Détails}\\
+       \multicolumn{7}{c}{Indices de Référence}\\
+       \midrule
+       M10  & \mypm{-15.0496}{0.162} & \mypm{1.3968}{0.032} & \mypm{-0.0960}{0.004} & \mypm{0.0718}{0.002}  & \mypm{0.4142}{0.015} & $\num{84.7}$ \\
+       TCS  & $\num{-5.8}$     & $\num{1.03}$   & $\num{-0.15}$   & $\num{0.05}$    & $\num{0.56}$   & $\num{84.7}$  \\
        \bottomrule
     \end{tabular}
     }
 \end{table}
+
+L'humidité relative à \hPa{600} fait partie des variables pour lesquelles la sensibilité de la fréquence attendue de cyclogénèses est relativement stable pour les
+différents bassins. Les valeurs de $b_H$ varient entre \num{0.064} pour le SIndE et \num{0.076} pour le WPac. Toutefois, la valeur du coefficient dans le WPac
+peut être influencée par la rupture temporelle dans le champ d'humidité relative mise en évidence précédemment. La deuxième valeur la plus grande est atteinte
+pour le EPac avec \num{0.0748}. Cette plage de valeur correspond donc à une sensibilité de l'ordre de \prct{6.4} à \prct{7.5} pour un changement unitaire de
+l'humidité relative. Les valeurs $b_H$ sont inférieures à celle de M10 pour quatre des 6 régions géographiques, avec seul le pacifique nord (ouest comme est)
+situé au dessus. Le $b_H$ moyen sur les six régions est d'environ \num{0.0692}, soit également inférieur à M10. Dans ce dernier, il est possible que le bassin
+NInd contribue à augmenter le $b_H$ global, ce bassin n'étant pas intégré aux régression locales pour cause de données observationelles manquantes. L'erreur
+standard relative de $b_H$ pour les régression régionales se situe entre \prct{4} et \prct{9} de la moyenne estimée.
+
+Les coefficients associés au cisaillement vertical, $b_{V_{\mathrm{shear}}}$ présentent également une faible dispersion, à l'exception du SPac. Dans tous les
+autres bassins, ce coefficient se situe entre \num{-0.059} (SIndW) et \num{-0.0805} (EPac). Dans le SPac, ce coefficient atteint \num{-0.1282}. La différence
+avec les cinq autres bassins est donc importante. La valeur moyenne de $b_{V_{\mathrm{shear}}}$ vaut environ \num{-0.068}, soit un peu plus de la moitié du
+coefficient du SPac. L'erreur standard relative est maximale pour le SIndW, à près de \prct{24}, suivi du bassin SIndE à environ \prct{20}. En comparaison,
+l'erreur standard relative pour le bassin SPac n'est que de \prct{12}. Ici encore, la moyenne des $b_{V_{\mathrm{shear}}}$, incluant le SPac
+(\sim~\num{-0.0782}) est éloignée de la valeur de l'indice M10. Tous les bassins, à l'exception du SPac, indiquent en effet une sensibilité diminuée au
+cisaillement vertical par rapport au $b_{V_{\mathrm{shear}}}$ global de M10. L'absence du bassin NInd dans les régression locales peuvent aussi expliquer au
+moins en partie cette différence, le cisaillement étant un facteur très déterminant dans cette région \parencite{gray_global_1968}.
+
+La sensibilité à la SST relative présente quant à elle une plus grande variabilité spatiale. La plus grande sensibilité à la SST relative est notée pour le
+bassin EPac, avec \num{0.697}, avec une erreur standard relative de \prct{6}. La SST dans ce bassin est particulièrement impactée par les épisodes El Niño et El
+Niña, puisque c'est dans ce bassin que l'anomalie de température de surface de l'océan y est diagnostiquée. Entre ERA5 et IBTrACS, nous notons une corrélation
+entre l'activité observée et l'indice ONI ---~diagnostique opérationnel du mode de variabilité El Niño/Niña, défini comme l'anomalie de température sur trois
+mois glissants entre \ang{170}W et \ang{120}W en longitude et \ang{5}S et \ang{5}N en latitude~--- à l'échelle du bassin EPac de \num{0.54}. Le lien entre ce
+mode de variabilité et l'activité cyclonique est également documenté dans la littérature \parencite{camargo_use_2007,lin_enso_2020}. Une forte
+sensibilité du modèle de Poisson à la SST relative dans ce bassin était alors attendue. À l'inverse, la sensibilité la plus faible à la SST relative est obtenue
+pour le bassin NAtl.
+
+Si le bassin NAtl présente la plus faible sensibilité à la SST relative, et la deuxième plus faible sensibilité au cisaillement vertical, juste derrière le
+bassin SIndW, la régression indique cependant une très forte sensibilité à la vorticité absolue bornée $\eta$. En effet, $b_\eta$ pour le NAtl atteint la valeur
+record de \num{2.1677}, loin devant tous les autres bassins. Pour une telle valeur, l'approximation $e^{b_\eta} \approx 1 + b_\eta$ n'est absolument pas valide.
+Ici, la fréquence attendue est modifiée d'un facteur $e^{b_\eta}$ environ égal à \num{8.7} pour un changement unitaire de la vorticité absolue bornée. La
+vorticité apparaît donc dans la régression comme le facteur le plus déterminant pour expliquer la fréquence d'occurrence des TC dans ce bassin. Dans le WPac,
+$b_\eta$ est au contraire à sa valeur la plus basse comparée aux autres régions, à \num{0.9547}. Notons que tous les autres bassins présentent un $b_\eta$ sinon
+supérieur à la valeur de M10, situé entre \num{1.5} et \num{1.6} pour les bassins EPac, SPac, SIndW et SIndE, d'environ \num{1.88} pour le bassin SPac.
+
+\subsection{Effet sur la répartition spatiale}
+
+De manière analogue à la \cref{sec:apport_resultat}, nous évaluons ici l'impact des coefficients $b$ différents sur la répartition spatiale de l'activité pour
+chacun des bassins. Par commodité, désignons par le nom de LM10 (comme \textquote{Local}) l'ensemble des indices régionaux, dont l'agrégation forme un indice
+pseudo-global. LM10 peut en effet être vu comme une déclinaison régionale de l'indice M10. LM10 est caractérisé par ses coefficients $b$, qui eux-mêmes sont
+fonction du bassin géographique. À la différence de M10, LM10 est indéfini en dehors des six bassins listés dans le \cref{tab:coefs_fit_bassin}. La
+\cref{fig:diff_LM10_M10} présente la moyenne annuelle, exprimée en TC par \ang{1}$\times$\ang{1} par an, de la quantité $\mathrm{LM10} - \mathrm{M10}$. Puisque
+LM10 est calibré pour produire dans chaque bassin la fréquence annuelle moyenne de M10, l'intégrale des cartes de la \cref{fig:diff_LM10_M10} sont égales à
+\num{0}.
+
+\begin{figure}[tp]
+    \centering
+    \includegraphics[width=\textwidth]{diff_LM10_M10.png}
+    \caption{Carte du déport d'activité pour chaque bassin entre l'indice régional et M10. Un changement positif indique une activité simulée accrue pour l'indice
+    régional par rapport à M10. L'intégrale pour chaque bassin est nulle, par construction. Pour le bassin Nord Atlantique, les boîtes rouges indiquent les deux
+    sous-régions, que sont le GoM et la MDR, concentrant la majorité des cyclogénèses dans le bassin.}
+    \label{fig:diff_LM10_M10}
+\end{figure}
+
+Le bassin NAtl est caractérisé par un fort déport de l'activité inférée par M10 à proximité de l'équateur dans tout le reste du bassin, à l'exception du Golf du
+Mexique (Encadré en rouge, GoM), qui voit lui aussi une diminution relative dans LM10. Rappelons que la \cref{sec:apport_res_temporel_spatial} a mis en évidence
+le rôle du coefficient $b_\eta$ dans le décalage méridional de l'activité inférée. Dans la mesure où LM10 présente un $b_\eta$ encore plus important, il est
+permis de penser que c'est cette sensibilité accrue à la vorticité absolue de LM10 qui est à l'origine de la diminution de l'activité sur la bande entre
+\ang{5}N et \ang{10}N. Cette baisse se fait notamment au bénéfice de la région de développement principale (MDR), également encadrée en rouge sur la carte du
+NAtl de la \cref{fig:diff_LM10_M10}. Dans la MDR, LM10 simule environ \num{3.97} TC par an, contre \num{3.8} TC par an pour M10. Dans le GoM, LM10 simule en
+revanche \num{1.07} TC par an contre \num{1.12} TC par an pour M10. À titre de référence, les données de cyclogénèses IBTrACS utilisées ici indiquent \num{5.64}
+TC par an dans la MDR et \num{1.87} TC par an dans le GoM. Ainsi, LM10 simule une activité légèrement plus proche d'IBTrACS dans la MDR, mais dégradée par
+rapport à M10 dans le GoM. L'origine de la diminution dans le GoM est incertaine, mais au vue des coefficients du \cref{tab:coefs_fit_bassin}, il semble
+probable que ce soit principalement le résultat de la baisse de sensibilité à la SST relative, et peut-être aussi dans une moindre mesure à la diminution de la
+sensibilité à l'humidité relative (comparativement moindre), dans la mesure où la diminution de la sensibilité
+au cisaillement vertical ne saurait expliquer une baisse de l'activité. Notons que la corrélation spatiale entre la moyenne annuelle de l'indice et la moyenne
+annuelle d'IBTrACS ---~lissée au préalable avec un filtre gaussien à \ang{1} d'écart-type~--- passe de \num{0.81} avec M10 à \num{0.83} avec LM10.
+
+Dans le WPac, la carte des différences ne présente aucune ambigüité. L'activité dans LM10 est augmentée en dessous de \ang{10}N, et diminuée au delà, en
+particulier en Mer de Chine Méridionale et mer des philippines, où la basse est maximale. Le déport vers l'équateur peut s'expliquer au moins en partie par un
+$b_\eta$ particulièrement bas, en dessous de \num{1}, plus bas encore que celui du TCS. C'est ce paramètre qui le distingue le plus de M10. Quoiqu'il en soit,
+la répartition spatiale de LM10 dans ce bassin est plus proche d'IBTrACS que ne l'est M10. En effet, entre \ang{0} et \ang{10}N, IBTrACS indique \num{9.83} TC
+par an, M10 simule \num{6.78} TC par an tandis que LM10 en simule \num{9.61} TC par an. Cela implique également que M10 surestime l'activité entre \ang{10}N et
+\ang{60}N, avec \num{22.3} TC par an contre \num{16.3} TC par an pour IBTrACS, alors que LM10 est par conséquent plus proche des observations, avec \num{19.72}
+TC par an. Ici, la régression sur le bassin WPac permet une meilleure ressemblance avec la répartition spatiale de l'activité observée dans IBTrACS. La
+corrélation spatiale passe de \num{0.81} avec M10 à \num{0.87} avec LM10.
+
+Dans le bassin EPac, LM10 concentre l'activité le long des côtes du Mexique, avec également une légère augmentation à l'extrémité l'ouest du domaine, de part et
+d'autre de \ang{10}N. Comme pour le WPac, ce déport favorise la corrélation spatiale, passant de \num{0.87} à \num{0.88}. LM10 y parvient en modifiant
+principalement la sensibilité à la SST $b_T$ relative (accrue) et à la vorticité $b_\eta$ (également accrue). Pour les trois bassins de l'hémisphère sud,
+l'effet est moindre. Dans le SPac, l'activité est accrue entre \ang{10}S et \ang{20}S, dans la Mer de Corail, jusqu'à \ang{180}. Dans le SIndW, l'activité est
+déportée autour de Madagascar, et dans le Canal du Mozambique. Dans le SIndE, un constat similaire est fait, avec une baisse entre \ang{0} et \ang{10}S puis une
+légère augmentation entre \ang{10}S et \ang{20}S. Dans ces trois bassins du Sud, la corrélation spatiale entre LM10 et IBTrACS demeure inchangée par rapport à
+celle évaluée avec M10.
 
 %\section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
 %
