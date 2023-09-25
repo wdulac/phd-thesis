@@ -12,19 +12,18 @@
 \minitoc
 \newpage
 %--------------------------------------
-\section{Les indices de cyclogénèses}\label{sec:intro_chap3}
+\section{Les indices de cyclogénèse}\label{sec:intro_chap3}
 
 \subsection{Tour d'horizon des différents indices}\label{sec:tour_horizon_indices}
 
 La \cref{sec:intro_indices} du \cref{chap:chapitre_1} introduit le concept de l'indice de cyclogénèse comme un moyen indirect d'étudier l'activité cyclonique
 dans les modèles. Cette approche se place comme une alternative à la mesure directe de la détection et le suivi objectif de TC dans les simulations, introduite
-dans la \cref{sec:intro_tracking} et abordé plus amplement dans le \cref{chapitre_2}. Ce thème de recherche a été initié par les travaux de
+dans la \cref{sec:intro_tracking} et abordé plus amplement dans le \cref{chap:chapitre_2}. Ce thème de recherche a été initié par les travaux de
 \textcite{gray_global_1968,gray_tropical_1975} qui a identifié les facteurs environnementaux de grande échelle les plus favorables à la cyclogénèse pour ensuite
 les combiner en un produit capable de reproduire la densité climatologique de cyclones observés, avec son indice alors dénommé Paramètre de Genèse Saisonnière,
 ou SGP. Ce dernier (de même que sa variante annuelle le YGP) n'est toutefois plus d'usage aujourd'hui, à fortiori pour des applications en changement
 climatique, à cause de son seuil fixe de SST. Une certaine variété d'indices ont été développés depuis. Ces derniers peuvent être distingués selon si les
-coefficients de pondération associés à chaque prédicteur sont déterminés de manière partiellement empirique, de ceux issus de régression statistiques et qui
-sont donc plus facilement reproductibles. Les plus communément utilisés d'entre eux sont présentés ci-après.
+Ces derniers peuvent être distingués selon si les coefficients de pondération associés à chaque prédicteur sont déterminés de manière partiellement empirique, ou bien si les coefficients proviennent d'une régression statistique. Ces derniers présentent l'intérêt d'être plus facilement reproductibles. Les plus communément utilisés d'entre eux sont présentés ci-après.
 
 \subsubsection{Relations empiriques}\label{sec:relations_empiriques}
 
@@ -39,13 +38,13 @@ P_0)}_{\mathrm{Convectif}} \tag*{CYGP}
 Où $f = 2 \Omega \sin \phi$ est le paramètre de Coriolis, $I_\zeta = \zeta_R \! +\! 5$ où $\zeta_R$ est la vorticité relative, $I_S = (1/S_z \! + \! 3)$, où
 $S_z$ est le cisaillement vertical du vent entre le haut et le bas de la troposphère, $P_c$ sont les précipitations convectives sur océan seuillées sur $P_0$,
 et enfin $k$ étant le coefficient de calibration de l'indice. Les constantes ajoutées au cisaillement et à la vorticité relative sont celles du SGP originel,
-mentionnées dans la \cref{sec:intro_indices}, \cref{note:SGP} et constituent là le caractère empirique de l'indice. Comme son nom le suggère, la particularité
+mentionnées dans la \cref{sec:intro_indices}, et constituent là le caractère empirique de l'indice. Comme son nom le suggère, la particularité
 du CYGP est d'utiliser un potentiel convectif en lieu et place du potentiel thermique du SGP qui, dans \textcite{gray_tropical_1975} est défini avec la
 stabilité atmosphérique (gradient vertical de température virtuelle équivalente), l'humidité relative moyenne entre \hPa{700} et \hPa{500} et l'énergie
 thermique océanique accumulée sur les 60 premiers mètres sous la surface. Le CYGP de \citeauthor{royer_gcm_1998} a servi dans des applications en climat futur
-par \textcite{mcdonald_tropical_2005,cattiaux_projected_2020,chauvin_response_2006,chauvin_future_2020}
+par \textcite{mcdonald_tropical_2005,cattiaux_projected_2020,chauvin_response_2006,chauvin_future_2020}.
 
-L'indice le plus communément utilisé est sans aucun doute le GPI (\textit{Genesis Potential Index}) de \textcite{emanuel_tropical_2004} défini comme suit :
+L'indice le plus communément utilisé désormais est sans aucun doute le GPI (\textit{Genesis Potential Index}) de \textcite{emanuel_tropical_2004} défini comme suit :
 %
 \begin{equation*}
     \tag*{GPI}
@@ -57,8 +56,8 @@ Où $\zeta$ représente la vorticité absolue à \hPa{850} ($\zeta = \zeta_R + f
 vertical du vent entre \hPa{850} et \hPa{200}, $H$ l'humidité relative à \hPa{700} et $V_{\mathrm{pot}}$ l'intensité potentielle (\textit{Potential Intensity},
 PI) \parencite{emanuel_airsea_1986,emanuel_sensitivity_1995,bister_dissipative_1998,bister_low_2002}. Cette dernière quantité remplace la SST dans l'indice et
 représente l'intensité maximale théorique d'un cyclone tropical, exprimée en vitesse de vent à la surface (\ms{}), lorsque ce dernier est assimilé à un cycle de
-Carnot \parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la
-différence de température à ses deux extrémités~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèse
+Carnot \parencite{emanuel_dependence_1987}. Sous cette hypothèse, le PI est proportionnel à l'efficacité énergétique du cycle thermodynamique ---~exprimée par la
+différence de température à ses deux extrémités~--- et de la source de chaleur. \textcite{bister_low_2002} ont alors montré que, sous certaines hypothèses
 supplémentaires dont l'énumération dépasse le cadre de ce manuscrit, le PI pouvait être évalué comme suit :
 %
 \begin{equation*}
@@ -76,16 +75,16 @@ Plusieurs autres indices de cyclogénèses ont été dérivés du GPI. \textcite
 l'humidité relative par une mesure adimensionnelle du déficit de saturation d'entropie humide dans la moyenne troposphère, argumentant que cette quantité serait
 un meilleur prédicteur de la fréquence d'occurrence des TC \parencite{emanuel_hurricanes_2008}. \textcite{bruyere_investigating_2012} ont également proposé une
 version modifiée du GPI originel dans laquelle la vorticité et l'humidité relative sont supprimées. Les auteurs montrent en effet que les variations
-interannuelles de ces deux quantités sont quasi inexsistantes et ne peuvent donc être liées à la fréquence d'occurrence des TC, et suggèrent plutôt que la
+interannuelles de ces deux quantités sont quasi inexistantes et ne peuvent donc être liées à la fréquence d'occurrence des TC, et suggèrent plutôt que la
 contribution de ces deux prédicteurs consistent en des seuils minimaux nécessaires \parencite{mcgauley_measuring_2011}. \citeauthor{bruyere_investigating_2012}
 suggèrent également que le PI puisse jouer le rôle de proxy de la capacité de l'environnent à favoriser la convergence d'humidité. À l'échelle intra-saisonnière
 cette fois, les résultats de \textcite{camargo_diagnosis_2009} arrivent à un constat en parfaite opposition puisque les auteurs montrent que l'humidité relative
 à \hPa{850} et la vorticité absolue sont respectivement les deux facteurs prépondérants dans les anomalies du GPI liées à l'oscillation de Madden-Julian
 (\textit{Madden-Julian Oscillation}, MJO), mode de variabilité principale à cette échelle de temps. \textcite{wang_dynamic_2020} proposent quant à eux un indice
-composé uniquement de prédicteurs dynamiques, sans aucune contribution thermique, et montrèrent que la capacité de leur produit à simuler la variabilité
+composé uniquement de prédicteurs dynamiques, sans aucune contribution thermique, et montrent que la capacité de leur produit à simuler la variabilité
 interannuelle dans le bassin WPac et dans l'hémisphère sud est améliorée par rapport au GPI. Cette grande variété d'indices est représentative de l'incertitude
 qui entoure le choix des prédicteurs dans la formulation des indices de cyclogénèses, choix notamment compliqué par le fait que les paramètres de grande
-échelles qui influent sur la fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
+échelle qui influent sur la fréquence d'occurrence dépendent de l'échelle temporelle considérée \parencite{wang_anomalous_2017}.
 
 \subsubsection{Modélisation statistique de l'activité cyclonique}\label{sec:modelisation_stat}
 
@@ -93,9 +92,9 @@ Les indices introduits dans la section précédente sont généralement détermi
 sur des régressions multiples entre différents champs modèles, provenant souvent de réanalyses, et l'activité observée. Les relations ainsi établies sont
 ensuite appliquées plus largement sur toutes sortes de simulations. La partie subjective derrière la mise au point des indices empêche la reproductibilité des
 résultats ayant conduits à leur formulation, ce qui contribue probablement à l'émergence de nouvelles variantes de ces mêmes indices, répétant ainsi le même
-schéma. C'est entre autre pour cette raison que \textcite{tippett_poisson_2011} proposèrent une approche différente consistant à définir un indice de
+schéma. C'est entre autres pour cette raison que \textcite{tippett_poisson_2011} proposent une approche différente consistant à définir un indice de
 cyclogénèse purement comme une régression non-linéaire entre l'activité observée et l'environnement, avec une méthodologie objective de sélection des
-prédicteurs. L'indice de Tippett, par la suite référé par \textquote{Tipp} ou encore \textquote{TCS}, du nom des trois auteurs (Tippett, Camargo, Sobel) est
+prédicteurs. Cet indice, par la suite référé par l'acronyme \textquote{TCS}, du nom des trois auteurs (Tippett, Camargo, Sobel) est
 défini comme suit :
 %
 \begin{equation*}
@@ -141,7 +140,7 @@ $\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathbb{E} (Y 
 régression utilisée par \textcite{wang_dynamic_2020} est de type $\log \mathbb{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$. Bien que
 les auteurs y réfèrent également sous l'appellation de log-linéaire, nous l'appelons ici log-log pour la distinguer de la régression pratiquée par
 \citeauthor{tippett_poisson_2011}.} ainsi qu'une méthodologie de sélection automatique des prédicteurs parmi \num{11} candidats, qui se distingue de celle
-employée par \citeauthor{tippett_poisson_2011} en cela qu'aucune hypothèse n'est faite sur la constitution de l'indice. \citeauthor{wang_dynamic_2020} utilisent
+employée par \textcite{tippett_poisson_2011} en cela qu'aucune hypothèse n'est faite sur la constitution de l'indice. \textcite{wang_dynamic_2020} utilisent
 en effet une régression séquentielle évaluant l'apport de l'ajout de chaque variable parmi les \num{11}, attribuant à chacun d'entre eux un score dont la valeur
 dépend de l'ordre dans lequel ils sont sélectionnés, et ce jusqu'à ce que la significativité de l'apport des nouveaux prédicteurs ne puisse plus être vérifiée.
 Cette méthodologie appliquée à cinq réanalyses, pour l'échelle globale ainsi que pour chaque hémisphère, aboutit systématiquement à un indice exprimé purement
@@ -169,13 +168,13 @@ vorticité absolue à \hPa{850} et enfin le gradient méridional de la composant
 
 Résultat de la diversité des formulations et du choix des prédicteurs définissant les divers indices de cyclogénèses présenté dans la
 \cref{sec:tour_horizon_indices}, la capacité de chacun d'entre eux à simuler l'activité cyclonique moyenne est également variable. Dans cette section sont
-comparés les caractéristiques des trois indices définis précédemment, à savoir le TCS, le CYGP et le GPI. Les trois indices sont calculés sur les moyennes
+comparées les caractéristiques des trois indices définis précédemment, à savoir le TCS, le CYGP et le GPI. Les trois indices sont calculés sur les moyennes
 mensuelles ERA5 entre \num{1981} et \num{2019}, interpolées sur une grille régulière de \ang{1} de résolution horizontale. Ils sont ensuite calibrés de façon à
 ce que le nombre de TC moyen par année (calendaire) simulé sur la période soit égal à la fréquence annuelle moyenne observée dans IBTrACS, soit ici \num{84.7}
 TC par an. Pour IBTrACS, on qualifie de cyclogénèses les premières observations des systèmes référencés qui sont renseignés, à un moment de leur cycle de vie,
 comme tempête tropicale ou subtropicale. Rappelons que les indices de cyclogénèses s'expriment en TC par unité de surface et par unité de temps, si bien qu'il
 est nécessaire d'intégrer spatialement l'indice pour obtenir une quantité homogène à une fréquence. Numériquement, l'intégrale se calcule comme la somme double
-en longitude et en latitude sur un bassin géographique donné, pondérée par le cosinus de la latitude pour prendre en considération la variation de la surface
+en longitude et en latitude sur un domaine géographique donné, pondérée par le cosinus de la latitude pour prendre en considération la variation de la surface
 d'une maille avec la latitude. Reprenant l'équation donnée dans la \cref{sec:intro_tracking} du \cref{chap:chapitre_1}, on a alors :
 %
 \begin{align*}
@@ -203,7 +202,9 @@ La \cref{fig:tcs_cygp_gpi_zonal} présente la distribution méridionale de l'act
 Comme indiqué par \textcite{menkes_comparison_2012}, qui évaluent ces trois mêmes indices (ainsi que le YGP) sur quatre réanalyses antérieures à ERA5, les trois
 indices tendent à surévaluer l'activité cyclonique à proximité de l'équateur, aussi bien dans l'hémisphère nord que dans le sud. Sur ERA5, seul le CYGP atteint
 quasiment 0 à l'équateur (\num{0.05} TC par an à exactement 0° par interpolation quadratique, les points de grille les plus proches étant \ang{0.5}S et
-\ang{0.5}N), tandis que le TCS et le GPI y simulent respectivement \num{0.3} et \num{0.4} TC par an. Dans l'hémisphère sud, les trois indices ainsi que les
+\ang{0.5}N), tandis que le TCS et le GPI y simulent respectivement \num{0.3} et \num{0.4} TC par an.
+
+Dans l'hémisphère sud, les trois indices ainsi que les
 observations sont en bon accord pour ce qui concerne l'amplitude de l'activité méridionale moyenne ainsi que sa position. Le maximum des observations est
 atteint à la latitude \ang{11.5}S avec \num{3.13} TC par an. Le TCS, CYGP et le GPI quant à eux ont une latitude du maximum de respectivement \ang{12.5}S,
 \ang{10.5}S et \ang{10.5}S. Les trois indices atteignent donc leur maximum aux latitudes directement voisines du maximum d'IBTrACS, de part et d'autre de
@@ -218,12 +219,10 @@ rapport aux résultats obtenus par \textcite{menkes_comparison_2012}, notamment 
 Dans l'hémisphère nord, les performances des trois indices sont nettement plus contrastées. Ni l'amplitude, ni la position du pic d'activité, ni l'étendue
 méridionale des trois indices ne correspondent aux observations. Ils présentent tous un biais équatorial plus ou moins prononcé, avec une différence de \ang{4}
 pour le GPI et de \ang{2} pour le TCS et le CYGP dans la latitude du maximum. Bien que le CYGP et le TCS partagent la même latitude du maximum, le biais
-équatorial du CYGP est distinctement plus prononcé que pour le TCS, ce dernier présentant la meilleure ressemblance avec IBTrACS. Comme pour l'hémisphère sud,
-le TCS présente là aussi la meilleure activité totale intégrée entre \ang{0} et \ang{60}N avec un déficit de \num{0.7} TC par an. Le GPI arrive en seconde
+équatorial du CYGP est distinctement plus prononcé que pour le TCS, ce dernier présentant la meilleure ressemblance avec IBTrACS. Rappelons que les indices simulent, par construction, \num{84.7} TC par an entre \ang{60}S et \ang{60}N. Par conséquent, si les indices surestiment l'activité dans l'hémisphère sud, cela signifie mécaniquement qu'ils la sous-estiment dans le nord. La somme des biais dans les deux hémisphères est donc nulle. Il en résulte que le TCS présente là aussi la meilleure activité totale intégrée entre \ang{0} et \ang{60}N avec un déficit de \num{0.7} TC par an. Le GPI arrive en seconde
 position avec un déficit de \num{4.5} TC par an tandis que le CYGP présente un déficit plus conséquent de \num{5.7} TC par an. Le CYGP se distingue également
 par un regain d'activité entre \ang{35}N et \ang{40}N, évalué à \num{1.3} TC par an sur cette bande. Ainsi, sur ERA5, les trois indices surestiment l'activité
-cyclonique annuelle moyenne dans l'hémisphère sud, et la sous-estiment dans le nord. Le TCS présente toutefois l'activité intégrée la plus proche, ainsi que la
-meilleure distribution méridionale.
+cyclonique annuelle moyenne dans l'hémisphère sud, et la sous-estiment dans le nord. Le TCS présente toutefois la meilleure répartition de l'activité entre hémisphère, ainsi que la meilleure distribution méridionale.
 
 \subsubsection*{Climatologie mensuelle}
 
@@ -242,20 +241,20 @@ climatologie observée.
     \label{fig:tcs_cygp_gpi_clim_mensuel}
 \end{figure}
 
-Les qualités désirables pour la climatologie mensuelle d'un indice de cyclogénèse à l'échelle régionale sont de pouvoir simuler : la onne saisonnalité, c'est à
+Les qualités désirables pour la climatologie mensuelle d'un indice de cyclogénèse à l'échelle régionale sont de pouvoir simuler : la bonne saisonnalité, c'est à
 dire la bonne étendue temporelle, y compris en minimisant l'activité en dehors de la saison ; la bonne amplitude ; et naturellement le bon nombre de TC moyen
 par an. Sur l'ensemble de ces aspects, aucun des trois indices n'apparaît comme clairement supérieur aux autres sur l'ensemble des six bassins d'activité. Les
-trois indices capturent correctement la saison cyclonique dans l'ensemble des bassins, à l'exception du CYGP dans le NInd où le pic de la première saison est
+trois indices capturent correctement la saison cyclonique dans l'ensemble des bassins, à l'exception du CYGP dans le Nord Indien où le pic de la première saison est
 indiqué pour le mois de juin plutôt que mai pour les deux autres et dans les observations. Cette caractéristique du CYGP est également notée dans
 \textcite{menkes_comparison_2012}, et ne saurait s'expliquer par l'utilisation des précipitations convectives, puisque le YGP présente le même attribut (mais
 encore plus prononcé) et trouve par conséquent son origine dans la composante dynamique de l'indice. Le CYGP se démarque par ailleurs du TCS et du GPI à deux
-autres reprises : Dans le bassin Nord Atlantique où celui-ci sous-estime très fortement l'amplitude de l'activité (voir aussi \cref{tab:tcs_cygp_gpi}) ; et dans
+autres reprises : dans le bassin Nord Atlantique où celui-ci sous-estime très fortement l'amplitude de l'activité (voir aussi \cref{tab:tcs_cygp_gpi}) ; et dans
 le bassin Sud-Indien, où il est au contraire le seul à simuler un maximum réaliste au mois de février, bien que la tendance entre janvier et février soit
 mauvaise. Le TCS se démarque une de fois de plus comme étant l'indice le plus apte à minimiser l'activité inférée en dehors de la saison cyclonique, bien
 qu'elle ne soit tout de même pas négligeable entre juin et octobre dans le bassin SPac, simulant environ \num{0.5} TC par mois, ainsi que dans le NInd entre
 juin et août. Par ailleurs, tous les indices surestiment l'activité dans ces deux bassins. Il est toutefois difficile de distinguer la contribution d'IBTrACS de
-celle des indices dans ce constat dans la mesure où les observations dans ces bassins y sont moins fiables que dans les autres régions, en particulier dans le
-NInd, où les observations sont quasi inexistantes jusqu'au début des années 2000. Les pic d'activités simulés par le TCS dans le WPac, EPac, NAtl et NInd sont
+celle des indices dans ce constat dans la mesure où les observations dans ces bassins y sont moins fiables que dans les autres régions ; en particulier dans le
+NInd, où elles sont quasi inexistantes jusqu'au début des années 2000. Les pic d'activités simulés par le TCS dans le WPac, EPac, NAtl et NInd sont
 supérieurs à ceux du CYGP et du GPI. Dans le WPac, le TCS dépasse même les observations sur la période juillet~--~août~--~septembre. Dans les deux bassins de
 l'hémisphère sud, l'activité inférée par le TCS est au contraire plus faible que pour les deux autres indices (ce qui pour le SPac aboutit à une meilleure
 représentation de l'activité observée). Cela se comprend d'une part par le fait, montré dans la section précédente, que le CYGP et le GPI surestiment l'activité
@@ -268,7 +267,7 @@ cyclogénèse pour simuler la climatologie mensuelle à l'échelle régionale.
 
 La première partie du \cref{tab:tcs_cygp_gpi} présente la fréquence annuelle moyenne TC dans les six bassins géographiques ainsi que pour chaque hémisphère et à
 l'échelle globale. Notons en premier lieu que les trois indices produisent le bon ordre de grandeur de fréquence annuelle à toutes les échelles spatiales, avec
-l'exception éventuelle de la sous-estimation du CYGP dans le NAtl, et des trois indices dans le bassin NInd, ce dernier étant probablement dû au manque
+l'exception éventuelle de la sous-estimation du CYGP dans le NAtl, et des trois indices dans le bassin NInd, ce dernier pouvant être dû au manque
 d'observations dans la région. Le TCS apparait comme l'indice simulant le nombre moyen annuel de TC le plus proche d'IBTrACS pour \num{5} des \num{8} échelles
 spatiales considérées (l'échelle globale ne comptant pas, puisque la fréquence annuelle globale est imposée), à savoir dans le EPac, SPac, NInd et pour les deux
 hémisphères. Dans le WPac et le SInd, le TCS est toutefois le plus éloigné de la réalité, et est le seul à produire un surplus dans le WPac, avec $+$\num{3.1}
@@ -348,14 +347,14 @@ bassin EPac présente un accord remarquable entre la variabilité simulée et la
 dans IBTrACS avec \num{31} systèmes, là où les trois indices indiquent entre \num{18.5} TC pour le TCS et \num{16.3} TC pour le GPI. La variabilité inférée par
 les indices est, de manière générale, nettement moins proche d'IBTrACS avant l'année \num{1993}, puisque le seul désaccord au delà de cette année \num{2000}.
 Notons en effet que la corrélation interannuelle pour le bassin EPac pris à partir de \num{1993} est augmentée d'au moins \num{0.1} par rapport aux valeurs
-reinseignées dans le \cref{tab:tcs_cygp_gpi}, atteignant \num{0.81} pour le TCS. Dans l'EPac, SInd (ouest et est), les trois indices présentent des variabilités
+renseignées dans le \cref{tab:tcs_cygp_gpi}, atteignant \num{0.81} pour le TCS. Dans l'EPac, SInd (ouest et est), les trois indices présentent des variabilités
 extrêmement semblables, mis à part les différences dans la fréquence moyenne dans le SIndW. Les différences sont plus marquées dans le WPac, en particulier
 entre le GPI et les deux autres. Le CYGP apparait parfois en opposition du signal indiqué par le TCS et le GPI comme par exemple pour les années \num{1988} et
 \num{2007}.
 
 \subsection{Limitations des indices de cyclogénèses}
 
-Les indices de cyclogénèses couramment utilisés dans la littérature et présentés ici présentent une grande capacité à simuler la répartition spatiale et
+Les indices de cyclogénèses couramment utilisés dans la littérature et présentés ici mettent en évidence une grande capacité à simuler la répartition spatiale et
 temporelle de l'activité cyclonique moyenne. Spatialement, les indices présentent un accord important dans l'hémisphère sud, aussi bien entre eux qu'avec les
 observations. Dans l'hémisphère nord, la répartition méridionale est plus contrastée et tous les indices présentent un biais équatorial plus ou moins
 conséquent. Le TCS se distingue comme le plus apte à simuler cette distribution, ainsi que la répartition de la fréquence annuelle globale entre les deux
@@ -377,19 +376,18 @@ cyclonique en climat futur, on peut aussi se demander quelle confiance accorder 
 cyclogénèse dans des scénários climatiques donnés pour la fin du siècle si ce dernier n'est pas en mesure de renseigner le bon changement d'une année sur
 l'autre dans le climat présent, climat sur lequel l'indice est pourtant construit.
 
-Les indices de cyclogénèses étant principalement conçus pour reproduire la climatologie observée de l'activité cyclonique, il n'est pas nécessairement
+Les indices de cyclogénèse étant principalement conçus pour reproduire la climatologie observée de l'activité cyclonique, il n'est pas nécessairement
 surprenant que ces derniers peinent à simuler la variabilité de l'activité d'une année sur l'autre. De plus, rappelons que ces indices sont établis sur la base
 des climatologies saisonnières (à l'origine) ou mensuelle des champs de grande échelle, et à des résolutions grossières, de \ang{2.8} pour le CYGP
 \parencite{royer_gcm_1998} et \ang{2.5} pour le TCS \parencite{tippett_poisson_2011}, l'applicabilité des indices aux modèles de climat à basses résolutions
 étant en effet un de leurs atouts principaux (voir \cref{sec:intro_indices}). Or, si dans l'ensemble la capacité des indices à simuler l'activité cyclonique
 moyenne est plutôt robuste aux changements de résolution, surtout comparé à la mesure par détection et suivi objectif \parencite[][voir aussi
 \cref{fig:GP_resolution}]{camargo_tropical_2007}, il est tout de même à noter que les indices appliqués à des résolutions plus fines produisent plus de TC. Ce
-point est également corroboré par \textcite{mcdonald_tropical_2005} qui notèrent une meilleure cohérence entre l'activité mesurée par approche directe et celle
+point est également corroboré par \textcite{mcdonald_tropical_2005} qui notent une meilleure cohérence entre l'activité mesurée par approche directe et celle
 inférée par les indices (spécifiquement avec le YGP et CYGP) pour les résolutions les plus hautes, amenant alors \textcite{camargo_tropical_2007} à spéculer
 qu'une résolution accrue pourrait s'accompagner d'une réponse plus réaliste dans les variations interannuelles du nombre de TC inféré par les indices. Si les
-indices analysés ici sont calculés sur des champs ERA5 à \ang{1} de résolution ne présentent pas d'amélioration sensible en ce sens, on peut toutefois se
-demander si un indice construit sur des champs à plus haute résolution (et pas seulement appliqué dessus) améliorerait la variabilité interannuelle inférée par
-les indices. De la même manière, les travaux de \textcite{bruyere_investigating_2012,waters_largescale_2012} suggèrent qu'il pourrait être pertinent pour la
+indices analysés ici et calculés sur des champs ERA5 à \ang{1} de résolution ne présentent pas d'amélioration sensible en ce sens, on peut toutefois se
+demander si un indice construit sur des champs à plus haute résolution (et pas seulement appliqué dessus) verrait une amélioration de sa variabilité interannuelle inférée. De la même manière, les travaux de \textcite{bruyere_investigating_2012,waters_largescale_2012} suggèrent qu'il pourrait être pertinent pour la
 représentation de la variabilité interannuelle des indices de chercher à les définir à des échelles régionales, ainsi que d'y intégrer de la variabilité à plus
 haute fréquence, plutôt que de les construire sur la climatologie mensuelle globale.
 
@@ -437,7 +435,7 @@ de prendre la valeur $k$ vaut :
 \end{equation*}
 %
 Où $\mu$ est égal à l'espérance de la variable aléatoire $Y$, ainsi qu'à sa variance. Dans ce cas, le logarithme de l'espérance de la variable $Y$ est relié
-à la matrice $\mathbf{x}$ des prédicteurs, de taille $m \times n^\prime$, où $n^\prime = n + 1$ ---~composée de $n$ variables thermiques ou dynamique, ainsi que
+à la matrice $\mathbf{x}$ des prédicteurs, de taille $m \times n^\prime$, où $n^\prime = n + 1$ ---~composée de $n$ variables thermiques ou dynamiques, ainsi que
 d'une constante unitaire, chacun avec $m$ réalisations~--- par le vecteur colonne $\mathbf{b}^{\mathrm{T}}$ des coefficients $b$, de taille $n^\prime$, de la
 façon suivante :
 %
@@ -464,7 +462,7 @@ Ce qui revient également à ajouter $\log (\cos \phi)$ comme prédicteur avec u
 Pour définir un indice de cyclogénèses par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
 d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Dans tous les cas, on considère que
 les cyclogénèses sont données par les positions de la première position de chaque trajectoire. Les cyclogénèses sont comptabilisées sous la forme d'histogrammes
-sur une grille spatiale identique à celle des de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces histogrammes spatiaux des
+sur une grille spatiale identique à celle des variables de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces histogrammes spatiaux des
 cyclogénèses sont ensuite agrégés temporellement selon le pas de temps désiré : mensuel ou climatologiques, là encore de la même manière que les prédicteurs.
 Les cyclogénèses, servant de prédictant, forment alors un tenseur du deuxième ordre, qui se voit ensuite ramené en un vecteur unidimensionnel de taille $m =
 N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}}$, définissant le vecteur des observations\footnote{Le terme \textquote{observation}, dans ce
@@ -513,13 +511,13 @@ coefficients soient les plus proches possibles de ceux du TCS. Notons que pour c
 l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de grille masqués sont ignorés. La taille effective, $m_{\mathrm{eff}}$,
 vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes climatologiques, mais avec une
 résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles ($N_{\mathrm{temps}} = \num{480}$) à
-\ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à maintenant,
+\ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, nommé M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à maintenant,
 à une régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande matrice $\mathbf{x}$, caractérisée par
 $m_{\mathrm{eff}} = \num{13115040}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le facteur limitant la résolution spatiale.
 C'est là une des raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression sur un nombre de réalisations
 $m_{\mathrm{eff}}$ plus grand nécessiterait des ressources de calcul supplémentaires.
 
-Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période,
+Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur les champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période,
 indépendant de la résolution spatiale et de l'agrégation temporelle utilisée pour calculer la régression. On ne se préoccupe pas de répartir l'ensemble des
 données entre un jeu d'apprentissage et un jeu d'évaluation dans la mesure où le surapprentissage ne constitue ici pas un risque, mais au contraire une
 propriété désirable.
@@ -562,7 +560,7 @@ réanalyse différente, ainsi que d'une période temporelle différente. L'indic
 du prédicteur de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est très légèrement plus proche de celui du TCS que ne l'est celui de C25. Les coefficients
 du C25 montrent tout de même des écarts avec ceux du TCS, notamment pour les termes de cisaillement vertical et de SST relative. Spécifiquement,
 $b_{V_{\mathrm{shear}}}$ vaut environ \num{-0.10} pour C25 contre respectivement \num{-0.15} pour le TCS, tandis que $b_T$ est réduit de \num{0.56} pour le TCS
-à environ \num{0.44} pour C25. Cela signifique donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans
+à environ \num{0.44} pour C25. Cela signifie donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans
 le TCS, et d'autre part que la fréquence d'occurrence des cyclones tropicaux est moins sensible à la SST relative pour C25 que dans le TCS. Comme pour le terme
 d'ordonnée à l'origine, il est là aussi possible que ces différences proviennent de la réanalyse utilisée, mais on note toutefois une certaine sensibilité des
 coefficients de C25 à la période temporelle utilisée. La régression C25 faite sur la période \num{1980}~--~\num{2000} produit en effet des coefficients se
@@ -572,7 +570,7 @@ grand (\sim~\num{-0.09}). En tout état de cause, la proximité entre les param�
 reproduction de l'indice de \textcite{tippett_poisson_2011} et de la méthodologie associée, ce qui par extension, tend également à valider les coefficients
 obtenus pour C10, M25 et M10, moyennant l'effet sus-mentionné de la période considérée.
 
-L'effet de la résolution sur les coefficients $b$, en comparant C25 avec C10, et M25 avec M10, apparait mince. Les coefficients présentent des changements
+L'effet de la résolution sur les coefficients $b$, en comparant C25 avec C10, et M25 avec M10, apparaît mince. Les coefficients présentent des changements
 faibles, de l'ordre de \num{10}$^{\num{-2}}$, ou inférieur. $b_{\eta}$ est augmenté d'environ \num{0.02} pour l'indice climatologique comme l'indice mensuel.
 L'ordre de grandeur du changement sur $b_{V_{\mathrm{shear}}}$ est d'environ \num{1e-3}. $b_H$ est stable pour l'indice climatologique, et présente une très
 faible baisse pour dans M10 par rapport à M25, d'environ \num{1e-3}, tandis que $b_T$ augmente d'environ \num{2e-2}. L'ajout de variabilité dans la régression,
@@ -808,7 +806,7 @@ En dépit de l'effet particulièrement marginal de la résolution spatiale et te
 plus-value. Le nouveau diagnostique qui y est introduit, consistant en la mesure des paramètres de la distribution des rangs des valeurs prises par l'indice aux
 points de grille et aux dates des cyclogénèses observées, montre en effet une réactivité systématiquement accrue pour les indices construits sur nos jeux de
 données, par rapport aux coefficients du TCS. Dans le contexte précis de l'étude réalisée ici, le gain est cependant marginal, et il n'est en outre pas certain
-que cette légère amélioration de la cohérence l'indice et les observations justifie à elle seule la quantité de travail requise à l'estimation de nouveaux
+que cette légère amélioration de la cohérence entre l'indice et les observations justifie à elle seule la quantité de travail requise à l'estimation de nouveaux
 coefficients.
 
 \section{Indice de cyclogénèses régional}
