@@ -5,7 +5,7 @@
 \begin{document}
 
 \begin{itshape}
-    Ce troisième chapitre porte sur les indices de cyclogénèses, de la formulation précise des différents indices utilisés classiquement dans la littérature à
+    Ce troisième chapitre porte sur les indices de cyclogénèse, de la formulation précise des différents indices utilisés classiquement dans la littérature à
     des indices définis pour les besoins présents, et de leur application à ERA5. [en cours]
 \end{itshape}
 
@@ -186,6 +186,18 @@ d'une maille avec la latitude. Reprenant l'équation donnée dans la \cref{sec:i
 %
 Où $\rho(j,i)$, défini sur le domaine géographique $D$ représente la valeur de l'indice $\rho$ au point de grille $(j,i)$, caractérisé par sa latitude $\phi_j$
 et sa longitude $\lambda_i$.
+
+La \cref{fig:acgi_ibt} présente la moyenne temporelle des trois indices : TCS, GPI et CYGP, moyennés entre eux, à laquelle est superposée la densité moyenne de
+cyclogénèses IBTrACS par point de grille. La répartition spatiale des indices présente une excellente concordance avec les observations. Cette figure n'est pas
+sans rappeler les climatologies saisonnières du produit de quatre variables identifiées comme favorables à la cyclogénèse par \textcite{gray_tropical_1975},
+présentées sur la \cref{fig:produit_ingredients} (\vpageref{fig:produit_ingredients}) de la \cref{sec:climato_ingredients} (\cref{chap:chapitre_1}). De prime
+abord, la moyenne des trois indices présentée ici sur la \cref{fig:acgi_ibt} corrige le défaut que possède le simple produit des quatres variables d'indiquer
+des conditions favorables dans les hautes latitudes, puisqu'ici l'activité est concentrée dans les régions tropicales et subtropicales. On note encore quelques
+points de discorde, notamment sur la côte Africaine, côté Atlantique, au large de l'Angola et du Nigeria, où l'indice moyen indique une quantité non-nulle de
+TC, et de même dans des sous-domaines du bassin NInd, à savoir dans le Golfe Persique, en Mer Rouge et dans le Golfe d'Aden\footnote{Peu de points sont visibles
+dans ces trois régions du bassin NInd à cause du masque terre-mer utilisé, mais les points visibles indiquent tout de même une activité non négligeable. Ces
+régions, larges d'à peine plus de \km{200}, ne peuvent accueillir des cyclones tropicaux.} La \cref{fig:acgi_ibt} rappelle également les délimitations des
+bassins géographiques utilisés jusqu'à présent.
 
 \begin{figure}[htpb]
     \centering
@@ -461,7 +473,8 @@ façon suivante :
 \end{gather*}
 %
 Dans le cas qui nous intéresse, la variable $Y$ représente un nombre de TC par unité de temps et par unité de surface, si bien qu'on introduit le terme
-d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$, où $\phi$ représente la latitude. On a alors :
+d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$, où $\phi$ représente la latitude, comme proxy de la surface d'une maille. On a
+alors :
 %
 \begin{equation}
     \begin{gathered}\label{eq:poisson_reg}
@@ -474,7 +487,7 @@ d'\textquote{exposition} de l'unité (\textit{exposure} en anglais), $\cos \phi$
 %
 Ce qui revient également à ajouter $\log (\cos \phi)$ comme prédicteur avec un coefficient de pondération fixé à 1.
 
-Pour définir un indice de cyclogénèses par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
+Pour définir un indice de cyclogénèse par régression de Poisson, la variable $Y$ est composée du nombre de cyclogénèses, issu soit d'observations (donc
 d'IBTrACS, si la régression est évaluée contre ERA5) soit des trajectoires détectées par un schéma de détection objectif. Dans tous les cas, on considère que
 les cyclogénèses sont données par les positions de la première position de chaque trajectoire. Les cyclogénèses sont comptabilisées sous la forme d'histogrammes
 sur une grille spatiale identique à celle des variables de grande échelle, lesquels étant au besoin interpolés à la résolution désirée. Ces histogrammes spatiaux des
@@ -834,7 +847,7 @@ données, par rapport aux coefficients du TCS. Dans le contexte précis de l'ét
 que cette légère amélioration de la cohérence entre l'indice et les observations justifie à elle seule la quantité de travail requise à l'estimation de nouveaux
 coefficients.
 
-\section{Indice de cyclogénèses régional}
+\section{Indice de cyclogénèse régional}
 
 Après avoir défini de nouveaux indices construits à partir de champs à différentes résolutions spatiales et temporelles dans la
 \cref{sec:apport_res_temporel_spatial}, on s'intéresse dans cette question à la construction d'indices de cyclogénèses régionaux. Comme précédemment, les
@@ -862,7 +875,7 @@ régionaux est faite de façon à ce que l'intégrale de chaque indice régional
 IBTrACS à l'échelle globale).
 
 
-\subsection{Coefficients régionaux}
+\subsection{Coefficients régionaux}\label{sec:lm10_coefficients}
 
 Le \cref{tab:coefs_fit_bassin} présente les coefficients $b$ pour les six régression régionales. Comme pour la \cref{sec:apport_res_temporel_spatial},
 l'interprétation de l'ordonnée à l'origine $b_0$ est mise de côté. Au delà de ce coefficient, les régressions à l'échelle du bassin mettent en évidence des
@@ -935,7 +948,7 @@ vorticité apparaît donc dans la régression comme le facteur le plus détermin
 $b_\eta$ est au contraire à sa valeur la plus basse comparée aux autres régions, à \num{0.9547}. Notons que tous les autres bassins présentent un $b_\eta$ sinon
 supérieur à la valeur de M10, situé entre \num{1.5} et \num{1.6} pour les bassins EPac, SPac, SIndW et SIndE, d'environ \num{1.88} pour le bassin SPac.
 
-\subsection{Effet sur la répartition spatiale}
+\subsection{Effet sur la répartition spatiale}\label{sec:lm10_effet_spatial}
 
 De manière analogue à la \cref{sec:apport_resultat}, nous évaluons ici l'impact des coefficients $b$ différents sur la répartition spatiale de l'activité pour
 chacun des bassins. Par commodité, désignons par le nom de LM10 (comme \textquote{Local}) l'ensemble des indices régionaux, dont l'agrégation forme un indice
@@ -964,9 +977,10 @@ revanche \num{1.07} TC par an contre \num{1.12} TC par an pour M10. À titre de 
 TC par an dans la MDR et \num{1.87} TC par an dans le GoM. Ainsi, LM10 simule une activité légèrement plus proche d'IBTrACS dans la MDR, mais dégradée par
 rapport à M10 dans le GoM. L'origine de la diminution dans le GoM est incertaine, mais au vue des coefficients du \cref{tab:coefs_fit_bassin}, il semble
 probable que ce soit principalement le résultat de la baisse de sensibilité à la SST relative, et peut-être aussi dans une moindre mesure à la diminution de la
-sensibilité à l'humidité relative (comparativement moindre), dans la mesure où la diminution de la sensibilité
-au cisaillement vertical ne saurait expliquer une baisse de l'activité. Notons que la corrélation spatiale entre la moyenne annuelle de l'indice et la moyenne
-annuelle d'IBTrACS ---~lissée au préalable avec un filtre gaussien à \ang{1} d'écart-type~--- passe de \num{0.81} avec M10 à \num{0.83} avec LM10.
+sensibilité à l'humidité relative (comparativement moindre), dans la mesure où la diminution de la sensibilité au cisaillement vertical ne saurait expliquer une
+baisse de l'activité. Notons que la racine carrée de l'erreur quadratique moyenne (\textit{Root Mean Squared Error}, RMSE) entre la moyenne annuelle d'IBTrACS
+---~lissée au préalable avec un filtre gaussien à \ang{1} d'écart-type~--- et la moyenne annuelle de l'indice passe de \num{3.3e-3} avec M10 à \num{3.1e-3} avec
+LM10, indiquant donc dans une meilleure (marginalement) proximité de LM10 avec IBTrACS.
 
 Dans le WPac, la carte des différences ne présente aucune ambigüité. L'activité dans LM10 est augmentée en dessous de \ang{10}N, et diminuée au delà, en
 particulier en Mer de Chine Méridionale et mer des philippines, où la basse est maximale. Le déport vers l'équateur peut s'expliquer au moins en partie par un
@@ -974,16 +988,93 @@ $b_\eta$ particulièrement bas, en dessous de \num{1}, plus bas encore que celui
 la répartition spatiale de LM10 dans ce bassin est plus proche d'IBTrACS que ne l'est M10. En effet, entre \ang{0} et \ang{10}N, IBTrACS indique \num{9.83} TC
 par an, M10 simule \num{6.78} TC par an tandis que LM10 en simule \num{9.61} TC par an. Cela implique également que M10 surestime l'activité entre \ang{10}N et
 \ang{60}N, avec \num{22.3} TC par an contre \num{16.3} TC par an pour IBTrACS, alors que LM10 est par conséquent plus proche des observations, avec \num{19.72}
-TC par an. Ici, la régression sur le bassin WPac permet une meilleure ressemblance avec la répartition spatiale de l'activité observée dans IBTrACS. La
-corrélation spatiale passe de \num{0.81} avec M10 à \num{0.87} avec LM10.
+TC par an. La régression sur le bassin WPac permet une meilleure ressemblance avec la répartition spatiale de l'activité observée dans IBTrACS. Le RMSE
+est en effet réduit de \num{9.5e-3} avec M10 à \num{7.9e-3} avec LM10. L'amélioration de la cohérence spatiale est plus importante que pour le NAtl.
 
 Dans le bassin EPac, LM10 concentre l'activité le long des côtes du Mexique, avec également une légère augmentation à l'extrémité l'ouest du domaine, de part et
-d'autre de \ang{10}N. Comme pour le WPac, ce déport favorise la corrélation spatiale, passant de \num{0.87} à \num{0.88}. LM10 y parvient en modifiant
-principalement la sensibilité à la SST $b_T$ relative (accrue) et à la vorticité $b_\eta$ (également accrue). Pour les trois bassins de l'hémisphère sud,
-l'effet est moindre. Dans le SPac, l'activité est accrue entre \ang{10}S et \ang{20}S, dans la Mer de Corail, jusqu'à \ang{180}. Dans le SIndW, l'activité est
-déportée autour de Madagascar, et dans le Canal du Mozambique. Dans le SIndE, un constat similaire est fait, avec une baisse entre \ang{0} et \ang{10}S puis une
-légère augmentation entre \ang{10}S et \ang{20}S. Dans ces trois bassins du Sud, la corrélation spatiale entre LM10 et IBTrACS demeure inchangée par rapport à
-celle évaluée avec M10.
+d'autre de \ang{10}N. Comme pour les autres bassins, ce déport favorise la ressemblance avec les observations, avec un RMSE passant de \num{8.3e-3} à \num{7.6e-3} pour
+LM10. LM10 y parvient en modifiant principalement la sensibilité à la SST $b_T$ relative (accrue) et à la vorticité $b_\eta$ (également accrue).
+
+Pour les trois bassins de l'hémisphère sud, l'effet de la régression locale sur la répartition spatiale de l'activité est bien moindre que dans les bassins de
+l'hémisphère nord. Dans le SIndW, l'activité est déportée autour de Madagascar, et dans le Canal du Mozambique. Le RMSE avec IBTrACS est essentiellement
+inchangé, avec un effet de l'ordre de \num{1e-6}. Dans le SIndE, un constat similaire est fait, avec une baisse entre \ang{0} et \ang{10}S puis une légère
+augmentation entre \ang{10}S et \ang{20}S. Le RMSE est modifié de \num{1e-4}, du côté d'une dégradation de LM10 par rapport à M10. Dans le SPac, l'activité est
+accrue entre \ang{10}S et \ang{20}S, dans la Mer de Corail, jusqu'à \ang{180}. Comme pour le SIndE, l'erreur quadratique moyenne est accrue avec LM10, passant
+de \num{3.3e-3} à \num{4e-3}. Notons enfin que la dissymétrie dans l'impact sur la répartition géographique de LM10 par rapport à M10, avec des changements plus
+importants dans l'hémisphère nord que dans l'hémisphère sud, est cohérente avec les \cref{fig:tcs_cygp_gpi_zonal,fig:my_fit_meridional}, des sections
+précédentes montrant toutes deux une distribution méridionale de l'activité moyenne plus éloignée des observations dans l'hémisphère nord que dans l'hémisphère
+sud.
+
+\subsubsection{Variabilité interannuelle}\label{sec:lm10_corr}
+
+Il a été montré dans la \cref{sec:apport_res_temporel_spatial} que les coefficients $b$ de l'indice n'influent que très peu la variabilité interannuelle inférée
+par l'indice. Il n'est par conséquent pas attendu que LM10 se démarque de M10 ou encore du TCS pour ce qui est de la corrélation entre la variabilité
+interannuelle et les observations. La \cref{fig:corr_lm10_m10_ibt} présente les matrices de corrélation de la variabilité interannuelle entre LM10, M10, TCS et
+IBTrACS entre les saisons 1981 et 2019, calculés selon la méthodologie de la \cref{sec:variabilite_5_indices}. Les séries temporelles sont omises car
+indiscernables de celles présentées sur la \cref{fig:variabilite_basin_5_indices}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{corr_lm10_m10_ibt.png}
+    \caption{Matrices de corrélation entre les variations interannuelles du nombre de TC simulé par LM10, M10, TCS ainsi que la variabilité observée via IBTrACS
+    (Obs) entre les saisons 1981 et 2019.}
+    \label{fig:corr_lm10_m10_ibt}
+\end{figure}
+
+Comme attendu, LM10 présente des corrélations tout à fait comparables à M10, proches de \num{0.7} dans les bassins NAtl et EPac, \num{0.5} dans le SPac,
+\num{0.2} dans le SIndW et \num{0.3} dans le SIndE. Seul le SIndE présente une corrélation améliorée pour LM10 et M10 avec IBTrACS, par rapport au TCS. Dans le
+WPac, les corrélations pour LM10 et M10 sont dégradées (à \num{0}) par rapport au TCS, lequel n'est de toutes façons pas corrélé de manière significative avec
+\num{0.11}. Par ailleurs, l'inhomogénéité du champ d'humidité dans ERA5 est peut-être responsable de ces mauvaises performances, si bien qu'on ne saurait trop
+s'atarder sur l'interprétation des résultats dans ce bassin. À ces deux exceptions près, les trois indices présentent des corrélations proches les unes des
+autres. Les bassins EPac et SIndW sont les deux seuls bassins pour lesquels LM10 présente une corrélation avec IBTrACS dégradée par rapport à M10 mais aussi par
+rapport au TCS, bien que la différence soit à la deuxième décimale.
+
+\subsection{Conclusion}
+
+Dans cette section, les coefficients $b$ de la régression de Poisson ont été calculés à l'échelle des bassins océaniques en utilisant les prédicteurs de grande
+échelle du TCS, aussi utilisés dans la \cref{sec:apport_res_temporel_spatial}. Les six régressions peuvent être vues comme un seul indice de cyclogénèse, défini
+caractérisé par ses coefficients $b$, eux-même étant fonction de la région. Cet indice étant, outre sa dépendance régionale, construit selon la même
+méthodologie que pour l'indice M10 de la \cref{sec:apport_res_temporel_spatial}, c'est à dire en appliquant la relation \ref{eq:poisson_reg} sur les champs
+mensuels d'ERA5 interpolés sur une grille régulière de \ang{1}, ce nouvel indice régional est nommé LM10. Les résultats de la
+\cref{sec:apport_res_temporel_spatial} indiquent que la construction d'un indice régional ne peut à priori pas améliroer la représentation de la variabilité
+interannuelle, puisqu'il y est montré que les coefficients $b$ n'influent pas (ou peu) sur cette dernière, mais peut en revanche impacter la répartition
+spatiale de l'activité cyclonique simulée dans chaque bassin. Par conséquent, un indice régional est à même d'apporter de l'information sur la sensibilité de la
+fréquence d'occurrence des TC aux différentes variables de grande échelle à une échelle régionale, et peut de surcroît améliorer la répartition spatiale des TC
+à cette même échelle.
+
+Le nouvel indice de cyclogénèse LM10 met ainsi en évidence une sensibilité de la fréquence de cyclogénèses à l'environnement de grande échelle très variable
+selon les régions (voir \cref{sec:lm10_coefficients}). Les coefficients associés à la vorticité absolue bornée $\eta$ ainsi qu'à la SST relative $T$ présente la
+plus grande variabilité. Le bassin NAtl présente, de très loin, la plus grande sensibilité à la vorticité, avec un coefficient supérieur à \num{2}, tandis que
+le bassin WPac présente au contraire une sensibilité moindre inférieure à \num{1} ---~les quatre autres bassins indiquant tous une sensibilité accrue par
+rapport à M10. De la même manière, la sensibilité à la SST relative à l'échelle du bassin géographique est systématiquement plus grande que celle établie à
+l'échelle globale avec M10, à l'exception du bassin NAtl, où cette dernière n'est que de \num{0.33}. En comparaison, les coefficients associés au cisaillement
+vertical du vent et à l'humidité relative à \hPa{600} ne connaissent que peu de variations entre bassins océaniques, et demeurent relativement proches des
+valeurs estimées pour M10.
+
+Ces variations inter-régions dans les coefficients $b$ de l'indice LM10 se traduisent par une répartition spatiale modifiée de l'activité cyclonique simulée par
+rapport à M10 (voir \cref{sec:lm10_effet_spatial}). Les bassins de l'hémisphère nord sont sensiblement plus impactés que ceux de l'hémisphère sud. Dans les
+bassins EPac et NAtl, l'activité est principalement décalée vers le nord, tandis que dans le bassin WPac elle est au contraire décalée vers le sud. Dans les
+trois bassins, ces changements aboutissent à une erreur quadratique moyenne évaluée entre IBTrACS et l'indice local diminuée par rapport à M10, indiquant une
+meilleure ressemblance avec les observations (à l'exception notable du GoM dans le bassin NAtl). Les changements dans la répartition méridionale sont donc
+inversés entre les bassins WPac d'une part et EPac et NAtl d'autre part. Or, il est désormais établit que la régression de Poisson vise avant tout à offrir une
+bonne cohérence spatiale entre l'activité observée et l'activité simulée, plus qu'une bonne cohérence dans la variabilité temporelle (tout du moins à l'échelle
+interannuelle), et que cette cohérence spatiale se fait par le biais des coefficients $b$ de la régression. Le bassin WPac étant le plus actif de tous, cela
+indique que sa contribution dans une régression réalisée à l'échelle globale compte beaucoup. Il est alors permis de supposer que les différences entre bassins
+de la répartition méridionale de l'activité cyclonique dans l'hémisphère nord est à l'origine de la mauvaise distribution méridionale simulée dans cet
+hémisphère pour les indices construits à l'échelle globale (voir aussi \cref{fig:tcs_cygp_gpi_zonal,fig:my_fit_meridional}). Les indices construits à l'échelle
+régionale permettent par conséquent de corriger ces biais et d'offrir localement une meilleure ressemblance avec l'activité observée.
+
+%Dans les
+%bassins EPac et WPac, la répartition spatiale de l'activité cyclonique avec LM10 est distinctement plus proche de l'activité observée dans IBTrACS. En
+%particulier, l'activité est focalisée le long de la côte du Mexique dans le bassin EPac, autour de \ang{90}W. Ce résultat est atteint en augmentant la
+%sensibilité à la SST relative (à sa valeur la plus haute dans cette région) ainsi qu'en augmentant plus modestement la sensibilité à la vortcité, par rapport à
+%M10. Dans le bassin WPac, l'activité cyclonique inférée par LM10 est au contraire déportée vers l'équateur, par le biais notamment d'une baisse importante de la
+%sensibilité à la vorticité. Rappelons en effet que la sensibilité à la vorticité a pour conséquence notable de piloter la répartition méridionale de l'activité
+%cyclonique, comme montré dans la \cref{sec:apport_res_temporel_spatial}. Dans les deux bassins, l'erreur quadratique moyenne entre IBTrACS et l'activité simulée
+%est réduite avec LM10, indiquant une meilleure ressemblance avec la densité de cyclogénèses observées. Dans le bassin NAtl, l'activité est déportée vers le nord
+%en faveur de la MDR, se rapprochant ainsi des observations, mais l'activité est réduite dans le GoM, ce qui constitue une dégradation par rapport à M10, qui
+%dans ce sous-domaine est plus proche d'IBTrACS. À l'échelle du bassin, l'erreur quadratique moyenne est tout de même améliorée.
+
 
 %\section{Exploration du potentiel prédictif d'un indice à l'échelle saisonnière}
 %
