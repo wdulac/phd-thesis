@@ -5,8 +5,11 @@
 \begin{document}
 
 \begin{itshape}
-    Ce troisième chapitre porte sur les indices de cyclogénèse, de la formulation précise des différents indices utilisés classiquement dans la littérature à
-    des indices définis pour les besoins présents, et de leur application à ERA5. [en cours]
+    Ce troisième chapitre introduit en détails l'approche indirecte consistant en l'utilisation d'indices de cyclogénèse pour évaluer l'activité cyclonique dans
+    les modèles. Les indices les plus couramment utilisés dans la littérature sont présentés, ainsi qu'un bref historique des différents développements. Une
+    attention toute particulière est prêtée à un indice dont les coefficients de pondération sont issus d'une régression statistique entre l'environnement de
+    grande échelle et l'activité observée. La même méthodologie est employée pour étudier l'effet de divers facteurs sur les coefficients de cette régression,
+    et pour étudier comment ces coefficients affectent en retour l'indice dans sa capacité à simuler l'activité cyclonique.
 \end{itshape}
 
 \minitoc
@@ -847,7 +850,7 @@ données, par rapport aux coefficients du TCS. Dans le contexte précis de l'ét
 que cette légère amélioration de la cohérence entre l'indice et les observations justifie à elle seule la quantité de travail requise à l'estimation de nouveaux
 coefficients.
 
-\section{Indice de cyclogénèse régional}
+\section{Indice de cyclogénèse régional}\label{sec:indice_regional}
 
 Après avoir défini de nouveaux indices construits à partir de champs à différentes résolutions spatiales et temporelles dans la
 \cref{sec:apport_res_temporel_spatial}, on s'intéresse dans cette question à la construction d'indices de cyclogénèses régionaux. Comme précédemment, les
@@ -1089,5 +1092,59 @@ régionale permettent par conséquent de corriger ces biais et d'offrir localeme
 
 %--------------------------------------
 \section{Synthèse}
+
+Dans ce chapitre, plusieurs indices de cyclogénèse ont été appliqués à la réanalyse ERA5 du CEPMMT, au pas de temps mensuel et à la résolution spatiale de
+\ang{1}. Dans une première partie, les indices les plus communément utilisés dans la littérature ont étés présentés. Ces derniers peuvent être distingués entre
+ceux dont la construction est partiellement empirique ---~notamment dans le choix des pondérations appliquées à chacun des prédicteurs de grande échelle~--- ou
+bien si l'indice est construit comme une régression statistique. Trois indices sont retenus : Le GPI \parencite{emanuel_tropical_2004}, le CYGP
+\parencite{royer_gcm_1998} et le TCS \parencite{tippett_poisson_2011}. Ces indices sont évalués sur ERA5, puis comparés entre eux ainsi qu'avec les observations
+issues de la base de données IBTrACS entre \num{1981} et \num{2019}. Cette comparaison identifie les mêmes atouts et limitations des indices que les travaux de
+\textcite{menkes_comparison_2012}, lesquels appliquent ces trois mêmes indices à quatre réanalyses entre \num{1979} et \num{2001}. En particulier, tous les
+indices considérés surestiment l'activité dans l'hémisphère sud et la sous-estiment dans l'hémisphère nord. De plus, la distribution méridionale de l'activité
+annuelle moyenne est excellente dans l'hémisphère sud, tandis qu'aucun indice ne la simule correctement dans l'hémisphère nord, le TCS étant cependant le plus
+proche sur les deux tableaux. Tous les indices présentent par ailleurs une activité simulée trop importante dans la vicinité immédiate de l'équateur. Dans
+l'ensemble, le cycle annuel de l'activité cyclonique dans chacun des bassins oćeaniques est correctement reproduit, aussi bien dans leur saisonnalité que dans
+l'amplitude. Une exception notable concerne le CYGP qui peine à simuler la bi-saisonnalité du bassin NInd, et qui sous-estime fortement l'activité dans le
+bassin NAtl. Le TCS se distingue à nouveau des deux autres en étant l'indice minimisant au mieux l'activité en dehors de la saison cyclonique, à l'exception des
+bassins SPac et NInd. Les indices parviennent donc à simuler la climatologie de l'activité observée avec une grande fidélité, mais sont nettement moins aptes à
+simuler les variations interannuelles. Seules les régions EPac et NAtl présentent une bonne corrélation entre la variabilité simulée et celle observée. Dans le
+bassin EPac, les series temporelles sont d'ailleurs remarquablement proches, les indices simulant aussi bien la variabilité que l'amplitude observée.
+
+Dans une seconde partie, l'apport de la résolution spatiale et temporelle a été évaluée pour un indice construit selon la même méthodologie que le TCS. Ce
+dernier, dont les coefficients sont le résultat d'une régression de Poisson entre l'environnement de grande échelle et l'activité observée, présente en effet
+l'intérêt d'être facilement reproductible, et se prête donc mieux aux expérimentations. L'effet de la résolution spatiale accrue dans la régression (passant de
+\ang{2.5} à \ang{1}), de même que l'introduction de variabilité temporelle à plus haute fréquence (champs mensuels contre les moyennes climatologiques), sur les
+coefficients de la régression ont été étudiés, de même que l'effet des changements de coefficients sur l'indice en résultant. La modification des coefficients
+$b$ de la régression se traduit par une modification de la répartition spatiale de l'activité cyclonique inférée par l'indice. Il est montré que l'effet est
+similaire aussi bien pour la résolution spatiale accrue que l'usage de champs mensuels climatologiques, mais que l'effet de la variabilité temporelle est
+dominant (voir \cref{sec:apport_resultat}). Spécifiquement, la sensibilité accrue à la vorticité absolue, résultant de l'usage de champs mensuels, permet la
+correction du biais équatorial du TCS. Il est toutefois soulevé que les coefficients de la régression ne sont pas particulièrement robustes, notamment car la
+période temporelle utilisée pour faire la régression semble jouer un rôle important dans les valeurs prises par les coefficients. Une dérive des coefficients
+par rapport à ceux du TCS est en effet notée lorsque la période de référence s'éloigne de celle utilisée par \textcite{tippett_poisson_2011}. Cette dérive
+ramène à la problématique de la (non-)stationnarité dans le temps des relations proposées par les différents indices de cyclogénèse, et donc de leur validité
+pour l'étude du climat futur. Cependant, les moyens manquent pour confirmer ou non cette tendance.
+
+En dépit des variations importantes dans les coefficients $b$ des différentes régressions essayées dans le cadre de ce travail, la variabilité interannuelle
+inférée par les indices nouvellement construits ne s'en retrouve que très peu affectée. La variabilité interannuelle des quatre indices définis dans la
+\cref{sec:apport_res_temporel_spatial} apparaissent quasiment indiscernables les unes des autres, et les différences entre celles-ci et la variabilité
+interannuelle du TCS sont à peine plus prononcées. Il en résulte donc naturellement que la corrélation entre la variabilité interannuelle et les observations
+n'est pas améliorée. Puisque les coefficients n'impactent que marginalement la variabilité temporelle des indices de cyclogénèse, il en découle que cette
+dernière doit être contrôlée par le choix des prédicteurs utilisés. Mais malgré l'absence d'amélioration, le diagnostique introduit dans la
+\cref{sec:diagnostique_rang}, basé sur la mesure de la distribution des rangs des valeurs prises par l'indice aux points de grille correspondant aux
+cyclogénèses observées, montre que la détermination de coefficients mieux adaptés à un jeu de donné cible possède tout de même un intérét. Il est en effet
+montré que les indices nouvelles construits sont plus actifs que le TCS en lieu et date d'une cyclogénèse observée, y compris pour l'indice visant à reproduire
+le plus fidèlement possible ce dernier.
+
+Enfin, une troisième partie de ce chapitre (voir \cref{sec:indice_regional}) a été consacrée à la définition d'un indice de cyclogénèse régional. Il s'agit en
+réalité de plusieurs indices, construits par régression de Poisson à l'échelle des bassins océaniques, qui peut être utilisé comme un indice pseudo-global, dont
+les coefficients sont fonction du bassin. Comme vu précédemment, une telle approche ne peut améliorer la variabilité interannuelle, mais il est montré que la
+construction d'indices locaux peut apporter de l'information utile sur la sensibilité de la fréquence d'occurrence des TC aux variables de grande échelle à
+l'échelle d'un bassin océanique. L'indice régional impacte sensiblement la répartition géographique de l'activité cyclonique simulée dans l'hémisphère nord,
+tandis que l'effet est minime dans l'hémisphère sud. La régression menée à l'échelle du bassin offre alors une amélioration de la ressemblance entre l'activité
+simulée et l'activité observée (voir aussi \cref{sec:lm10_effet_spatial}). Il est notamment noté que l'indice régional déporte l'activité vers l'équateur dans
+le bassin WPac, tandis qu'il la décale vers le nord dans les bassins NAtl et EPac. Ces changements réduisent dans tous les cas l'erreur quadratique moyenne avec
+IBTrACS. Il est alors suggéré que la disparité dans la répartition en latitude de l'activité cyclonique puisse être à l'origine de la difficulté rencontrée par
+tous les indices de cyclogénèse construits à l'échelle globale à simuler une distribution méridionale réaliste.
+
 
 \end{document}
