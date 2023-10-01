@@ -47,7 +47,7 @@ La simulation utilisée ici est une simulation historique sur la période \num{1
 $\times$ \num{360} (latitude), donc à une résolution horizontale de \ang{0.5}, soit d'environ \km{50} à l'équateur. La simulation est forcée par la SST et la concentration
 en glace de mer issues d'observations et provenant de la base de données HadISST1 \parencite{rayner_global_2003}.
 
-\subsubsection{Détection des cyclones tropicaux}
+\subsubsection{Cylogénèses simulées}
 
 Les cyclones tropicaux sont détectés à l'aide du schéma de détection du CNRM \parencite{chauvin_response_2006}, amplement décrit dans le \cref{chap:chapitre_2},
 notamment dans la \cref{sec:eval_tracker_ERA5}. Le schéma de détection a été appliqué aux champs 6-horaires du modèle avec : un seuil de vorticité
@@ -58,54 +58,96 @@ paramètre de relaxation des trajectoires \textbf{REL} fixé à \SI{20e-5}{\per\
 (respectivement \ms{5}). Rappelons en effet que le modèle ARPEGE, en particulier cette version précise du modèle, est connue pour simuler des cyclones tropicaux
 intenses par rapport à la résolution du modèle \parencite{roberts_impact_2020,chauvin_future_2020} (voir aussi \cref{sec:cyclones_dans_modèles} du
 \cref{chap:chapitre_1}, notamment la \cref{fig:roberts_PV_resolution}, \vpageref{fig:roberts_PV_resolution}). Il convient néanmoins de préciser que
-contrairement au \cref{chap:chapitre_2}, les le choix des seuils de détection utilisés pour détecter les TC dans cette simulation n'ont pas fait l'objet d'une
+contrairement au \cref{chap:chapitre_2}, le choix des seuils de détection utilisés pour détecter les TC dans cette simulation n'ont pas fait l'objet d'une
 analyse quantitative des performances ---~une telle analyse serait par ailleurs impossible étant donné qu'il n'existe pas de trajectoires de référence pour les
-pures simulations atmosphériques.
+pures simulations atmosphériques. Avant post-traitement des trajectoires, la fréquence d'occurrence annuelle moyenne de cyclogénèses est de \num{80.7} TC par
+an. À titre de référence, IBTrACS sur la même période indique \num{82.9} TC par an.
 
 Nous appliquons en post-traitement le filtre des systèmes de moyennes latitudes basé sur le diagnostique du jet subtropical (STJ), décrit et illustré dans la
 \cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}). Ce filtre est choisi ici ---~en dépit des réserves exprimées dans le \cref{chap:chapitre_2}~--- en
-raison de sa relative simplicité à implémenter, notamment par rapport au filtre du $V_U^T$ qui a lui été préféré dans \textcite{dulac_assessing_2023}, et dont
-une implémentation online au sein du traqueur du CNRM fait partie des perspectives d'avenir pour le schéma de détection. En effet, l'emploi du filtre du $V_U^T$
-comme post-traitement nécessite de traiter en profondeur les champs spatiaux 3D du modèle centrés sur les positions des TC préalablement identifiés, une
-opération qui est à la fois techniquement complexe et chronophage. En comparaison, la détermination de la limite équatoriale du STJ peut être faite une fois
-pour toutes, et n'est pas à proprement parler dépendante des trajectoires identifiées, au sens où il n'est pas nécessaire de répéter le diagnostique pour
-appliquer le filtre à de nouvelles trajectoires issues de la même simulation. En outre, \textcite{bourdin_intercomparison_2022} montrent que le filtre du STJ
-parvient très efficacement à filtrer les systèmes de moyennes latitudes, lorsqu'appliqué à plusieurs schémas de détection sur ERA5. Rappelons brièvement que la
-latitude du STJ est déterminée en prenant la limite équatoriale des points où le module du vent à \hPa{200} (lissé sur trois mois glissants) est supérieur à
-\ms{25} et où la composante zonale (lissée de la même façon) est supérieure à \ms{15}. En pratique, puisqu'on s'intéresse aux cyclogénèses et qu'on ne garde
-pour cela que les premières échéances des trajectoires, le filtre consiste à retirer les points situés au delà de la latitude du STJ.
+raison de sa relative simplicité à implémenter, notamment par rapport au filtre du $V_U^T$ qui a lui été préféré dans \textcite{dulac_assessing_2023}. En effet,
+l'emploi du filtre du $V_U^T$ comme post-traitement nécessite de traiter en profondeur les champs spatiaux 3D du modèle centrés sur les positions des TC
+préalablement identifiés, une opération qui est à la fois techniquement complexe et chronophage. En comparaison, la détermination de la limite équatoriale du
+STJ peut être faite une fois pour toutes, et n'est pas à proprement parler dépendante des trajectoires identifiées, au sens où il n'est pas nécessaire de
+répéter le diagnostique pour appliquer le filtre à de nouvelles trajectoires issues de la même simulation. En outre, \textcite{bourdin_intercomparison_2022}
+montrent que le filtre du STJ parvient très efficacement à filtrer les systèmes de moyennes latitudes, lorsqu'appliqué à plusieurs schémas de détection sur
+ERA5. Rappelons brièvement que la latitude du STJ est déterminée en prenant la limite équatoriale des points où le module du vent à \hPa{200} (lissé sur trois
+mois glissants) est supérieur à \ms{25} et où la composante zonale (lissée de la même façon) est supérieure à \ms{15}. En pratique, puisqu'on s'intéresse aux
+cyclogénèses et qu'on ne garde pour cela que les premières échéances des trajectoires, le filtre consiste à retirer les points situés au delà de la latitude du
+STJ.
 
 La \cref{fig:track_density_PRE625REFT359x} présente la densité annuelle moyenne (sur \num{30} ans) des premières échéances des trajectoires détectées dans la
-simulation ARPEGE ---~assimilées aux cyclogénèses~--- après application du filtre du STJ. La \cref{fig:STJ_PRE625REFT359x} présente quant à elle les moyennes
-saisonnières de la latitude diagnostiquée par le filtre du STJ pour les deux hémisphères. Les variations saisonnières du STJ de la \cref{fig:STJ_PRE625REFT359x}
-illustrent le caractère dynamique du filtre du STJ, par rapport à une limite en latitude fixe. Cette figure met aussi en évidence le caractère saisonnier du
-filtre, avec un décalage vers les pôles durant les saisons chaudes, et un déport vers l'équateur durant la saison froide, les deux étant bien entendu en
-opposition de phase dans chacun des hémisphères. Cette propriété du seuil dynamique en latitude avait déjà été mise en évidence pour le filtre du gradient de
-géopotentiel à \hPa{200} présenté dans la \cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}), mais n'avait pas été documentée pour le filtre du STJ. Le
-filtre du STJ appliqué aux trajectoires ARPEGE retire ici \num{617} cyclogénèses. Le filtre ne retire toutefois pas que des systèmes extra-tropicaux, car la
-latitude médiane des cyclogénèses filtrées est de \ang{26.2}N dans l'hémisphère nord ($n = \num{366}$) et de \ang{31.8}S dans l'hémisphère sud ($n=251$). On
-note également une latitude minimale parmi les systèmes filtrés à \ang{2}N et à \ang{8.6}S pour chacun des deux hémisphères respectifs. Le jet subtropical ne
-peut physiquement pas se trouver en dessous de \ang{2}N. Ce cas illustre un des points (en l'occurence une des limitations du filtre) discuté dans la
-\cref{sec:filtrage_mid_latitudes} (spécifiquement illustré sur la \cref{fig:geopdy_and_STJ}, troisième ligne, \vpageref{fig:geopdy_and_STJ}), et peut être
-considéré comme un effet de bord. Le filtre parvient toutefois à supprimer \num{95} des \num{97} cyclogénèses situées au delà de \ang{40} (nord et sud) dans les
-trajectoires non-filtrées.
+simulation ARPEGE ---~assimilées aux cyclogénèses~--- après application du filtre du STJ. Avec le filtre du STJ, la fréquence annuelle moyenne est réduite à
+\num{60.8} TC par an. Le filtre retire en effet \num{617} cyclogénèses, mais tous ne sont pas purement extra-tropicaux car la latitude médiane des cyclogénèses
+filtrées est de \ang{26.2}N dans l'hémisphère nord ($n = \num{366}$) et de \ang{31.8}S dans l'hémisphère sud ($n=251$). On note également une latitude minimale
+parmi les systèmes filtrés à \ang{2}N et à \ang{8.6}S pour chacun des deux hémisphères respectifs. Le jet subtropical ne peut physiquement pas se trouver en
+dessous de \ang{2}N. Ce cas illustre un des points (en l'occurence une des limitations du filtre) discuté dans la \cref{sec:filtrage_mid_latitudes}
+(spécifiquement illustré sur la \cref{fig:geopdy_and_STJ}, troisième ligne, \vpageref{fig:geopdy_and_STJ}), et peut être considéré comme un effet de bord. Le
+filtre parvient toutefois à supprimer \num{95} des \num{97} cyclogénèses situées au delà de \ang{40} (nord et sud) dans les trajectoires non-filtrées.
 
-\begin{figure}[tp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{track_density_PRE625REFT359x.png}
     \caption{Densité annuelle moyenne de cyclogénèses dans la simulation ARPEGE forcée par HadISST1 entre 1980 et 2010, calculée sur une grille régulière de
     \ang{2}$\times$\ang{2}.}
     \label{fig:track_density_PRE625REFT359x}
 \end{figure}
-%
-\begin{figure}[tp]
+
+La \cref{fig:density_arpege_ibtracs} présente le biais moyen entre la simulation ARPEGE (c.f \cref{fig:track_density_PRE625REFT359x}) et IBTrACS, prise sur la
+même période, en termes de densité de probabilité d'occurrence pour pallier à la différence dans la fréquence annuelle des deux jeux de données après
+application du filtre du STJ. Dans l'océan Atlantique, la \cref{fig:density_arpege_ibtracs} fait apparaître une légère surestimation dans l'Atlantique sud d'une
+part, et une déséquilibre dans l'Atlantique nord avec notamment une sous-évaluation dans le MDR et le GoM, mais une sur-évaluation dans le reste de l'océan. Ce
+biais dans l'atlantique nord avec cette simulation est par ailleurs documenté dans \textcite{chauvin_future_2020}. Dans le bassin EPac, l'activité simulée est
+fortement sous-estimée. Dans le WPac, un surplus est noté dans ARPEGE en Mer de Chine méridionale et Mer des Philippines, tandis que le reste du bassin voit
+sinon un déficit. Dans le bassin NInd, la simulation ARPEGE présente une activité sur-estimée aussi bien en Mer d'Arabie que dans le Golfe du Bengale. Dans
+l'hémisphère sud, le biais est plus contrasté. Dans l'océan Indien, on note un biais positif dans le sud-ouest du bassin, autour de Madagascar mais un biais
+négatif dans le nord-est, proche de l'équateur. Une répartition du biais similaire mais symétrique est notée dans le bassin Sud Pacifique, avec un biais positif
+dans le sud-est et négatif au nord-ouest.
+
+Dans l'ensemble, ces motifs de biais sont en fait évocateurs d'une mauvaise localisation des cyclogénèses par le schéma de détection, notamment en raison de sa
+tendance connue à détecter les TC un peu tardivement, plutôt que d'un biais avéré dans l'activité simulée. Dans le NAtl, les trajectoires démarrent le plus
+souvent de la MDR ou du GoM pour ensuite remonter vers le nord / nord-est. Dans le SInd, les TC se déplacent souvent du nord-est vers le sud-ouest. La sens de
+circulation est inversé dans le SPac en raison du flux de mousson en provenance d'ouest qui prend le pas sur la dérive de Coriolis ---~cette dernière ayant
+naturellement tendance à déplacer les TC vers l'ouest dans l'hémisphère sud (c.f \cref{sec:conditions_cyclogenese})~--- si bien que les TC s'y déplacent
+généralement vers le sud-est. Une détection trop tardive des TC pourrait également expliquer au moins en partie le biais noté dans le WPac (voir aussi
+\cref{fig:bassins_TC} du \cref{chap:chapitre_1}, \vpageref{fig:bassins_TC}, pour voir les sens de déplacement des TC dans les bassins océaniques majeurs). Le
+\cref{chap:chapitre_2} fait notamment référence à cette tendance que possède le schéma de détection à détecter trop tardivement les TC dans la réanalyse ERA5,
+et cet effet est également documenté dans \textcite{bourdin_intercomparison_2022}. Dans ce contexte, les seules régions où il existe un biais réel entre
+l'activité simulée par ARPEGE et l'activité observée sont le bassin EPac, le NInd, et dans une mesure bien moindre le Sud Atlantique. L'activité cyclonique telle que
+simulée dans le modèle ARPEGE et identifiée par le traqueur du CNRM est donc tout compte fait assez fidèle aux observations. Il en résulte que les cyclogénèses
+issues du schéma de détection du CNRM appliqué à des simulations ARPEGE peuvent être utilisées comme prédictant pour la construction d'indices de cyclogénèse
+par régression de Poisson.
+
+\begin{figure}[tb]
     \centering
-    \includegraphics[width=\textwidth]{STJ_season_PRE625REFT359x.png}
-    \caption{Moyennes saisonnières de la latitude de la limite équatoriale du jet subtropical dans la simulation ARPEGE-Climat forcée par HadISST1. Chacune des
-    quatre colonnes correspond à une saison. La première ligne présente le diagnostique pour l'hémisphère nord, tandis que la seconde ligne le présente pour
-    l'hémisphère sud.}
-    \label{fig:STJ_PRE625REFT359x}
+    \includegraphics[width=\textwidth]{density_arpege_ibtracs.png}
+    \caption{Carte de la différence entre les densités de cyclogénèses moyennes et normalisées ---~lissées au préalable avec un filtre gaussien à \ang{1}
+    d'écart-type~--- de la simulation ARPEGE forcée et IBTrACS entre \num{1980} et \num{2010}.}
+    \label{fig:density_arpege_ibtracs}
 \end{figure}
+
+%La densité de cyclogénèses détectée dans cette simulation peut être
+%mise en relation avec la densité de cyclogénèses issue d'IBTrACS visible sur la \cref{fig:acgi_ibt} (\cref{chap:chapitre_3}, \vpageref{fig:acgi_ibt}).
+
+
+%La \cref{fig:STJ_PRE625REFT359x} présente quant à elle les moyennes saisonnières de la latitude diagnostiquée par le filtre du STJ pour les deux hémisphères.
+%Les variations saisonnières du STJ de la \cref{fig:STJ_PRE625REFT359x} illustrent le caractère dynamique du filtre du STJ, par rapport à une limite en latitude
+%fixe. Cette figure met aussi en évidence le caractère saisonnier du filtre, avec un décalage vers les pôles durant les saisons chaudes, et un déport vers
+%l'équateur durant la saison froide, les deux étant bien entendu en opposition de phase dans chacun des hémisphères. Cette propriété du seuil dynamique en
+%latitude avait déjà été mise en évidence pour le filtre du gradient de géopotentiel à \hPa{200} présenté dans la \cref{sec:filtrage_mid_latitudes}
+%(\cref{chap:chapitre_2}), mais n'avait pas été documentée pour le filtre du STJ.
+
+%\begin{figure}[tp]
+%    \centering
+%    \includegraphics[width=\textwidth]{STJ_season_PRE625REFT359x.png}
+%    \caption{Moyennes saisonnières de la latitude de la limite équatoriale du jet subtropical dans la simulation ARPEGE-Climat forcée par HadISST1. Chacune des
+%    quatre colonnes correspond à une saison. La première ligne présente le diagnostique pour l'hémisphère nord, tandis que la seconde ligne le présente pour
+%    l'hémisphère sud.}
+%    \label{fig:STJ_PRE625REFT359x}
+%\end{figure}
+
+
+
 
 \section{Tendances}
 
