@@ -21,11 +21,20 @@ Dans le \cref{chap:chapitre_3}, nous avons construit des indices de cyclogénès
 l'environnement de grande échelle, et la base de données observationnelle IBTrACS comme référence pour les observations. Dans ce chapitre, nous nous
 intéresserons à l'utilisation d'indices de cyclogénèse dans des simulations climatiques réalisées avec ARPEGE-Climat. [En cours]
 
-\section{Ajout de prédicteurs}
+Il faut justifier le fait de faire un indice de cyclogénèse sous perfusion Niño 3.4 pour essayer de donner de l'amplitude et de la corrélation à la variabilité
+interannuelle. Si on demande, on le fait dans le monde du modèle parce que les travaux ERA5 sont plutôt une introduction aux outils et aux méthodes utilisées
+pour les indices, notamment pour l'aspect validation de la reproduction de la méthodologie de Tippett, et la déclinaison en régression à l'échelle du bassin ;
+indispensable pour Niño mais aussi pour les runs climat futur puisqu'elles sont faites en basculée-étirée.
+
+\section{Utilisation d'un indice Niño dans une régression de Poisson}\label{sec:indice_ONI}
+
+On s'intéresse ici à l'ajout explicite du signal du mode de variabilité ENSO (\textit{El Niño-Southern Oscillation}) dans un indice de cyclogénèse construit par
+régression de Poisson. Il s'agit de voir si ce nouvel apport d'information est susceptible d'introduire de l'amplitude dans la variabilité interannuelle inférée
+par un tel indice, et de voir si ce prédicteur peut, ou non, améliorer au moins localement la représentation de la variabilité interannuelle.
 
 \subsection{Données et Méthodes}
 
-\subsubsection{Description de la simulation}
+\subsubsection{Simulation historique forcée avec ARPEGE-Climat}
 
 Nous utilisons ici le modèle ARPEGE dans sa version 6.3 à haute résolution, dans la même configuration que dans
 \textcite{chauvin_future_2020,cattiaux_projected_2020}. Cette version du modèle est quasiment identique à celle utilisée dans le modèle couplé CNRM-CM6-1
@@ -47,7 +56,7 @@ La simulation utilisée ici est une simulation historique sur la période \num{1
 $\times$ \num{360} (latitude), donc à une résolution horizontale de \ang{0.5}, soit d'environ \km{50} à l'équateur. La simulation est forcée par la SST et la concentration
 en glace de mer issues d'observations et provenant de la base de données HadISST1 \parencite{rayner_global_2003}.
 
-\subsubsection{Cylogénèses simulées}
+\subsubsection{Cylogénèses simulées}\label{sec:tracking_arpege}
 
 Les cyclones tropicaux sont détectés à l'aide du schéma de détection du CNRM \parencite{chauvin_response_2006}, amplement décrit dans le \cref{chap:chapitre_2},
 notamment dans la \cref{sec:eval_tracker_ERA5}. Le schéma de détection a été appliqué aux champs 6-horaires du modèle avec : un seuil de vorticité
@@ -81,8 +90,8 @@ simulation ARPEGE ---~assimilées aux cyclogénèses~--- après application du f
 \num{60.8} TC par an. Le filtre retire en effet \num{617} cyclogénèses, mais tous ne sont pas purement extra-tropicaux car la latitude médiane des cyclogénèses
 filtrées est de \ang{26.2}N dans l'hémisphère nord ($n = \num{366}$) et de \ang{31.8}S dans l'hémisphère sud ($n=251$). On note également une latitude minimale
 parmi les systèmes filtrés à \ang{2}N et à \ang{8.6}S pour chacun des deux hémisphères respectifs. Le jet subtropical ne peut physiquement pas se trouver en
-dessous de \ang{2}N. Ce cas illustre un des points (en l'occurence une des limitations du filtre) discuté dans la \cref{sec:filtrage_mid_latitudes}
-(spécifiquement illustré sur la \cref{fig:geopdy_and_STJ}, troisième ligne, \vpageref{fig:geopdy_and_STJ}), et peut être considéré comme un effet de bord. Le
+dessous de \ang{2}N. Ce cas illustre un des points (en l'occurence une des limitations du filtre) discuté dans la \cref{sec:filtrage_mid_latitudes} (et
+parfaitement illustré sur la \cref{fig:geopdy_and_STJ}, troisième ligne, \vpageref{fig:geopdy_and_STJ}), et peut être considéré comme un effet de bord. Le
 filtre parvient toutefois à supprimer \num{95} des \num{97} cyclogénèses situées au delà de \ang{40} (nord et sud) dans les trajectoires non-filtrées.
 
 \begin{figure}[tb]
@@ -104,19 +113,19 @@ l'hémisphère sud, le biais est plus contrasté. Dans l'océan Indien, on note 
 négatif dans le nord-est, proche de l'équateur. Une répartition du biais similaire mais symétrique est notée dans le bassin Sud Pacifique, avec un biais positif
 dans le sud-est et négatif au nord-ouest.
 
-Dans l'ensemble, ces motifs de biais sont en fait évocateurs d'une mauvaise localisation des cyclogénèses par le schéma de détection, notamment en raison de sa
-tendance connue à détecter les TC un peu tardivement, plutôt que d'un biais avéré dans l'activité simulée. Dans le NAtl, les trajectoires démarrent le plus
-souvent de la MDR ou du GoM pour ensuite remonter vers le nord / nord-est. Dans le SInd, les TC se déplacent souvent du nord-est vers le sud-ouest. La sens de
-circulation est inversé dans le SPac en raison du flux de mousson en provenance d'ouest qui prend le pas sur la dérive de Coriolis ---~cette dernière ayant
-naturellement tendance à déplacer les TC vers l'ouest dans l'hémisphère sud (c.f \cref{sec:conditions_cyclogenese})~--- si bien que les TC s'y déplacent
+Dans la plupart des bassins, ces motifs de biais sont en fait évocateurs d'une mauvaise localisation des cyclogénèses par le schéma de détection, notamment en
+raison de sa tendance connue à détecter les TC un peu tardivement, plutôt que d'un biais avéré dans l'activité simulée. Dans le NAtl, les trajectoires démarrent
+le plus souvent de la MDR ou du GoM pour ensuite remonter vers le nord / nord-est. Dans le SInd, les TC se déplacent souvent du nord-est vers le sud-ouest. La
+sens de circulation est inversé dans le SPac en raison du flux de mousson en provenance d'ouest qui prend le pas sur la dérive de Coriolis ---~cette dernière
+ayant naturellement tendance à déplacer les TC vers l'ouest dans l'hémisphère sud (c.f \cref{sec:conditions_cyclogenese})~--- si bien que les TC s'y déplacent
 généralement vers le sud-est. Une détection trop tardive des TC pourrait également expliquer au moins en partie le biais noté dans le WPac (voir aussi
 \cref{fig:bassins_TC} du \cref{chap:chapitre_1}, \vpageref{fig:bassins_TC}, pour voir les sens de déplacement des TC dans les bassins océaniques majeurs). Le
 \cref{chap:chapitre_2} fait notamment référence à cette tendance que possède le schéma de détection à détecter trop tardivement les TC dans la réanalyse ERA5,
 et cet effet est également documenté dans \textcite{bourdin_intercomparison_2022}. Dans ce contexte, les seules régions où il existe un biais réel entre
-l'activité simulée par ARPEGE et l'activité observée sont le bassin EPac, le NInd, et dans une mesure bien moindre le Sud Atlantique. L'activité cyclonique telle que
-simulée dans le modèle ARPEGE et identifiée par le traqueur du CNRM est donc tout compte fait assez fidèle aux observations. Il en résulte que les cyclogénèses
-issues du schéma de détection du CNRM appliqué à des simulations ARPEGE peuvent être utilisées comme prédictant pour la construction d'indices de cyclogénèse
-par régression de Poisson.
+l'activité simulée par ARPEGE et l'activité observée (outre la différence de fréquence annuelle après passage du filtre) sont le bassin EPac, le NInd, et dans
+une mesure bien moindre le Sud Atlantique. L'activité cyclonique telle que simulée dans le modèle ARPEGE et identifiée par le traqueur du CNRM est donc tout
+compte fait assez fidèle aux observations. Nous considérons alors que les cyclogénèses issues du schéma de détection du CNRM appliqué à la simulation ARPEGE
+peuvent être utilisées comme prédictant pour la construction d'indices de cyclogénèse par régression de Poisson.
 
 \begin{figure}[tb]
     \centering
@@ -126,8 +135,119 @@ par régression de Poisson.
     \label{fig:density_arpege_ibtracs}
 \end{figure}
 
-%La densité de cyclogénèses détectée dans cette simulation peut être
-%mise en relation avec la densité de cyclogénèses issue d'IBTrACS visible sur la \cref{fig:acgi_ibt} (\cref{chap:chapitre_3}, \vpageref{fig:acgi_ibt}).
+\subsubsection{Diagnostique ENSO}\label{sec:diag_enso}
+
+Le mode de variabilité El Niño (respectivement El Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'oćean Pacifique central.
+Il existe plusieurs façons de diagnostiquer ce phénomène et qui se distinguent entre elles par la région, ou boîte, utilisée pour calculer l'anomalie de
+température, ainsi que par le lissage temporel utilisé. Ces boîtes sont au nombre de \num{4}, réparties entre les côtes de l'Amérique centrale et les îles
+Salomon. L'anomalie de SST prise dans une de ces boîtes définit alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
+opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est définit sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
+(non montrées) et définie entre \ang{120}W et \ang{170}W, et entre \ang{5}S et \ang{5}N. Les anomalies sont lissées sur \num{3} mois glissants, et la référence
+climatologique est prise comme la SST moyenne sur la toute la période disponible. La \cref{fig:ONI} présente la boîte 3.4 utilisée pour calculer l'anomalie de
+température, ainsi que la série temporelle de l'indice ONI entre janvier \num{1980} et décembre \num{2010}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{ONI.png}
+    \caption{Boîte 3.4 utilisée pour le calcul de l'indice ONI (gauche) et série temporelle de l'ONI (droite) évaluée sur la SST mensuelle de la
+    simulation ARPEGE forcée par HadISST1.}
+    \label{fig:ONI}
+\end{figure}
+
+Pour utiliser l'ONI comme prédicteur dans une régression de Poisson, il est nécessaire de le transformer en vecteur de la même taille $m$ (c.f
+\cref{chap:chapitre_3}, \cref{sec:regression_poisson}) que les champs spatio-temporels de grande échelle. L'ONI étant, pour un mois donné, un scalaire ; sa
+valeur est répliquée en tout point de la grille spatiale souhaitée. Cela revient à considérer que chaque point de l'espace a connaissance à chaque
+pas de temps de l'anomalie de SST dans la boîte 3.4.
+
+\subsection{Lien entre ENSO et l'activité cyclonique dans ARPEGE}\label{sec:lien_enso_tracking}
+
+Le lien entre ENSO et l'activité cyclonique tropicale dans les observations et dans les modèles est largement documenté
+\parencite{chan_tropical_1985,wu_gcm_1992,landsea_ninosouthern_2000,mcdonald_tropical_2005,lin_enso_2020}. Une phase positive de l'oscillation El-Niño tend à
+augmenter la fréquence d'occurence des TC dans certains bassins, notamment dans le Pacifique, et tend à la réduire dans l'océan Indien, et vice versa. Dans
+l'Atlantique nord, l'activité cyclonique est traditionnellement anti-corrélée à ENSO, car ce dernier apporte du cisaillement dans l'océan Atlantique. Cependant,
+pour déterminer dans quelle mesure l'ajout de l'ONI comme prédicteur dans une régression établie sur les cyclogénèses détectées dans le modèle ARPEGE peut impacter la
+fréquence statistiquement modélisée, il convient de quantifier le lien entre l'ONI et l'activité cyclonique dans notre jeu de données.
+
+La \cref{fig:corr_ONI_pt} présente la carte de corrélation entre le nombre annuel de cyclogénèses pour chaque maille d'une grille régulière de \ang{3} de
+résolution et l'indice ONI, aggrégé annuellement de la même façon. Précisons que, à l'instar de toutes les opérations de calcul de variabilité interannuelle
+réalisées jusqu'à maintenant, et notamment dans le \cref{chap:chapitre_3}, la fréquence annuelle est calculée pour les saisons cycloniques. Dans l'hémisphère
+sud, le nombre de TC pour une saison donnée est donc évalué entre juillet de l'année précédente et juin de l'année courante. Précisons aussi qu'un masque
+terre-mer interpolé sur la grille de \ang{3} de résolution est utilisé pour masquer les cyclogénèses détectées sur terre de la
+\cref{fig:track_density_PRE625REFT359x}.
+
+\begin{figure}[tpb]
+    \centering
+    \includegraphics[width=\textwidth]{corr_ONI_tracks.png}
+    \caption{Carte de corrélation entre la variabilité interannuelle de l'activité cyclonique par point de grille (\ang{3}x\ang{3}) pour les cyclogénèses
+    détectées dans ARPEGE et l'indice ONI, sur les saisons cycloniques entre \num{1980} et \num{2010}.}
+    \label{fig:corr_ONI_pt}
+\end{figure}
+
+La \cref{fig:corr_ONI_pt} met en évidence des corrélations contrastées dans les différents bassins d'activité. Le signal le plus clair est noté dans le WPac, à
+l'ouest de \ang{180}, avec une corrélation positive dans la plupart des mailles où des cyclogénèses ont été détectées. Certaines dépassent la borne supérieure
+de la carte des couleurs fixée à \num{0.5}. Dans le bassin EPac, le peu de cyclogénèses disponibles (voir
+\cref{fig:track_density_PRE625REFT359x,fig:density_arpege_ibtracs}) empêche l'interprétation de la corrélation. Dans le SPac, des corrélations positives
+relativement fortes sont notées dans la partie nord, tandis que ces dernières s'inversent au delà de \ang{20}S. Dans le bassin SIndE, ENSO apparaît clairement
+anti-corrélée à l'activité cyclonique, à l'exception de quelques mailles. Pour les bassins SIndW NInd et NAtl, le signal est plus contrasté mais laisse également
+entrevoir dans l'ensemble une possible anti-corrélation.
+
+Pour évaluer le lien entre l'activité cyclonique détectée et la variabilité El Niño dans ces bassins où la \cref{fig:corr_ONI_pt} ne permet pas de dégager une
+conclusion nette, la corrélation est évaluée à l'échelle du bassin tout entier. Spécifiquement, les cyclogénèses sont comptabilisées sur la grille d'origine de
+la simulation (T359, soit \ang{0.5}), puis l'activité est intégrée spatialement sur les bassins océaniques usuels selon la méthodologie employée dans le
+\cref{chap:chapitre_3}. Enfin, la corrélation avec la variabilité interannuelle de l'indice ONI est évaluée pour chacun des bassins. La
+\cref{fig:corr_ONI_bassin} présente les coefficients de corrélation $r$ ainsi que les valeurs-p associées.
+
+\begin{figure}[tpb]
+    \centering
+    \includegraphics[width=\textwidth]{corr_ONI_bassin}
+    \caption{corrélation entre la variabilité interannuelle de l'activité cyclonique détectée dans ARPEGE et l'indice ONI à l'échelle des bassins océaniques.}
+    \label{fig:corr_ONI_bassin}
+\end{figure}
+
+Pour les bassins WPac et SIndE, la \cref{fig:corr_ONI_bassin} confirme ce que laisse deviner la \cref{fig:corr_ONI_pt}, à savoir une corrélation dans le
+premier, évaluée à \num{0.34} et à la limite de la significativité sous un seuil de \prct{95}, et une anti-corrélation significative dans le second à
+\num{-0.59}. La \cref{fig:corr_ONI_bassin} permet également de lever l'ambigüité pour les bassins où le lien est contrasté sur la \cref{fig:corr_ONI_pt}. Ainsi
+l'activité cyclonique dans le bassin SIndW est également présenté comme anti-corrélée à l'ONI avec \num{-0.36}, là aussi à la limite de la significativité, et
+pareillement dans le bassin NAtl avec \num{-0.33}, bien qu'avec une valeur-p de \num{0.07}. En revanche, le bassin EPac ne présente aucune corrélation, et
+celles des bassins NInd et SPac ne sont pas significatives. À titre de référence, cette carte réalisée entre ERA5 et IBTrACS signale une corrélation de
+\num{0.54} dans le bassin EPac et de \num{-0.43} dans le bassin NAtl. La corrélation dans le bassin SIndE est inchangée par rapport à celle mesurée ici, mais
+les bassins WPac et SIndW sont néanmoins parfaitement décorrélés.
+
+Le lien entre l'activité cyclonique telle que détectée par le schéma de détection du CNRM appliqué au modèle ARPEGE d'une part, et le mode de variabilité El
+Niño est dans l'ensemble cohérent. Plusieurs bassins océaniques présentent des corrélations à la limite de la significativité statistique, et c'est par
+conséquent dans ces bassins là qu'une éventuelle plus-value de l'ajout de l'ONI comme prédicteur dans une régression de Poisson peut être attendue.
+
+\subsection{Application de la régression}
+
+On applique ici la régression de Poisson selon la même méthodologie employée pour construire l'indice nommé M10 dans la \cref{sec:apport_res_temporel_spatial},
+mais appliquée à la simulation ARPEGE. On utilise donc en prédictant les cyclogénèses détectées par le traqueur du CNRM dans la simulation historique ARPEGE
+forcée par HadISST1. Ces dernières, de même que les champs de grande échelle utilisés comme prédicteurs, transposées sur une grille régulière de \ang{1} de
+résolution et agrégées au pas de temps mensuel. Ici encore, la taille de la matrice $\mathbf{x}$ des prédicteurs est le principal facteur limitant la résolution
+spatiale pour réaliser la régression, et est la raison pour laquelle nous n'utilisons pas la grille T359 d'origine. Nous utilisons les mêmes variables
+thermiques et dynamiques que pour le TCS et pour les \cref{sec:apport_res_temporel_spatial,sec:indice_regional}, à savoir la vorticité absolue bornée à
+\SI{3.7e-5}{\per\second} $\eta$, le cisaillement vertical $V_{\mathrm{shear}}$ entre \hPa{850} et \hPa{200}, l'humidité relative $H$ à \hPa{600} et la SST
+relative $T$.
+
+Nous définissons dans un premier temps l'équivalent de l'indice M10 pour ARPEGE, nommé AM10. Nous réalisons ensuite une seconde régression en ajoutant à
+ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'indice ONI, définit en tout point de la grille comme l'anomalie
+mensuelle de SST dans la boîte 3.4 présentée dans la \cref{sec:diag_enso}. L'indice incluant l'ONI comme prédicteur est nommé OAM10, abrégé en OA. La régression
+avec l'ONI comme prédicteur est appliquée aussi bien à l'échelle globale qu'à l'échelle des bassins individuels. Dans le second cas, la méthodologie employée
+dans la \cref{sec:indice_regional} pour construire l'indice LM10 est transposée aux prédicteurs et prédictant ARPEGE, notamment pour ce qui concerne la
+calibration de l'indice régional sur la fréquence annuelle moyenne inférée par son homologue global. L'indice régional est alors nommé LOAM10, ou simplement
+LOA, puisqu'il est entendu que, contrairement au \cref{chap:chapitre_3}, les régressions sont uniquement faites avec les moyennes mensuelles à \ang{1} de
+résolution.
+
+Enfin, précisons que les cyclogénèses détectées sur terre sont masquées, si bien que la fréquence annuelle de référence pour la calibration des indices globaux
+est réduite à \num{52.32} TC par an. Bien que ce nombre soit bien différent de la fréquence de référence issue IBTrACS utilisée dans le \cref{chap:chapitre_3},
+cela n'a aucune importance dès lors que tous les indices sont calibrés sur cette valeur. Le TCS de \textcite{tippett_poisson_2011} est également pris comme
+référence pour la comparaison des résultats.
+
+% Pour comparer les résultats, on utilise comme références d'une part le TCS de \textcite{tippett_poisson_2011},
+% et d'autre part l'indice M10 définit dans le \cref{sec:apport_res_temporel_spatial} du \cref{chap:chapitre_3}. Ce dernier peut en effet être vu comme une
+% version actualisée du TCS, et est conceptuellement plus proche de l'étude faite ici. Pour distinguer l'indice M10, dont les coefficients furent établis entre
+% ERA5 et IBTrACS, et l'indice mensuel à \ang{1.0} de résolution spatiale établit ici, nous renommons M10 en EM10 (comme ERA5), et appelons l'indice issue de la
+% régression appliquée ici AM10 (comme ARPEGE). Les variantes régionales, ou locales, de ces indices s'appellent donc naturellement LEM10 et LAM10.
+
 
 
 %La \cref{fig:STJ_PRE625REFT359x} présente quant à elle les moyennes saisonnières de la latitude diagnostiquée par le filtre du STJ pour les deux hémisphères.
