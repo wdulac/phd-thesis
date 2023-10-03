@@ -135,6 +135,22 @@ peuvent être utilisées comme prédictant pour la construction d'indices de cyc
     \label{fig:density_arpege_ibtracs}
 \end{figure}
 
+%La \cref{fig:STJ_PRE625REFT359x} présente quant à elle les moyennes saisonnières de la latitude diagnostiquée par le filtre du STJ pour les deux hémisphères.
+%Les variations saisonnières du STJ de la \cref{fig:STJ_PRE625REFT359x} illustrent le caractère dynamique du filtre du STJ, par rapport à une limite en latitude
+%fixe. Cette figure met aussi en évidence le caractère saisonnier du filtre, avec un décalage vers les pôles durant les saisons chaudes, et un déport vers
+%l'équateur durant la saison froide, les deux étant bien entendu en opposition de phase dans chacun des hémisphères. Cette propriété du seuil dynamique en
+%latitude avait déjà été mise en évidence pour le filtre du gradient de géopotentiel à \hPa{200} présenté dans la \cref{sec:filtrage_mid_latitudes}
+%(\cref{chap:chapitre_2}), mais n'avait pas été documentée pour le filtre du STJ.
+
+%\begin{figure}[tp]
+%    \centering
+%    \includegraphics[width=\textwidth]{STJ_season_PRE625REFT359x.png}
+%    \caption{Moyennes saisonnières de la latitude de la limite équatoriale du jet subtropical dans la simulation ARPEGE-Climat forcée par HadISST1. Chacune des
+%    quatre colonnes correspond à une saison. La première ligne présente le diagnostique pour l'hémisphère nord, tandis que la seconde ligne le présente pour
+%    l'hémisphère sud.}
+%    \label{fig:STJ_PRE625REFT359x}
+%\end{figure}
+
 \subsubsection{Diagnostique ENSO}\label{sec:diag_enso}
 
 Le mode de variabilité El Niño (respectivement El Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'oćean Pacifique central.
@@ -144,12 +160,12 @@ Salomon. L'anomalie de SST prise dans une de ces boîtes définit alors un indic
 opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est définit sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
 (non montrées) et définie entre \ang{120}W et \ang{170}W, et entre \ang{5}S et \ang{5}N. Les anomalies sont lissées sur \num{3} mois glissants, et la référence
 climatologique est prise comme la SST moyenne sur la toute la période disponible. La \cref{fig:ONI} présente la boîte 3.4 utilisée pour calculer l'anomalie de
-température, ainsi que la série temporelle de l'indice ONI entre janvier \num{1980} et décembre \num{2010}.
+température, ainsi que la série temporelle de l'ONI entre janvier \num{1980} et décembre \num{2010}.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=\textwidth]{ONI.png}
-    \caption{Boîte 3.4 utilisée pour le calcul de l'indice ONI (gauche) et série temporelle de l'ONI (droite) évaluée sur la SST mensuelle de la
+    \caption{Boîte 3.4 utilisée pour le calcul de l'ONI (gauche) et série temporelle de l'ONI (droite) évaluée sur la SST mensuelle de la
     simulation ARPEGE forcée par HadISST1.}
     \label{fig:ONI}
 \end{figure}
@@ -169,7 +185,7 @@ pour déterminer dans quelle mesure l'ajout de l'ONI comme prédicteur dans une 
 fréquence statistiquement modélisée, il convient de quantifier le lien entre l'ONI et l'activité cyclonique dans notre jeu de données.
 
 La \cref{fig:corr_ONI_pt} présente la carte de corrélation entre le nombre annuel de cyclogénèses pour chaque maille d'une grille régulière de \ang{3} de
-résolution et l'indice ONI, aggrégé annuellement de la même façon. Précisons que, à l'instar de toutes les opérations de calcul de variabilité interannuelle
+résolution et l'ONI, aggrégé annuellement de la même façon. Précisons que, à l'instar de toutes les opérations de calcul de variabilité interannuelle
 réalisées jusqu'à maintenant, et notamment dans le \cref{chap:chapitre_3}, la fréquence annuelle est calculée pour les saisons cycloniques. Dans l'hémisphère
 sud, le nombre de TC pour une saison donnée est donc évalué entre juillet de l'année précédente et juin de l'année courante. Précisons aussi qu'un masque
 terre-mer interpolé sur la grille de \ang{3} de résolution est utilisé pour masquer les cyclogénèses détectées sur terre de la
@@ -179,7 +195,7 @@ terre-mer interpolé sur la grille de \ang{3} de résolution est utilisé pour m
     \centering
     \includegraphics[width=\textwidth]{corr_ONI_tracks.png}
     \caption{Carte de corrélation entre la variabilité interannuelle de l'activité cyclonique par point de grille (\ang{3}x\ang{3}) pour les cyclogénèses
-    détectées dans ARPEGE et l'indice ONI, sur les saisons cycloniques entre \num{1980} et \num{2010}.}
+    détectées dans ARPEGE et l'ONI, sur les saisons cycloniques entre \num{1980} et \num{2010}.}
     \label{fig:corr_ONI_pt}
 \end{figure}
 
@@ -194,13 +210,13 @@ entrevoir dans l'ensemble une possible anti-corrélation.
 Pour évaluer le lien entre l'activité cyclonique détectée et la variabilité El Niño dans ces bassins où la \cref{fig:corr_ONI_pt} ne permet pas de dégager une
 conclusion nette, la corrélation est évaluée à l'échelle du bassin tout entier. Spécifiquement, les cyclogénèses sont comptabilisées sur la grille d'origine de
 la simulation (T359, soit \ang{0.5}), puis l'activité est intégrée spatialement sur les bassins océaniques usuels selon la méthodologie employée dans le
-\cref{chap:chapitre_3}. Enfin, la corrélation avec la variabilité interannuelle de l'indice ONI est évaluée pour chacun des bassins. La
+\cref{chap:chapitre_3}. Enfin, la corrélation avec la variabilité interannuelle de l'ONI est évaluée pour chacun des bassins. La
 \cref{fig:corr_ONI_bassin} présente les coefficients de corrélation $r$ ainsi que les valeurs-p associées.
 
 \begin{figure}[tpb]
     \centering
     \includegraphics[width=\textwidth]{corr_ONI_bassin}
-    \caption{corrélation entre la variabilité interannuelle de l'activité cyclonique détectée dans ARPEGE et l'indice ONI à l'échelle des bassins océaniques.}
+    \caption{corrélation entre la variabilité interannuelle de l'activité cyclonique détectée dans ARPEGE et l'ONI à l'échelle des bassins océaniques.}
     \label{fig:corr_ONI_bassin}
 \end{figure}
 
@@ -229,7 +245,7 @@ thermiques et dynamiques que pour le TCS et pour les \cref{sec:apport_res_tempor
 relative $T$.
 
 Nous définissons dans un premier temps l'équivalent de l'indice M10 pour ARPEGE, nommé AM10. Nous réalisons ensuite une seconde régression en ajoutant à
-ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'indice ONI, définit en tout point de la grille comme l'anomalie
+ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'ONI, définit en tout point de la grille comme l'anomalie
 mensuelle de SST dans la boîte 3.4 présentée dans la \cref{sec:diag_enso}. L'indice incluant l'ONI comme prédicteur est nommé OAM10, abrégé en OA. La régression
 avec l'ONI comme prédicteur est appliquée aussi bien à l'échelle globale qu'à l'échelle des bassins individuels. Dans le second cas, la méthodologie employée
 dans la \cref{sec:indice_regional} pour construire l'indice LM10 est transposée aux prédicteurs et prédictant ARPEGE, notamment pour ce qui concerne la
@@ -242,32 +258,108 @@ est réduite à \num{52.32} TC par an. Bien que ce nombre soit bien différent d
 cela n'a aucune importance dès lors que tous les indices sont calibrés sur cette valeur. Le TCS de \textcite{tippett_poisson_2011} est également pris comme
 référence pour la comparaison des résultats.
 
-% Pour comparer les résultats, on utilise comme références d'une part le TCS de \textcite{tippett_poisson_2011},
-% et d'autre part l'indice M10 définit dans le \cref{sec:apport_res_temporel_spatial} du \cref{chap:chapitre_3}. Ce dernier peut en effet être vu comme une
-% version actualisée du TCS, et est conceptuellement plus proche de l'étude faite ici. Pour distinguer l'indice M10, dont les coefficients furent établis entre
-% ERA5 et IBTrACS, et l'indice mensuel à \ang{1.0} de résolution spatiale établit ici, nous renommons M10 en EM10 (comme ERA5), et appelons l'indice issue de la
-% régression appliquée ici AM10 (comme ARPEGE). Les variantes régionales, ou locales, de ces indices s'appellent donc naturellement LEM10 et LAM10.
+\subsubsection{Régressions globales}
 
+Nous nous intéressons dans un premier temps aux coefficients obtenus pour les régressions globales AM10 et OAM10. L'indice de cyclogénèse AM10 est donné
+ci-dessous :
+%
+\begin{align*}
+\tag{AM10}
+    \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + \log \cos \phi \big)\\
+        &= \exp \big( \num{-18.6861} + \num{2.4363} \eta - \num{0.0192} V_{\mathrm{shear}} + \num{0.0454} H + \num{0.4202} T + \log \cos \phi \big)
+\end{align*}
+%
+Les coefficients de AM10 sont à mettre en regard avec ceux obtenus pour l'indice M10, obtenus entre ERA5 et IBTrACS dans le \cref{chap:chapitre_3}. Ces derniers
+peuvent être consultés dans le \cref{tab:fit_spatial_temporel}, \vpageref{tab:fit_spatial_temporel}. Le coefficient $b_H$ est réduit d'environ \num{0.072} à
+\num{0.045}, soit une valeur proche du coefficient associé à l'humidité relative du TCS (\num{0.05}). Les coefficients $b_T$ sont quant à eux quasi identiques,
+à \num{0.01} près. Cela peut vraisemblablement s'expliquer par le fait que la réanalyse ERA5 assimile des données la SST issue de la base de données HadISST2
+jusqu'en \num{2007}. La sensibilité au cisaillement vertical est néanmoins réduite dans AM10, passant d'environ \num{-0.1} dans ERA5 à environ \num{-0.02} dans
+ARPEGE, soit une sensibilité cinq fois moindre dans le modèle de climat. Cette valeur du coefficient apparaît néanmoins comme statistiquement significative
+(ainsi que tous les autres coefficients) en dépit de sa valeur proche de \num{0}. La régression indique en effet des pourcentiles \prct{2.5} et \prct{97.5} de
+respectivement \num{-0.027} et \num{-0.011} pour $b_{V_{\mathrm{shear}}}$, et une valeur-p inférieure à \num{1e-3}. Le coefficient associé à la vorticité
+absolue est celui présentant la plus grande différence pasant d'environ \num{1.40} pour M10 à \num{2.44} pour AM10. Une valeur si élévée de $b_\eta$ est
+cohérente avec le biais septentrional dans les cyclogénèses détectées dans ARPEGE (voir \cref{fig:density_arpege_ibtracs}), puisqu'il a été largement montré
+dans le \cref{chap:chapitre_3} que des valeurs élevées de ce paramètre sont associées à une activité simulée par la régression plus éloignée de l'équateur.
 
+La relation pour l'indice OA est donnée ci-dessous :
+%
+\begin{align*}
+    \tag{OA}
+    \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + b_{\mathrm{ONI}} \mathrm{ONI} + \log \cos \phi \big)\\
+        &= \exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} + \num{0.0454}\, H + \num{0.4221}\, T + \underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)
+\end{align*}
+%
+L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs. On ne note qu'une très légère hausse de
+$b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique cependant une sensibilité positive à l'ONI avec une valeur
+$b_{\mathrm{ONI}}$ d'environ \num{0.06}. Cela signifie qu'à l'échelle globale, un changement de $+$\SI{1}{\degreeCelsius} de l'anomalie de SST dans la région
+3.4 provoque une hausse de la fréquence d'occurrence modélisée par la régression de l'ordre \prct{6}. Cette valeur apparaît comme statistiquement significative,
+avec une valeur-p de \num{0.024}. Il s'agit toutefois de la valeur-p la plus élevée notée jusqu'à maintenant, ces dernières étant sinon systématiquement
+inférieures à \num{1e-3}, pour toutes les régressions réalisées dans le \cref{chap:chapitre_3} et dans le chapitre présent. La régression indique un AIC
+\parencite[\textit{Akaike Information Criterion},][]{akaike_information_1998} ---~c'est à dire une log-vraisemblance ajustée par le nombre de prédicteurs~---
+légèrement réduite par rapport à AM10, passant en effet de \num{24752} à \num{24747}, indiquant une régression de qualité légèrement supérieure lorsque la
+variable ONI est introduite.
 
-%La \cref{fig:STJ_PRE625REFT359x} présente quant à elle les moyennes saisonnières de la latitude diagnostiquée par le filtre du STJ pour les deux hémisphères.
-%Les variations saisonnières du STJ de la \cref{fig:STJ_PRE625REFT359x} illustrent le caractère dynamique du filtre du STJ, par rapport à une limite en latitude
-%fixe. Cette figure met aussi en évidence le caractère saisonnier du filtre, avec un décalage vers les pôles durant les saisons chaudes, et un déport vers
-%l'équateur durant la saison froide, les deux étant bien entendu en opposition de phase dans chacun des hémisphères. Cette propriété du seuil dynamique en
-%latitude avait déjà été mise en évidence pour le filtre du gradient de géopotentiel à \hPa{200} présenté dans la \cref{sec:filtrage_mid_latitudes}
-%(\cref{chap:chapitre_2}), mais n'avait pas été documentée pour le filtre du STJ.
+Néanmoins, la \cref{sec:lien_enso_tracking} montre que le lien entre ENSO et l'activité cyclonique n'est pas uniforme dans l'espace, avec certaines régions
+exprimant une corrélation positive, et d'autres une anti-corrélation. Un indice de cyclogénèse formulé sur l'ONI et dont la régression est menée à l'échelle
+globale ne peut donc satisfaire le rapport entre ce mode de variabilité et l'activité constatée dans tous les bassins. Sachant cela, il est permis de penser que
+le signe positif de $b_{\mathrm{ONI}}$ pour AM10 et sa significativité statistique sont fortement influencés par le bassin WPac, présentant sur la
+\cref{fig:corr_ONI_bassin} une corrélation positive, et influençant d'avantage la régression en sa qualité de bassin le plus actif. C'est pour cette raison que la
+régression est répétée à l'échelle des bassins.
 
-%\begin{figure}[tp]
-%    \centering
-%    \includegraphics[width=\textwidth]{STJ_season_PRE625REFT359x.png}
-%    \caption{Moyennes saisonnières de la latitude de la limite équatoriale du jet subtropical dans la simulation ARPEGE-Climat forcée par HadISST1. Chacune des
-%    quatre colonnes correspond à une saison. La première ligne présente le diagnostique pour l'hémisphère nord, tandis que la seconde ligne le présente pour
-%    l'hémisphère sud.}
-%    \label{fig:STJ_PRE625REFT359x}
-%\end{figure}
+\subsubsection{Régressions locales}
 
+Le \cref{tab:coefs_LOA} présente les coefficients obtenus pour chacune des régressions faites à l'échelle des bassins océaniques. On s'intéresse tout
+particulièrement aux coefficients associés à l'ONI, aux intervalles de confiance ainsi qu'à la significativité de l'ajout de ce prédicteur dans l'indice LOA.
 
+\begin{table}[htpb]
+    \centering
+    \caption{Coefficients estimés des prédicteurs pour les régressions réalisées à l'échelle des bassins océaniques avec l'ONI. Les pourcentiles \prct{2.5},
+    \prct{97.5} des valeurs de $b_{\mathrm{ONI}}$ sont données, de même que la valeur-p pour ce coefficient. La colonne Fréquence indique le nombre de TC par an
+    dans chacun des bassins. Chaque indice régional est calibré sur la fréquence annuelle moyenne de l'indice OA pour ce bassin.}
+    \label{tab:coefs_LOA}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrrrrrrrrrr}
+       \toprule\toprule 
+       \multicolumn{1}{c}{Bassin} & \multicolumn{6}{c}{Coefficients} & \multicolumn{3}{c}{ONI} & \multicolumn{1}{c}{Fréquence}\\
+       \midrule
+                                  & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_T$ & $b_{\mathrm{ONI}}$ & \prct{2.5} & \prct{97.5} & valeur-p \\
+       \midrule
+       NAtl    & \num{-16.7188} & \num{2.3260} & \num{-0.0467} & \num{0.0219} & \num{0.3147} & \num{-0.0737} & \num{-0.237} & \num{0.089} & \num{0.376} & \num{6.41} \\
+       WPac    & \num{-17.2232} & \num{1.9807} & \num{-0.0321} & \num{0.0501} & \num{0.3457} & \num{0.2184} & \num{0.116} & \num{0.321} & $< 10^{-3}$ & \num{19.40} \\
+       EPac    & \num{-16.9821} & \num{2.0161} & \num{-0.0434} & \num{0.0352} & \num{0.3874} & \num{0.0790} & \num{-0.192} & \num{0.350} & \num{0.568} & \num{5.54} \\
+       NInd    & \num{-19.9302} & \num{2.8346} & \num{-0.0450} & \num{0.0624} & \num{0.2984} & \num{0.0559} & \num{-0.081} & \num{0.193} & \num{0.425} & \num{3.98} \\
+       SPac    & \num{-19.5598} & \num{2.8841} & \num{-0.0397} & \num{0.0340} & \num{0.4375} & \num{0.1797} & \num{0.053} & \num{0.306} & \num{0.005} & \num{10.12} \\ 
+       SIndW   & \num{-17.8103} & \num{2.4274} & \num{-0.0367} & \num{0.0385} & \num{0.3672} & \num{-0.1257} & \num{-0.281} & \num{0.030} & \num{0.113} & \num{3.96} \\
+       SIndE   & \num{-19.3702} & \num{3.0105} & \num{-0.1024} & \num{0.0403} & \num{0.4964} & \num{-0.1164} & \num{-0.304} & \num{0.071} & \num{0.224} & \num{2.09} \\
+       \bottomrule
+    \end{tabular}
+    }
+\end{table}
 
+Les bassins NInd et EPac présentent les valeurs-p associées à leur coefficient $b_{\mathrm{ONI}}$ les plus élevées de toutes, jusqu'à \num{0.568} pour ce
+dernier. Ces mêmes bassins présentaient également les liens les moins prononcés entre ENSO et la variabilité interannuelle dans la
+\cref{sec:lien_enso_tracking}. Dans le bassin NAtl, la variable ONI apparait non-significative avec une valeur-p de \num{0.376}. Le coefficient
+$b_{\mathrm{ONI}}$, valant environ \num{-0.07}, reflète toutefois le signe du coefficient de corrélation de la \cref{fig:corr_ONI_bassin}, et l'intervalle de
+confiance ---~bien que traversant le \num{0}~--- est clairement plus situé du côté des valeurs négatives que des valeurs positives, avec des quantiles
+\num{0.025} et \num{0.975} de respectivement \num{-0.237} et \num{0.089}. Un constat similaire peut être fait pour les bassins SIndW et SIndE. Les valeurs-p y
+sont en effet supérieures à \num{0.05}, mais leurs coefficients, de respectivement \num{-0.13} et \num{-0.12}, de même que leur intervalle de confiance exprimé
+par les pourcentiles \prct{2.5} et \prct{97.5}, sont cohérents avec les résultats de la \cref{fig:corr_ONI_bassin}. Notons que des deux bassins, le SIndW
+présente la valeur-p la plus faible à \num{0.113}. Enfin, les régressions faites dans les bassins SPac et WPac acceptent toutes deux le prédicteur ONI, avec une
+valeur-p $\leq$ \num{0.05}, bien que le premier soit en limite de significativité. Le coefficient $b_{\mathrm{ONI}}$ dans le bassin WPac est par ailleurs le
+plus élevé de tous avec \num{0.22}. Cela conforte la suspicion selon laquelle ce bassin influence fortement le signe du coefficient dans l'indice global OA. Il
+convient de noter que la significativité dans le bassin SPac d'une part, et la non-significativité dans les bassins SIndW et SIndE n'étaient pas nécessairement
+attendues, puisque la \cref{fig:corr_ONI_bassin} fournit l'information inverse. 
+
+Ainsi, les valeurs prises dans les différentes régions par le coefficient $b_{\mathrm{ONI}}$ reflètent, au moins par leur signe, le lien présenté entre la
+variabilité El Niño et l'activité cyclonique détectée dans la simulation ARPEGE forcée, en dépit d'une significativité peu franche, à l'exception notable du
+bassin WPac. L'alternance entre le signe du coefficient justifie néanmoins la construction d'indices régionaux plutôt que globaux pour l'ajout de prédicteurs
+dont l'effet sur l'activité cyclonique n'est pas uniforme dans toutes les régions du monde.
+
+\subsection{Conclusion}
+
+Les résultats obtenus dans le \cref{chap:chapitre_3} tendent à montrer que la régression de Poisson vise avant tout à fournir la meilleure vraisemblance
+spatiale, sans garantie sur la variabilité temporelle. Ainsi, la non-significativité du prédicteur dans les régressions locales peuvent se comprendre par le
+fait que l'ONI n'améliore pas la répartition spatiale de l'activité inférée par l'indice, mais ne présage pas nécessairement néanmoins apporter une
 
 \section{Tendances}
 
