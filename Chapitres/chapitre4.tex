@@ -286,7 +286,7 @@ La relation pour l'indice OA est donnée ci-dessous :
 \begin{align*}
     \tag{OA}
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + b_{\mathrm{ONI}} \mathrm{ONI} + \log \cos \phi \big)\\
-        &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} + &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned} \end{align*}
+        &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} \,+\, &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned} \end{align*}
 %
 L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs. On ne note qu'une très légère hausse de
 $b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique cependant une sensibilité positive à l'ONI avec une valeur
@@ -357,9 +357,12 @@ dont l'effet sur l'activité cyclonique n'est pas uniforme dans toutes les régi
 \subsubsection{Variabilité interannuelle}
 
 La \cref{fig:variability_ONI} présente les variations du nombre de TC d'une saison cyclonique à l'autre pour les trois indices établis sur la simulation ARPEGE
-historique, pour le TCS ainsi que vue par le schéma de détection du CNRM. Rappelons que, à l'instar de la \cref{sec:indice_regional} du
-\cref{chap:chapitre_3}, l'indice LOA est en fait défini par un indice régional différent pour chaque bassin, dont les coefficients sont donnés dans le
-\cref{tab:coefs_LOA}. La variabilité temporelle du nombre de TC détectés dans ARPEGE par le traqueur du CNRM est noté \textquote{Tracks}.
+historique, pour le TCS ainsi que les variations vues par le schéma de détection du CNRM, pour les sept bassins définis sur la \cref{fig:corr_ONI_bassin}. Le
+bassin NInd est en effet inclus dans l'analyse puisque la détection objective de TC dans la simulation permet d'avoir une série complète, contrairement à
+IBTrACS dans le \cref{chap:chapitre_3}. Rappelons que, à l'instar de la \cref{sec:indice_regional} du \cref{chap:chapitre_3}, l'indice LOA est en fait défini
+par un indice régional différent pour chaque bassin, dont les coefficients sont donnés dans le \cref{tab:coefs_LOA}. La variabilité temporelle du nombre de TC
+détectés dans ARPEGE par le traqueur du CNRM est noté \textquote{Tracks}. La significativité statistique de la corrélation entre les séries temporelles des
+quatre indices avec les tracks pour chacun des sept bassins est présenté dans le \cref{tab:pvalues_ONI}.
 
 \begin{figure}[p]
     \centering
@@ -369,7 +372,103 @@ historique, pour le TCS ainsi que vue par le schéma de détection du CNRM. Rapp
     \label{fig:variability_ONI}
 \end{figure}
 
-\subsection{Conclusion}
+\begin{table}[htpb]
+    \centering
+    \caption{valeurs-p associées aux corrélations entre la variabilité interannuelle des indices et le tracking (dernière ligne, ou colonne, des matrices de
+    corrélation de la \cref{fig:variability_ONI}). Les valeurs renseignées en gras indiquent les valeurs-p en dessous du seuil de \num{0.05}.}
+    \label{tab:pvalues_ONI}
+    \begin{tabular}{lrrrrrrr}
+        \toprule\toprule
+        \multicolumn{1}{c}{Indice} & \multicolumn{7}{c}{Bassin géographique}\\
+        \midrule
+                                   & NAtl & WPac & EPac & NInd & SPac & SIndW & SIndE \\
+        \midrule
+        LOA  & \num{0.084} & \textbf{\num{0.001}} & \textbf{\num{0.045}} & \textbf{\num{0.003}} & \textbf{\num{0.002}} & $\mathbf{< 10^{-3}}$ & $\mathbf{< 10^{-3}}$ \\
+        OA   & \num{0.747} & \num{0.213} & \num{0.086} & \textbf{\num{0.003}} & \textbf{\num{0.005}} & \textbf{\num{0.026}} & $\mathbf{< 10^{-3}}$ \\
+        AM10 & \num{0.438} & \num{0.839} & \num{0.069} & \textbf{\num{0.003}} & \num{0.077} & \textbf{\num{0.002}} & $\mathbf{< 10^{-3}}$ \\
+        TCS  & \num{0.307} & \num{0.214} & \textbf{\num{0.004}} & \textbf{\num{0.036}} & \num{0.097} & \num{0.097} & $\mathbf{< 10^{-3}}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+La \cref{fig:variability_ONI} montre que l'ajout de l'indice ENSO comme prédicteur dans la régression parvient, avec un effet variable selon les bassins, à
+modifier la variabilité interannuelle inférée par les indices de cyclogénèse d'une part, et à améliorer la corrélation entre cette variabilité et celle mesurée
+par le schéma de détection de cyclones tropicaux dans la simulation ARPEGE d'autre part. Notons que le nombre annuel de TC simulé par l'indice LOA est significativement
+corrélé à l'activité détectée par le traqueur dans tous les bassins géographiques à l'exception du Nord Atlantique. Dans ce dernier, le LOA présente néanmoins
+une amélioration sensible de la corrélation associée à une valeur-p en limite de significativité par rapport aux autres indices.
+
+L'impact le plus marquant se trouve dans le bassin Ouest Pacifique. La corrélation ---~quasi-nulle pour AM10, et négative pour TCS~--- passe de \num{0.23} pour
+OA à \num{0.53} pour LOA. La corrélation entre le LOA et les tracks est hautement significative avec une valeur-p de \num{0.001}. Rappelons que le prédicteur
+ONI présente également la significativité la plus élevée dans la régression de Poisson pour ce bassin (\cref{tab:coefs_LOA}) et aussi le coefficient
+$b_{\mathrm{ONI}}$ le plus élevé. Les performances intermédiaires de l'indice OA proviennent alors sans doute de la sensibilité diminuée de l'indice à ce
+prédicteur dans la régression globale. La valeur du coefficient $b_{\mathrm{ONI}}$ est en effet le coefficient présentant le plus grand changement entre
+l'indice global OA et l'indice régional LOA, avec une sensibilité à la variable ONI \num{3.4} supérieure dans l'indice LOA par rapport à l'indice OA.
+
+Les bassins SPac et SIndW voient également une amélioration sensible de leur variabilité interannuelle lorsque le prédicteur ONI est introduit dans la
+régression régionale. Notons que dans ces deux bassins, la corrélation est significative pour OA et LOA, mais que la corrélation est diminuée pour OA par
+rapport à AM10 dans le SIndW. L'indice LOA dépasse en revanche la corrélation de l'indice AM10. Dans le SPac, la corrélation temporelle de l'indice OA est
+intermédiaire entre AM10 et LOA. Cela provient du fait que la variabilité ENSO est anti-corrélée dans le Sud Indien, et corrélée dans le Sud Pacifique, tandis
+que le signe de $b_{\mathrm{ONI}}$ dans l'indice OA imprime un lien positif entre El Niño et l'activité cyclonique. Ainsi, bien que OA soit significativement
+corrélé aux tracks dans le SIndW, la significativité est sensiblement plus marquée pour LOA dans ce bassin, avec une valeur-p inférieure à \num{1e-3}, et un
+coefficient de corrélation parmi les plus élevés de tous les bassins de \num{0.65}, malgré un défaut d'amplitude.
+
+Dans le SIndE et NInd, tous les indices sont significativement corrélés aux tracks. Dans le NInd, la corrélation est invariante entre AM10, OA et LOA, et les
+séries temporelles indiscernables. Tous trois présentent néanmoins une amélioration par rapport au TCS. Notons que les valeurs du coefficient $b_{\mathrm{ONI}}$
+entre OA et LOA sont proches l'une de l'autre, et particulièrement basses. Il n'est donc pas surprenant de ne voir aucun impact de l'ajout de la variable ONI
+par rapport à AM10. Cette région fait partie de celles ---~avec le bassin EPac~--- pour lesquelles les cyclogénèses détectées par le traqueur dans ARPEGE
+présentent un biais positif (négatif pour le bassin EPac) prononcé par rapport à IBTrACS (voir \cref{fig:density_arpege_ibtracs}). Ce biais est d'ailleurs
+apparent sur la \cref{fig:variability_ONI} puisque tous les indices sous-estiment largement l'activité issue du traqueur dans la région. Dans le SIndE, on note
+le même phénomène que dans le SIndW ; à savoir une amélioration entre AM10 et TCS, une dégradation entre OA et AM10 et de nouveau une amélioration pour LOA par
+rapport aux trois autres. Cet effet s'explique de la même manière que pour le SIndW, mais il convient de noter que les différences dans les performances des
+trois indices sont nettement moins prononcées que dans le bassin SIndW.
+
+Le bassin EPac se démarque quelque peu des autres bassins puisque le TCS se place en première position, et dont la significativité est la plus franche avec une
+valeur-p de \num{0.004}. Outre le TCS, seul l'indice LOA atteint également la significativité avec une valeur-p de \num{0.045}, mais un coefficient de
+corrélation moindre par rapport à ce dernier. Comme mentionné précédemment, l'activité cyclonique détectée dans le modèle ARPEGE dans ce bassin présente un
+important biais négatif. Il est alors possible que ce biais soit lié aux mauvaises performances des indices construits à partir des cyclogénèses détectées.
+
+Enfin, notons que l'amplitude de la variabilité interannuelle simulée par les indices de cyclogénèse dans la plupart des bassins est sous-estimée. L'amplitude
+dans le bassin WPac est la plus ressemblante à l'activité détectée, suivie du bassin SPac, notamment pour l'indice LOA. Une explication possible à cela pourrait
+trouver son origine dans la nature même de la régression de Poisson. Rappelons en effet que les coefficients de la régression expriment des sensibilités de la
+fréquence d'occurrence attendue des TC aux changements dans les prédicteurs. En particulier, ces sensibilités expriment une modification relative de la
+fréquence modélisée par la régression. Ainsi, les deux régions les plus actives que sont les bassins WPac et SPac, dans lesquels les indices AM10, OA et LOA
+produisent respectivement \num{19.4} TC par an et \num{10.12} TC par an\footnote{La fréquence d'occurrence moyenne simulée par le TCS n'est pas toujours alignée
+sur celle des trois autres indices, selon les régions. Ce dernier est néanmoins également calibré pour produire \num{52.32} TC par an à l'échelle
+globale.}\footnote{Rien n'impose que la fréquence d'occurrence moyenne de l'indice AM10 dans chacun des bassins soit égale à celle des indices OA et LOA. La
+proximité entre les coefficients des deux indices ainsi que la faible sensibilité au prédicteur ONI dans l'indice OA laissent toutefois penser que les
+fréquences moyennes régionales sont très proches, ce qui est également corroboré par la \cref{fig:variability_ONI}.} (\cref{tab:coefs_LOA}) présentent également
+la plus grande amplitude. Inversement, les bassins où l'activité inférée par les indices est faible tendent à présenter une faible amplitude.
+
+\subsection{Discussion}
+
+Cette section s'est concentrée sur l'introduction d'un diagnostique du mode de variabilité El Niño dans la construction d'un indice de cyclogénèse par
+régression de Poisson. Pour cela une simulation réalisée avec le modèle ARPEGE-Climat sur la période \num{1979}~--~\num{2010}, forcée par le jeu de données
+HadISST1 est utilisée pour fournir les prédicteurs de grande échelle. Le schéma de détection du CNRM est utilisé pour comptabiliser les cyclogénèses dans la
+simulation, lesquelles étant préalablement filtrées par le diagnostique du jet subtropical présenté dans le \cref{chap:chapitre_2}. La répartition spatiale de
+l'activité cyclonique détectée dans la simulation ARPEGE est jugée suffisamment réaliste pour utiliser ces données comme prédictant dans une régression de
+Poisson, malgré un biais négatif important dans le bassin Est Pacifique, et un biais au contraire positif dans le bassin Nord Indien (voir
+\cref{sec:tracking_arpege}). L'utilisation du diagnostique ENSO dans la construction d'indices de cyclogénèse consiste à apporter artificiellement, et de la
+manière la plus explicite possible, l'information concernant la phase du mode de variabilité océanique dans la régression, de façon à ce que chaque point de
+grille ait accès à cette information à chaque pas de temps.
+
+Trois indices sont construits sur les champs mensuels de la simulation interpolés sur une grille régulière de \ang{1} de résolution horizontale : Un indice
+global basé sur les prédicteurs du TCS (AM10), un indice global similaire auquel est ajouté la variable ONI (OA) et un indice régional ---~c'est à dire dont les
+coefficients sont fonction du bassin océanique~--- possédant lui aussi la variable ONI comme prédicteur. La régionalisation de l'indice avec l'ONI est en effet
+jusitifée par le fait que l'effet du phénomène El Niño sur la modulation de l'activité cyclonique est positif dans certaines régions, et négatif dans d'autres
+(voir \cref{sec:lien_enso_tracking}). Les résultats montrent que l'ajout de la variable ONI comme prédicteur dans la construction de l'indice parvient
+efficacement à améliorer la représentation de la variabilité interannuelle inférée par l'indice de cyclogénèse régional, avec l'impact le plus frappant
+concernant le bassin Ouest Pacifique. Seules les deux régions dans lesquelles l'activité cyclonique simulée par ARPEGE présente un biais important ne montrent
+pas d'amélioration notable suite à l'introduction de ce nouveau prédicteur.
+
+Cette amélioration de la variabilité interannuelle se fait cependant au détriment du sens physique que porte sinon l'indice de cyclogénèse, la philosophie
+originelle consistant en effet à n'utiliser que des variables intervenant (supposément) directement dans le processus physique de cyclogénèse. L'amélioration de
+la variabilité interannuelle lorsque la phase du mode de variabilité El Niño est explicitement renseignée interroge également sur la manière dont un indice de
+cyclogénèse perçoit les télé-connexions. En effet, l'activité cyclonique simulée par le modèle atmosphérique ressent l'effet de l'ENSO à travers la SST et le
+cisaillement vertical, comme en atteste la \cref{sec:lien_enso_tracking} (et notamment les \cref{fig:corr_ONI_pt,fig:corr_ONI_bassin}). Les indices n'incluant
+pas la variable ONI, à savoir l'AM10 et le TCS semblent tout de même réagir à la phase de l'ENSO, mais dans une mesure amoindrie, et de manière moins
+consistante. On peut en effet le voir pendant l'épisode de 1983 dans le bassin SPac, mais aussi en 1992 et 1997 dans le bassin EPac et ainsi qu'en 1999 dans le
+bassin SIndE, pour ne citer que quelques exemples. La capacité des indices de cyclogénèse à réagir à ce mode de variabilité est en outre documentée depuis les
+travaux de \textcite{watterson_seasonal_1995} (c.f \cref{sec:intro_indices} du \cref{chap:chapitre_1}).
 
 Les résultats obtenus dans le \cref{chap:chapitre_3} tendent à montrer que la régression de Poisson vise avant tout à fournir la meilleure vraisemblance
 spatiale, sans garantie sur la variabilité temporelle. Ainsi, la non-significativité du prédicteur dans les régressions locales peuvent se comprendre par le
