@@ -458,21 +458,36 @@ jusitifée par le fait que l'effet du phénomène El Niño sur la modulation de 
 (voir \cref{sec:lien_enso_tracking}). Les résultats montrent que l'ajout de la variable ONI comme prédicteur dans la construction de l'indice parvient
 efficacement à améliorer la représentation de la variabilité interannuelle inférée par l'indice de cyclogénèse régional, avec l'impact le plus frappant
 concernant le bassin Ouest Pacifique. Seules les deux régions dans lesquelles l'activité cyclonique simulée par ARPEGE présente un biais important ne montrent
-pas d'amélioration notable suite à l'introduction de ce nouveau prédicteur.
+pas d'amélioration notable suite à l'introduction de ce nouveau prédicteur. Cette amélioration de la variabilité interannuelle se fait cependant au détriment du
+sens physique que porte sinon l'indice de cyclogénèse, la philosophie originelle consistant en effet à n'utiliser que des variables intervenant (supposément)
+directement dans le processus physique de cyclogénèse.
 
-Cette amélioration de la variabilité interannuelle se fait cependant au détriment du sens physique que porte sinon l'indice de cyclogénèse, la philosophie
-originelle consistant en effet à n'utiliser que des variables intervenant (supposément) directement dans le processus physique de cyclogénèse. L'amélioration de
-la variabilité interannuelle lorsque la phase du mode de variabilité El Niño est explicitement renseignée interroge également sur la manière dont un indice de
-cyclogénèse perçoit les télé-connexions. En effet, l'activité cyclonique simulée par le modèle atmosphérique ressent l'effet de l'ENSO à travers la SST et le
-cisaillement vertical, comme en atteste la \cref{sec:lien_enso_tracking} (et notamment les \cref{fig:corr_ONI_pt,fig:corr_ONI_bassin}). Les indices n'incluant
-pas la variable ONI, à savoir l'AM10 et le TCS semblent tout de même réagir à la phase de l'ENSO, mais dans une mesure amoindrie, et de manière moins
-consistante. On peut en effet le voir pendant l'épisode de 1983 dans le bassin SPac, mais aussi en 1992 et 1997 dans le bassin EPac et ainsi qu'en 1999 dans le
-bassin SIndE, pour ne citer que quelques exemples. La capacité des indices de cyclogénèse à réagir à ce mode de variabilité est en outre documentée depuis les
-travaux de \textcite{watterson_seasonal_1995} (c.f \cref{sec:intro_indices} du \cref{chap:chapitre_1}).
+L'amélioration de la variabilité interannuelle lorsque la phase du mode de variabilité El Niño est explicitement renseignée interroge également sur la manière
+dont un indice de cyclogénèse perçoit les télé-connexions. En effet, l'activité cyclonique simulée par le modèle atmosphérique ressent l'effet de l'ENSO, comme
+en atteste la \cref{sec:lien_enso_tracking} (et notamment les \cref{fig:corr_ONI_pt,fig:corr_ONI_bassin}). \textcite{camargo_use_2007} montrent par ailleurs que
+le GPI de \textcite{emanuel_tropical_2004} reproduit fidèlement les anomalies spatiales de l'activité cyclonique liées à l'ENSO, et mettent en évidence
+l'importance du rôle joué par chacun des prédicteurs, notamment de l'humidité relative en moyenne troposphère et le cisaillement vertical du vent. Ces
+variables, ainsi que la SST (absente du GPI), faisant partie intégrante des indices utilisés ici, une bonne réponse dans la variabilité interannuelle de ces
+derniers à la phase de l'ENSO pouvait être attendue. De surcroît, la variabilité interannuelle des indices utilisés ici n'incluant pas la variable ONI, à savoir
+l'AM10 et le TCS, réagissent tout de même à la phase de l'ENSO, mais dans une mesure amoindrie et de manière moins consistante. On peut en effet le voir pendant
+l'épisode de 1983 dans le bassin SPac, mais aussi en 1992 et 1997 dans le bassin EPac et ainsi qu'en 1999 dans le bassin SIndE, pour ne citer que quelques
+exemples. La capacité des indices de cyclogénèse à réagir à ce mode de variabilité est en outre documentée depuis les travaux de
+\textcite{watterson_seasonal_1995} (c.f \cref{sec:intro_indices} du \cref{chap:chapitre_1}).
 
-Les résultats obtenus dans le \cref{chap:chapitre_3} tendent à montrer que la régression de Poisson vise avant tout à fournir la meilleure vraisemblance
-spatiale, sans garantie sur la variabilité temporelle. Ainsi, la non-significativité du prédicteur dans les régressions locales peuvent se comprendre par le
-fait que l'ONI n'améliore pas la répartition spatiale de l'activité inférée par l'indice, mais ne présage pas nécessairement néanmoins apporter une
+Sachant cela, l'introduction de la variable ONI aurait pu être tout à fait redondante et n'apporter aucune plus-value dans la régression. C'est d'ailleurs une
+interprétation possible aux significativités pour le moins hésitantes associées à ce prédicteur dans le \cref{tab:coefs_LOA}. En effet, le champ spatial
+artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient pas définition aucune variabilité
+spatiale. Or, les résultats obtenus dans le \cref{chap:chapitre_3} montrent que la régression de Poisson avant toute autre chose à fournir la meilleure
+vraisemblance spatiale entre les prédicteurs et le prédictant. Malgré cela, l'utilisation de l'ONI comme prédicteur et d'un coefficient $b_{\mathrm{ONI}}$
+associé, quand bien même ce dernier n'est pas statistiquement significatif, améliore sensiblement la corrélation entre la variabilité interannuelle de l'indice
+avec la variabilité détectée dans la plupart des bassins. Chercher à améliorer la représentation de la variabilité interannuelle inférée par un indice de
+cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais la méthodologie de construction d'un indice par régression de Poisson ne semble pas
+être le mode opératoire le plus adapté à cette tâche.
+
+% Rappelons également que la significativité associée à la variable ONI dans l'indice régional ne reflète pas nécessairement celle entre la série temporelle de
+% l'ONI et la variabilité temporelle de l'activité détectée dans la simulation (c.f \cref{fig:corr_ONI_bassin}), avec notamment un lien clair entre ENSO et les
+% cyclogénèses détectées dans les bassins SIndW et SIndE, mais moins évident dans le SPac, tandis que l'ajout du prédicteur dans ces régions pour la construction
+% de l'indice LOA renvoie le message inverse. Une explication à ce qui peut alors
 
 \section{Tendances}
 
