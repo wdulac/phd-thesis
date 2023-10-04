@@ -286,8 +286,7 @@ La relation pour l'indice OA est donnée ci-dessous :
 \begin{align*}
     \tag{OA}
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + b_{\mathrm{ONI}} \mathrm{ONI} + \log \cos \phi \big)\\
-        &= \exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} + \num{0.0454}\, H + \num{0.4221}\, T + \underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)
-\end{align*}
+        &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} + &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned} \end{align*}
 %
 L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs. On ne note qu'une très légère hausse de
 $b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique cependant une sensibilité positive à l'ONI avec une valeur
@@ -354,6 +353,21 @@ Ainsi, les valeurs prises dans les différentes régions par le coefficient $b_{
 variabilité El Niño et l'activité cyclonique détectée dans la simulation ARPEGE forcée, en dépit d'une significativité peu franche, à l'exception notable du
 bassin WPac. L'alternance entre le signe du coefficient justifie néanmoins la construction d'indices régionaux plutôt que globaux pour l'ajout de prédicteurs
 dont l'effet sur l'activité cyclonique n'est pas uniforme dans toutes les régions du monde.
+
+\subsubsection{Variabilité interannuelle}
+
+La \cref{fig:variability_ONI} présente les variations du nombre de TC d'une saison cyclonique à l'autre pour les trois indices établis sur la simulation ARPEGE
+historique, pour le TCS ainsi que vue par le schéma de détection du CNRM. Rappelons que, à l'instar de la \cref{sec:indice_regional} du
+\cref{chap:chapitre_3}, l'indice LOA est en fait défini par un indice régional différent pour chaque bassin, dont les coefficients sont donnés dans le
+\cref{tab:coefs_LOA}. La variabilité temporelle du nombre de TC détectés dans ARPEGE par le traqueur du CNRM est noté \textquote{Tracks}.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.94\textheight]{basin_variability_LOA_OA_AM10_TCS_Obs.png}
+    \caption{Variabilité interannuelle des trois indices construits sur la simulation ARPEGE, du TCS et issue du schéma de détection (Tracks), ainsi que les
+    matrices de corrélation associées.}
+    \label{fig:variability_ONI}
+\end{figure}
 
 \subsection{Conclusion}
 
