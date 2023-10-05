@@ -421,7 +421,8 @@ inférée. De la même manière, les travaux de \textcite{bruyere_investigating_
 représentation de la variabilité interannuelle des indices de chercher à les définir à des échelles régionales, ainsi que d'y intégrer de la variabilité à plus
 haute fréquence, plutôt que de les construire sur la climatologie mensuelle globale.
 
-Ce sont ces questions qui sont explorées dans la suite de ce chapitre ; l'enjeu est ici de chercher à améliorer la variabilité interannuelle des indices pour avoir une plus grande confiance dans leurs projections climatiques. Dans un premier temps, nous utiliserons la méthodologie de construction d'un indice de
+Ce sont ces questions qui sont explorées dans la suite de ce chapitre ; l'enjeu est ici de chercher à améliorer la variabilité interannuelle des indices pour
+avoir une plus grande confiance dans leurs projections climatiques. Dans un premier temps, nous utiliserons la méthodologie de construction d'un indice de
 cyclogénèse de \textcite{tippett_poisson_2011}, c'est à dire une régression de Poisson, pour définir et comparer des variantes du TCS à différentes résolutions
 spatiales et temporelles. Nous chercherons en particulier comme ces facteurs influent sur les coefficients de la régression, et comment ceux-ci influencent en
 retour la variabilité interannuelle. Étant construit comme une régression statistique entre l'environnement de grande échelle et l'activité observée, cet indice
@@ -534,19 +535,20 @@ utilise comme prédictant la base de données IBTrACS, version 4 \parencite{knap
 manière que dans la \cref{sec:proprietes_indices}.
 
 Quatre indices sont construits par régression de Poisson, en utilisant des champs à \ang{1.0} et \ang{2.5}, ainsi qu'en appliquant la régression donnée par la
-relation \ref{eq:poisson_reg} sur les champs mensuels ERA5 (un pas de temps par mois et par an) ou bien sur leurs valeurs climatologiques (un pas de temps par mois obtenu par moyenne sur les années). Le premier, nommé C25 (comme \textquote{climatologie}, et
-\ang{2.5}) utilise les moyennes climatologiques des champs de grande échelle ainsi que des cyclogénèses IBTrACS sur une grille de \ang{2.5}. D'un point de vue
-méthodologique, seules la réanalyse utilisée ainsi que la période temporelle considérée distingue les coefficients $b$ de C25 de ceux du TCS, ces derniers étant
-en effet également issus de valeurs climatologiques à cette même résolution. C25 joue alors pour ainsi dire le rôle de groupe témoin, car il est attendu que ses
-coefficients soient les plus proches possibles de ceux du TCS. Notons que pour cet indice, on a $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}} = \num{48} \times \num{144} \times \num{12}$. Toutefois,
-l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de terre masqués sont ignorés. La taille effective, $m_{\mathrm{eff}}$,
-vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes climatologiques, mais avec une
-résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles ($N_{\mathrm{temps}} = \num{480}$) à
-\ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, nommé M10, correspond par conséquent, selon la nomenclature utilisée jusqu'à
-maintenant, à une régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande matrice $\mathbf{x}$,
-caractérisée par $m_{\mathrm{eff}} = \num{13115040}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le facteur limitant la
-résolution spatiale. C'est là une des raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression sur un nombre de
-réalisations $m_{\mathrm{eff}}$ plus grand nécessiterait des ressources de calcul supplémentaires.
+relation \ref{eq:poisson_reg} sur les champs mensuels ERA5 (un pas de temps par mois et par an) ou bien sur leurs valeurs climatologiques (un pas de temps par
+mois obtenu par moyenne sur les années). Le premier, nommé C25 (comme \textquote{climatologie}, et \ang{2.5}) utilise les moyennes climatologiques des champs de
+grande échelle ainsi que des cyclogénèses IBTrACS sur une grille de \ang{2.5}. D'un point de vue méthodologique, seules la réanalyse utilisée ainsi que la
+période temporelle considérée distingue les coefficients $b$ de C25 de ceux du TCS, ces derniers étant en effet également issus de valeurs climatologiques à
+cette même résolution. C25 joue alors pour ainsi dire le rôle de groupe témoin, car il est attendu que ses coefficients soient les plus proches possibles de
+ceux du TCS. Notons que pour cet indice, on a $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}} = \num{48} \times \num{144} \times
+\num{12}$. Toutefois, l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de terre masqués sont ignorés. La taille effective,
+$m_{\mathrm{eff}}$, vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes
+climatologiques, mais avec une résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles
+($N_{\mathrm{temps}} = \num{480}$) à \ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, nommé M10, correspond par conséquent, selon
+la nomenclature utilisée jusqu'à maintenant, à une régression faite sur les moyennes mensuelles ERA5 à une résolution de \ang{1.0}, conduisant à la plus grande
+matrice $\mathbf{x}$, caractérisée par $m_{\mathrm{eff}} = \num{13115040}$. Notons qu'au pas de temps mensuel, la taille de la matrice $\mathbf{x}$ est le
+facteur limitant la résolution spatiale. C'est là une des raisons faisant qu'ERA5 n'est pas utilisée à sa pleine résolution de \ang{0.25}, puisque la régression
+sur un nombre de réalisations $m_{\mathrm{eff}}$ plus grand nécessiterait des ressources de calcul supplémentaires.
 
 Ces quatre nouveaux indices ainsi que le TCS sont ensuite évalués sur les champs ERA5 au pas de temps mensuel et à \ang{1} de résolution, et sur la même période,
 indépendant de la résolution spatiale et de l'agrégation temporelle utilisée pour calculer la régression. On ne se préoccupe pas de répartir l'ensemble des
@@ -556,10 +558,10 @@ propriété désirable.
 \subsection{Résultats}\label{sec:apport_resultat}
 
 Le \cref{tab:fit_spatial_temporel} présente les coefficients $b$ des multiples régressions qui sont réalisées. Les coefficients du TCS sont rappelés et indiqués
-dans le tableau à titre de référence. Les coefficients sont donnés avec quatre décimales, telles que données par la régression car celles-ci ne varient pas lorsque les régressions sont répétées.
-Les erreurs standards issues de la régression pour chacun des coefficients et des indices sont également indiquées, comparés à celles indiquées dans
-\textcite{tippett_poisson_2011} pour le TCS. Tous les coefficients estimés ici apparaissent comme statistiquement significatifs à \prct{95}, au sens où, à ce
-niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
+dans le tableau à titre de référence. Les coefficients sont donnés avec quatre décimales, telles que données par la régression car celles-ci ne varient pas
+lorsque les régressions sont répétées. Les erreurs standards issues de la régression pour chacun des coefficients et des indices sont également indiquées,
+comparés à celles indiquées dans \textcite{tippett_poisson_2011} pour le TCS. Tous les coefficients estimés ici apparaissent comme statistiquement significatifs
+à \prct{95}, au sens où, à ce niveau de confiance, il n'y a pas d'incertitude sur le signe des coefficients.
 
 \begin{table}[htpb]
     \centering
@@ -601,8 +603,8 @@ réanalyse différente, ainsi que d'une période temporelle différente. L'indic
 du prédicteur de SST, noté $T$. En effet, le $b_{\mathrm{T}}$ de C10 est très légèrement plus proche de celui du TCS que ne l'est celui de C25. Les coefficients
 du C25 montrent tout de même des écarts avec ceux du TCS, notamment pour les termes de cisaillement vertical et de SST relative. Spécifiquement,
 $b_{V_{\mathrm{shear}}}$ vaut environ \num{-0.10} pour C25 contre respectivement \num{-0.15} pour le TCS, tandis que $b_T$ est réduit de \num{0.56} pour le TCS
-à environ \num{0.44} pour C25. Cela signifie donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans
-le TCS, et d'autre part que la fréquence d'occurrence des cyclones tropicaux est moins sensible à la SST relative pour C25 que dans le TCS. Comme pour le terme
+à environ \num{0.44} pour C25. Cela signifie donc d'une part que le cisaillement vertical apparaît comme moins défavorable à la cyclogénèse dans C25 que dans le
+TCS, et d'autre part que la fréquence d'occurrence des cyclones tropicaux est moins sensible à la SST relative pour C25 que dans le TCS. Comme pour le terme
 d'ordonnée à l'origine, il est là aussi possible que ces différences proviennent de la réanalyse utilisée, mais on note toutefois une certaine sensibilité des
 coefficients de C25 à la période temporelle utilisée. La régression C25 faite sur la période \num{1980}~--~\num{2000} produit en effet des coefficients se
 rapprochant davantage de ceux du TCS, à savoir un $b_T$ réhaussé (\sim~\num{0.47}) et un $b_{V_{\mathrm{shear}}}$ diminué (\sim~\num{-0.11}), tandis que ceux
@@ -614,9 +616,9 @@ obtenus pour C10, M25 et M10, moyennant l'effet sus-mentionné de la période co
 L'effet de la résolution sur les coefficients $b$, en comparant C25 avec C10, et M25 avec M10, apparaît mince. Les coefficients présentent des changements
 faibles, de l'ordre de \num{10}$^{\num{-2}}$, ou inférieur. $b_{\eta}$ est augmenté d'environ \num{0.02} pour l'indice climatologique comme l'indice mensuel.
 L'ordre de grandeur du changement sur $b_{V_{\mathrm{shear}}}$ est d'environ \num{1e-3}. $b_H$ est stable pour l'indice climatologique, et présente une très
-faible baisse pour dans M10 par rapport à M25, d'environ \num{1e-3}, tandis que $b_T$ augmente d'environ \num{2e-2}. L'ajout de variabilité temporelle dans la régression,
-en utilisant les champs au pas de temps mensuels plutôt que les moyennes climatologiques, produit un effet plus conséquent sur les coefficients de la
-régression. Le changement apporté à $b_{V_{\mathrm{shear}}}$ est d'un ordre de grandeur plus grand que le changement dû au passage à la résolution plus fine,
+faible baisse pour dans M10 par rapport à M25, d'environ \num{1e-3}, tandis que $b_T$ augmente d'environ \num{2e-2}. L'ajout de variabilité temporelle dans la
+régression, en utilisant les champs au pas de temps mensuels plutôt que les moyennes climatologiques, produit un effet plus conséquent sur les coefficients de
+la régression. Le changement apporté à $b_{V_{\mathrm{shear}}}$ est d'un ordre de grandeur plus grand que le changement dû au passage à la résolution plus fine,
 avec environ une augmentation de \num{10}$^{\num{-2}}$, pour l'indice à \ang{2.5} comme celui à \ang{1} de résolution. La sensibilité à l'humidité relative est
 légèrement revue à la hausse lorsque sur les indices M, de l'ordre de \num{5e-3}, là aussi, indépendamment de la résolution. $b_T$ est diminué de manière un peu
 plus importante, d'environ \num{4e-2}. L'impact le plus net se trouve cependant dans la vorticité. Celui-ci passe d'une moyenne de \num{1.062} entre C25 et C10,
