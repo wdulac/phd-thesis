@@ -88,6 +88,7 @@
 \newcommand{\prct}[1]{\SI{#1}{\percent}}
 \renewcommand{\ang}[1]{\SI{#1}{\textdegree}} % Surcharge la commande \ang existante pour avoir un espace entre la valeur et le symbole °
 \newcommand{\mypm}[2]{$\num{#1}\pm\num{#2}$}
+\usepackage{fnpct}
 
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
@@ -196,16 +197,16 @@ Abstract goes here (in english)
 
 \subfile{Chapitres/introduction}
 
-\chapter{Cyclones tropicaux}\label{chap:chapitre_1}
+\chapter{Cyclones tropicaux: État de l'art}\label{chap:chapitre_1}
 \subfile{Chapitres/chapitre1}
 
-\chapter{Détection objective de cyclones tropicaux dans les simulations}\label{chap:chapitre_2}
+\chapter{Algorithme de détection objective et de suivi de cyclones tropicaux}\label{chap:chapitre_2}
 \subfile{Chapitres/chapitre2}
 
-\chapter{Les indices de cyclogénèses}\label{chap:chapitre_3}
+\chapter{Construction d'indices de cyclogénèse par régression statistique}\label{chap:chapitre_3}
 \subfile{Chapitres/chapitre3}
 
-\chapter{Application de l'indice en climat plus chaud}\label{chap:chapitre_4}
+\chapter{Introduction de nouveaux prédicteurs dans les indices}\label{chap:chapitre_4}
 \subfile{Chapitres/chapitre4}
 
 \chapter*{Conclusion}
