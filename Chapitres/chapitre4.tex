@@ -489,7 +489,23 @@ cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais
 % cyclogénèses détectées dans les bassins SIndW et SIndE, mais moins évident dans le SPac, tandis que l'ajout du prédicteur dans ces régions pour la construction
 % de l'indice LOA renvoie le message inverse. Une explication à ce qui peut alors
 
-\section{Tendances}
+\section{Tendances introduites par le déficit de saturation d'humidité}
+
+On s'intéresse dans cette nouvelle et dernière section à l'apport du déficit de saturation d'humidité en lieu et place de l'humidité relative à \hPa{600} dans
+un indice de cyclogénèse construit par une régression de Poisson. Le déficit de saturation d'humidité se distingue de l'humidité relative, étant la différence
+$e_s - e$, où $e_s$ représente la pression de vapeur saturante, et $e$ la pression partielle de la vapeur d'eau. On appelle par la suite cette quantité VPD
+(\textit{Vapour-Pressure Deficit}). L'humidité relative est quant à elle le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur
+saturante.
+
+Le déficit de saturation atmosphérique, comme déjà évoqué dans le \cref{chap:chapitre_1} (\cref{sec:projections_futures}) constitue une variable d'intérêt pour
+l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, le déficit de saturation augmente
+tandis que l'humidité relative est projetée comme approximativement constante. \textcite{emanuel_hurricanes_2008} ont par ailleurs montré via une expérience de
+descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu constant présentent une augmentation du
+nombre de TC, tandis qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont conduit à la formulation modifiée du GPI
+proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du \cref{chap:chapitre_3}~--- dans laquelle l'humidité
+relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide. Cet indice appliqué aux simulations CMIP5 indique cependant
+toujours un signal divergeant en climat plus chaud. \textcite{camargo_testing_2014} ont alors cependant montré que certaines combinaisons de prédicteurs dans un
+indice de cyclogénèse construit par régression de Poisson pouvait aboutir à une fréquence d'occurrence à la baisse en climat futur.
 
 %--------------------------------------
 \section{Synthèse}
