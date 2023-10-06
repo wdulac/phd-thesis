@@ -156,8 +156,8 @@ peuvent être utilisées comme prédictant pour la construction d'indices de cyc
 Le mode de variabilité El Niño (respectivement El Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'oćean Pacifique central.
 Il existe plusieurs façons de diagnostiquer ce phénomène et qui se distinguent entre elles par la région, ou boîte, utilisée pour calculer l'anomalie de
 température, ainsi que par le lissage temporel utilisé. Ces boîtes sont au nombre de \num{4}, réparties entre les côtes de l'Amérique centrale et les îles
-Salomon. L'anomalie de SST prise dans une de ces boîtes définit alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
-opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est définit sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
+Salomon. L'anomalie de SST prise dans une de ces boîtes défini alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
+opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est défini sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
 (non montrées) et définie entre \ang{120}W et \ang{170}W, et entre \ang{5}S et \ang{5}N. Les anomalies sont lissées sur \num{3} mois glissants, et la référence
 climatologique est prise comme la SST moyenne sur la toute la période disponible. La \cref{fig:ONI} présente la boîte 3.4 utilisée pour calculer l'anomalie de
 température, ainsi que la série temporelle de l'ONI entre janvier \num{1980} et décembre \num{2010}.
@@ -245,7 +245,7 @@ thermiques et dynamiques que pour le TCS et pour les \cref{sec:apport_res_tempor
 relative $T$.
 
 Nous définissons dans un premier temps l'équivalent de l'indice M10 pour ARPEGE, nommé AM10. Nous réalisons ensuite une seconde régression en ajoutant à
-ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'ONI, définit en tout point de la grille comme l'anomalie
+ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'ONI, défini en tout point de la grille comme l'anomalie
 mensuelle de SST dans la boîte 3.4 présentée dans la \cref{sec:diag_enso}. L'indice incluant l'ONI comme prédicteur est nommé OAM10, abrégé en OA. La régression
 avec l'ONI comme prédicteur est appliquée aussi bien à l'échelle globale qu'à l'échelle des bassins individuels. Dans le second cas, la méthodologie employée
 dans la \cref{sec:indice_regional} pour construire l'indice LM10 est transposée aux prédicteurs et prédictant ARPEGE, notamment pour ce qui concerne la
@@ -476,7 +476,7 @@ exemples. La capacité des indices de cyclogénèse à réagir à ce mode de var
 
 Sachant cela, l'introduction de la variable ONI aurait pu être tout à fait redondante et n'apporter aucune plus-value dans la régression. C'est d'ailleurs une
 interprétation possible aux significativités pour le moins hésitantes associées à ce prédicteur dans le \cref{tab:coefs_LOA}. En effet, le champ spatial
-artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient pas définition aucune variabilité
+artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient par définition aucune variabilité
 spatiale. Or, les résultats obtenus dans le \cref{chap:chapitre_3} montrent que la régression de Poisson vise avant toute autre chose à fournir la meilleure
 vraisemblance spatiale entre les prédicteurs et le prédictant. Malgré cela, l'utilisation de l'ONI comme prédicteur et d'un coefficient $b_{\mathrm{ONI}}$
 associé, quand bien même ce dernier n'est pas statistiquement significatif, améliore sensiblement la corrélation entre la variabilité interannuelle de l'indice
@@ -491,21 +491,115 @@ cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais
 
 \section{Tendances introduites par le déficit de saturation d'humidité}
 
-On s'intéresse dans cette nouvelle et dernière section à l'apport du déficit de saturation d'humidité en lieu et place de l'humidité relative à \hPa{600} dans
-un indice de cyclogénèse construit par une régression de Poisson. Le déficit de saturation d'humidité se distingue de l'humidité relative, étant la différence
-$e_s - e$, où $e_s$ représente la pression de vapeur saturante, et $e$ la pression partielle de la vapeur d'eau. On appelle par la suite cette quantité VPD
-(\textit{Vapour-Pressure Deficit}). L'humidité relative est quant à elle le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur
-saturante.
+Le déficit de saturation d'humidité atmosphérique, comme déjà évoqué dans le \cref{chap:chapitre_1} (\cref{sec:projections_futures}), constitue une variable
+d'intérêt pour l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, celui-ci augmente du
+fait de la dépendance de la pression de vapeur saturante à la température, tandis que l'humidité relative est projetée comme approximativement constante. Le
+déficit de saturation d'humidité, que l'on appelera par la suite VPD (\textit{Vapour-Pressure Deficit}), et noté $s$, est défini ici comme la différence $s =
+e_s - e$, où $e_s$ est la pression de vapeur saturante et $e$ la pression partielle de la vapeur d'eau : $e / e_s$. Le VPD se distingue de l'humidité relative
+qui est quant à elle le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur saturante. \textcite{emanuel_hurricanes_2008} ont par
+ailleurs montré via une expérience de descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu
+constant présentent une augmentation du nombre de TC, alors qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont
+conduit à la formulation modifiée du GPI proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du
+\cref{chap:chapitre_3}~--- dans laquelle l'humidité relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide, similaire
+au VPD. Cet indice appliqué aux simulations CMIP5 présente cependant toujours un signal divergeant (c'est à dire une augmentation de l'activité) en climat plus
+chaud. \textcite{camargo_testing_2014} montrent à l'inverse que certaines combinaisons de prédicteurs dans un indice de cyclogénèse construit par régression de
+Poisson peuvent aboutir à une fréquence d'occurrence à la baisse en climat futur, notamment lorsque le VPD est introduit.
 
-Le déficit de saturation atmosphérique, comme déjà évoqué dans le \cref{chap:chapitre_1} (\cref{sec:projections_futures}) constitue une variable d'intérêt pour
-l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, le déficit de saturation augmente
-tandis que l'humidité relative est projetée comme approximativement constante. \textcite{emanuel_hurricanes_2008} ont par ailleurs montré via une expérience de
-descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu constant présentent une augmentation du
-nombre de TC, tandis qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont conduit à la formulation modifiée du GPI
-proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du \cref{chap:chapitre_3}~--- dans laquelle l'humidité
-relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide. Cet indice appliqué aux simulations CMIP5 indique cependant
-toujours un signal divergeant en climat plus chaud. \textcite{camargo_testing_2014} ont alors cependant montré que certaines combinaisons de prédicteurs dans un
-indice de cyclogénèse construit par régression de Poisson pouvait aboutir à une fréquence d'occurrence à la baisse en climat futur.
+On s'intéresse dans cette nouvelle et dernière section à l'apport du VPD en lieu et place de l'humidité relative à \hPa{600} dans un indice de cyclogénèse
+construit par une régression de Poisson. En particulier, puisqu'il a été mis en évidence que la variabilité interannuelle d'un tel indice était difficile à
+améliorer, nous nous intéressons plutôt à la recherche et à l'analyse de tendances dans la variabilité du nombre de TC d'une année sur l'autre.
+
+\subsection{Déficit de saturation d'humidité}
+
+Conformément à \textcite{camargo_testing_2014}, le VPD est intégré verticalement en chaque point de grille. L'intégration verticale bénéficie en effet de
+l'avantage, par rapport à une moyenne, de ne pas être influencé par les valeurs très faibles dans les dernières couches de l'atmosphère. Le déficit de
+saturation d'humidité s'exprime traditionnellement en \SI{}{\kilo\pascal}, et l'intégrale sur plus d'une vingtaine de niveaux verticaux d'espacement variable
+amène à de larges valeurs numériques. Pour cette raison, le VPD intégré sur la colonne est exprimé ici en $10^6$~\SI{}{\pascal\squared}. Cela se traduit par une
+plage de valeurs comprise entre \SI{1e6}{\pascal\squared} et \SI{62e6}{\pascal\squared}, soit un ordre de grandeur comparable aux autres prédicteurs, et en
+particulier à l'humidité relative ---~que le VPD remplace~--- et donc \textit{in fine} à une valeur du coefficient $b_s$ qu'il est possible de comparer à $b_H$.
+En effet, puisque les coefficients expriment des sensibilités pour des changements unitaires, l'application d'un facteur d'échelle au prédicteur se répércute de
+la même manière sur son coefficent dans la régression. En outre, et bien que \textcite{camargo_testing_2014} ne précisent pas l'unité utilisée pour le déficit
+de saturation intégré sur la colonne, notre valeur de $b_s$ est du même ordre de grandeur que celle proposée pas ces derniers.
+
+La régression est faite selon l'exact même mode opératoire que pour l'indice AM10 construit dans la section précédente, et l'indice M10 établit sur ERA5 avant
+lui (voir \cref{sec:apport_res_temporel_spatial}). La relation ainsi établie est donnée ci-dessous :
+%
+\begin{align*}
+\tag{VPD}
+    \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_{s} \, s + b_T T + \log \cos \phi \big)\\
+        &= \exp \big( \num{-13.5399} + \num{2.3765} \, \eta - \num{0.0179} \, V_{\mathrm{shear}} \underbrace{- \num{0.1238} \, s}_{\mathrm{VPD}} + \num{0.6204} \, T + \log \cos \phi \big)
+\end{align*}
+%
+Le coefficient $b_s$ est donné à \mypm{-0.1238}{0.007}, avec des pourcentiles \prct{2.5} et \prct{97.5} de respectivement \num{-0.138} et
+\num{-0.110}. Le prédicteur est donc hautement significatif dans la régression. À titre de référence, le coefficient trouvé dans
+\textcite{camargo_testing_2014}, entre la réanalyse NCEP et IBTrACS, est de $+$\num{0.13}. La différence du signe s'explique par le fait qu'ici, et
+contrairement à \textcite{camargo_testing_2014}, le VPD est défini positif, si bien qu'une grande valeur de $s$ est associée à une atmosphère particulièrement
+sèche, et donc défavorable à la cyclogénèse.
+
+
+\begin{table}[htpb]
+    \centering
+    \caption{Tendances dans le VPD, AM10, M10, TCS ainsi que les cyclogénèses détectées dans la simulation ARPEGE forcée par HadISST1, sur les saisons 1980 à
+    2010. La pente est donnée en TC par décennie. La pente en \% est en TC par année rapportée à la fréquence annuelle moyenne de l'indice dans ce bassin.
+    La fréquence annuelle moyenne est donnée dans la dernière colonne. Les lignes en gras indiquent une tendance significative à
+    \prct{95}}
+    \label{tab:tendances_PRE625REFT359x}
+    \begin{adjustbox}{height=0.425\textheight}
+    \begin{tabular}{llrrrr}
+    \toprule
+     &  & Pente & Pente (\%) & valeur-p & Fréquence \\
+    \midrule
+    \multirow[t]{5}{*}{Nord Atlantique} & VPD & 0,214 & 0,301 & 0,276 & 7.1 \\
+     & AM10 & \textbf{0,446} & \textbf{0,697} & \textbf{0,018} & \textbf{6.4} \\
+     & M10 & \textbf{0,602} & \textbf{1,273} & \textbf{0,011} & \textbf{4.7} \\
+     & TCS & \textbf{0,645} & \textbf{1,365} & \textbf{0,014} & \textbf{4.7} \\
+     & Tracks & 0,585 & 0,959 & 0,252 & 6.1 \\
+    \midrule
+    \multirow[t]{5}{*}{Ouest Pacifique} & VPD & -0,121 & -0,062 & 0,845 & 19.3 \\
+     & AM10 & 0,268 & 0,138 & 0,622 & 19.4 \\
+     & M10 & 0,407 & 0,194 & 0,527 & 21.0 \\
+     & TCS & 0,467 & 0,234 & 0,458 & 19.9 \\
+     & Tracks & -1,347 & -0,777 & 0,251 & 17.3 \\
+    \midrule
+    \multirow[t]{5}{*}{Est Pacifique} & VPD & -0,191 & -0,350 & 0,297 & 5.5 \\
+     & AM10 & -0,023 & -0,041 & 0,882 & 5.5 \\
+     & M10 & 0,079 & 0,126 & 0,712 & 6.3 \\
+     & TCS & 0,018 & 0,029 & 0,934 & 6.3 \\
+     & Tracks & -0,565 & -1,989 & 0,195 & 2.8 \\
+    \midrule
+    \multirow[t]{5}{*}{Nord Indien} & VPD & -0,069 & -0,252 & 0,646 & 2.7 \\
+     & AM10 & 0,031 & 0,078 & 0,862 & 4.0 \\
+     & M10 & 0,048 & 0,164 & 0,753 & 2.9 \\
+     & TCS & 0,071 & 0,257 & 0,529 & 2.8 \\
+     & Tracks & 0,911 & 1,125 & 0,126 & 8.1 \\
+    \midrule
+    \multirow[t]{5}{*}{Sud Pacifique} & VPD & 0,315 & 0,289 & 0,293 & 10.9 \\
+     & AM10 & \textbf{0,494} & \textbf{0,491} & \textbf{0,039} & \textbf{10.1} \\
+     & M10 & 0,579 & 0,554 & 0,063 & 10.5 \\
+     & TCS & 0,478 & 0,439 & 0,138 & 10.9 \\
+     & Tracks & 0,121 & 0,143 & 0,847 & 8.5 \\
+    \midrule
+    \multirow[t]{5}{*}{Sud-ouest Indien} & VPD & 0,138 & 0,323 & 0,359 & 4.3 \\
+     & AM10 & 0,274 & 0,694 & 0,061 & 3.9 \\
+     & M10 & \textbf{0,382} & \textbf{0,907} & \textbf{0,049} & \textbf{4.2} \\
+     & TCS & \textbf{0,341} & \textbf{0,770} & \textbf{0,034} & \textbf{4.4} \\
+     & Tracks & 0,391 & 0,798 & 0,336 & 4.9 \\
+    \midrule
+    \multirow[t]{5}{*}{Sud-est Indien} & VPD & 0,061 & 0,400 & 0,613 & 1.5 \\
+     & AM10 & 0,114 & 0,555 & 0,380 & 2.1 \\
+     & M10 & 0,175 & 0,805 & 0,351 & 2.2 \\
+     & TCS & 0,175 & 0,650 & 0,351 & 2.7 \\
+     & Tracks & 0,323 & 0,893 & 0,506 & 3.6 \\
+    \midrule
+    \multirow[t]{5}{*}{Global} & VPD & 0,332 & 0,063 & 0,743 & 52.3 \\
+     & AM10 & \textbf{1,633} & \textbf{0,312} & \textbf{0,045} & \textbf{52.3} \\
+     & M10 & \textbf{2,297} & \textbf{0,439} & \textbf{0,009} & \textbf{52.3} \\
+     & TCS & \textbf{2,232} & \textbf{0,427} & \textbf{0,007} & \textbf{52.3} \\
+     & Tracks & 0,129 & 0,025 & 0,932 & 52.3 \\
+    \bottomrule
+    \end{tabular}
+\end{adjustbox}
+\end{table}
 
 %--------------------------------------
 \section{Synthèse}
