@@ -495,15 +495,15 @@ Le déficit de saturation d'humidité atmosphérique, comme déjà évoqué dans
 d'intérêt pour l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, celui-ci augmente du
 fait de la dépendance de la pression de vapeur saturante à la température, tandis que l'humidité relative est projetée comme approximativement constante. Le
 déficit de saturation d'humidité, que l'on appelera par la suite VPD (\textit{Vapour-Pressure Deficit}), et noté $s$, est défini ici comme la différence $s =
-e_s - e$, où $e_s$ est la pression de vapeur saturante et $e$ la pression partielle de la vapeur d'eau : $e / e_s$. Le VPD se distingue de l'humidité relative
-qui est quant à elle le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur saturante. \textcite{emanuel_hurricanes_2008} ont par
-ailleurs montré via une expérience de descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu
-constant présentent une augmentation du nombre de TC, alors qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont
-conduit à la formulation modifiée du GPI proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du
-\cref{chap:chapitre_3}~--- dans laquelle l'humidité relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide, similaire
-au VPD. Cet indice appliqué aux simulations CMIP5 présente cependant toujours un signal divergeant (c'est à dire une augmentation de l'activité) en climat plus
-chaud. \textcite{camargo_testing_2014} montrent à l'inverse que certaines combinaisons de prédicteurs dans un indice de cyclogénèse construit par régression de
-Poisson peuvent aboutir à une fréquence d'occurrence à la baisse en climat futur, notamment lorsque le VPD est introduit.
+e_s - e$, où $e_s$ est la pression de vapeur saturante et $e$ la pression partielle de la vapeur d'eau : $e / e_s$. Le VPD se distingue donc de l'humidité
+relative définie par le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur saturante. \textcite{emanuel_hurricanes_2008} montrent via
+une expérience de descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu constant présentent une
+augmentation du nombre de TC, alors qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont conduit à la formulation
+modifiée du GPI proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du \cref{chap:chapitre_3}~--- dans laquelle
+l'humidité relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide, similaire au VPD. Cet indice appliqué aux
+simulations CMIP5 présente cependant toujours un signal divergeant (c'est à dire une augmentation de l'activité) en climat plus chaud.
+\textcite{camargo_testing_2014} montrent à l'inverse que certaines combinaisons de prédicteurs dans un indice de cyclogénèse construit par régression de Poisson
+peuvent aboutir à une fréquence d'occurrence à la baisse en climat futur, notamment lorsque le VPD est introduit.
 
 On s'intéresse dans cette nouvelle et dernière section à l'apport du VPD en lieu et place de l'humidité relative à \hPa{600} dans un indice de cyclogénèse
 construit par une régression de Poisson. En particulier, puisqu'il a été mis en évidence que la variabilité interannuelle d'un tel indice était difficile à
@@ -525,17 +525,62 @@ La régression est faite selon l'exact même mode opératoire que pour l'indice 
 lui (voir \cref{sec:apport_res_temporel_spatial}). La relation ainsi établie est donnée ci-dessous :
 %
 \begin{align*}
-\tag{VPD}
+%\tag{VPD}
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_{s} \, s + b_T T + \log \cos \phi \big)\\
         &= \exp \big( \num{-13.5399} + \num{2.3765} \, \eta - \num{0.0179} \, V_{\mathrm{shear}} \underbrace{- \num{0.1238} \, s}_{\mathrm{VPD}} + \num{0.6204} \, T + \log \cos \phi \big)
 \end{align*}
 %
-Le coefficient $b_s$ est donné à \mypm{-0.1238}{0.007}, avec des pourcentiles \prct{2.5} et \prct{97.5} de respectivement \num{-0.138} et
-\num{-0.110}. Le prédicteur est donc hautement significatif dans la régression. À titre de référence, le coefficient trouvé dans
-\textcite{camargo_testing_2014}, entre la réanalyse NCEP et IBTrACS, est de $+$\num{0.13}. La différence du signe s'explique par le fait qu'ici, et
-contrairement à \textcite{camargo_testing_2014}, le VPD est défini positif, si bien qu'une grande valeur de $s$ est associée à une atmosphère particulièrement
-sèche, et donc défavorable à la cyclogénèse.
+Le coefficient $b_s$ est donné à \mypm{-0.1238}{0.007}, avec des pourcentiles \prct{2.5} et \prct{97.5} de respectivement \num{-0.138} et \num{-0.110}. Le
+prédicteur est donc hautement significatif dans la régression. À titre de référence, le coefficient trouvé dans \textcite{camargo_testing_2014}, entre la
+réanalyse NCEP et IBTrACS, est de $+$\num{0.13}. La différence du signe s'explique par le fait qu'ici, et contrairement à \textcite{camargo_testing_2014}, le
+VPD est défini positif, si bien qu'une grande valeur de $s$ est associée à une colonne atmosphérique particulièrement sèche, et donc défavorable à la
+cyclogénèse. Notons que la régression faite sur ERA5 et IBTrACS (protocole M10) avec l'intégrale verticale du VPD en remplacement de l'humidité relative conduit
+à une valeur similaire avec $b_s^{\mathrm{ERA5}} \sim \num{-0.17}$. Avec les moyennes climatologiques (protocole C10), on a $b_s^{\mathrm{ERA5}} \sim
+\num{-0.14}$, ce qui se rapproche encore d'avantage du coefficient de \textcite{camargo_testing_2014}, lesquels utilisent également des moyennes
+climatologiques. Ici, les coefficients $b_\eta$ et $b_{V_{\mathrm{shear}}}$ demeurent quasiment inchangés par rapport à AM10. La seule différence notable se
+trouve dans la sensibilité à la SST relative, qui passe d'environ \num{0.42} à \num{0.62} ici. Une augmentation du même ordre de grandeur est notée sur ERA5
+(M10 comme C10), avec par exemple un passage de $b_T^{\mathrm{ERA5}}$ de \num{0.41} à \num{0.62} pour M10. \textcite{camargo_testing_2014} présentent le même
+constat avec un coefficient de SST relative passant de \num{0.35} à \num{0.57} lorsque le VPD est introduit. L'effet du VPD sur les coefficients de la
+régression entre la fréquence d'occurrence des TC et l'environnement de grande échelle apparaît donc robuste entre NCEP, ERA5 et les observations IBTrACS d'un
+côté, et notre simulation ARPEGE forcée par HadISST1 et les cyclogénèses issues du schéma de détection de cyclones tropicaux de l'autre.
 
+La \cref{fig:diff_VPD_AM10} présente la différence entre les moyennes temporelles de l'indice construit avec le VPD sur ARPEGE et l'indice AM10. L'effet du VPD
+dans la répartition spatiale de l'activité simulée par l'indice est variable selon les bassins (voir aussi le \cref{tab:tendances_PRE625REFT359x} pour la façon
+dont la fréquence annuelle est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène notamment à deux changements intéressants, présentés
+dans les grossissements sur la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE
+ne recensent d'activité (voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse
+construit sur ces données constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition
+    jamais strictement nuls, ce qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées,
+    il ne fait toutefois aucun doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et
+    le TCS (de même que tous les indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), lequel est brièvement mentionné dans
+    le \cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{carte_diff_VPD_AM10.png}
+    \caption{Carte des différences annuelles moyennes entre l'indice utilisant avec VPD et AM10. Les deux grossissements montrent la côte au large de l'Angola
+    (entre \ang{0}E et \ang{25}E, et \ang{20}S et l'équateur) d'une part et la région du Golfe Persique et de la Mer Rouge (entre \ang{30}E et \ang{70}E, et
+    \ang{8.5}N et \ang{40}N) d'autre part.}
+    \label{fig:diff_VPD_AM10}
+\end{figure}
+
+Le premier changement, et le plus conséquent des deux, consiste en la réduction du biais positif dans le Golfe Persique ainsi qu'en Mer Rouge, deux sous-régions
+du bassin NInd. En Mer Rouge (incluant le Golfe d'Aden, entre le Yémen et la Somalie, délimitée en pointillés sur la \cref{fig:diff_VPD_AM10}), la fréquence
+annuelle moyenne entre \num{1980} et \num{2010} inférée par l'indice AM10 est de \num{0.2} TC par an, tandis qu'elle est réduite à \num{0.02} TC par an pour
+l'indice incluant le VPD. Réciproquement, dans le Golfe Persique (en incluant également le Golfe d'Oman à l'embouchure, voir délimitations en pointillés), la
+fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. Le CYGP quant à lui ne présente pas ce
+problème (rappelons qu'il ne dépend pas de l'humidité relative). Il en résulte que la production de TC dans ces régions est purement une conséquence de
+l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la représentation de l'activité est amélioré par l'introduction
+du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de \num{0.14} TC par an (AM10, le TCS y simule quant à lui
+\num{0.17} TC par an) à \num{0.04} TC par an. Cette région ne présente pas d'activité cyclonique dans les observations, ni dans les données du traqueur, mais
+tous les indices dépendant de l'humidité relative y présentent un bias positif, si bien que toute réduction de l'activité représente une amélioration.
+
+Le \cref{tab:tendances_PRE625REFT359x} présente l'analyse des tendances dans le nombre annuel de TC dans la simulation ARPEGE forcée par HadISST1, tels que vus
+par plusieurs indices et par le schéma de détection. L'indice défini ici, dans lequel le VPD remplace l'humidité relative y est sobrement appelé VPD. Sont
+également inclus dans ce tableau : l'indice AM10 ; l'indice M10 du \cref{chap:chapitre_3}, évalué sur la simulation ARPEGE historique de la même manière que les
+autres ---~et notamment re-calibré pour fournir \num{52.32} TC par an à l'échelle globale entre \num{1980} et \num{2010}~--- et dont les coefficients furent
+obtenus en appliquant la régression entre ERA5 et IBTrACS entre \num{1980} et \num{2019} ; le TCS et enfin les données issues du schéma de détection. La
+comparaison avec M10 en plus du TCS se justifie par le fait que l'indice M10 peut être vu comme une version actualisée du TCS.
 
 \begin{table}[htpb]
     \centering
@@ -600,6 +645,8 @@ sèche, et donc défavorable à la cyclogénèse.
     \end{tabular}
 \end{adjustbox}
 \end{table}
+
+Test
 
 %--------------------------------------
 \section{Synthèse}
