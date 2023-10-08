@@ -509,7 +509,7 @@ On s'intéresse dans cette nouvelle et dernière section à l'apport du VPD en l
 construit par une régression de Poisson. En particulier, puisqu'il a été mis en évidence que la variabilité interannuelle d'un tel indice était difficile à
 améliorer, nous nous intéressons plutôt à la recherche et à l'analyse de tendances dans la variabilité du nombre de TC d'une année sur l'autre.
 
-\subsection{Déficit de saturation d'humidité}
+\subsection{Régression de Poisson avec le VPD}
 
 Conformément à \textcite{camargo_testing_2014}, le VPD est intégré verticalement en chaque point de grille. L'intégration verticale bénéficie en effet de
 l'avantage, par rapport à une moyenne, de ne pas être influencé par les valeurs très faibles dans les dernières couches de l'atmosphère. Le déficit de
@@ -525,7 +525,7 @@ La régression est faite selon l'exact même mode opératoire que pour l'indice 
 lui (voir \cref{sec:apport_res_temporel_spatial}). La relation ainsi établie est donnée ci-dessous :
 %
 \begin{align*}
-%\tag{VPD}
+\tag{AVPD}
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_{s} \, s + b_T T + \log \cos \phi \big)\\
         &= \exp \big( \num{-13.5399} + \num{2.3765} \, \eta - \num{0.0179} \, V_{\mathrm{shear}} \underbrace{- \num{0.1238} \, s}_{\mathrm{VPD}} + \num{0.6204} \, T + \log \cos \phi \big)
 \end{align*}
@@ -544,23 +544,36 @@ constat avec un coefficient de SST relative passant de \num{0.35} à \num{0.57} 
 régression entre la fréquence d'occurrence des TC et l'environnement de grande échelle apparaît donc robuste entre NCEP, ERA5 et les observations IBTrACS d'un
 côté, et notre simulation ARPEGE forcée par HadISST1 et les cyclogénèses issues du schéma de détection de cyclones tropicaux de l'autre.
 
+Précisons que l'introduction du VPD dans la régression de Poisson n'a que peu d'impact sur la variabilité interannuelle. En outre, la corrélation de la
+variabilité interannuelle inférée par l'indice AVPD est généralement inchangée par rapport à AM10, mais peut également être dégradée, comme en atteste la
+\cref{fig:corr_AVPD_AM10_M10}. Contrairement à l'introduction de l'indice ONI dans la \cref{sec:indice_ONI}, aucun bassin ne voit sa corrélation entre la
+variabilité interannuelle de l'indice et celle du traqueur devenir significative grâce à l'introduction du VPD.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{corr_AVPD_AM10_M10_tracks.png}
+    \caption{Corrélations croisées entre la variabilité interannuelle de : AVPD ; AM10 ; M10 du \cref{chap:chapitre_3} appliqué à la simulation ARPEGE ; le
+    schéma de détection, entre 1980 et 2011.}
+    \label{fig:corr_AVPD_AM10_M10}
+\end{figure}
+
 La \cref{fig:diff_VPD_AM10} présente la différence entre les moyennes temporelles de l'indice construit avec le VPD sur ARPEGE et l'indice AM10. L'effet du VPD
 dans la répartition spatiale de l'activité simulée par l'indice est variable selon les bassins (voir aussi le \cref{tab:tendances_PRE625REFT359x} pour la façon
 dont la fréquence annuelle est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène notamment à deux changements intéressants, présentés
 dans les grossissements sur la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE
 ne recensent d'activité (voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse
 construit sur ces données constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition
-    jamais strictement nuls, ce qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées,
-    il ne fait toutefois aucun doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et
-    le TCS (de même que tous les indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), lequel est brièvement mentionné dans
-    le \cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
+jamais strictement nuls, ce qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées,
+il ne fait toutefois aucun doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et le
+TCS (de même que tous les indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), lequel est brièvement mentionné dans le
+\cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{carte_diff_VPD_AM10.png}
-    \caption{Carte des différences annuelles moyennes entre l'indice utilisant avec VPD et AM10. Les deux grossissements montrent la côte au large de l'Angola
-    (entre \ang{0}E et \ang{25}E, et \ang{20}S et l'équateur) d'une part et la région du Golfe Persique et de la Mer Rouge (entre \ang{30}E et \ang{70}E, et
-    \ang{8.5}N et \ang{40}N) d'autre part.}
+    \caption{Carte des différences annuelles moyennes entre l'indice AVPD et AM10. Les deux grossissements montrent la côte au large de l'Angola (entre \ang{0}E
+    et \ang{25}E, et \ang{20}S et l'équateur) d'une part et la région du Golfe Persique et de la Mer Rouge (entre \ang{30}E et \ang{70}E, et \ang{8.5}N et
+    \ang{40}N) d'autre part.}
     \label{fig:diff_VPD_AM10}
 \end{figure}
 
@@ -571,82 +584,131 @@ l'indice incluant le VPD. Réciproquement, dans le Golfe Persique (en incluant �
 fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. Le CYGP quant à lui ne présente pas ce
 problème (rappelons qu'il ne dépend pas de l'humidité relative). Il en résulte que la production de TC dans ces régions est purement une conséquence de
 l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la représentation de l'activité est amélioré par l'introduction
-du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de \num{0.14} TC par an (AM10, le TCS y simule quant à lui
-\num{0.17} TC par an) à \num{0.04} TC par an. Cette région ne présente pas d'activité cyclonique dans les observations, ni dans les données du traqueur, mais
+du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de \num{0.13} TC par an (AM10, le TCS y simule quant à lui
+\num{0.17} TC par an) à \num{0.03} TC par an. Cette région ne présente pas d'activité cyclonique dans les observations, ni dans les données du traqueur, mais
 tous les indices dépendant de l'humidité relative y présentent un bias positif, si bien que toute réduction de l'activité représente une amélioration.
 
-Le \cref{tab:tendances_PRE625REFT359x} présente l'analyse des tendances dans le nombre annuel de TC dans la simulation ARPEGE forcée par HadISST1, tels que vus
-par plusieurs indices et par le schéma de détection. L'indice défini ici, dans lequel le VPD remplace l'humidité relative y est sobrement appelé VPD. Sont
-également inclus dans ce tableau : l'indice AM10 ; l'indice M10 du \cref{chap:chapitre_3}, évalué sur la simulation ARPEGE historique de la même manière que les
-autres ---~et notamment re-calibré pour fournir \num{52.32} TC par an à l'échelle globale entre \num{1980} et \num{2010}~--- et dont les coefficients furent
-obtenus en appliquant la régression entre ERA5 et IBTrACS entre \num{1980} et \num{2019} ; le TCS et enfin les données issues du schéma de détection. La
-comparaison avec M10 en plus du TCS se justifie par le fait que l'indice M10 peut être vu comme une version actualisée du TCS.
+\subsection{Détection de tendances dans ARPEGE et ERA5}
+
+Le \cref{tab:tendances_PRE625REFT359x} présente l'analyse des tendances dans le nombre annuel de TC dans la simulation ARPEGE forcée par HadISST1 ainsi que dans
+la réanalyse ERA5, tels que vus par plusieurs indices et par le schéma de détection (ou dans le cas d'ERA5, par IBTrACS). L'indice dans lequel le VPD remplace
+l'humidité relative y est appelé AVPD pour celui dont la régression est faite entre ARPEGE et le schéma de détection, et EVPD pour celui dont la régression est
+faite sur ERA5 avec IBTrACS. Sont également inclus dans ce tableau : l'indice AM10 (non appliqué à ERA5) ; l'indice M10 du \cref{chap:chapitre_3}, évalué sur
+ERA5 comme sur la simulation ARPEGE historique ; le TCS et enfin les données issues du schéma de détection / IBTrACS. La comparaison avec M10 en plus du TCS se
+justifie par le fait que l'indice M10 peut être vu comme une version actualisée du TCS. En revanche, appliquer la relation AM10 à ERA5 n'aurait pas beaucoup de
+sens. Pour les tendances évaluées sur ERA5, la période \num{1981}~--~\num{2011} est prise pour disposer de \num{31} saisons cycloniques dans les deux jeux de
+données. C'est pour cette raison que la fréquence annuelle globale dans ERA5 est différente de la valeur de calibration, celle-ci étant établie sur la base de
+la saison 2019 comme borne supérieure.
 
 \begin{table}[htpb]
     \centering
-    \caption{Tendances dans le VPD, AM10, M10, TCS ainsi que les cyclogénèses détectées dans la simulation ARPEGE forcée par HadISST1, sur les saisons 1980 à
-    2010. La pente est donnée en TC par décennie. La pente en \% est en TC par année rapportée à la fréquence annuelle moyenne de l'indice dans ce bassin.
-    La fréquence annuelle moyenne est donnée dans la dernière colonne. Les lignes en gras indiquent une tendance significative à
-    \prct{95}}
+    \caption{ Tendances (TC par décennie) et valeur-p associées dans la simulation ARPEGE forcée par HadISST1 entre 1980 et 2010, ainsi que dans ERA5 entre 1981
+    et 2011. Les lignes en gras désignent une tendance significative à \prct{95}. La colonne Fréquence indique la fréquence annuelle moyenne en TC par an.}
     \label{tab:tendances_PRE625REFT359x}
-    \begin{adjustbox}{height=0.425\textheight}
-    \begin{tabular}{llrrrr}
-    \toprule
-     &  & Pente & Pente (\%) & valeur-p & Fréquence \\
-    \midrule
-    \multirow[t]{5}{*}{Nord Atlantique} & VPD & 0,214 & 0,301 & 0,276 & 7.1 \\
-     & AM10 & \textbf{0,446} & \textbf{0,697} & \textbf{0,018} & \textbf{6.4} \\
-     & M10 & \textbf{0,602} & \textbf{1,273} & \textbf{0,011} & \textbf{4.7} \\
-     & TCS & \textbf{0,645} & \textbf{1,365} & \textbf{0,014} & \textbf{4.7} \\
-     & Tracks & 0,585 & 0,959 & 0,252 & 6.1 \\
-    \midrule
-    \multirow[t]{5}{*}{Ouest Pacifique} & VPD & -0,121 & -0,062 & 0,845 & 19.3 \\
-     & AM10 & 0,268 & 0,138 & 0,622 & 19.4 \\
-     & M10 & 0,407 & 0,194 & 0,527 & 21.0 \\
-     & TCS & 0,467 & 0,234 & 0,458 & 19.9 \\
-     & Tracks & -1,347 & -0,777 & 0,251 & 17.3 \\
-    \midrule
-    \multirow[t]{5}{*}{Est Pacifique} & VPD & -0,191 & -0,350 & 0,297 & 5.5 \\
-     & AM10 & -0,023 & -0,041 & 0,882 & 5.5 \\
-     & M10 & 0,079 & 0,126 & 0,712 & 6.3 \\
-     & TCS & 0,018 & 0,029 & 0,934 & 6.3 \\
-     & Tracks & -0,565 & -1,989 & 0,195 & 2.8 \\
-    \midrule
-    \multirow[t]{5}{*}{Nord Indien} & VPD & -0,069 & -0,252 & 0,646 & 2.7 \\
-     & AM10 & 0,031 & 0,078 & 0,862 & 4.0 \\
-     & M10 & 0,048 & 0,164 & 0,753 & 2.9 \\
-     & TCS & 0,071 & 0,257 & 0,529 & 2.8 \\
-     & Tracks & 0,911 & 1,125 & 0,126 & 8.1 \\
-    \midrule
-    \multirow[t]{5}{*}{Sud Pacifique} & VPD & 0,315 & 0,289 & 0,293 & 10.9 \\
-     & AM10 & \textbf{0,494} & \textbf{0,491} & \textbf{0,039} & \textbf{10.1} \\
-     & M10 & 0,579 & 0,554 & 0,063 & 10.5 \\
-     & TCS & 0,478 & 0,439 & 0,138 & 10.9 \\
-     & Tracks & 0,121 & 0,143 & 0,847 & 8.5 \\
-    \midrule
-    \multirow[t]{5}{*}{Sud-ouest Indien} & VPD & 0,138 & 0,323 & 0,359 & 4.3 \\
-     & AM10 & 0,274 & 0,694 & 0,061 & 3.9 \\
-     & M10 & \textbf{0,382} & \textbf{0,907} & \textbf{0,049} & \textbf{4.2} \\
-     & TCS & \textbf{0,341} & \textbf{0,770} & \textbf{0,034} & \textbf{4.4} \\
-     & Tracks & 0,391 & 0,798 & 0,336 & 4.9 \\
-    \midrule
-    \multirow[t]{5}{*}{Sud-est Indien} & VPD & 0,061 & 0,400 & 0,613 & 1.5 \\
-     & AM10 & 0,114 & 0,555 & 0,380 & 2.1 \\
-     & M10 & 0,175 & 0,805 & 0,351 & 2.2 \\
-     & TCS & 0,175 & 0,650 & 0,351 & 2.7 \\
-     & Tracks & 0,323 & 0,893 & 0,506 & 3.6 \\
-    \midrule
-    \multirow[t]{5}{*}{Global} & VPD & 0,332 & 0,063 & 0,743 & 52.3 \\
-     & AM10 & \textbf{1,633} & \textbf{0,312} & \textbf{0,045} & \textbf{52.3} \\
-     & M10 & \textbf{2,297} & \textbf{0,439} & \textbf{0,009} & \textbf{52.3} \\
-     & TCS & \textbf{2,232} & \textbf{0,427} & \textbf{0,007} & \textbf{52.3} \\
-     & Tracks & 0,129 & 0,025 & 0,932 & 52.3 \\
-    \bottomrule
-    \end{tabular}
+    \begin{adjustbox}{height=0.45\textheight}
+        \begin{tabular}{llrrr|rrr}
+        \toprule
+         &  & \multicolumn{3}{r}{\textbf{ARPEGE}} & \multicolumn{3}{r}{\textbf{ERA5}} \\
+         &  & Pente & valeur-p & Fréquence & Pente & valeur-p & Fréquence \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Nord Atlantique}} & AVPD & 0,214 & 0,276 & 7,1 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,440 & 0,143 & 8,0 \\
+         & AM10 & \textbf{0,446} & \textbf{0,018} & \textbf{6,4} & --- & --- & --- \\
+         & M10 & \textbf{0,602} & \textbf{0,011} & \textbf{4,7} & \textbf{0,871} & \textbf{0,007} & \textbf{8,6} \\
+         & TCS & \textbf{0,645} & \textbf{0,014} & \textbf{4,7} & \textbf{1,131} & \textbf{0,003} & \textbf{8,9} \\
+         & Tracks & 0,585 & 0,252 & 6,1 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{3,198} & \textbf{0,001} & \textbf{12,4} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Ouest Pacifique}} & AVPD & -0,121 & 0,845 & 19,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & \textbf{2,245} & \textbf{0,010} & \textbf{29,6} \\
+         & AM10 & 0,268 & 0,622 & 19,4 & --- & --- & --- \\
+         & M10 & 0,407 & 0,527 & 21,0 & \textbf{2,909} & \textbf{0,000} & \textbf{28,8} \\
+         & TCS & 0,467 & 0,458 & 19,9 & \textbf{2,571} & \textbf{0,002} & \textbf{30,0} \\
+         & Tracks & -1,347 & 0,251 & 17,3 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{-1,718} & \textbf{0,034} & \textbf{25,7} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Est Pacifique}} & AVPD & -0,191 & 0,297 & 5,5 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & \textbf{-1,556} & \textbf{0,040} & \textbf{17,5} \\
+         & AM10 & -0,023 & 0,882 & 5,5 & --- & --- & --- \\
+         & M10 & 0,079 & 0,712 & 6,3 & -0,819 & 0,265 & 17,1 \\
+         & TCS & 0,018 & 0,934 & 6,3 & -1,123 & 0,191 & 16,0 \\
+         & Tracks & -0,565 & 0,195 & 2,8 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{-2,565} & \textbf{0,009} & \textbf{16,9} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Nord Indien}} & AVPD & -0,069 & 0,646 & 2,7 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,034 & 0,703 & 3,0 \\
+         & AM10 & 0,031 & 0,862 & 4,0 & --- & --- & --- \\
+         & M10 & 0,048 & 0,753 & 2,9 & \textbf{0,324} & \textbf{0,015} & \textbf{4,0} \\
+         & TCS & 0,071 & 0,529 & 2,8 & 0,133 & 0,218 & 3,6 \\
+         & Tracks & 0,911 & 0,126 & 8,1 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & --- & --- & --- \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud Pacifique}} & AVPD & 0,315 & 0,293 & 10,9 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & -0,052 & 0,922 & 14,0 \\
+         & AM10 & \textbf{0,494} & \textbf{0,039} & \textbf{10,1} & --- & --- & --- \\
+         & M10 & 0,579 & 0,063 & 10,5 & 0,250 & 0,588 & 12,7 \\
+         & TCS & 0,478 & 0,138 & 10,9 & -0,217 & 0,708 & 12,7 \\
+         & Tracks & 0,121 & 0,847 & 8,5 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,964 & 0,220 & 10,5 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud-ouest Indien}} & AVPD & 0,138 & 0,359 & 4,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & -0,197 & 0,506 & 8,2 \\
+         & AM10 & 0,274 & 0,061 & 3,9 & --- & --- & --- \\
+         & M10 & \textbf{0,382} & \textbf{0,049} & \textbf{4,2} & -0,024 & 0,930 & 6,9 \\
+         & TCS & \textbf{0,341} & \textbf{0,034} & \textbf{4,4} & -0,106 & 0,687 & 6,9 \\
+         & Tracks & 0,391 & 0,336 & 4,9 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & 0,165 & 0,704 & 8,7 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud-est Indien}} & AVPD & 0,061 & 0,613 & 1,5 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,057 & 0,808 & 3,7 \\
+         & AM10 & 0,114 & 0,380 & 2,1 & --- & --- & --- \\
+         & M10 & 0,175 & 0,351 & 2,2 & 0,114 & 0,679 & 4,7 \\
+         & TCS & 0,175 & 0,351 & 2,7 & -0,062 & 0,795 & 4,6 \\
+         & Tracks & 0,323 & 0,506 & 3,6 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,649 & 0,288 & 7,6 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Global}} & AVPD & 0,332 & 0,743 & 52,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,935 & 0,553 & 84,6 \\
+         & AM10 & \textbf{1,633} & \textbf{0,045} & \textbf{52,3} & --- & --- & --- \\
+         & M10 & \textbf{2,297} & \textbf{0,009} & \textbf{52,3} & \textbf{3,649} & \textbf{0,001} & \textbf{83,7} \\
+         & TCS & \textbf{2,232} & \textbf{0,007} & \textbf{52,3} & \textbf{2,349} & \textbf{0,041} & \textbf{83,7} \\
+         & Tracks & 0,129 & 0,932 & 52,3 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,528 & 0,759 & 83,6 \\
+        \bottomrule
+        \end{tabular}
 \end{adjustbox}
 \end{table}
 
-Test
+Dans le bassin NAtl, tous les indices basés sur l'humidité relative détectent une tendance à la hausse statistiquement significative. Dans ARPEGE, celles-ci
+sont faibles, de l'ordre de \num{0.5} TC par décennie, tandis que le schéma de détection ne détecte pas de telle tendance, de même que l'indice AVPD. Dans ERA5,
+les tendances sont plus marquées, mais les indices produisent également plus de TC dans ce bassin par rapport au modèle, du fait de leur calibration différente.
+Rapportées à la fréquence annuelle moyenne, les tendances relatives sont en fait semblables entre ARPEGE et ERA5. Toutefois, IBTrACS présente une tendance à la
+hausse plus importante, déjà mentionnée dans le \cref{chap:chapitre_1} (\cref{sec:observations}) et valant ici environ \num{3.2} TC par décennie. Cela tend
+alors à donner raison au TCS et dérivés, tandis que les indices utilisant le déficit de saturation seraient mis en défaut dans ce bassin. Précisons néanmoins
+qu'une tendance dans la fréquence annuelle de TC n'est pas détectée dans ARPEGE par le schéma de détection, si bien que l'absence de tendance dans l'indice AVPD
+est au moins cohérente avec les tracks.
+
+Les trois indices calculés sur ERA5 indiquent une tendance significative d'ampleur comparable dans le bassin WPac, entre \num{2.2} TC par décennie pour EVPD et
+\num{2.9} TC par décennie pour M10. Dans IBTrACS, une tendance significative mais de signe opposée est identifiée à raison de \num{-1.7} TC par décennie. Il est
+clair que la tendance positive dans ERA5 provient de la rupture liée à l'humidité dans le bassin WPac, largement documentée dans le \cref{chap:chapitre_3}.
+L'indice EVPD est également concerné, car le déficit de saturation d'humidité intégré sur la colonne présente dans ERA5 une tendance opposée à celle de
+l'humidité relative (donc à la baisse), si bien que la rupture dans la variabilité interannuelle de l'indice est toujours visible dans la réanalyse dans ce
+bassin avec l'indice EVPD. Aucune tendance significative n'est identifiée dans ARPEGE, que ce soit dans les indices ou dans les tracks. Il est toutefois
+possible que le traqueur indiquerait une tendance à la baisse significative dans une simulation plus longue, car celui-ci présente une pente de \num{-1.35} TC
+par décennie (soit une tendance relative plus forte que dans IBTrACS) avec une valeur-p plus basse que celle des indices.
+
+Dans le bassin EPac, l'indice EVPD présente une tendance du même signe qu'IBTrACS mais d'amplitude réduite, avec respectivement \num{-1.6} TC par décennie pour
+EVPD et \num{-2.6} TC par décennie dans IBTracs. Aucun des indices basés sur l'humidité relative ne présentent par ailleurs de tendance. Dans ARPEGE, aucune
+tendance n'est détectée, peut-être dû au biais du modèle dans ce bassin (voir \cref{sec:tracking_arpege}). Dans le bassin SPac, dans ARPEGE, l'indice AM10
+indique une faible tendance à la hausse, tandis que M10 appliqué à ARPEGE est en limite de significativité avec une valeur-p de \num{0.06}, et une pente sinon
+positive. Ces tendances ne sont pas confirmées ni par le schéma de détection, ni par IBTrACS, si bien que l'absence de tendance dans l'indice AVPD apparaît en
+meilleur accord avec le traqueur et les observations. La situation dans le SIndW est tout à fait similaire car les trois indices basés sur l'humidité relative
+indiquent une tendance à la hausse (en limite de significativité pour AM10) tandis que ni AVPD, ni le traqueur n'en présentent.
+
+Enfin, c'est à l'échelle globale que le signal est le plus marqué et que l'apport du VPD dans les indices se fait le plus clair. En effet, sur notre simulation
+ARPEGE comme sur la réanalyse ERA5, tous les indices basés sur l'humidité relative présentent une tendance à la hausse, quoique plus faible pour AM10. Ces
+tendances semblent erronées dans la mesure où ni le traqueur ni les observations historiques n'en présentent. Là encore, les indices basés sur le déficit de
+saturation intégré sur la colonne ne présentent pas de tendance non plus, et sont donc en meilleur accord avec la variabilité détectée / observée.
 
 %--------------------------------------
 \section{Synthèse}
