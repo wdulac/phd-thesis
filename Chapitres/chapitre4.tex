@@ -710,6 +710,32 @@ ARPEGE comme sur la réanalyse ERA5, tous les indices basés sur l'humidité rel
 tendances semblent erronées dans la mesure où ni le traqueur ni les observations historiques n'en présentent. Là encore, les indices basés sur le déficit de
 saturation intégré sur la colonne ne présentent pas de tendance non plus, et sont donc en meilleur accord avec la variabilité détectée / observée.
 
+\subsection{Application en climat plus chaud}
+
+On s'intéresse ici à l'application des indices définis comme fonction du déficit de saturation d'humidité intégré sur la colonne à des simulations en climat
+plus chaud avec ARPEGE-Climat utilisé dans sa configuration basculée-étirée, comparé aux indices dépendant de l'humidité relative appliqués aux mêmes
+simulations.
+
+\subsubsection{Description des simulations}
+
+Deux expériences réalisées sur des bassins océaniques différents sont utilisées, issues respectivement de \textcite{chauvin_future_2020} et de
+\textcite{cattiaux_projected_2020}. Pour la première expérience, le pôle est placé dans l'océan Atlantique nord, à \ang{20}N, \ang{50}W, et le facteur
+d'étirement $c=\num{3.5}$ est appliqué à la grille régulière T359, atteignant localement jusqu'à \km{14} de résolution. La \cref{fig:rotated_streched}
+(\vpageref{fig:rotated_streched}) du \cref{chap:chapitre_1} présente la variation de la résolution spatiale pour la simulation utilisée ici. La deuxième est
+centrée sur le bassin Sud Indien, avec un pôle situé à \ang{12.5}S, \ang{55}E, à proximité de l'île de la Réunion, et utilise un même facteur d'étirement $c$. 
+
+Les simulations utilisent la même version du modèle que pour la simulation utilisée dans ce chapitre \parencite{voldoire_evaluation_2019}, et les deux
+expériences partagent le même protocole expérimental, notamment pour ce qui relève du forçage par des SST prescrites. Spécfiquement, chacune des deux
+expériences est composée de deux simulations : Une à climat présent, et une autre à climat plus chaud. Les simulations à climat présent sont forcées par des
+séries de SST et de concetration en glace de mer provenant d'une simulation historique faite avec le modèle couplé CNRM-CM5 \parencite{voldoire_cnrmcm5_2013}.
+Les simulations à climat plus chaud correspondent à un scénario d'émission de gaz à effet de serre associé à un forçage radiatif de
+\SI{8.5}{\watt\per\meter\squared} au sommet de l'atmosphère à la fin du siècle (RCP8.5, \textit{Radiative Concentration Pathway})
+\parencite{christensen_climate_2013}, et les SST utilisées sont également issues d'une simulation faite avec CNRM-CM5, mais cette fois sous ce même scénario
+climatique RCP8.5. Que ce soit pour les simulations en climat présent ou futur, une méthode de correction de biais quantile-quantile, par rapport à la base de
+données HadISST1, est appliquée. Cette méthode est décrite plus en détails dans \textcite{chauvin_future_2020}.
+
+\num{2031}~--~\num{2080} pour l'une (NAtl) et \num{2047}~--~\num{2094}.
+
 %--------------------------------------
 \section{Synthèse}
 
