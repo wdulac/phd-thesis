@@ -553,20 +553,20 @@ variabilité interannuelle de l'indice et celle du traqueur devenir significativ
     \centering
     \includegraphics[width=\textwidth]{corr_AVPD_AM10_M10_tracks.png}
     \caption{Corrélations croisées entre la variabilité interannuelle de : AVPD ; AM10 ; M10 du \cref{chap:chapitre_3} appliqué à la simulation ARPEGE ; le
-    schéma de détection, entre 1980 et 2011.}
+    schéma de détection, entre 1980 et 2010.}
     \label{fig:corr_AVPD_AM10_M10}
 \end{figure}
 
-La \cref{fig:diff_VPD_AM10} présente la différence entre les moyennes temporelles de l'indice construit avec le VPD sur ARPEGE et l'indice AM10. L'effet du VPD
-dans la répartition spatiale de l'activité simulée par l'indice est variable selon les bassins (voir aussi le \cref{tab:tendances_PRE625REFT359x} pour la façon
-dont la fréquence annuelle est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène notamment à deux changements intéressants, présentés
-dans les grossissements sur la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE
-ne recensent d'activité (voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse
-construit sur ces données constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition
-jamais strictement nuls, ce qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées,
-il ne fait toutefois aucun doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et le
-TCS (de même que tous les indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), lequel est brièvement mentionné dans le
-\cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
+La \cref{fig:diff_VPD_AM10} présente la différence entre les moyennes temporelles de l'indice AVPD et l'indice AM10. L'effet du VPD dans la répartition spatiale
+de l'activité simulée par l'indice est variable selon les bassins (voir aussi le \cref{tab:tendances_PRE625REFT359x} pour la façon dont la fréquence annuelle
+est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène notamment à deux changements intéressants, présentés dans les grossissements sur
+la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE ne recensent d'activité
+(voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse construit sur ces données
+constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition jamais strictement nuls, ce
+qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées, il ne fait toutefois aucun
+doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et le TCS (de même que tous les
+indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), mais pas le CYGP, lequel ---~rappelons le~--- ne dépend pas de
+l'humidité relative. Ce biais est brièvement mentionné dans le \cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
 
 \begin{figure}[tb]
     \centering
@@ -581,12 +581,12 @@ Le premier changement, et le plus conséquent des deux, consiste en la réductio
 du bassin NInd. En Mer Rouge (incluant le Golfe d'Aden, entre le Yémen et la Somalie, délimitée en pointillés sur la \cref{fig:diff_VPD_AM10}), la fréquence
 annuelle moyenne entre \num{1980} et \num{2010} inférée par l'indice AM10 est de \num{0.2} TC par an, tandis qu'elle est réduite à \num{0.02} TC par an pour
 l'indice incluant le VPD. Réciproquement, dans le Golfe Persique (en incluant également le Golfe d'Oman à l'embouchure, voir délimitations en pointillés), la
-fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. Le CYGP quant à lui ne présente pas ce
-problème (rappelons qu'il ne dépend pas de l'humidité relative). Il en résulte que la production de TC dans ces régions est purement une conséquence de
-l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la représentation de l'activité est amélioré par l'introduction
-du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de \num{0.13} TC par an (AM10, le TCS y simule quant à lui
-\num{0.17} TC par an) à \num{0.03} TC par an. Cette région ne présente pas d'activité cyclonique dans les observations, ni dans les données du traqueur, mais
-tous les indices dépendant de l'humidité relative y présentent un bias positif, si bien que toute réduction de l'activité représente une amélioration.
+fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. . Il en résulte que la production de TC
+dans ces régions est purement une conséquence de l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la
+représentation de l'activité est amélioré par l'introduction du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de
+\num{0.13} TC par an (AM10, le TCS y simule quant à lui \num{0.17} TC par an) à \num{0.03} TC par an. Cette région ne présente pas d'activité cyclonique dans
+les observations, ni dans les données du traqueur, mais tous les indices dépendant de l'humidité relative y présentent un bias positif, si bien que toute
+réduction de l'activité représente une amélioration.
 
 \subsection{Détection de tendances dans ARPEGE et ERA5}
 
@@ -734,7 +734,10 @@ Les simulations à climat plus chaud correspondent à un scénario d'émission d
 climatique RCP8.5. Que ce soit pour les simulations en climat présent ou futur, une méthode de correction de biais quantile-quantile, par rapport à la base de
 données HadISST1, est appliquée. Cette méthode est décrite plus en détails dans \textcite{chauvin_future_2020}.
 
-\num{2031}~--~\num{2080} pour l'une (NAtl) et \num{2047}~--~\num{2094}.
+Les deux simulations sur le bassin Nord Atlantique sont ci-après dénommées ATL-P (pour celle en climat présent) et ATL-F (climat futur). ATL-P couvre la période
+\num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Réciproquement, les simulations sur l'Indien sud sont appelées
+respectivement SIO-P et SIO-F. SIO-P est en décalage de \num{6} mois par rapport à ATL-P, de façon à couvrir les saisons cycloniques \num{1966}~--~\num{2014},
+et s'étend donc de Juillet \num{1965} à Juin \num{2014}. Enfin, SIO-F couvre les saisons cycloniques \num{2047}~--~\num{2094} (48 ans). 
 
 %--------------------------------------
 \section{Synthèse}
