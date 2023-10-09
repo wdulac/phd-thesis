@@ -156,8 +156,8 @@ peuvent être utilisées comme prédictant pour la construction d'indices de cyc
 Le mode de variabilité El Niño (respectivement El Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'oćean Pacifique central.
 Il existe plusieurs façons de diagnostiquer ce phénomène et qui se distinguent entre elles par la région, ou boîte, utilisée pour calculer l'anomalie de
 température, ainsi que par le lissage temporel utilisé. Ces boîtes sont au nombre de \num{4}, réparties entre les côtes de l'Amérique centrale et les îles
-Salomon. L'anomalie de SST prise dans une de ces boîtes définit alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
-opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est définit sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
+Salomon. L'anomalie de SST prise dans une de ces boîtes défini alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
+opérationnels de la NOAA, nommé ONI (\textit{Oceanic Niño Index}). L'ONI est défini sur la boîte 3.4, c'est à dire à cheval sur les boîtes \num{3} et \num{4}
 (non montrées) et définie entre \ang{120}W et \ang{170}W, et entre \ang{5}S et \ang{5}N. Les anomalies sont lissées sur \num{3} mois glissants, et la référence
 climatologique est prise comme la SST moyenne sur la toute la période disponible. La \cref{fig:ONI} présente la boîte 3.4 utilisée pour calculer l'anomalie de
 température, ainsi que la série temporelle de l'ONI entre janvier \num{1980} et décembre \num{2010}.
@@ -245,7 +245,7 @@ thermiques et dynamiques que pour le TCS et pour les \cref{sec:apport_res_tempor
 relative $T$.
 
 Nous définissons dans un premier temps l'équivalent de l'indice M10 pour ARPEGE, nommé AM10. Nous réalisons ensuite une seconde régression en ajoutant à
-ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'ONI, définit en tout point de la grille comme l'anomalie
+ces quatre variables décrivant l'environnement de grande échelle le champ artificiel de l'ONI, défini en tout point de la grille comme l'anomalie
 mensuelle de SST dans la boîte 3.4 présentée dans la \cref{sec:diag_enso}. L'indice incluant l'ONI comme prédicteur est nommé OAM10, abrégé en OA. La régression
 avec l'ONI comme prédicteur est appliquée aussi bien à l'échelle globale qu'à l'échelle des bassins individuels. Dans le second cas, la méthodologie employée
 dans la \cref{sec:indice_regional} pour construire l'indice LM10 est transposée aux prédicteurs et prédictant ARPEGE, notamment pour ce qui concerne la
@@ -476,7 +476,7 @@ exemples. La capacité des indices de cyclogénèse à réagir à ce mode de var
 
 Sachant cela, l'introduction de la variable ONI aurait pu être tout à fait redondante et n'apporter aucune plus-value dans la régression. C'est d'ailleurs une
 interprétation possible aux significativités pour le moins hésitantes associées à ce prédicteur dans le \cref{tab:coefs_LOA}. En effet, le champ spatial
-artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient pas définition aucune variabilité
+artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient par définition aucune variabilité
 spatiale. Or, les résultats obtenus dans le \cref{chap:chapitre_3} montrent que la régression de Poisson vise avant toute autre chose à fournir la meilleure
 vraisemblance spatiale entre les prédicteurs et le prédictant. Malgré cela, l'utilisation de l'ONI comme prédicteur et d'un coefficient $b_{\mathrm{ONI}}$
 associé, quand bien même ce dernier n'est pas statistiquement significatif, améliore sensiblement la corrélation entre la variabilité interannuelle de l'indice
@@ -489,7 +489,255 @@ cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais
 % cyclogénèses détectées dans les bassins SIndW et SIndE, mais moins évident dans le SPac, tandis que l'ajout du prédicteur dans ces régions pour la construction
 % de l'indice LOA renvoie le message inverse. Une explication à ce qui peut alors
 
-\section{Tendances}
+\section{Tendances introduites par le déficit de saturation d'humidité}
+
+Le déficit de saturation d'humidité atmosphérique, comme déjà évoqué dans le \cref{chap:chapitre_1} (\cref{sec:projections_futures}), constitue une variable
+d'intérêt pour l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, celui-ci augmente du
+fait de la dépendance de la pression de vapeur saturante à la température, tandis que l'humidité relative est projetée comme approximativement constante. Le
+déficit de saturation d'humidité, que l'on appelera par la suite VPD (\textit{Vapour-Pressure Deficit}), et noté $s$, est défini ici comme la différence $s =
+e_s - e$, où $e_s$ est la pression de vapeur saturante et $e$ la pression partielle de la vapeur d'eau : $e / e_s$. Le VPD se distingue donc de l'humidité
+relative définie par le ratio entre la pression partielle de la vapeur d'eau et la pression de vapeur saturante. \textcite{emanuel_hurricanes_2008} montrent via
+une expérience de descente d'échelle statistique que des simulations climatiques dans lesquelles le déficit de saturation est maintenu constant présentent une
+augmentation du nombre de TC, alors qu'elles indiquent sinon une baisse lorsque ce paramètre n'est pas influencé. Ces résultats ont conduit à la formulation
+modifiée du GPI proposée par \textcite{emanuel_tropical_2010} ---~mentionnée dans la \cref{sec:relations_empiriques} du \cref{chap:chapitre_3}~--- dans laquelle
+l'humidité relative est remplacée par une mesure adimensionnelle du déficit de saturation d'entropie humide, similaire au VPD. Cet indice appliqué aux
+simulations CMIP5 présente cependant toujours un signal divergeant (c'est à dire une augmentation de l'activité) en climat plus chaud.
+\textcite{camargo_testing_2014} montrent à l'inverse que certaines combinaisons de prédicteurs dans un indice de cyclogénèse construit par régression de Poisson
+peuvent aboutir à une fréquence d'occurrence à la baisse en climat futur, notamment lorsque le VPD est introduit.
+
+On s'intéresse dans cette nouvelle et dernière section à l'apport du VPD en lieu et place de l'humidité relative à \hPa{600} dans un indice de cyclogénèse
+construit par une régression de Poisson. En particulier, puisqu'il a été mis en évidence que la variabilité interannuelle d'un tel indice était difficile à
+améliorer, nous nous intéressons plutôt à la recherche et à l'analyse de tendances dans la variabilité du nombre de TC d'une année sur l'autre.
+
+\subsection{Régression de Poisson avec le VPD}
+
+Conformément à \textcite{camargo_testing_2014}, le VPD est intégré verticalement en chaque point de grille. L'intégration verticale bénéficie en effet de
+l'avantage, par rapport à une moyenne, de ne pas être influencé par les valeurs très faibles dans les dernières couches de l'atmosphère. Le déficit de
+saturation d'humidité s'exprime traditionnellement en \SI{}{\kilo\pascal}, et l'intégrale sur plus d'une vingtaine de niveaux verticaux d'espacement variable
+amène à de larges valeurs numériques. Pour cette raison, le VPD intégré sur la colonne est exprimé ici en $10^6$~\SI{}{\pascal\squared}. Cela se traduit par une
+plage de valeurs comprise entre \SI{1e6}{\pascal\squared} et \SI{62e6}{\pascal\squared}, soit un ordre de grandeur comparable aux autres prédicteurs, et en
+particulier à l'humidité relative ---~que le VPD remplace~--- et donc \textit{in fine} à une valeur du coefficient $b_s$ qu'il est possible de comparer à $b_H$.
+En effet, puisque les coefficients expriment des sensibilités pour des changements unitaires, l'application d'un facteur d'échelle au prédicteur se répércute de
+la même manière sur son coefficent dans la régression. En outre, et bien que \textcite{camargo_testing_2014} ne précisent pas l'unité utilisée pour le déficit
+de saturation intégré sur la colonne, notre valeur de $b_s$ est du même ordre de grandeur que celle proposée pas ces derniers.
+
+La régression est faite selon l'exact même mode opératoire que pour l'indice AM10 construit dans la section précédente, et l'indice M10 établit sur ERA5 avant
+lui (voir \cref{sec:apport_res_temporel_spatial}). La relation ainsi établie est donnée ci-dessous :
+%
+\begin{align*}
+\tag{AVPD}
+    \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_{s} \, s + b_T T + \log \cos \phi \big)\\
+        &= \exp \big( \num{-13.5399} + \num{2.3765} \, \eta - \num{0.0179} \, V_{\mathrm{shear}} \underbrace{- \num{0.1238} \, s}_{\mathrm{VPD}} + \num{0.6204} \, T + \log \cos \phi \big)
+\end{align*}
+%
+Le coefficient $b_s$ est donné à \mypm{-0.1238}{0.007}, avec des pourcentiles \prct{2.5} et \prct{97.5} de respectivement \num{-0.138} et \num{-0.110}. Le
+prédicteur est donc hautement significatif dans la régression. À titre de référence, le coefficient trouvé dans \textcite{camargo_testing_2014}, entre la
+réanalyse NCEP et IBTrACS, est de $+$\num{0.13}. La différence du signe s'explique par le fait qu'ici, et contrairement à \textcite{camargo_testing_2014}, le
+VPD est défini positif, si bien qu'une grande valeur de $s$ est associée à une colonne atmosphérique particulièrement sèche, et donc défavorable à la
+cyclogénèse. Notons que la régression faite sur ERA5 et IBTrACS (protocole M10) avec l'intégrale verticale du VPD en remplacement de l'humidité relative conduit
+à une valeur similaire avec $b_s^{\mathrm{ERA5}} \sim \num{-0.17}$. Avec les moyennes climatologiques (protocole C10), on a $b_s^{\mathrm{ERA5}} \sim
+\num{-0.14}$, ce qui se rapproche encore d'avantage du coefficient de \textcite{camargo_testing_2014}, lesquels utilisent également des moyennes
+climatologiques. Ici, les coefficients $b_\eta$ et $b_{V_{\mathrm{shear}}}$ demeurent quasiment inchangés par rapport à AM10. La seule différence notable se
+trouve dans la sensibilité à la SST relative, qui passe d'environ \num{0.42} à \num{0.62} ici. Une augmentation du même ordre de grandeur est notée sur ERA5
+(M10 comme C10), avec par exemple un passage de $b_T^{\mathrm{ERA5}}$ de \num{0.41} à \num{0.62} pour M10. \textcite{camargo_testing_2014} présentent le même
+constat avec un coefficient de SST relative passant de \num{0.35} à \num{0.57} lorsque le VPD est introduit. L'effet du VPD sur les coefficients de la
+régression entre la fréquence d'occurrence des TC et l'environnement de grande échelle apparaît donc robuste entre NCEP, ERA5 et les observations IBTrACS d'un
+côté, et notre simulation ARPEGE forcée par HadISST1 et les cyclogénèses issues du schéma de détection de cyclones tropicaux de l'autre.
+
+Précisons que l'introduction du VPD dans la régression de Poisson n'a que peu d'impact sur la variabilité interannuelle. En outre, la corrélation de la
+variabilité interannuelle inférée par l'indice AVPD est généralement inchangée par rapport à AM10, mais peut également être dégradée, comme en atteste la
+\cref{fig:corr_AVPD_AM10_M10}. Contrairement à l'introduction de l'indice ONI dans la \cref{sec:indice_ONI}, aucun bassin ne voit sa corrélation entre la
+variabilité interannuelle de l'indice et celle du traqueur devenir significative grâce à l'introduction du VPD.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{corr_AVPD_AM10_M10_tracks.png}
+    \caption{Corrélations croisées entre la variabilité interannuelle de : AVPD ; AM10 ; M10 du \cref{chap:chapitre_3} appliqué à la simulation ARPEGE ; le
+    schéma de détection, entre 1980 et 2010.}
+    \label{fig:corr_AVPD_AM10_M10}
+\end{figure}
+
+La \cref{fig:diff_VPD_AM10} présente la différence entre les moyennes temporelles de l'indice AVPD et l'indice AM10. L'effet du VPD dans la répartition spatiale
+de l'activité simulée par l'indice est variable selon les bassins (voir aussi le \cref{tab:tendances_PRE625REFT359x} pour la façon dont la fréquence annuelle
+est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène notamment à deux changements intéressants, présentés dans les grossissements sur
+la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE ne recensent d'activité
+(voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse construit sur ces données
+constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition jamais strictement nuls, ce
+qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées, il ne fait toutefois aucun
+doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et le TCS (de même que tous les
+indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), mais pas le CYGP, lequel ---~rappelons le~--- ne dépend pas de
+l'humidité relative. Ce biais est brièvement mentionné dans le \cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{carte_diff_VPD_AM10.png}
+    \caption{Carte des différences annuelles moyennes entre l'indice AVPD et AM10. Les deux grossissements montrent la côte au large de l'Angola (entre \ang{0}E
+    et \ang{25}E, et \ang{20}S et l'équateur) d'une part et la région du Golfe Persique et de la Mer Rouge (entre \ang{30}E et \ang{70}E, et \ang{8.5}N et
+    \ang{40}N) d'autre part.}
+    \label{fig:diff_VPD_AM10}
+\end{figure}
+
+Le premier changement, et le plus conséquent des deux, consiste en la réduction du biais positif dans le Golfe Persique ainsi qu'en Mer Rouge, deux sous-régions
+du bassin NInd. En Mer Rouge (incluant le Golfe d'Aden, entre le Yémen et la Somalie, délimitée en pointillés sur la \cref{fig:diff_VPD_AM10}), la fréquence
+annuelle moyenne entre \num{1980} et \num{2010} inférée par l'indice AM10 est de \num{0.2} TC par an, tandis qu'elle est réduite à \num{0.02} TC par an pour
+l'indice incluant le VPD. Réciproquement, dans le Golfe Persique (en incluant également le Golfe d'Oman à l'embouchure, voir délimitations en pointillés), la
+fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. . Il en résulte que la production de TC
+dans ces régions est purement une conséquence de l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la
+représentation de l'activité est amélioré par l'introduction du VPD est au large des côtes de l'Angola. L'indice incluant le VPD voit sa fréquence réduite de
+\num{0.13} TC par an (AM10, le TCS y simule quant à lui \num{0.17} TC par an) à \num{0.03} TC par an. Cette région ne présente pas d'activité cyclonique dans
+les observations, ni dans les données du traqueur, mais tous les indices dépendant de l'humidité relative y présentent un bias positif, si bien que toute
+réduction de l'activité représente une amélioration.
+
+\subsection{Détection de tendances dans ARPEGE et ERA5}
+
+Le \cref{tab:tendances_PRE625REFT359x} présente l'analyse des tendances dans le nombre annuel de TC dans la simulation ARPEGE forcée par HadISST1 ainsi que dans
+la réanalyse ERA5, tels que vus par plusieurs indices et par le schéma de détection (ou dans le cas d'ERA5, par IBTrACS). L'indice dans lequel le VPD remplace
+l'humidité relative y est appelé AVPD pour celui dont la régression est faite entre ARPEGE et le schéma de détection, et EVPD pour celui dont la régression est
+faite sur ERA5 avec IBTrACS. Sont également inclus dans ce tableau : l'indice AM10 (non appliqué à ERA5) ; l'indice M10 du \cref{chap:chapitre_3}, évalué sur
+ERA5 comme sur la simulation ARPEGE historique ; le TCS et enfin les données issues du schéma de détection / IBTrACS. La comparaison avec M10 en plus du TCS se
+justifie par le fait que l'indice M10 peut être vu comme une version actualisée du TCS. En revanche, appliquer la relation AM10 à ERA5 n'aurait pas beaucoup de
+sens. Pour les tendances évaluées sur ERA5, la période \num{1981}~--~\num{2011} est prise pour disposer de \num{31} saisons cycloniques dans les deux jeux de
+données. C'est pour cette raison que la fréquence annuelle globale dans ERA5 est différente de la valeur de calibration, celle-ci étant établie sur la base de
+la saison 2019 comme borne supérieure.
+
+\begin{table}[htpb]
+    \centering
+    \caption{ Tendances (TC par décennie) et valeur-p associées dans la simulation ARPEGE forcée par HadISST1 entre 1980 et 2010, ainsi que dans ERA5 entre 1981
+    et 2011. Les lignes en gras désignent une tendance significative à \prct{95}. La colonne Fréquence indique la fréquence annuelle moyenne en TC par an.}
+    \label{tab:tendances_PRE625REFT359x}
+    \begin{adjustbox}{height=0.45\textheight}
+        \begin{tabular}{llrrr|rrr}
+        \toprule
+         &  & \multicolumn{3}{r}{\textbf{ARPEGE}} & \multicolumn{3}{r}{\textbf{ERA5}} \\
+         &  & Pente & valeur-p & Fréquence & Pente & valeur-p & Fréquence \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Nord Atlantique}} & AVPD & 0,214 & 0,276 & 7,1 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,440 & 0,143 & 8,0 \\
+         & AM10 & \textbf{0,446} & \textbf{0,018} & \textbf{6,4} & --- & --- & --- \\
+         & M10 & \textbf{0,602} & \textbf{0,011} & \textbf{4,7} & \textbf{0,871} & \textbf{0,007} & \textbf{8,6} \\
+         & TCS & \textbf{0,645} & \textbf{0,014} & \textbf{4,7} & \textbf{1,131} & \textbf{0,003} & \textbf{8,9} \\
+         & Tracks & 0,585 & 0,252 & 6,1 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{3,198} & \textbf{0,001} & \textbf{12,4} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Ouest Pacifique}} & AVPD & -0,121 & 0,845 & 19,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & \textbf{2,245} & \textbf{0,010} & \textbf{29,6} \\
+         & AM10 & 0,268 & 0,622 & 19,4 & --- & --- & --- \\
+         & M10 & 0,407 & 0,527 & 21,0 & \textbf{2,909} & \textbf{0,000} & \textbf{28,8} \\
+         & TCS & 0,467 & 0,458 & 19,9 & \textbf{2,571} & \textbf{0,002} & \textbf{30,0} \\
+         & Tracks & -1,347 & 0,251 & 17,3 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{-1,718} & \textbf{0,034} & \textbf{25,7} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Est Pacifique}} & AVPD & -0,191 & 0,297 & 5,5 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & \textbf{-1,556} & \textbf{0,040} & \textbf{17,5} \\
+         & AM10 & -0,023 & 0,882 & 5,5 & --- & --- & --- \\
+         & M10 & 0,079 & 0,712 & 6,3 & -0,819 & 0,265 & 17,1 \\
+         & TCS & 0,018 & 0,934 & 6,3 & -1,123 & 0,191 & 16,0 \\
+         & Tracks & -0,565 & 0,195 & 2,8 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & \textbf{-2,565} & \textbf{0,009} & \textbf{16,9} \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Nord Indien}} & AVPD & -0,069 & 0,646 & 2,7 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,034 & 0,703 & 3,0 \\
+         & AM10 & 0,031 & 0,862 & 4,0 & --- & --- & --- \\
+         & M10 & 0,048 & 0,753 & 2,9 & \textbf{0,324} & \textbf{0,015} & \textbf{4,0} \\
+         & TCS & 0,071 & 0,529 & 2,8 & 0,133 & 0,218 & 3,6 \\
+         & Tracks & 0,911 & 0,126 & 8,1 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & --- & --- & --- \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud Pacifique}} & AVPD & 0,315 & 0,293 & 10,9 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & -0,052 & 0,922 & 14,0 \\
+         & AM10 & \textbf{0,494} & \textbf{0,039} & \textbf{10,1} & --- & --- & --- \\
+         & M10 & 0,579 & 0,063 & 10,5 & 0,250 & 0,588 & 12,7 \\
+         & TCS & 0,478 & 0,138 & 10,9 & -0,217 & 0,708 & 12,7 \\
+         & Tracks & 0,121 & 0,847 & 8,5 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,964 & 0,220 & 10,5 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud-ouest Indien}} & AVPD & 0,138 & 0,359 & 4,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & -0,197 & 0,506 & 8,2 \\
+         & AM10 & 0,274 & 0,061 & 3,9 & --- & --- & --- \\
+         & M10 & \textbf{0,382} & \textbf{0,049} & \textbf{4,2} & -0,024 & 0,930 & 6,9 \\
+         & TCS & \textbf{0,341} & \textbf{0,034} & \textbf{4,4} & -0,106 & 0,687 & 6,9 \\
+         & Tracks & 0,391 & 0,336 & 4,9 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & 0,165 & 0,704 & 8,7 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Sud-est Indien}} & AVPD & 0,061 & 0,613 & 1,5 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,057 & 0,808 & 3,7 \\
+         & AM10 & 0,114 & 0,380 & 2,1 & --- & --- & --- \\
+         & M10 & 0,175 & 0,351 & 2,2 & 0,114 & 0,679 & 4,7 \\
+         & TCS & 0,175 & 0,351 & 2,7 & -0,062 & 0,795 & 4,6 \\
+         & Tracks & 0,323 & 0,506 & 3,6 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,649 & 0,288 & 7,6 \\
+        \cline{1-8}
+        \multirow[t]{7}{*}{\textbf{Global}} & AVPD & 0,332 & 0,743 & 52,3 & --- & --- & --- \\
+         & EVPD & --- & --- & --- & 0,935 & 0,553 & 84,6 \\
+         & AM10 & \textbf{1,633} & \textbf{0,045} & \textbf{52,3} & --- & --- & --- \\
+         & M10 & \textbf{2,297} & \textbf{0,009} & \textbf{52,3} & \textbf{3,649} & \textbf{0,001} & \textbf{83,7} \\
+         & TCS & \textbf{2,232} & \textbf{0,007} & \textbf{52,3} & \textbf{2,349} & \textbf{0,041} & \textbf{83,7} \\
+         & Tracks & 0,129 & 0,932 & 52,3 & --- & --- & --- \\
+         & IBTrACS & --- & --- & --- & -0,528 & 0,759 & 83,6 \\
+        \bottomrule
+        \end{tabular}
+\end{adjustbox}
+\end{table}
+
+Dans le bassin NAtl, tous les indices basés sur l'humidité relative détectent une tendance à la hausse statistiquement significative. Dans ARPEGE, celles-ci
+sont faibles, de l'ordre de \num{0.5} TC par décennie, tandis que le schéma de détection ne détecte pas de telle tendance, de même que l'indice AVPD. Dans ERA5,
+les tendances sont plus marquées, mais les indices produisent également plus de TC dans ce bassin par rapport au modèle, du fait de leur calibration différente.
+Rapportées à la fréquence annuelle moyenne, les tendances relatives sont en fait semblables entre ARPEGE et ERA5. Toutefois, IBTrACS présente une tendance à la
+hausse plus importante, déjà mentionnée dans le \cref{chap:chapitre_1} (\cref{sec:observations}) et valant ici environ \num{3.2} TC par décennie. Cela tend
+alors à donner raison au TCS et dérivés, tandis que les indices utilisant le déficit de saturation seraient mis en défaut dans ce bassin. Précisons néanmoins
+qu'une tendance dans la fréquence annuelle de TC n'est pas détectée dans ARPEGE par le schéma de détection, si bien que l'absence de tendance dans l'indice AVPD
+est au moins cohérente avec les tracks.
+
+Les trois indices calculés sur ERA5 indiquent une tendance significative d'ampleur comparable dans le bassin WPac, entre \num{2.2} TC par décennie pour EVPD et
+\num{2.9} TC par décennie pour M10. Dans IBTrACS, une tendance significative mais de signe opposée est identifiée à raison de \num{-1.7} TC par décennie. Il est
+clair que la tendance positive dans ERA5 provient de la rupture liée à l'humidité dans le bassin WPac, largement documentée dans le \cref{chap:chapitre_3}.
+L'indice EVPD est également concerné, car le déficit de saturation d'humidité intégré sur la colonne présente dans ERA5 une tendance opposée à celle de
+l'humidité relative (donc à la baisse), si bien que la rupture dans la variabilité interannuelle de l'indice est toujours visible dans la réanalyse dans ce
+bassin avec l'indice EVPD. Aucune tendance significative n'est identifiée dans ARPEGE, que ce soit dans les indices ou dans les tracks. Il est toutefois
+possible que le traqueur indiquerait une tendance à la baisse significative dans une simulation plus longue, car celui-ci présente une pente de \num{-1.35} TC
+par décennie (soit une tendance relative plus forte que dans IBTrACS) avec une valeur-p plus basse que celle des indices.
+
+Dans le bassin EPac, l'indice EVPD présente une tendance du même signe qu'IBTrACS mais d'amplitude réduite, avec respectivement \num{-1.6} TC par décennie pour
+EVPD et \num{-2.6} TC par décennie dans IBTracs. Aucun des indices basés sur l'humidité relative ne présentent par ailleurs de tendance. Dans ARPEGE, aucune
+tendance n'est détectée, peut-être dû au biais du modèle dans ce bassin (voir \cref{sec:tracking_arpege}). Dans le bassin SPac, dans ARPEGE, l'indice AM10
+indique une faible tendance à la hausse, tandis que M10 appliqué à ARPEGE est en limite de significativité avec une valeur-p de \num{0.06}, et une pente sinon
+positive. Ces tendances ne sont pas confirmées ni par le schéma de détection, ni par IBTrACS, si bien que l'absence de tendance dans l'indice AVPD apparaît en
+meilleur accord avec le traqueur et les observations. La situation dans le SIndW est tout à fait similaire car les trois indices basés sur l'humidité relative
+indiquent une tendance à la hausse (en limite de significativité pour AM10) tandis que ni AVPD, ni le traqueur n'en présentent.
+
+Enfin, c'est à l'échelle globale que le signal est le plus marqué et que l'apport du VPD dans les indices se fait le plus clair. En effet, sur notre simulation
+ARPEGE comme sur la réanalyse ERA5, tous les indices basés sur l'humidité relative présentent une tendance à la hausse, quoique plus faible pour AM10. Ces
+tendances semblent erronées dans la mesure où ni le traqueur ni les observations historiques n'en présentent. Là encore, les indices basés sur le déficit de
+saturation intégré sur la colonne ne présentent pas de tendance non plus, et sont donc en meilleur accord avec la variabilité détectée / observée.
+
+\subsection{Application en climat plus chaud}
+
+On s'intéresse ici à l'application des indices définis comme fonction du déficit de saturation d'humidité intégré sur la colonne à des simulations en climat
+plus chaud avec ARPEGE-Climat utilisé dans sa configuration basculée-étirée, comparé aux indices dépendant de l'humidité relative appliqués aux mêmes
+simulations.
+
+\subsubsection{Description des simulations}
+
+Deux expériences réalisées sur des bassins océaniques différents sont utilisées, issues respectivement de \textcite{chauvin_future_2020} et de
+\textcite{cattiaux_projected_2020}. Pour la première expérience, le pôle est placé dans l'océan Atlantique nord, à \ang{20}N, \ang{50}W, et le facteur
+d'étirement $c=\num{3.5}$ est appliqué à la grille régulière T359, atteignant localement jusqu'à \km{14} de résolution. La \cref{fig:rotated_streched}
+(\vpageref{fig:rotated_streched}) du \cref{chap:chapitre_1} présente la variation de la résolution spatiale pour la simulation utilisée ici. La deuxième est
+centrée sur le bassin Sud Indien, avec un pôle situé à \ang{12.5}S, \ang{55}E, à proximité de l'île de la Réunion, et utilise un même facteur d'étirement $c$. 
+
+Les simulations utilisent la même version du modèle que pour la simulation utilisée dans ce chapitre \parencite{voldoire_evaluation_2019}, et les deux
+expériences partagent le même protocole expérimental, notamment pour ce qui relève du forçage par des SST prescrites. Spécfiquement, chacune des deux
+expériences est composée de deux simulations : Une à climat présent, et une autre à climat plus chaud. Les simulations à climat présent sont forcées par des
+séries de SST et de concetration en glace de mer provenant d'une simulation historique faite avec le modèle couplé CNRM-CM5 \parencite{voldoire_cnrmcm5_2013}.
+Les simulations à climat plus chaud correspondent à un scénario d'émission de gaz à effet de serre associé à un forçage radiatif de
+\SI{8.5}{\watt\per\meter\squared} au sommet de l'atmosphère à la fin du siècle (RCP8.5, \textit{Radiative Concentration Pathway})
+\parencite{christensen_climate_2013}, et les SST utilisées sont également issues d'une simulation faite avec CNRM-CM5, mais cette fois sous ce même scénario
+climatique RCP8.5. Que ce soit pour les simulations en climat présent ou futur, une méthode de correction de biais quantile-quantile, par rapport à la base de
+données HadISST1, est appliquée. Cette méthode est décrite plus en détails dans \textcite{chauvin_future_2020}.
+
+Les deux simulations sur le bassin Nord Atlantique sont ci-après dénommées ATL-P (pour celle en climat présent) et ATL-F (climat futur). ATL-P couvre la période
+\num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Réciproquement, les simulations sur l'Indien sud sont appelées
+respectivement SIO-P et SIO-F. SIO-P est en décalage de \num{6} mois par rapport à ATL-P, de façon à couvrir les saisons cycloniques \num{1966}~--~\num{2014},
+et s'étend donc de Juillet \num{1965} à Juin \num{2014}. Enfin, SIO-F couvre les saisons cycloniques \num{2047}~--~\num{2094} (48 ans). 
 
 %--------------------------------------
 \section{Synthèse}
