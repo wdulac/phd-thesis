@@ -737,7 +737,30 @@ données HadISST1, est appliquée. Cette méthode est décrite plus en détails 
 Les deux simulations sur le bassin Nord Atlantique sont ci-après dénommées ATL-P (pour celle en climat présent) et ATL-F (climat futur). ATL-P couvre la période
 \num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Réciproquement, les simulations sur l'Indien sud sont appelées
 respectivement SIO-P et SIO-F. SIO-P est en décalage de \num{6} mois par rapport à ATL-P, de façon à couvrir les saisons cycloniques \num{1966}~--~\num{2014},
-et s'étend donc de Juillet \num{1965} à Juin \num{2014}. Enfin, SIO-F couvre les saisons cycloniques \num{2047}~--~\num{2094} (48 ans). 
+et s'étend donc de Juillet \num{1965} à Juin \num{2014}. SIO-F couvre quant à elle les saisons cycloniques \num{2048}~--~\num{2094} (47 ans). Notons enfin que
+le domaine spatial dans les simulations SIO regroupe les bassins SIndW et SIndE utilisés dans ce document, c'est à dire qu'il correspond exactement au bassin
+SInd (\cref{fig:bassins_TC,fig:acgi_ibt}) avant séparation autour de \ang{90}E. Pour les simulations ATL, nous utilisons les délimitations habituelles du bassin
+NAtl.
+
+\subsubsection{Détection des cyclogénèses}
+
+Le schéma de détection du CNRM est appliqué à ces deux expériences (quatre simulations). Les simulations SIO-P et SIO-F utilisent les même paramètres de
+détection que la simulation forcée par HadISST1 utilisée dans ce chapitre, à savoir \textbf{VOR}~$=$~\SI{20e-5}{\per\second} ; \textbf{RES}~$=$~\ms{13},
+\textbf{TANOM}~$=$~\SI{1}{\kelvin} ; \textbf{PT}~$=$~\SI{-2}{\kelvin} ; \textbf{PW}~$=$~\ms{5}, et \textbf{REL}~$=$~\SI{20e-5}{\per\second}. Les paramètres
+diffèrent cependant pour les deux simulations ATL. Nous utilisons en effet les mêmes trajectoires que celles utilisées par \textcite{chauvin_future_2020}. Les
+seuils \textbf{TANOM,} \textbf{PT} et \textbf{PW} sont inchangés, mais \textbf{VOR} est pris à \SI{5e-5}{\per\second}, \textbf{RES} à \ms{17} et enfin le
+paramètre de relaxation \textbf{REL} est fixé à \SI{25e-5}{\per\second}.
+
+Nous ne conservons ici que les premières échéances de chaque trajectoire, lesquelles sont assimilées aux cyclogénèses. À la différence de
+\textcite{cattiaux_projected_2020,chauvin_future_2020}, nous appliquons comme précédemment le filtre du STJ aux quatres jeux de cyclogénèses, en ne conservant
+que celles situées en dessous de la latitude diagnostiquée. Ces jeux de trajectoires sont décrits et analysés en détails ---~incluant les diagrammes
+vent-presson et densités de trajectoires~--- dans \textcite{cattiaux_projected_2020,chauvin_future_2020}. Nous nous contenterons alors d'ajouter ici que, après
+application du filtre terre-mer à \ang{1} de résolution, selon la même méthodologie que précédemment, le filtre du STJ retire au total \num{236} des \num{768}
+TC dans SIO-P (sur 49 ans), et \num{147} des \num{577} TC dans SIO-F (sur 47 ans). L'effet du filtre sur les simulations ATL est en revanche plus conséquent,
+avec une suppression de \num{483} des \num{807} TC sur ATL-P (49 ans), et de \num{396} des \num{726} TC dans ATL-F (50 ans). Pour ATL-P et ATL-F, la latitude
+médiane des cyclogénèses qui sont retirées par le filtre du STJ est de respectivement \ang{31.5}N et \ang{32.5}N. De plus, notons que la latitude moyenne du STJ
+sur la saison SON dans la simulation ATL-F est réhaussée de \ang{0.6} par rapport à celle évaluée sur ATL-P. Spécifiquement, la latitude moyenne du STJ sur SON
+dans ATL-P, évaluée entre \ang{70}W et \ang{15}W est de \ang{35.8}N, et de \ang{36.4}N dans ATL-F.
 
 %--------------------------------------
 \section{Synthèse}
