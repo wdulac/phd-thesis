@@ -762,6 +762,62 @@ médiane des cyclogénèses qui sont retirées par le filtre du STJ est de respe
 sur la saison SON dans la simulation ATL-F est réhaussée de \ang{0.6} par rapport à celle évaluée sur ATL-P. Spécifiquement, la latitude moyenne du STJ sur SON
 dans ATL-P, évaluée entre \ang{70}W et \ang{15}W est de \ang{35.8}N, et de \ang{36.4}N dans ATL-F.
 
+\subsubsection{Indices de cyclogénèse}
+
+Nous calculons plusieurs indices de cyclogénèse pour analyser le changement annuel moyen entre les simulations du scénario RCP8.5 (ATL-F et SIO-F) et celles à
+climat présent (ATL-P et SIO-P). En particulier, nous appliquons la régression de Poisson sur les champs ATL-P et SIO-P et ajustées sur les cyclogénèses
+détectées dans ces simulations respectives. Les régressions sont faites avec l'humidité relative d'une part et le VPD d'autre part. Il s'agit donc du mode
+opératoire de construction d'indices de cyclogénèse régionaux, si bien que ces derniers sont appelés LAM10 et LAVPD. Comme dans la \cref{sec:indice_ONI} et la
+\cref{sec:indice_regional} avant cela, rappelons que ces deux indices sont caractérisés par des coefficients $b$ différents pour le bassin NAtl et SInd. Notons
+d'ailleurs que nous ne faisons ici pas la distinction SIndW et SIndE, mais traitons le bassin SInd dans son ensemble.
+
+Nous comparons également le changement future/présent par l'intermédiaire de l'indice LM10, dont les coefficients $b$ furent obtenus entre ERA5 et IBTrACS.
+Notons que la régression LM10 est recalculée pour obtenir des coefficients à l'échelle du bassin SInd, plutôt que pour SIndW et SIndE séparément. Les
+coefficients en résultant valent approximativement la moyenne entre les coefficients LM10 sur les deux sous-régions du bassin SInd (voir
+\cref{tab:tab:coefs_fit_bassin} du \cref{chap:chapitre_3}, \vpageref{tab:coefs_fit_bassin}). Enfin, le TCS est également utilisé à titre de référence. Le
+\cref{tab:coeffs_experiences} présente (ou rappelle) les coefficients des indices sus-mentionnés.
+
+\begin{table}[htpb]
+    \centering
+    \caption{Indices de cyclogénèse utilisés sur les expériences ATL et SIO}
+    \label{tab:coeffs_experiences}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{llrrrrrrr}
+        \toprule\toprule
+        \multicolumn{2}{c}{\textbf{Indice}} & \multicolumn{6}{c}{\textbf{Coefficients}} & \multicolumn{1}{c}{\textbf{Calibration}} \\
+        \midrule
+                                            & & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_s$ & $b_T$ & \\
+        \midrule
+        \multirow{2}{*}{LAVPD} & NAtl & \num{-216.0074} & \num{56.4265} & \num{-0.0511} & --- & \num{-0.0369} & \num{0.3901} & \num{1.048} \\
+                               & SInd & \num{-256.6651} & \num{67.4970} & \num{-0.0384} & --- & \num{-0.0420} & \num{0.3506} & \num{1.021} \\ 
+        \midrule
+        \multirow{2}{*}{LAM10} & NAtl & \num{-254.8083} & \num{66.6267} & \num{-0.0551} & \num{0.0065} & --- & \num{0.3719} & \num{1.050}\\
+                               & SInd & \num{-233.9484} & \num{60.8866} & \num{-0.0375} & \num{0.0155} & --- & \num{0.2876} & \num{1.022} \\
+        \midrule
+        \multirow{2}{*}{LM10}  & NAtl & \num{-17.3713} & \num{2.1677} & \num{-0.0594} & \num{0.0651} & --- & \num{0.3313}  & \num{0.055}\\
+                               & SInd & \num{-15.9070} & \num{1.7221} & \num{-0.0691} & \num{0.0672} & --- & \num{0.4758} & \num{0.050}\\
+        \midrule
+        \multirow{2}{*}{TCS}   & NAtl    & \num{-5.8} & \num{1.03} & \num{-0.15} & \num{0.05} & --- & \num{0.56} & \num{1.389e-4}\\
+                               & SInd    & \num{-5.8} & \num{1.03} & \num{-0.15} & \num{0.05} & --- & \num{0.56} & \num{1.335e-4}\\
+        \bottomrule
+    \end{tabular}
+}
+\end{table}
+
+Pour le calcul des indices sur les simulations en climat présent, un coefficient de calibration est appliqué pour ramener les indices vers la moyenne annuelle
+(entre juillet et juin pour le bassin SInd) du nombre de TC déterminé par le schéma de détection, après application du filtre du STJ. Pour l'application des
+indices aux simulations RCP8.5, les coefficients de calibration utilisés pour le climat présent sont ré-employés tels quels. Ces coefficients sont précisés dans
+le \cref{tab:coeffs_experiences}.
+
+Remarquons que les indices LAVPD et LAM10 présentent des valeurs $b_0$ et $b_\eta$ inhabituelles par rapport à celles rencontrées jusqu'à maintenant. Ces
+valeurs sont propres aux simulations et cyclogénèses de référence sur lesquelles sont faites les régressions et ne sauraient s'interpréter ---~dans le cas de
+$b_\eta$~--- comme un biais septentrional extrême par rapport à LM10. Il semble en outre crédible que les fortes valeurs de $b_\eta$ permettent de compenser les
+valeurs $b_0$ remarquablement basses, de façon à ce que la fréquence annuelle moyenne de ces indices soient proches de celle détectée par le schéma de
+détection. Il n'est en effet quasiment pas nécessaire de recalibrer un indice pour l'appliquer aux mêmes données dont sont issues ses coefficients $b$, comme en
+attestent les coefficients de calibration proches de l'unité pour LAM10 et LAVPD. En revanche, la valeur $b_\eta^{\mathrm{LAM10}} > b_\eta^{\mathrm{LAVPD}}$
+pour le bassin NAtl indique bel et bien un décalage de l'activité simulée vers des latitudes légèrement supérieures pour LAM10 par rapport à LAVPD. Dit
+autrement, ces coefficients ne peuvent être comparés que lorsqu'ils sont été obtenus dans des conditions comparables.
+
 %--------------------------------------
 \section{Synthèse}
 
