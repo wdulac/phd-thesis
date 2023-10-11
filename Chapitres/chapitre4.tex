@@ -5,10 +5,10 @@
 \begin{document}
 
 \begin{itshape}
-    Dans ce dernier chapitre, on établit et applique des indices de cyclogénèse, construits par régression de Poisson, non plus dans le monde de la réanalyse et
-    des observations, mais dans le monde du modèle avec ARPEGE-Climat. L'ajout de nouveaux prédicteurs dans la régression est exploré, et une attention
-    particulière est portée à la recherche de tendances à long terme. Les indices sont ensuite appliqués à des simulations à climat plus chaud avec ARPEGE
-    utilisé dans sa configuration basculée-étirée sur les antilles et sur le bassin Sud-Indien.
+    Dans ce dernier chapitre, nous nous intéressons à l'ajout de nouveaux prédicteurs dans des indices de cyclogénèse construits par régression de Poisson.
+    L'apport de l'ajout explicite du mode de variabilité El Niño dans la régression est étudié dans un premier temps. Ensuite, nous nous intéressons au
+    remplacement de l'humidité relative à \hPa{600} par une mesure intégrée sur la colonne du déficit de saturation d'humidité. Cet indice est ensuite appliqué
+    à deux simulations en climat plus chaud avec le modèle ARPEGE utilisé dans sa configuration basculée-étirée.
 \end{itshape}
 
 \minitoc
@@ -17,20 +17,47 @@
 %--------------------------------------
 \section{Introduction}
 
-Dans le \cref{chap:chapitre_3}, nous avons construit des indices de cyclogénèse par régression de Poisson en prenant la réanalyse ERA5 comme source pour
-l'environnement de grande échelle, et la base de données observationnelle IBTrACS comme référence pour les observations. Dans ce chapitre, nous nous
-intéresserons à l'utilisation d'indices de cyclogénèse dans des simulations climatiques réalisées avec ARPEGE-Climat. [En cours]
+Le \cref{chap:chapitre_3} a porté sur la modification des coefficients $b$ du TCS pour étudier la façon dont ces coefficients affectent la variabilité
+interannuelle inférée par l'indice. Plusieurs approches ont été expérimentées, telles que la réalisation de la régression sur des champs à plus haute
+résolution, en introduisant de la variabilité temporelle à plus haute fréquence, ainsi qu'en réalisant des régressions locales à l'échelle des bassins
+océaniques. Re-déterminer les coefficients $b$ du TCS pour obtenir un indice mieux adapté à son jeu de données, à l'échelle globale comme régionale, présente
+une réelle plus-value, mais l'amélioration de la représentation de la variabilité interannuelle n'en fait cependant pas partie. Celle-ci apparaît en effet comme
+particulièrement robuste aux changements dans les coefficients de l'indice, si bien que le choix des prédicteurs dans la régression apparaît comme la seule
+façon d'influencer la variabilité interannuelle.
 
-Il faut justifier le fait de faire un indice de cyclogénèse sous perfusion Niño 3.4 pour essayer de donner de l'amplitude et de la corrélation à la variabilité
-interannuelle. Si on demande, on le fait dans le monde du modèle parce que les travaux ERA5 sont plutôt une introduction aux outils et aux méthodes utilisées
-pour les indices, notamment pour l'aspect validation de la reproduction de la méthodologie de Tippett, et la déclinaison en régression à l'échelle du bassin ;
-indispensable pour Niño mais aussi pour les runs climat futur puisqu'elles sont faites en basculée-étirée.
+Dans ce chapitre, il s'agit par conséquent d'étudier l'apport de deux nouveaux prédicteurs dans la construction d'un indice de cyclogénèse par régression de
+Poisson. Dans un premier temps, nous ajouterons explicitement un diagnostique du mode de variabilité El Niño comme nouveau prédicteur dans la régression. L'ENSO
+est en effet connu pour sa modulation de l'activité cyclonique tropicale \parencite{chan_tropical_1985,landsea_ninosouthern_2000,lin_enso_2020} et constitue
+une source de prévisibilité de l'activité cyclonique à l'échelle interannuelle. L'ajout d'un diagnostique ENSO dans la régression est considérée ici à titre
+expérimental, car la philosophie des indices de cyclogénèse consiste habituellement à introduire les ingrédients qui sont supposés intervenir directement dans
+le processus physique de cyclogénèse. L'ENSO affecte quant à lui la SST, le cisaillement vertical ainsi que l'humidité relative à différents degrés selon les
+régions et par télé-connexions. Il ne s'agit donc pas d'un ingrédient intervenant directement dans le processus de formation d'un cyclone tropical. Il est
+toutefois permis de penser que l'ajout de cette information de la façon la plus explicite possible dans un indice de cyclogénèse pourrait être susceptible
+d'impacter de manière significative sa variabilité interannuelle.
+
+Dans un second temps, nous remplacerons le prédicteur d'humidité, définie dans le TCS comme l'humidité relative à \hPa{600}, par le déficit de saturation
+d'humidité intégré sur la colonne. Le déficit de saturation possède en effet la propriété d'évoluer avec le réchauffement climatique dans la mesure où la loi de
+Clausius-Clapeyron indique que la quantité de vapeur d'eau que l'atmosphère est capable de stocker augmente à hauteur de \prct{7} par degré de réchauffement, là
+où l'humidité relative est projetée comme constante. Plusieurs études suggèrent par ailleurs que le déficit de saturation est un paramètre plus pertinent que
+l'humidité relative dans le processus de cyclogénèse \parencite{emanuel_hurricanes_2008,emanuel_tropical_2010}. De plus, \textcite{camargo_testing_2014}
+montrent que des indices construits par régression de Poisson et utilisant cette variable en remplacement de l'humidité relative indiquent une réponse au
+réchauffement climatique cohérente avec la méthode directe de détection objective dans les projections futures.
 
 \section{Utilisation d'un indice Niño dans une régression de Poisson}\label{sec:indice_ONI}
 
 On s'intéresse ici à l'ajout explicite du signal du mode de variabilité ENSO (\textit{El Niño-Southern Oscillation}) dans un indice de cyclogénèse construit par
-régression de Poisson. Il s'agit de voir si ce nouvel apport d'information est susceptible d'introduire de l'amplitude dans la variabilité interannuelle inférée
-par un tel indice, et de voir si ce prédicteur peut, ou non, améliorer au moins localement la représentation de la variabilité interannuelle.
+régression de Poisson, dans le but de voir si cet apport d'information est susceptible d'améliorer la variabilité interannuelle inférée par l'indice.
+
+Nous nous plaçons pour cela dans le cadre du modèle de climat ARPEGE, avec une simulation de la période historique forcée par la SST observée issue de la base
+de données HadISST1. Dans la mesure où la construction de nouveaux indices de cyclogénèse a pour finalité une application à des simulations de réchauffement
+climatique, il est en effet nécessaire de valider la méthodologie mise en place dans le \cref{chap:chapitre_3} avec un modèle de climat. Par ailleurs,
+\textcite{camargo_testing_2014} argumentent que la construction d'indices directement sur les modèles est pertinente car la relation liant l'environnement de
+grande échelle et l'activité cyclonique simulée par le modèle n'est à priori pas exactement la même que dans la réalité ---~ou du moins la réalité vue par le
+prisme des réanalyses atmosphériques.
+
+La simulation ARPEGE forcée par HadISST1 ---~décrite plus en détails dans la section suivante~--- présente donc la chronologie observée des variables de basse
+fréquence issues de l'Océan, et voit notamment l'emprunte des épisodes El Niño / La Niña via les SST historiques, mais l'évolution des variables atmosphériques est
+régie par le modèle ARPEGE. Cette simulation possède en outre ses propres cyclones tropicaux, différents de ceux contenus dans IBTrACS.
 
 \subsection{Données et Méthodes}
 
@@ -946,6 +973,74 @@ et son interprétabilité.
 %--------------------------------------
 \section{Synthèse}
 
+Dans ce chapitre, l'effet de l'introduction de nouveaux prédicteurs dans des indices de cyclogénèse construits par régression de Poisson est évalué. Faisant
+suite aux résultats du \cref{chap:chapitre_3}, dans lequel il est montré que la variabilité interannuelle des indices construits selon ce modèle statistique est
+extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à la construction d'un indice dans lequel un indice ENSO (ONI)
+est introduit et ajouté aux prédicteurs déjà présents, avec l'objectif de parvenir à améliorer la représentation de la variabilité interannuelle inférée par
+l'indice. Spécifiquement, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné, de façon à
+contraindre le modèle statistique à simuler l'effet de l'ENSO sur la variabilité temporelle de la fréquence modélisée. En effet, si le TCS et ses dérivés
+semblent déjà reproduire quelques pics d'activité historique liés à ce mode de variabilité, seuls les évènements les plus importants semblent laisser une
+empreinte dans la variabilité inférée par ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus
+consistante aux phases de l'ENSO, notamment pour des évènements d'ampleur moindres.
 
+Étant donnée la nature de l'impact de l'ENSO sur l'activité cyclonique tropicale, à savoir présentant un effet positif dans les bassins de l'océan Pacifique, et
+négatif dans l'océan Indien sud ainsi que dans l'Atlantique nord, un tel indice ne peut être défini à l'échelle globale et n'a donc de sens que dans une
+démarche de régionalisation de l'indice, selon le mode opératoire de construction d'un indice régional décrit dans la \cref{sec:indice_regional} du
+\cref{chap:chapitre_3}, nommé LOA. Les régressions statistiques locales rejettent le nouveau prédicteur dans la plupart des bassins océaniques, à l'exception
+des bassins WPac et SPac. Cela se traduit par un intervalle de confiance à \prct{95} pour les coefficients $b$ associés à l'ONI à cheval autour de \num{0}, ou
+autrement dit que le signe du coefficient, et donc de la sensibilité de la fréquence modélisée à l'ONI, n'est pas significativement déterminé.
+
+Toutefois, dans la plupart des régions où le coefficient n'est pas significatif, la valeur suggérée apparaît en accord avec le lien constaté dans le modèle
+entre l'activité cyclonique détectée et l'indice ONI. Il apparaît par ailleurs qu'en dépit de la non-significativité des coefficients, la variabilité
+interannuelle inférée par le nouvel indice régional s'en trouve néanmoins sensiblement améliorée. En particulier, la corrélation entre la variabilité
+interannuelle simulée et celle détectée par le schéma de détection est rendue statistiquement significative dans tous les bassins océaniques au seuil de
+\prct{95} lorsque l'indice ONI est introduit, à l'exception du bassin NAtl, qui est néanmoins nettement plus proche du seuil que les indices n'incluant pas ce
+prédicteur.
+
+Le paradoxe apparent entre le rejet du prédicteur d'une part et l'amélioration sensible de la variabilité interannuelle d'autre part peut s'expliquer par le
+fait que la régression de Poisson vise avant toute chose à identifier la combinaison log-linéaire de prédicteurs permettant d'expliquer la meilleure répartition
+de l'activité cyclonique. Les prédicteurs usuels de grande échelle tendent à présenter une variabilité spatiale plus importante que leur variabilité temporelle,
+ce qui contribue probablement à ce que ces indices excellent dans la répartition géographique de l'activité simulée au détriment de la variabilité temporelle.
+Le prédicteur ONI, au contraire, n'est que pure variabilité temporelle, puisque constant dans l'espace par construction. Ainsi le rejet de l'ONI dans la
+régression exprime vraisemblablement l'impossibilité de mettre en relation la variabilité spatiale de l'activité détectée dans le modèle avec le prédicteur ONI.
+Cela laisse entendre que la méthodologie de la régression de Poisson n'est pas la plus adaptée pour espérer améliore d'avantage la variabilité interannuelle
+inférée par les indices. L'utilisation de modèles statistiques plus sophistiqués pourrait peut-être apporter une solution à ce problème, tels que les modèles
+dits \textquote{hurdle}. Les modèles de cette famille consistent en fait en la combinaison de deux processus, l'un visant à évaluer la probabilité d'avoir une
+occurrence de TC de façon binaire, et l'autre visant à déterminer l'amplitude de l'évènement, c'est à dire le nombre de TC, sachant qu'il y a occurrence.
+
+L'utilisation de l'ONI dans un indice de cyclogénèse dégrade quelque peu l'interprétabilité physique de l'indice, puisque l'indice ENSO ne fait pas directement
+partie des ingrédients à priori importants pour que le processus de cyclogénèse ait lieu. Toutefois, ce genre de produit hybride pourrait potentiellement avoir
+de l'intérêt pour la prévision opérationnelle de l'activité cyclonique.
+
+Une seconde partie du chapitre s'est consacrée au remplacement de l'humidité relative à \hPa{600} dans la régression par le déficit de saturation d'humidité
+intégré sur la colonne atmosphérique, ou VPD. Cette variable présente en effet l'avantage, par rapport à l'humidité relative, de changer d'amplitude avec le
+réchauffement climatique, alors que l'humidité relative est projetée approximativement constante. Par ailleurs, la littérature suggère que le VPD serait une
+variable plus pertinente que l'humidité relative dans le processus de cyclogénèse. L'introduction du VPD accorde dans la régression plus de poids à la SST
+relative, lequel voit son coefficient augmenter. Cet effet est robuste entre la simulation ARPEGE forcée par HadISST1, ERA5 et ainsi que dans la littérature.
+Comme pour on pouvait s'y attendre, l'utilisation du VPD en lieu et place de l'humidité relative ne présente aucun impact clair sur la variabilité interannuelle,
+dans un sens ou dans l'autre.
+
+Néanmoins, l'indice construit avec le VPD (AVPD) réduit des biais positifs présents sinon dans tous les indices qui sont définis comme fonction de l'humidité
+relative. L'effet est le plus notable dans la Mer Rouge et dans le Golfe Persique, si bien qu'un indice dans la Mer Rouge, le Golfe Persique, ainsi que dans
+dans l'océan Atlantique Sud au large de l'Angola. L'utilisation du VPD en remplacement de l'humidité relative est donc à minima particulièrement recommandée
+pour l'application d'indices de cyclogénèse dans le bassin NInd.
+
+À défaut de se démarquer par leur représentation de la variabilité interannuelle, les indices basés sur le VPD, qu'ils soient établis sur les champs modèle ou
+bien de la réanalyse ERA5, se distinguent également de ceux basés sur l'humidité relative à travers les différences notées dans l'analyse des tendances dans le
+décompte du nombre de TC sur la période historique. De manière la plus notable, tous les indices basés sur l'humidité relative indiquent une tendance à la
+hausse statistiquement significative de l'ordre de quelques TC par décennie, dans le modèle comme dans la réanalyse. Une telle tendance n'est pas constatée par
+le schéma de détection ou dans les observations historiques. L'introduction du VPD permet alors d'annuler cette tendance, et offre par cette occasion une
+meilleure cohérence avec la mesure directe par détection objective ainsi qu'avec IBTrACS. Ainsi, la convergence entre l'approche directe par détection objective
+et l'approche indirecte des indices de cyclogénèse notée par \textcite{camargo_testing_2014} dans des scénarios climatiques futurs lorsque le VPD est introduit
+semble également avoir ici une empreinte sur la période historique.
+
+Par ailleurs, l'application d'un indice de cyclogénèse basé sur le VPD à des simulations climatiques sous le scénario RCP8.5 montre que l'utilisation du VPD
+amplifie la réduction de l'activité cyclonique constatée par les indices basés sur l'humidité relative. Dans ces simulations, le VPD tend également à lisser la
+réponse spatiale en produisant une réduction homogène à l'échelle des deux bassins océaniques considérés. Dans ces simulations, le TCS et son dérivé régional
+défini sur la simulation à climat présent présentent toutefois une réponse qui semble en meilleur accord avec le signal indiqué par le schéma de détection, par
+rapport à l'indice utilisant le VPD. Si la diminution constatée de l'activité cyclonique dans ces simulations avec le TCS est probablement le résultat d'un
+concours de circonstances propre à ces régions et à ces simulations, ce résultat fournit néanmoins une raison supplémentaire ---~en plus de ses qualités déjà
+mentionnées dans le \cref{chap:chapitre_3}, notamment dans la \cref{sec:proprietes_indices}~--- de porter une attention plus particulière à cet indice par
+rapport notamment au GPI, dont l'usage est très largement répandu.
 
 \end{document}
