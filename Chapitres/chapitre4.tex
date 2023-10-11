@@ -823,11 +823,11 @@ opératoire de construction d'indices de cyclogénèse régionaux, si bien que c
 \cref{sec:indice_regional} avant cela, rappelons que ces deux indices sont caractérisés par des coefficients $b$ différents pour le bassin NAtl et SInd. Notons
 d'ailleurs que nous ne faisons ici pas la distinction SIndW et SIndE, mais traitons le bassin SInd dans son ensemble.
 
-Nous comparons également le changement future/présent par l'intermédiaire de l'indice LM10, dont les coefficients $b$ furent obtenus entre ERA5 et IBTrACS.
-Notons que la régression LM10 est recalculée pour obtenir des coefficients à l'échelle du bassin SInd, plutôt que pour SIndW et SIndE séparément. Les
-coefficients en résultant valent approximativement la moyenne entre les coefficients LM10 sur les deux sous-régions du bassin SInd (voir
-\cref{tab:tab:coefs_fit_bassin} du \cref{chap:chapitre_3}, \vpageref{tab:coefs_fit_bassin}). Enfin, le TCS est également utilisé à titre de référence. Le
-\cref{tab:coeffs_experiences} présente (ou rappelle) les coefficients des indices sus-mentionnés.
+Nous comparons également le changement future/présent par l'intermédiaire de l'indice LM10, dont les coefficients $b$ sont issus des champs ERA5 ajustés sur
+IBTrACS. Notons que la régression LM10 est recalculée pour obtenir des coefficients à l'échelle du bassin SInd, plutôt que pour SIndW et SIndE séparément. Les
+coefficients en résultant valent approximativement la moyenne des coefficients LM10 sur les deux sous-régions du bassin SInd (voir \cref{tab:coefs_fit_bassin}
+du \cref{chap:chapitre_3}, \vpageref{tab:coefs_fit_bassin}). Enfin, le TCS est également utilisé à titre de référence. Le \cref{tab:coeffs_experiences} présente
+(ou rappelle) les coefficients des indices sus-mentionnés.
 
 \begin{table}[htpb]
     \centering
@@ -886,7 +886,7 @@ projettent une diminution de l'activité cyclonique, dont l'ampleur varie entre 
 \end{figure}
 
 La diminution de l'activité constatée pour tous les indices construits par régression de Poisson, notamment ceux basés sur l'humidité relative à \hPa{600}, y
-compris le TCS est ici d'ordre circonstancielle. Si il est en effet avéré que les indices de cyclogénèse classiquement utilisés dans la littérature projettent
+compris le TCS est ici d'ordre circonstanciel. Si il est en effet avéré que les indices de cyclogénèse classiquement utilisés dans la littérature projettent
 généralement une augmentation de l'effet cyclonique, ce qui inclue notamment le TCS, ces projections sont susceptibles de varier pour différents modèles de
 climat, différentes expériences, et pour différents bassins d'activité. \textcite{camargo_testing_2014} montrent par exemple à travers des simulations réalisées
 avec le modèle HiRAM du GFDL \parencite{zhao_simulations_2009} et forcés par des SST issues d'autres modèles couplés, que certaines simulations indiquent une
@@ -945,5 +945,7 @@ et son interprétabilité.
 
 %--------------------------------------
 \section{Synthèse}
+
+
 
 \end{document}
