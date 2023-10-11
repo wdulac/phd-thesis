@@ -489,7 +489,7 @@ cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais
 % cyclogénèses détectées dans les bassins SIndW et SIndE, mais moins évident dans le SPac, tandis que l'ajout du prédicteur dans ces régions pour la construction
 % de l'indice LOA renvoie le message inverse. Une explication à ce qui peut alors
 
-\section{Tendances introduites par le déficit de saturation d'humidité}
+\section{Introduction du déficit de saturation d'humidité}\label{sec:tendances_VPD}
 
 Le déficit de saturation d'humidité atmosphérique, comme déjà évoqué dans le \cref{chap:chapitre_1} (\cref{sec:projections_futures}), constitue une variable
 d'intérêt pour l'étude de l'activité cyclonique tropicale dans le contexte de réchauffement climatique. Dans une atmosphère plus chaude, celui-ci augmente du
@@ -710,13 +710,48 @@ ARPEGE comme sur la réanalyse ERA5, tous les indices basés sur l'humidité rel
 tendances semblent erronées dans la mesure où ni le traqueur ni les observations historiques n'en présentent. Là encore, les indices basés sur le déficit de
 saturation intégré sur la colonne ne présentent pas de tendance non plus, et sont donc en meilleur accord avec la variabilité détectée / observée.
 
-\subsection{Application en climat plus chaud}
+\subsection{Conclusion}
+
+Dans cette section est étudiée l'effet de l'introduction du déficit de saturation d'humidité intégré sur la colonne, ou VPD, dans un indice de cyclogénèse
+construit par régression de Poisson. En apparence, le VPD semble étroitement lié à l'humidité relative, puisqu'une atmosphère très humide est proche de la
+saturation, et vice versa. Toutefois, avec le réchauffement climatique, le VPD tend à augmenter car l'atmosphère est capable de stocker plus de vapeur d'eau, tandis
+que l'humidité relative est projetée constante. Cette propriété, couplée à des considérations théoriques et des résultats d'expériences numériques
+\parencite{emanuel_hurricanes_2008,camargo_testing_2014}, justifient l'utilisation du VPD en lieu et place de l'humidité relative dans la définition d'indices de
+cyclogénèse.
+
+Le VPD est introduit ici dans un indice construit par régression de Poisson entre les champs de grande échelle issues de la simulation ARPEGE globale forcée par
+HadISST1 d'une part, et des cyclogénèses issues du traqueur du CNRM d'autre part, nommé AVPD. L'effet du remplacement de l'humidité relative par le VPD dans la
+régression se traduit notablement par une augmentation du coefficient associé à la SST relative, tandis que les autres coefficients sont laissés inchangés. Cet
+effet est reproduit lorsque la régression est appliquée sur ERA5, et est également documenté dans \textcite{camargo_testing_2014}.
+
+Concernant l'effet du VPD sur la répartition spatiale de l'activité simulée par l'indice, le VPD offre une amélioration notable dans au moins deux régions, du
+monde, dénuées d'activité cyclonique dans les observations ainsi que les trajectoires détectées, et dans lesquelles les indices utilisant l'humidité relative
+présentent néanmoins un biais positif. L'amélioration la plus notable concerne deux sous-domaines du bassin NInd, à savoir la Mer Rouge et le Golfe Persique.
+L'introduction du VPD réduit très fortement l'activité dans ces régions, qui devrait idéalement être nulle. L'activité est également réduite au large de
+l'Angola, dans l'Atlantique sud.
+
+Au delà de cette amélioration dans la répartition géographique de l'activité cyclonique inférée, l'utilisation du VPD n'a essentiellement aucun effet notable
+sur la représentation de la variabilité interannuelle. Il a en effet été montré dans la \cref{sec:indice_ONI} que bien qu'il soit possible d'améliorer la
+variabilité interannuelle des indices en y ajoutant de nouveaux prédicteurs, le processus de régression de Poisson vise avant tout à garantir la meilleure
+vraisemblance spatiale entre les prédicteurs et le prédictant. Pour cette raison, l'effet du VPD dans la régression a été mesuré non pas en termes de
+variabilité interannuelle, mais en termes des tendances (ou de l'absence de) dans la variabilité interannuelle comparée aux indices construits sur l'humidité
+relative.
+
+Il apparaît alors que les indices utilisant l'humidité relative à \hPa{600} comme prédicteur tendent à présenter une tendance à la hausse, aussi bien sur la
+simulation ARPEGE forcée par la SST observée que dans la réanalyse ERA5, là où les indices utilisant le VPD ne présentent au contraire pas de tendance. Dans la
+majorité des cas, l'absence de tendance dans la variabilité inférée par les indices AVPD et EVPD (l'équivalent du AVPD sur ERA5) est en accord avec les
+résultats du schéma de détection, ou des observations IBTrACS dans le cas de la réanalyse ERA5. Ce constat rejoint d'une certaine façon la problématique de la
+divergence dans les projections climatiques documenté dans la littérature entre l'approche directe par détection obective ---~indiquant généralement une
+fréquence d'occurrence à la baisse ou stable~--- et l'approche indirecte des indices de cyclogénèse qui tendent au contraire à indiquer une augmentation de
+l'activité cyclonique.
+
+\section{Application en climat plus chaud}
 
 On s'intéresse ici à l'application des indices définis comme fonction du déficit de saturation d'humidité intégré sur la colonne à des simulations en climat
 plus chaud avec ARPEGE-Climat utilisé dans sa configuration basculée-étirée, comparé aux indices dépendant de l'humidité relative appliqués aux mêmes
 simulations.
 
-\subsubsection{Description des simulations}
+\subsection{Description des simulations}
 
 Deux expériences réalisées sur des bassins océaniques différents sont utilisées, issues respectivement de \textcite{chauvin_future_2020} et de
 \textcite{cattiaux_projected_2020}. Pour la première expérience, le pôle est placé dans l'océan Atlantique nord, à \ang{20}N, \ang{50}W, et le facteur
@@ -737,7 +772,176 @@ données HadISST1, est appliquée. Cette méthode est décrite plus en détails 
 Les deux simulations sur le bassin Nord Atlantique sont ci-après dénommées ATL-P (pour celle en climat présent) et ATL-F (climat futur). ATL-P couvre la période
 \num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Réciproquement, les simulations sur l'Indien sud sont appelées
 respectivement SIO-P et SIO-F. SIO-P est en décalage de \num{6} mois par rapport à ATL-P, de façon à couvrir les saisons cycloniques \num{1966}~--~\num{2014},
-et s'étend donc de Juillet \num{1965} à Juin \num{2014}. Enfin, SIO-F couvre les saisons cycloniques \num{2047}~--~\num{2094} (48 ans). 
+et s'étend donc de Juillet \num{1965} à Juin \num{2014}. SIO-F couvre quant à elle les saisons cycloniques \num{2048}~--~\num{2094} (47 ans). Notons enfin que
+le domaine spatial dans les simulations SIO regroupe les bassins SIndW et SIndE utilisés dans ce document, c'est à dire qu'il correspond exactement au bassin
+SInd (\cref{fig:bassins_TC,fig:acgi_ibt}) avant séparation autour de \ang{90}E. Pour les simulations ATL, nous utilisons les délimitations habituelles du bassin
+NAtl.
+
+\subsection{Détection des cyclogénèses}
+
+Le schéma de détection du CNRM est appliqué à ces deux expériences (quatre simulations). Les simulations SIO-P et SIO-F utilisent les même paramètres de
+détection que la simulation forcée par HadISST1 utilisée dans ce chapitre, à savoir \textbf{VOR}~$=$~\SI{20e-5}{\per\second} ; \textbf{RES}~$=$~\ms{13},
+\textbf{TANOM}~$=$~\SI{1}{\kelvin} ; \textbf{PT}~$=$~\SI{-2}{\kelvin} ; \textbf{PW}~$=$~\ms{5}, et \textbf{REL}~$=$~\SI{20e-5}{\per\second}. Les paramètres
+diffèrent cependant pour les deux simulations ATL. Nous utilisons en effet les mêmes trajectoires que celles utilisées par \textcite{chauvin_future_2020}. Les
+seuils \textbf{TANOM,} \textbf{PT} et \textbf{PW} sont inchangés, mais \textbf{VOR} est pris à \SI{5e-5}{\per\second}, \textbf{RES} à \ms{17} et enfin le
+paramètre de relaxation \textbf{REL} est fixé à \SI{25e-5}{\per\second}.
+
+Nous ne conservons ici que les premières échéances de chaque trajectoire, lesquelles sont assimilées aux cyclogénèses. À la différence de
+\textcite{cattiaux_projected_2020,chauvin_future_2020}, nous appliquons comme précédemment le filtre du STJ aux quatres jeux de cyclogénèses, en ne conservant
+que celles situées en dessous de la latitude diagnostiquée. Ces jeux de trajectoires sont décrits et analysés en détails ---~incluant les diagrammes
+vent-presson et densités de trajectoires~--- dans \textcite{cattiaux_projected_2020,chauvin_future_2020}. Nous nous contenterons alors d'ajouter ici que, après
+application du filtre terre-mer à \ang{1} de résolution, selon la même méthodologie que précédemment, le filtre du STJ retire au total \num{236} des \num{768}
+TC dans SIO-P (sur 49 ans), et \num{147} des \num{577} TC dans SIO-F (sur 47 ans). L'effet du filtre sur les simulations ATL est en revanche plus conséquent,
+avec une suppression de \num{483} des \num{807} TC sur ATL-P (49 ans), et de \num{396} des \num{726} TC dans ATL-F (50 ans). Pour ATL-P et ATL-F, la latitude
+médiane des cyclogénèses qui sont retirées par le filtre du STJ est de respectivement \ang{31.5}N et \ang{32.5}N. De plus, notons que la latitude moyenne du STJ
+sur la saison SON dans la simulation ATL-F est réhaussée de \ang{0.6} par rapport à celle évaluée sur ATL-P. Spécifiquement, la latitude moyenne du STJ sur SON
+dans ATL-P, évaluée entre \ang{70}W et \ang{15}W est de \ang{35.8}N, et de \ang{36.4}N dans ATL-F.
+
+La \cref{fig:diff_track} présente la différence (moyenne annuelle) entre les densités de cyclogénèses détectées dans les simulations RCP8.5 et à climat présent
+pour les deux expériences, comptabilisées dans des boîtes de \ang{5}$\times$\ang{5}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{diff_density.png}
+    \caption{Différences dans les densités de cyclogénèses détectées moyennes par \ang{5}$\times$\ang{5} et par an entre ATL-F et ATL-P (gauche) et SIO-F et
+    SIO-P (droite). Les valeurs numériques entre parenthèses en haut à droite de chaque encadré présente la différence totale sur le bassin.}
+    \label{fig:diff_track}
+\end{figure}
+
+Pour les deux expériences, la détection objective de TC dans les simulations indique une diminution de l'activité cyclonique, de \num{0.67} TC par an pour la
+simulation faite sur le bassin NAtl, et de \num{1.32} TC par an pour celle faite sur le bassin SInd. Même sur une grille de \ang{5}$\times$\ang{5}, ces cartes
+de différences demeurent bruitées, en raison de la fréquence d'occurrence relativement faible dans nos données. Dans le bassin SInd, une diminution forte est
+notée entre \ang{70}E et \ang{80}E, tandis que l'activité semble augmenter au Nord-est de l'Australie. Dans le NAtl, la diminution semble plus marquée au sud du
+bassin, notamment en dessous de \ang{15}N, du côté du continent Africain.
+
+\subsection{Indices de cyclogénèse}
+
+Nous calculons plusieurs indices de cyclogénèse pour analyser le changement annuel moyen entre les simulations du scénario RCP8.5 (ATL-F et SIO-F) et celles à
+climat présent (ATL-P et SIO-P). En particulier, nous appliquons la régression de Poisson sur les champs ATL-P et SIO-P et ajustées sur les cyclogénèses
+détectées dans ces simulations respectives. Les régressions sont faites avec l'humidité relative d'une part et le VPD d'autre part. Il s'agit donc du mode
+opératoire de construction d'indices de cyclogénèse régionaux, si bien que ces derniers sont appelés LAM10 et LAVPD. Comme dans la \cref{sec:indice_ONI} et la
+\cref{sec:indice_regional} avant cela, rappelons que ces deux indices sont caractérisés par des coefficients $b$ différents pour le bassin NAtl et SInd. Notons
+d'ailleurs que nous ne faisons ici pas la distinction SIndW et SIndE, mais traitons le bassin SInd dans son ensemble.
+
+Nous comparons également le changement future/présent par l'intermédiaire de l'indice LM10, dont les coefficients $b$ furent obtenus entre ERA5 et IBTrACS.
+Notons que la régression LM10 est recalculée pour obtenir des coefficients à l'échelle du bassin SInd, plutôt que pour SIndW et SIndE séparément. Les
+coefficients en résultant valent approximativement la moyenne entre les coefficients LM10 sur les deux sous-régions du bassin SInd (voir
+\cref{tab:tab:coefs_fit_bassin} du \cref{chap:chapitre_3}, \vpageref{tab:coefs_fit_bassin}). Enfin, le TCS est également utilisé à titre de référence. Le
+\cref{tab:coeffs_experiences} présente (ou rappelle) les coefficients des indices sus-mentionnés.
+
+\begin{table}[htpb]
+    \centering
+    \caption{Indices de cyclogénèse utilisés sur les expériences ATL et SIO}
+    \label{tab:coeffs_experiences}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{llrrrrrrr}
+        \toprule\toprule
+        \multicolumn{1}{l}{\textbf{Indice}} & \multicolumn{1}{l}{\textbf{Bassin}} & \multicolumn{6}{c}{\textbf{Coefficients}} & \multicolumn{1}{c}{\textbf{Calibration}} \\
+        \midrule
+                                            & & $b_0$ & $b_{\eta}$ & $b_{V_{\mathrm{shear}}}$ & $b_H$ & $b_s$ & $b_T$ & \\
+        \midrule
+        \multirow{2}{*}{LAVPD} & NAtl & \num{-216.0074} & \num{56.4265} & \num{-0.0511} & --- & \num{-0.0369} & \num{0.3901} & \num{1.048} \\
+                               & SInd & \num{-256.6651} & \num{67.4970} & \num{-0.0384} & --- & \num{-0.0420} & \num{0.3506} & \num{1.021} \\ 
+        \midrule
+        \multirow{2}{*}{LAM10} & NAtl & \num{-254.8083} & \num{66.6267} & \num{-0.0551} & \num{0.0065} & --- & \num{0.3719} & \num{1.050}\\
+                               & SInd & \num{-233.9484} & \num{60.8866} & \num{-0.0375} & \num{0.0155} & --- & \num{0.2876} & \num{1.022} \\
+        \midrule
+        \multirow{2}{*}{LM10}  & NAtl & \num{-17.3713} & \num{2.1677} & \num{-0.0594} & \num{0.0651} & --- & \num{0.3313}  & \num{0.055}\\
+                               & SInd & \num{-15.9070} & \num{1.7221} & \num{-0.0691} & \num{0.0672} & --- & \num{0.4758} & \num{0.050}\\
+        \midrule
+        \multirow{2}{*}{TCS}   & NAtl    & \num{-5.8} & \num{1.03} & \num{-0.15} & \num{0.05} & --- & \num{0.56} & \num{1.389e-4}\\
+                               & SInd    & \num{-5.8} & \num{1.03} & \num{-0.15} & \num{0.05} & --- & \num{0.56} & \num{1.335e-4}\\
+        \bottomrule
+    \end{tabular}
+}
+\end{table}
+
+Pour le calcul des indices sur les simulations en climat présent, un coefficient de calibration est appliqué pour ramener les indices vers la moyenne annuelle
+(entre juillet et juin pour le bassin SInd) du nombre de TC déterminé par le schéma de détection, après application du filtre du STJ. Pour l'application des
+indices aux simulations RCP8.5, les coefficients de calibration utilisés pour le climat présent sont ré-employés tels quels. Ces coefficients sont précisés dans
+le \cref{tab:coeffs_experiences}.
+
+Remarquons que les indices LAVPD et LAM10 présentent des valeurs $b_0$ et $b_\eta$ inhabituelles par rapport à celles rencontrées jusqu'à maintenant. Ces
+valeurs sont propres aux simulations et cyclogénèses de référence sur lesquelles sont faites les régressions et ne sauraient s'interpréter ---~dans le cas de
+$b_\eta$~--- comme un biais septentrional extrême par rapport à LM10. Il semble en outre crédible que les fortes valeurs de $b_\eta$ permettent de compenser les
+valeurs $b_0$ remarquablement basses, de façon à ce que la fréquence annuelle moyenne de ces indices soient proches de celle détectée par le schéma de
+détection. Il n'est en effet quasiment pas nécessaire de recalibrer un indice pour l'appliquer aux mêmes données dont sont issues ses coefficients $b$, comme en
+attestent les coefficients de calibration proches de l'unité pour LAM10 et LAVPD. En revanche, la valeur $b_\eta^{\mathrm{LAM10}} > b_\eta^{\mathrm{LAVPD}}$
+pour le bassin NAtl indique bel et bien un décalage de l'activité simulée vers des latitudes légèrement supérieures pour LAM10 par rapport à LAVPD. Dit
+autrement, ces coefficients ne peuvent être comparés que lorsqu'ils sont été obtenus dans des conditions comparables.
+
+\subsection{Changements futurs}
+
+La \cref{fig:delta_F_P} présente les changements moyens, exprimés en TC par \ang{1}$\times$\ang{1} par an. Tous les indices, y compris le TCS, indiquent un une
+diminution de l'activité cyclonique annuelle moyenne dans les simulations RCP8.5 par rapport aux simulations en climat présent. Ici, tous les indices utilisés
+projettent une diminution de l'activité cyclonique, dont l'ampleur varie entre \num{-0.22} TC par an et \num{-0.68} TC par an dans l'expérience ATL, et entre
+\num{-0.58} TC par an et \num{-1.68} TC par an dans l'expérience SIO.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{delta_F_P.png}
+    \caption{Cartes des différences annuelles moyennes entre ATL-F et ATL-P (colonne de gauche) et entre SIO-F et SIO-P (colonne de droite), pour les indices
+    décrits dans le \cref{tab:coeffs_experiences}. L'intégrale sur le domaine est renseignée en haut à droite de chaque encadré, entre parenthèses.}
+    \label{fig:delta_F_P}
+\end{figure}
+
+La diminution de l'activité constatée pour tous les indices construits par régression de Poisson, notamment ceux basés sur l'humidité relative à \hPa{600}, y
+compris le TCS est ici d'ordre circonstancielle. Si il est en effet avéré que les indices de cyclogénèse classiquement utilisés dans la littérature projettent
+généralement une augmentation de l'effet cyclonique, ce qui inclue notamment le TCS, ces projections sont susceptibles de varier pour différents modèles de
+climat, différentes expériences, et pour différents bassins d'activité. \textcite{camargo_testing_2014} montrent par exemple à travers des simulations réalisées
+avec le modèle HiRAM du GFDL \parencite{zhao_simulations_2009} et forcés par des SST issues d'autres modèles couplés, que certaines simulations indiquent une
+diminution de l'activité dans ces régions, pour des indices dérivés du TCS à l'échelle globale. Par ailleurs, dans \textcite{cattiaux_projected_2020} ---~étude
+dont les simulations SIO-P et SIO-F utilisées ici sont tirées~--- si la moyenne des trois indices que sont le TCS, le GPI et le CYGP indique une augmentation à
+l'échelle du bassin SInd, le TCS pris individuellement indique une légère diminution. On s'intéresse alors ici plus spécifiquement aux différences dans les
+projections entre les divers indices.
+
+Les deux indices basés sur des réanalyses, à savoir le TCS et LM10, présentent tous deux des réponses très similaires dans les scénarios futurs, aussi bien
+spatialement que dans leur amplitude. Ces deux indices présentent notamment, dans les deux expériences, une diminution plus importante que LAM10, lequel est
+basé sur la même combinaison de prédicteurs. Dans le bassin SInd, la réponse est caractérisée par une forte diminution dans toute la partie centrale, entre
+\ang{60}E et \ang{100}E, entre l'équateur et \ang{20}S. Une légère augmentation est constatée à l'extrémité Nord-ouest du bassin. Une très légère mais possible
+augmentation est notée dans le canal du Mozambique, à \ang{20}S. Les indices LM10 et TCS se distinguent quelque peu par la réponse indiquée le long des côtes
+Australiennes. En effet, si une réduction de l'activité semble dominer dans le TCS, notamment en Mer de Timor, celle-ci semble moins prononcée dans LM10.
+
+Dans le bassin NAtl, les deux indices concentrent l'ensemble de la diminution de l'activité dans la Mer des Caraïbes et entre l'Amérique centrale et le
+continent Africain, en dessous de \ang{15}N. Tous deux indiquent toutefois une augmentation dans le Golfe du Mexique. Qu'il s'agisse du TCS ou de LM10, la
+réponse spatiale dans les deux indices semble partager certaines caractéristiques avec le changement dans les densités de cyclogénèses détectées dans ces
+simulations (voir \cref{fig:diff_track}), plus particulièrement pour le bassin SInd. L'indice LAM10 présente quant à lui pour les deux bassins la même
+répartition spatiale que LM10 et TCS, mais d'une ampleur réduite. Bien que ressemblantes, LAM10 semble être légèrement plus proche du TCS que de LM10, notamment
+pour ce qui est de la diminution côté Australien dans le SInd, ainsi que dans le signal noté le long du continent Africain, au sud de la Mauritanie.
+
+L'introduction du VPD dans la régression, via l'indice LAVPD présente deux effets notables. Le premier d'entre eux concerne l'amplitude de la réponse suggérée
+par l'indice dans le scénario RCP8.5. LAVPD présente en effet dans les deux bassins la réduction la plus forte, avec \num{-0.68} TC par an dans le bassin NAtl,
+et \num{-1.68} TC par an dans le SInd. Le deuxième élément concerne la signature spatiale de la réponse. Le remplacement de l'humidité relative par le VPD se
+traduit en effet par une diminution très nettement plus homogène sur les deux bassins. En particulier, le SInd ne présente plus de signe d'augmentation autour
+de l'Australie de part et d'autre de la Mer de Timor, ni d'augmentation au dessus de l'île de Madagascar. Dans le NAtl, la diminution est lisse dans l'ensemble
+de la MDR, et le Golfe du Mexique ne présente plus non plus de signe d'augmentation.
+
+\subsection{Conclusion}
+
+Dans cette section, nous avons appliqué plusieurs indices de cyclogénèse à deux expériences réalisées avec le modèle ARPEGE-Climat dans sa configuration
+basculée-étirée, chacune avec une simulation en climat présent et une autre sous le scénario RCP8.5. Une des expériences porte sur le bassin Nord-Atlantique
+\parencite{chauvin_future_2020}, tandis que l'autre est centrée sur la région SInd \parencite{cattiaux_projected_2020}. L'objectif de l'analyse consistait à
+étudier l'effet de l'introduction du VPD dans la réponse au réchauffement climatique projetée par un indice de cyclogénèse. En particulier, l'indice contenant
+le VPD fut construit manière régionale à partir des deux simulations à climat présent (LAVPD), de façon à bénéficier d'un indice mieux adapté à notre jeu de données,
+comme le montre la \cref{sec:indice_regional} du \cref{chap:chapitre_3}.
+
+Comme pour les \cref{sec:indice_ONI,sec:tendances_VPD}, le filtre du STJ est appliqué aux trajectoires détectées dans les quatre simulations, dont les premières
+échéances sont conservées et assimilées aux cyclogénèses. Les densités de cyclogénèses détectées indiquent une diminution de l'activité cyclonique pour les deux
+bassins, environ deux fois plus forte pour le bassin SInd que pour le bassin NAtl. De manière similaire, tous les indices utilisés ici, à savoir LAVPD, LAM10
+---~une version locale de l'indice AM10 et construit sur les simulations climat présent des expériences en configuration basculée-etirée~--- LM10 et TCS
+indiquent également une diminution de l'activité dans la simulation faite sous le scénario RCP8.5. La diminution constatée pour les indices dérivés du TCS, et
+plus particulièrement ceux étant fonction de l'humidité relative à \hPa{600}, apparaît ici comme une caractéristique propre à notre modèle et à ces expériences
+spécifiques. Une analyse multimodèles et globale serait en effet nécessaire pour évaluer de manière plus fiable le signe de la réponse des différents indices.
+
+Il est possible de tirer deux constats principaux de cette étude. Le premier est d'une part que, dans nos expériences, l'introduction du VPD amplifie la
+diminution de l'activité cyclonique dans la simulation à climat plus chaud, tandis que d'autre part, le VPD produit un signal beaucoup plus homogène que les
+indices utilisant l'humidité relative à \hPa{600}. Le second constat est que, dans ces expériences, le TCS et son dérivé LM10 semblent présenter une réponse
+plus proche de celle mesurée par le schéma de détection. L'amplitude de la diminution est en effet proche de celle mesurée par le traqueur dans les deux
+bassins. Les réponses spatiales du TCS, LM10 et LAM10 présentent en outre plus de similarités avec le changement dans la densité de cyclogénèses mesurées par le
+traqueur que l'indice LAVPD. Ces résultats, combinés à ceux de \textcite{cattiaux_projected_2020,chauvin_future_2020} montrant notamment que le GPI et le CYGP
+indiquent une réponse opposée dans ces mêmes simulations, justifient alors d'autant plus l'utilisation du TCS et de ses dérivés (c'est à dire la re-détermination
+des coefficients associés à ses prédicteurs) pour les applications en climat futur, en plus des avantages que ce dernier présente, à savoir sa reproductibilité
+et son interprétabilité.
 
 %--------------------------------------
 \section{Synthèse}
