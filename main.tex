@@ -62,13 +62,20 @@
 
 %%%%%%% Font and text related settings
 
+\usepackage[no-math]{fontspec}
 \usepackage[french]{babel}
+\setmainfont[Ligatures=TeX]{Tex Gyre Termes}
+
+\newfontfamily\greekfont[Scale=MatchUppercase,Ligatures=TeX]{Times New Roman}
+
+\newcommand{\textgreek}[1]
+    {\bgroup\greekfont{#1}\egroup} % Greek text
+
+%\setmainfont[Ligatures=TeX]{Times New Roman}
 \usepackage[style=french]{csquotes}
 
 \def\frenchtablename{Tableau}
 
-\usepackage[]{fontspec}
-\setmainfont{Tex Gyre Termes}
 \usepackage{amsmath,amsfonts,amssymb,bm}
 \usepackage{textcomp} %Required to use \textdegree
 \usepackage{url}
