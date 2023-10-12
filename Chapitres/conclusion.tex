@@ -35,6 +35,13 @@ ait été faite sur la réanalyse ERA5, elle donne néanmoins des indications pl
 Les deux paramètres les plus influents sur les performances du traqueur apparaissent alors être le seuil de vent maximal à la surface pour la probabilité de
 détection, et le seuil d'anomalie de température par rapport à l'environnement pour le taux de faux positifs.
 
+En plus de permettre l'évaluation du schéma de détection, ce cadre permet également d'évaluer la représentation des cyclones tropicaux dans la réanalyse ERA5.
+Il est montré que la majorité des cyclones tropicaux historiques sont retrouvés dans la réanalyse. Toutefois, l'intensité maximale des vents cycloniques est
+fortement sous-estimée, compte tenu notamment de la résolution de \km{25} de la réanalyse. Les minimums de pression au niveau de la mer sont quant à eux mieux
+repreśentés. En outre, la classe d'intensité des cyclones tropicaux dans la réanalyse ne correspond pas nécessairement à celle de leur équivalent dans les
+observations, même en considérant le biais d'intensité du modèle. Il peut en effet arriver que certains cyclones soient plus intenses dans la réanalyse que dans
+les observations.
+
 Si, de manière générale, le réglage d'un paramètre pour augmenter l'efficacité de détection se traduit également par une augmentation du taux de fausses
 alarmes, il est néanmoins possible de limiter efficacement le nombre de faux positifs en appliquant un filtre des systèmes de moyennes latitudes adéquat. Pour
 pouvoir être utilisé dans des simulations climatiques futures, un tel filtre se doit d'être adaptatif, si bien qu'un simple seuil fixe en latitude n'est pas
@@ -88,6 +95,23 @@ statistiquement significative dans quasiment tous les bassins océaniques, quand
 l'humidité relative à \hPa{600} par le déficit de saturation d'humidité intégré sur la colonne (VPD) est également évalué, sur la base des résultats dans la
 littérature indiquant une convergence du signal en changement climatique lorsque ce prédicteur est utilisé. Il est montré que l'utilisation du VPD en lieu et
 place de l'humidité relative réduit très fortement le biais positif présent en Mer Rouge et dans le Golfe Persique présent dans tous les indices utilisant
-l'humidité relative. L'utilisation du VPD est alors particulièrement recommandée pour l'application d'indices de cyclogénèse dans le bassin Nord Indien.
+l'humidité relative.
+
+Des tendances sont recherchées dans l'évolution du nombre d'occurrence annuel de cyclones tropicaux inféré par différents indices de cyclogénèse appliqués à la
+simulation ARPEGE historique ainsi que dans la réanalyse ERA5. La problématique de la divergence entre les approches directes et indirectes dans les projections
+climatiques est visible dans ces séries temporelles, en ce sens que les indices de cyclogénèses basés sur l'humidité relative indiquent une tendance à la hausse
+statistiquement significative, à l'échelle globale et dans plusieurs bassins oćeaniques. De telles tendances ne sont pas ne sont pas détectées dans les
+observations ou dans le modèle. Les indices basés utilisant le VPD ne présentent quant à eux pas de tendances à la hausse non plus.
+
+Enfin, l'effet du VPD est évalué sur deux simulations climatiques à climat futur sous le scénario RCP8.5 avec ARPEGE dans sa configuration basculée-étirée, sur
+le bassin Nord Atlantique et Sud Indien, atteignant localement jusqu'à \km{14} de résolution horizontale. Si, dans ces simulations et dans ces bassins, tous les
+indices considérés projettent une diminution de l'activité cyclonique du même ordre de grandeur que la détection objective des cyclones dans ces simulations,
+l'indice utilisant le VPD produit une diminution plus prononcée et plus homogène dans l'espace. La réponse suggérée par le TCS dans ces simulations présente un
+bon accord avec la réponse indiquée par le schéma de détection, aussi bien dans son amplitude que dans la répartition spatiale du changement, notamment pour la
+simulation sur le bassin Sud Indien.
+
+\subsection*{Perspectives}
+
+
 
 \end{document}
