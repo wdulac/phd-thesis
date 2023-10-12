@@ -142,37 +142,13 @@
 \usepackage{subfiles}
 \addbibresource{\subfix{./references.bib}}
 
-%%%% Page de garde
-\usepackage[ED=SDU2E-Oc, Ets=UT3, draft]{tlsflyleaf}
-%
-\title{Méthodes d'évaluation de l'activité cyclonique tropicale en changement climatique}
-\author{William Dulac}
-%%\date{2023}
-\defencedate{20 Décembre 2023}
-\lab{Centre National de Recherches Météorologiques (UMR 3589)}
-%
-\nboss{2}
-\makesomeone{boss}{1}{Julien CATTIAUX}{}{}
-\makesomeone{boss}{2}{Fabrice CHAUVIN}{}{}
-%
-%%% Referee
-\nreferee{2}
-\makesomeone{referee}{1}{Sylvie MALARDEL}{}{}
-\makesomeone{referee}{2}{Jean-Philippe DUVEL}{}{}
-%%% Judges
-%\njudge{5}
-%\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
-%\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
-%\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-%\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-%\makesomeone{judge}{5}{Cinqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \frontmatter
 
-\makeflyleaf
+\includepdf{\subfix{./include/garde_tmp.pdf}}
+
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{%
 \markboth{\thesection.\ \MakeUppercase{#1}}{}}
