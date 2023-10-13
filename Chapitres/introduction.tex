@@ -5,28 +5,30 @@
 
 Les cyclones tropicaux sont des larges systèmes dépressionnaires de plusieurs centaines de kilomètres de diamètre pouvant atteindre des vitesses de vents
 soutenus jusqu'à \kmh{300}. Ils prennent naissance dans les tropiques et se répartissent dans six grands bassins océaniques majeurs. Ils font partie des
-phénomènes naturels les plus destructeurs sur Terre. Bien que ces phénomènes évoluent sur océan, certains peuvent atteindre les côtes et provoquer des impacts
+phénomènes naturels les plus destructeurs sur Terre. Bien qu'ils évoluent sur océan, certains peuvent atteindre les côtes et avoir des impacts
 dévastateurs, autant environnementaux que socio-économiques. Ils seraient directement responsables de la mort de plus de \num{400000} personnes sur la seule
 période \num{1980}~--~\num{2009}, dont les deux tiers sont attribués à seulement deux évènements \parencite{doocy_human_2013}. En raison de leur fort potentiel
 destructeur, ces phénomènes météorologiques sont étroitement surveillés. Les centres météorologiques des régions concernées déploient par ailleurs de grands
 efforts pour prévoir à court terme leurs trajectoires et l'évolution de leur intensité, dans le but de pouvoir avertir la population en cas de risque avéré.
-Néanmoins, la théorie sous-jacente à la formation des cyclones est mal connue, ce qui consistitue par conséquent une limite importante à la prévisibilité de ces
+Néanmoins, la théorie sous-jacente à la formation des cyclones est mal connue, ce qui constitue par conséquent une limite importante à la prévisibilité de ces
 systèmes. À défaut de comprendre le processus physique aboutissant à la formation d'un cyclone tropical ---~nommé processus de cyclogénèse~--- les conditions
 favorables à leur émergence sont connues depuis de nombreuses années \parencite{gray_tropical_1975}. Une perturbation atmosphérique pré-éxistante pourra en
-effet donner lieu à un cyclone tropical si les eaux océaniques sont suffisamment chaudes pour pouvoir y puiser une quantité suffisante d'énergie, d'une une
+effet donner lieu à un cyclone tropical si les eaux océaniques sont suffisamment chaudes pour pouvoir y puiser une quantité suffisante d'énergie, d'une 
 atmosphère chargée en humidité et d'une absence de cisaillement vertical du vent.
 
-Les émissions de gaz à effet de serre aboutissent à un forçage radiatif qui déséquilibre le système climatique \parencite{charney_carbon_1979}, aboutissant
-entre autres à une augmentation de la température moyenne planétaire. Les changements qui en émergent sont le résultat de rétro-actions particulièrement
-complexes et dont les conséquences exactes à venir sont largement entâchées d'incertitudes encore à ce jour \parencite{seneviratne_weather_2021}. Il est alors
+%Les changements qui en émergent sont le résultat de rétro-actions particulièrement
+%complexes et dont les conséquences exactes à venir sont largement entâchées d'incertitudes encore à ce jour \parencite{seneviratne_weather_2021}.
+
+Les émissions de gaz à effet de serre induisent un forçage radiatif qui déséquilibre le système climatique \parencite{charney_carbon_1979}, aboutissant
+entre autres à une augmentation de la température moyenne planétaire. Il est en outre
 certain que le réchauffement climatique amène à des changements dans la répartition des conditions environnementales jugées favorables à l'émergence de cyclones
-tropicaux et, donc que celui-ci a un impact sur l'activité cyclonique. Néanmoins, l'incertitude dans les conséquences du forçage radiatif d'origine anthropique
+tropicaux et, donc que celui-ci a un impact sur l'activité cyclonique \parencite{seneviratne_weather_2021}. Néanmoins, l'incertitude dans les effets exacts du forçage radiatif d'origine anthropique
 sur le système climatique, couplée à l'incertitude sur le processus de cyclogénèse, rend difficile l'estimation de l'effet du réchauffement climatique sur
 l'activité cyclonique. À cela s'ajoutent une certaine hétérogénéité dans le temps et l'espace des séries d'observations historiques ---~compliquant la recherche
 d'éventuelles tendances en cours dans la fréquence d'occurrence des cyclones~--- ainsi qu'une résolution spatiale des modèles climatiques encore trop grossière
 pour simuler fidèlement ces systèmes. Il existe toutefois deux options pour chercher à évaluer l'activité cyclonique tropicale future. La première, que l'on
 peut qualifier d'approche directe, consiste à appliquer un algorithme de détection et de suivi des cyclones tropicaux dans des simulations climatiques à haute
-résolution. La seconde option consiste à exploitier les simulations climatiques à basse résolution exsistantes en cherchant des liens statistiques entre
+résolution. La seconde option consiste à exploiter les simulations climatiques à basse résolution en cherchant des liens statistiques entre
 l'activité observée et l'environnement de grande échelle. Il s'agit alors d'indices de cyclogénèse. Cette seconde approche peut être qualifiée d'indirecte, en
 ce sens que l'activité cyclonique est simplement inférée des champs de grande échelle issues des simulations climatiques.
 
@@ -38,20 +40,17 @@ augmentation de la fréquence d'occurrence des cyclones tropicaux \parencite{ema
 approches possède son lot de points positifs et de points négatifs.
 
 L'utilisation d'un algorithme de détection de cyclones tropicaux présente certes l'avantage non-négligeable de constituer une mesure directe, mais la conception
-même de l'algorithme ; ses divers paramètres qui nécessitent souvent d'être ajustés à chaque modèle, voire à chaque simulation ; et autres spécificités
+même de l'algorithme : ses divers paramètres qui nécessitent souvent d'être ajustés à chaque modèle, voire à chaque simulation, et autres spécificités
 constituent autant de sources d'incertitudes qui viennent s'ajouter aux biais propres aux modèles. Ces deux sources d'incertitudes deviennent alors
 indiscernables l'une de l'autre. En effet, les algorithmes de détection consistent en l'application objective d'un schéma conceptuel de fonctionnement d'un
-cyclone, qui est lui subjectif. Comment peut-on alors savoir si un défaut, ou un surplus de cyclones dans une simulation provient du modèle utilisé ou du
+cyclone tropical. Comment peut-on alors savoir si un défaut, ou un surplus de cyclones dans une simulation provient du modèle utilisé ou du
 traqueur ? Inversement, comment peut-on savoir si les systèmes détectés par le traqueur correspondent toujours bien à des cyclones tropicaux ? Ces deux
 questions peuvent finalement être regroupées en une seule : Comment peut-on évaluer les performances d'un algorithme de détection de cyclones tropicaux ?
 
 Les indices de cyclogénèse, quant à eux, présupposent que les relations statistiques unissant l'environnement de grande échelle à l'activité observée sont
 stationnaires dans le temps ---~une hypothèse dont la validité n'est en aucune façon triviale \parencite{nolan_increased_2008,murakami_changes_2013}. De plus,
-si les indices de cyclogénèse excellent dans leur capacité à simuler une climatologie spatiale et saisonnière réaliste, ces derniers présentent en revanche
-toutes les peines du monde à produire une variabilité interannuelle cohérente avec les observations. On peut donc s'interroger sur la confiance à accorder aux
-projections à plus long terme issues des indices de cyclogénèse, car l'échelle de temps interannuelle est intermédiaire entre les échelles de
-prévisibilité et celles des projections climatiques. Est-il alors possible d'améliorer la représentation de la variabilité interannuelle simulée par les indices
-de cyclogénèse, par exemple en ajoutant dans les régressions de la variabilité spatiale et temporelle additionnelle ou bien des nouveaux prédicteurs ?
+si les indices de cyclogénèse excellent dans leur capacité à simuler une climatologie spatiale et saisonnière réaliste, la variabilité interannuelle simulée par ces
+derniers est souvent incohérente avec les observations. Il est possible que la raison à cette mauvaise variabilité interannuelle soit due à une mauvaise représentation du processus physique sous-jacent. Or, un indice de cyclogénèse qui fournirait une bonne variabilité interannuelle en raison d'une meilleure représentation du processus aurait plus de chances de projeter la bonne réponse en changement climatique. Comment alors améliorer la représentation de la variabilité interannuelle simulée par les indices de cyclogénèse ?
 
 Pour apporter quelques éléments de réponse à ces questions, cette thèse s'organise de la façon suivante : Le \cref{chap:chapitre_1} est consacré à un grand tour
 d'horizon sur les cyclones tropicaux. Dans ce chapitre, les cyclones tropicaux sont introduits, leur climatologie détaillée et les risques et enjeux associés
@@ -62,23 +61,21 @@ plus particulière sur la manière dont les modèles sont utilisés pour étudie
 sur l'évolution future de l'activité cyclonique tropicale.
 
 Le \cref{chap:chapitre_2} est entièrement consacré à l'approche directe par détection objective de cyclones dans les modèles, et plus précisément à
-l'utilisation à l'algorithme de détection du CNRM. Dans une première partie du chapitre, le traqueur est appliqué à une réanalyse atmosphérique ---~c'est à dire
+l'utilisation de l'algorithme de détection du CNRM. Dans une première partie du chapitre, le traqueur est appliqué à une réanalyse atmosphérique ---~c'est à dire
 à une simulation spécialement conçue pour représenter le plus fidèlement possible l'état passé de l'atmosphère, d'après les observations historiques
-disponibles~--- puis évalué contre la base de données des cyclones tropicaux historiques. Ce cadre de travail permet en effet de caractériser au mieux les
-propriétés du traqueur. Une seconde partie du chapitre porte sur des considérations supplémentaires, notamment sur les méthodes disponibles de filtrage les
+disponibles~--- puis évalué à l'aide de la base de données des cyclones tropicaux historiques. Ce cadre de travail permet en effet de caractériser au mieux les
+propriétés du traqueur. Une seconde partie du chapitre porte sur des considérations supplémentaires, notamment sur les méthodes disponibles de filtrage des
 systèmes indésirables détectées par les traqueurs, ainsi que sur la mise au point de métriques d'évaluation alternatives de la qualité des trajectoires
 détectées par un algorithme de suivi.
 
-Le \cref{chap:chapitre_3} introduit en détails l’approche indirecte consistant en l’utilisation d’indices de cyclogénèse pour évaluer l’activité cyclonique dans les
-modèles. Les indices les plus couramment utilisés dans la littérature sont présentés, ainsi qu’un bref historique des différents développements. Une attention
-toute particulière est prêtée à un indice dont les coefficients de pondération sont issus d’une régression statistique entre l’environnement de grande échelle
-et l’activité observée. La même méthodologie est employée pour étudier l’effet de divers facteurs sur les coefficients de cette régression, et pour étudier
-comment ces coefficients affectent en retour l’indice dans sa capacité à simuler l’activité cyclonique.
+Le \cref{chap:chapitre_3} introduit en détail l’approche indirecte consistant en l’utilisation d’indices de cyclogénèse pour évaluer l’activité cyclonique dans les
+modèles. Les indices les plus couramment utilisés dans la littérature sont présentés et évalués dans ERA5, et un bref historique des différents développements est présenté. Une attention
+toute particulière est prêtée à un indice dont la méthodologie consiste en l'application d'une régression statistique entre l'environnement de grande échelle et l'activité observée. Cet indice présente en effet l'intérêt d'être facilement reproductible. Cette méthodologie est alors employée pour étudier l'effet de divers facteurs sur les coefficients de pondération de l'indice, ainsi que pour étudier la manière dont ces coefficients affectent la représentation de la variabilité interannuelle de l'indice.
 
-Enfin, dans le \cref{chap:chapitre_4}, nous nous intéressons à l’ajout de nouveaux prédicteurs dans des indices de cyclogénèse construits selon cette
+Enfin, dans le \cref{chap:chapitre_4}, nous nous intéressons à l’ajout de nouveaux prédicteurs dans les indices de cyclogénèse construits selon cette
 méthodologie. L’apport de l’ajout explicite du mode de variabilité El Niño dans la régression est étudié dans un premier temps. Ensuite, nous nous intéressons
 au remplacement du prédicteur d'humidité relative par une mesure intégrée sur la colonne du déficit de saturation d’humidité. Cet indice est ensuite appliqué à
-deux simulations en climat plus chaud réalisées avec le modèle ARPEGE-Climat dans une configuration à résolution variable permettant d'atteindre localement des
+deux simulations en climat plus chaud réalisées avec le modèle ARPEGE-Climat dans une configuration à résolution variable permettant d'atteindre localement de
 très hautes résolutions.
 
 \end{document} 

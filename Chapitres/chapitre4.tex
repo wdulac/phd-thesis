@@ -590,7 +590,7 @@ est affectée par ce nouveau prédicteur dans chacun des bassins). Le VPD amène
 la \cref{fig:diff_VPD_AM10}. Ces deux régions correspondent à des domaines où ni IBTrACS, ni les cyclogénèses détectées dans ARPEGE ne recensent d'activité
 (voir \cref{fig:acgi_ibt,fig:track_density_PRE625REFT359x}). Par conséquent, toute activité simulée par un indice de cyclogénèse construit sur ces données
 constitue nécessairement un biais de l'indice\footnote{Les indices de cyclogénèse présentés dans ce manuscrit ne sont par définition jamais strictement nuls, ce
-qui est d'autant plus vrai pour les régressions de Poisson définis comme une fonction exponentielle. Dans les régions évoquées, il ne fait toutefois aucun
+qui est d'autant plus vrai pour les régressions de Poisson définies comme une fonction exponentielle. Dans les régions évoquées, il ne fait toutefois aucun
 doute que le niveau d'activité des indices dépasse celui d'un simple bruit de fond.}. Or, un tel biais est présent dans le GPI et le TCS (de même que tous les
 indices dérivés du TCS définis dans ce manuscrit jusqu'à maintenant, et notamment AM10), mais pas le CYGP, lequel ---~rappelons le~--- ne dépend pas de
 l'humidité relative. Ce biais est brièvement mentionné dans le \cref{chap:chapitre_3} (\cref{sec:proprietes_indices}).
@@ -716,7 +716,7 @@ qu'une tendance dans la fréquence annuelle de TC n'est pas détectée dans ARPE
 est au moins cohérente avec les tracks.
 
 Les trois indices calculés sur ERA5 indiquent une tendance significative d'ampleur comparable dans le bassin WPac, entre \num{2.2} TC par décennie pour EVPD et
-\num{2.9} TC par décennie pour M10. Dans IBTrACS, une tendance significative mais de signe opposée est identifiée à raison de \num{-1.7} TC par décennie. Il est
+\num{2.9} TC par décennie pour M10. Dans IBTrACS, une tendance significative mais de signe opposé est identifiée à raison de \num{-1.7} TC par décennie. Il est
 clair que la tendance positive dans ERA5 provient de la rupture liée à l'humidité dans le bassin WPac, largement documentée dans le \cref{chap:chapitre_3}.
 L'indice EVPD est également concerné, car le déficit de saturation d'humidité intégré sur la colonne présente dans ERA5 une tendance opposée à celle de
 l'humidité relative (donc à la baisse), si bien que la rupture dans la variabilité interannuelle de l'indice est toujours visible dans la réanalyse dans ce
@@ -789,7 +789,7 @@ centrée sur le bassin Sud Indien, avec un pôle situé à \ang{12.5}S, \ang{55}
 Les simulations utilisent la même version du modèle que pour la simulation utilisée dans ce chapitre \parencite{voldoire_evaluation_2019}, et les deux
 expériences partagent le même protocole expérimental, notamment pour ce qui relève du forçage par des SST prescrites. Spécfiquement, chacune des deux
 expériences est composée de deux simulations : Une à climat présent, et une autre à climat plus chaud. Les simulations à climat présent sont forcées par des
-séries de SST et de concetration en glace de mer provenant d'une simulation historique faite avec le modèle couplé CNRM-CM5 \parencite{voldoire_cnrmcm5_2013}.
+séries de SST et de concentration en glace de mer provenant d'une simulation historique faite avec le modèle couplé CNRM-CM5 \parencite{voldoire_cnrmcm5_2013}.
 Les simulations à climat plus chaud correspondent à un scénario d'émission de gaz à effet de serre associé à un forçage radiatif de
 \SI{8.5}{\watt\per\meter\squared} au sommet de l'atmosphère à la fin du siècle (RCP8.5, \textit{Radiative Concentration Pathway})
 \parencite{christensen_climate_2013}, et les SST utilisées sont également issues d'une simulation faite avec CNRM-CM5, mais cette fois sous ce même scénario
@@ -977,7 +977,7 @@ Dans ce chapitre, l'effet de l'introduction de nouveaux prédicteurs dans des in
 suite aux résultats du \cref{chap:chapitre_3}, dans lequel il est montré que la variabilité interannuelle des indices construits selon ce modèle statistique est
 extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à la construction d'un indice dans lequel un indice ENSO (ONI)
 est introduit et ajouté aux prédicteurs déjà présents, avec l'objectif de parvenir à améliorer la représentation de la variabilité interannuelle inférée par
-l'indice. Spécifiquement, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné, de façon à
+l'indice. Spécifiquement, pour chaque année, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné, de façon à
 contraindre le modèle statistique à simuler l'effet de l'ENSO sur la variabilité temporelle de la fréquence modélisée. En effet, si le TCS et ses dérivés
 semblent déjà reproduire quelques pics d'activité historique liés à ce mode de variabilité, seuls les évènements les plus importants semblent laisser une
 empreinte dans la variabilité inférée par ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus
