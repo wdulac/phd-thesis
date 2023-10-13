@@ -110,8 +110,57 @@ l'indice utilisant le VPD produit une diminution plus prononcée et plus homogè
 bon accord avec la réponse indiquée par le schéma de détection, aussi bien dans son amplitude que dans la répartition spatiale du changement, notamment pour la
 simulation sur le bassin Sud Indien.
 
-\subsection*{Perspectives}
+\subsection*{Perspectives pour des travaux futurs}
 
+Le traqueur du CNRM offre des performances satisfaisantes, mais celui-ci bénéficerait sans aucun doute d'un travail de refonte. En effet, son utilisation est
+complexe et nécessite l'ajustement systématique de certains paramètres directement dans les sources, avant application. Par ailleurs, l'utilisation d'un filtre
+des systèmes de moyennes latitudes réduit considérablement les détections indésirables, et le traqueur gagnerait donc à ce qu'un tel système soit y soit
+directement intégré. Le filtre du paramètre $V_U^T$ est un bon candidat pour cette implémentation, mais les deux paramètres \textbf{PT} et \textbf{PW}
+deviendraient alors redondants. L'implémentation online du filtre nécessiterait dans tous les cas une refonte importante de l'algorithme pour diverses raisons
+techniques qu'il n'est pas pertinent de mentionner ici.
 
+De plus, l'implémentation qui est faite du filtre du $V_U^T$ dans \textcite{dulac_assessing_2023} est perfectible sur plusieurs aspects. Le premier point,
+mineur, est que le gradient vertical du maximum de pertubation isobarique y est simplement calculé à partir de la différence entre les niveaux \hPa{600} et
+\hPa{300}. Bien que des essais préliminaires montrent que les différences sont faibles, il serait néanmoins plus rigoureux d'évaluer le gradient vertical sur
+l'ensemble des niveaux verticaux intermédiaires, via un ajustement linéaire du profil vertical de la perturbation de géopotentiel, tel que
+\textcite{hart_cyclone_2003} le suggère. Le second point concerne le rayon de recherche autour du centre du TC pour la mesure de la perturbation maximale de
+géopotentiel. Celui-ci est fixé à \km{500} autour du centre. Ce rayon est justifié dans \textcite{hart_cyclone_2003} comme étant le rayon moyen dans lequel la
+circulation cyclonique secondaire (convergente) est constatée dans les observations \parencite{frank_structure_1977}. Le rayon de recherche affecte les valeurs
+du paramètre $V_U^T$, et la distance idéale dépend en fait de la taille du système considéré. Une valeur non-appropriée peut aboutir à l'élimination d'un TC par
+le filtre ---~ou au contraire à sa préservation~--- pour de mauvaises raisons. Le traqueur du CNRM contient déjà des routines efficaces de calcul de la taille
+du cyclone, si bien que leur utilisation comme étape préalable au diagnostique de vent thermique, dans le cadre d'une implémentation online de ce filtre,
+permettrait de s'assurer que le rayon de cherche est toujours approprié au système considéré.
+
+Les métriques d'évaluation de la similarité des trajectoires présentées dans la \cref{sec:similarité} gagneraient également à être retravaillées, notamment car
+toutes les métriques proposées sont basées sur la moyenne de la similarité angulaire, celle-ci étant évaluée entre chaque paire de vecteurs de déplacements
+relatifs. Par conséquent, les scores sont peu sensibles à des divergences locales, en particulier lorsque les trajectoires évaluées sont longues. Les
+trajectoires cycloniques peuvent aisément contenir des dizaines de pas de temps, et en plus encore si le schéma de détection est appliqué à des données de
+fréquence supérieure à \num{6} heures, et donc la moyenne n'est à priori pas l'opérateur le plus adapté pour mesurer la similarité de la trajectoire dans son
+ensemble. Des métriques d'évaluation de la similarité des trajectoires pourraient néanmoins avoir des applications concrètes intéressantes. Une application
+possible, encore au simple stade d'idée abstraite, consisterait par exemple à utiliser ces métriques pour contraindre le cône d'incertitude des trajectoires de
+TC pour les activités opérationnelles de veille cyclonique.
+
+Les travaux réalisés dans cette thèse sur les indices de cyclogénèse ont essentiellement portés sur la recherche de l'amélioration de la variabilité
+interannuelle mais seule l'apport artificiel de l'information concernant la phase de l'ENSO a permis d'obtenir une amélioration, certes significative, mais
+modérée. Dans la mesure où les prédicteurs utilisés contrôlent la variabilité interannuelle de l'indice, les performances relativement mauvaises obtenues
+suggèrent soit que les bons prédicteurs sont absents, soit que le modèle statistique n'est pas bon. Le fait que l'ajout du diagnostique ENSO ait présenté une
+amélioration en dépit du fait que la régression ait rejeté le prédicteur pourrait indiquer que la seconde hypothèse est à privilégier en priorité. Il serait par
+conséquent intéressant de chercher à mettre en place des modèles statistiques plus sophistiqués. En particulier, il existe des modèles statistiques qui
+fonctionnent en deux temps (de type Hurdle), dans lesquels une première composante pourrait avoir pour fonction ---~dans le cas qui nous intéresse~--- de
+déterminer s'il y a, oui ou non, formation d'un cyclone tropical, tandis que la deuxième composante aurait pour fonction d'en déterminer le nombre. La capacité
+des indices de cyclogénèse construits par régression de Poisson à produire la bonne répartition spatiale de l'activité cyclonique mais le mauvais décompte
+laisse en tout cas penser que cette approche pourrait apporter des résultats intéressants.
+
+La validité de l'utilisation d'indices de cyclogénèse comme méthode d'évaluation de l'activité cyclonique tropicale dans des simulations climatiques dépend de
+l'hypothèse selon laquelle les relations statistiques entre l'activité observée et l'environnement de grande échelle sont stationnaires dans le temps. La
+reproduction de la méthodologie de \textcite{tippett_poisson_2011} a mis en évidence une sensibilité des coefficients de la régression à la période de référence
+utilisée pour les déterminer, et notamment une possible dérive des coefficients dans le temps. En particulier, les coefficients obtenus dans le cadre du
+protocole C25 semble s'éloigner de ceux du TCS si la période de référence est distante de celle utilisée par \textcite{tippett_poisson_2011}. Ce constat ne
+constitue cependant qu'un résultat extrêmement préliminaire. Il serait particulièrement intéressant de chercher à étudier ce phénomène plus en détails, par
+exemple analysant les variations des coefficients de la régression obtenus par glissement de la période de référence.
+
+Enfin, les prédicteurs utilisés dans la formulation des indices construits dans cette thèse ont été sélectionnés sur la base de la littérature existante dans le
+cas du VPD, et pour le rôle connu de l'ENSO à moduler l'activité cyclonique tropicale. Une sélection plus large et objective des prédicteurs pourrait être
+envisagée, à la manière des travaux de \textcite{wang_dynamic_2020}.
 
 \end{document}

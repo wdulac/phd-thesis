@@ -180,17 +180,64 @@
 Merci.
 
 \chapter*{Résumé}
+\vspace{-1cm}
 
-Ici sera le résumé
+En raison de leurs impacts dévastateurs sur les populations et les infrastructures des pays concernés, l’évolution future de l’activité cyclonique tropicale
+dans le contexte du réchauffement climatique est une question de grande importance. Deux méthodes existent pour évaluer l’activité cyclonique tropicale en
+changement climatique dans les modèles de climat : l’utilisation d’algorithmes de détection (traqueurs) de cyclones ou l’utilisation d’indices de cyclogénèse 
+qui traduisent des relations statistiques liant l’activité cyclonique observée à des variables atmosphériques de grande échelle. Ces deux méthodes tendent à
+fournir des projections opposées dans les simulations climatiques. Motivée par ce désaccord, cette thèse propose alors d’explorer ces deux approches dans le but
+d’apporter des améliorations à chacune d’elles.
+
+Dans un premier temps, le traqueur de cyclones tropicaux du CNRM est appliqué à la réanalyse ERA5 du Centre européen pour les prévisions météorologiques à moyen
+terme, et évalué à l’aide de la base de données d’observations des cyclones IBTrACS. Ses performances sont évaluées en termes de probabilité de détection et de
+taux de fausses alarmes (POD et FAR), après optimisation des paramètres de détection, et en appliquant un filtre des systèmes de moyennes latitudes adéquat.
+Plusieurs métriques d’évaluation de la similarité des trajectoires détectées dans ERA5 avec celles observées sont ensuite proposées puis comparées. Ces
+métriques novatrices sont complémentaires au POD et au FAR et montrent que l’optimisation des paramètres de détection s’accompagne d’une légère amélioration de
+la similarité des trajectoires.
+
+De nouveaux indices de cyclogénèse sont ensuite construits sur ERA5 par régression de Poisson entre des prédicteurs de grande échelle thermiques et dynamiques,
+et la base de données IBTrACS. Les régressions sont déclinées à différentes résolutions spatiales et temporelles ainsi qu’à l’échelle globale et pour les
+différents bassins océaniques. La résolution temporelle accrue permet la correction du biais équatorial présent dans les indices les plus communément utilisés.
+La variabilité interannuelle des indices apparaît cependant robuste aux modifications apportées aux coefficients de pondération des variables de grande échelle.
+Suite à ce constat, l’apport de l’ajout de prédicteurs dans les régressions est évalué sur ERA5 ainsi que dans le modèle ARPEGE ; d’une part en ajoutant
+explicitement un diagnostique du mode de variabilité El Niño (ENSO) dans l’indice, et d’autre part en remplaçant l’humidité relative à \hPa{600} par le déficit
+de saturation d’humidité intégré sur la colonne (VPD). L’ajout du diagnostique ENSO permet alors d’améliorer la variabilité interannuelle de l’indice dans la
+plupart des bassins océaniques. Les corrélations avec les séries observées est rendue statistiquement significative au seuil de \prct{95} dans tous les bassins
+à l’exception du Nord Atlantique. L’utilisation du VPD permet quant à elle d’annuler les tendances à la hausse dans la période historique observée dans les
+indices basés sur l’humidité relative. L’indice obtenu présente donc un meilleur accord avec les observations. Lorsqu’appliqué à des simulations climatiques
+ARPEGE à très haute résolution, sous le scénario RCP8.5, le VPD amplifie également la diminution de l’activité cyclonique.
 
 \chapter*{Abstract}
 
-Abstract goes here (in english)
+Given their devastating impact on the populations and infrastructures of the countries concerned the future evolution of tropical cyclone activity in the
+context of global warming is an issue of great importance. Two methods exist for assessing tropical cyclone activity under climate change in climate models: the
+use of cyclone detection algorithms (trackers) or the use of cyclogenesis indices, which translate statistical relationships linking observed cyclone activity
+to large-scale atmospheric variables. These two methods tend to provide opposite projections in climate simulations. Motivated by this disagreement, this thesis
+proposes to explore these two approaches, with the aim of making improvements to each.
+
+Firstly, the CNRM tropical cyclone tracker is applied to the ERA5 reanalysis of the European Centre for Medium-Range Weather Forecasts, and evaluated using the
+IBTrACS database of cyclone observations. Its performance is evaluated in terms of detection probability and false alarm rate (POD and FAR), after optimizing
+detection parameters and applying an appropriate mid-latitude system filter. Several metrics for assessing the similarity of the tracks detected in ERA5 with
+those observed are then proposed and compared. These innovative metrics are complementary to POD and FAR, and show that optimizing detection parameters is
+accompanied by a slight improvement in track similarity.
+
+New cyclogenesis indices are then constructed on ERA5 by Poisson regression between large-scale thermal and dynamic predictors, and the IBTrACS database. The
+regressions are run at different spatial and temporal resolutions, as well as on a global scale and for different ocean basins. The increased temporal
+resolution enables the equatorial bias present in the most commonly used indices to be corrected. However, the interannual variability of the indices appears to
+be robust to changes in the weighting coefficients of the large-scale variables. Following this observation, the contribution of adding predictors to the
+regressions is evaluated on ERA5 as well as in the ARPEGE model; on the one hand by explicitly adding a diagnostic of the El Niño (ENSO) variability mode to the
+index, and on the other hand by replacing the relative humidity at \hPa{600} by the integrated moisture saturation deficit on the column (VPD). The addition of
+ENSO diagnostics improves the interannual variability of the index in most ocean basins. Correlations with observed series are made statistically significant at
+the \prct{95} threshold in all basins except the North Atlantic. The use of the VPD cancels out the upward trends in the historical period observed in indices
+based on relative humidity. The resulting index is therefore in better agreement with observations. When applied to very high-resolution ARPEGE climate
+simulations, under the RCP8.5 scenario, the VPD also amplifies the decrease in cyclonic activity.
 
 \tableofcontents
 \mainmatter
 
-\chapter*{Introduction}
+\chapter*{Introduction générale}
+\markboth{Introduction générale}{Introduction générale}
 \addcontentsline{toc}{chapter}{Introduction générale}
 
 \mtcaddchapter
@@ -209,7 +256,8 @@ Abstract goes here (in english)
 \chapter{Introduction de nouveaux prédicteurs dans les indices}\label{chap:chapitre_4}
 \subfile{Chapitres/chapitre4}
 
-\chapter*{Conclusion}
+\chapter*{Conclusion et perspectives}
+\markboth{Conclusion et perspectives}{Conclusion et perspectives} 
 \addcontentsline{toc}{chapter}{Conclusion}
 \subfile{Chapitres/conclusion}
 
