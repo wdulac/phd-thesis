@@ -117,7 +117,7 @@
 
 %%%%%% Page style
 
-\usepackage[a4paper, top=2.5cm, bottom=2cm, margin=2.25cm, bindingoffset=6mm]{geometry} % margin=2cm
+\usepackage[a4paper, top=2.5cm, bottom=2cm, margin=2.5cm, bindingoffset=6mm]{geometry} % margin=2cm
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -146,8 +146,21 @@
 \usepackage{enumitem}
 \setlist[itemize]{nosep, label={--}}
 
+\usepackage{nextpage}
+
 \usepackage{subfiles}
 \addbibresource{\subfix{./references.bib}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Création 4ème couverture    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%{\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
+%{\vspace*{\fill}}
+
+%\newenvironment{vcenterpage}
+%{\vspace*{\fill}\renewcommand{\headrulewidth}{0pt}}
+%{\vspace*{\fill}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -207,5 +220,7 @@ Abstract goes here (in english)
 \addcontentsline{toc}{chapter}{Bibliographie}
 \printbibliography
 %\bibliography{references}
+
+\subfile{Chapitres/quatrieme_couverture.tex}
 
 \end{document}
