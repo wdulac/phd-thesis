@@ -5,13 +5,15 @@
 
 \section*{Contexte de la thèse}
 
-Les cyclones tropicaux sont les phénomènes naturels les plus extrêmes. Ils sont responsables de centaines de milliers de morts et les coûts des dégâts matériels
+Les cyclones tropicaux sont les phénomènes météorologiques naturels les plus extrêmes. Ils sont responsables de centaines de milliers de morts et les coûts des dégâts matériels
 associés à leur passage se chiffrent en centaines de milliards de dollars. Le déséquilibre du système climatique causé par les émissions anthropiques de gaz à
 effet de serre impacte les facteurs environnementaux favorables ou défavorables à la cyclogénèse, si bien que l'évolution future de l'activité cyclonique
-tropicale est un sujet de grande importance. Le consensus scientifique sur la question est que la fréquence d'occurrence des cyclones tropicaux va probablement
+tropicale est un sujet de grande importance. Le consensus scientifique du 6\ieme\ rapport d'évaluation du GIEC sur la question est que la fréquence d'occurrence des cyclones tropicaux va probablement
 diminuer ou rester stable à l'échelle globale, tandis que la fréquence des cyclones les plus intenses pourrait quant à elle augmenter. L'intensité maximale des
 qu'atteignent ces systèmes pourrait aussi augmenter, de même que les précipitations associées aux cyclones tropicaux. À l'échelle des bassins océaniques
-individuels, l'incertitude associée à ces projections est cependant conséquente. Deux méthodes existent pour évaluer l'activité cyclonique tropicale dans les
+individuels, l'incertitude associée à ces projections est cependant conséquente.
+
+Deux méthodes existent pour évaluer l'activité cyclonique tropicale dans les
 simulations climatiques. La première consiste à utiliser un algorithme ou schéma de détection de cyclones dans des simulations à haute résolution, tandis que la
 seconde consiste à utiliser des relations statistiques entre l'environnement de grande échelle et l'activité cyclonique observée, pour ensuite les appliquer aux
 simulations climatiques. Ces deux approches convergent sur certains points, notamment sur la probable augmentation de l'intensité maximale que les cyclones
@@ -38,7 +40,7 @@ détection, et le seuil d'anomalie de température par rapport à l'environnemen
 En plus de permettre l'évaluation du schéma de détection, ce cadre permet également d'évaluer la représentation des cyclones tropicaux dans la réanalyse ERA5.
 Il est montré que la majorité des cyclones tropicaux historiques sont retrouvés dans la réanalyse. Toutefois, l'intensité maximale des vents cycloniques est
 fortement sous-estimée, malgré la résolution très fine de \km{25} de la réanalyse. Les minimums de pression au niveau de la mer sont quant à eux mieux
-repreśentés. En outre, la classe d'intensité des cyclones tropicaux dans la réanalyse ne correspond pas nécessairement à celle de leur équivalent dans les
+représentés. En outre, la classe d'intensité des cyclones tropicaux dans la réanalyse ne correspond pas nécessairement à celle de leur équivalent dans les
 observations, même en considérant le biais d'intensité du modèle. Il peut en effet arriver que certains cyclones soient plus intenses dans la réanalyse que dans
 les observations.
 
@@ -63,28 +65,25 @@ Ces métriques sont mises en situation à travers une application visant à dét
 
 \subsection*{Étude de l'approche indirecte}
 
-Pour étudier l'approche indirecte des indices de cyclogénèse appliqués, cette thèse s'est concentrée sur un des indices en particulier parmi les plus couramment
-utilisés dans la littérature, appelé TCS. Cette indice a en effet la particularité d'être intégralement défini comme une régression de Poisson établie entre des
+Pour étudier l'approche indirecte des indices de cyclogénèse, cette thèse s'est concentrée sur un indice en particulier les trois présentés, appelé TCS. Cette indice a en effet la particularité d'être intégralement défini comme une régression de Poisson établie entre des
 variables thermiques et dynamiques de grande échelle, et ajustée sur la densité de cyclogénèses, issue soit d'observations historiques ou bien d'un schéma de
 détection. Les autres indices couramment utilisés possèdent, en comparaison, une part nettement plus importante de subjectivité et ne peuvent donc pas être
 aisément reproduits.
 
 Dans un premier temps, la méthodologie de construction du TCS a alors été appliquée ici pour déterminer comment certaines modifications dans la manière de
 réaliser la régression pouvait affecter les coefficients de pondération associés aux prédicteurs, et pour étudier comment ceux-ci impactaient en retour l'indice
-de cyclogénèse en résultant. Ainsi, de nouveaux indices ont été établis sur la réanalyse ERA5, avec IBTrACS comme prédictant, pour déterminer l'effet sur
-l'indice de la résolution spatiale utilisée, ainsi de l'ajout de variabilité temporelle à plus haute fréquence. Il est alors montré que l'effet de l'ajout de
-variabilité temporelle ---~en appliquant la régression sur les champs mensuels plutôt que sur les moyennes climatologiques~--- est dominant par comparé à
+de cyclogénèse en résultant. La réanalyse ERA5 a été utilisée pour déterminer l'effet de la résolution spatiale ainsi que de l'ajout de variabilité temporelle à plus haute fréquence sur des indices ajustés sur la base de données IBTrACS. Il est alors montré que l'effet de l'ajout de
+variabilité temporelle ---~en appliquant la régression sur les champs mensuels plutôt que sur les moyennes climatologiques~--- est dominant comparé à
 l'apport de la résolution spatiale accrue. En outre, la modification du coefficient associé à la vorticité absolue à \hPa{850} par l'ajout de variabilité
-temporelle permet la correction quasi intégrale du biais équatorial présent dans les trois indices les plus couramment utilisés.
+temporelle permet la correction quasi intégrale du biais équatorial présent dans les trois indices présentes.
 
 Il s'avère néanmoins que la modification des coefficients de la régression n'a que peu d'effet sur la représentation de la variabilité interannuelle simulée, ce
-qui indique par conséquent que celle-ci est pilotée par le choix des variables thermiques et dynamiques utilisées. Un nouveau diagnostique est proposé et
-consiste en la mesure des paramètres de la distribution des rangs des valeurs prises par l'indice aux points de grille correspondant aux cyclogénèses observées.
+qui indique par conséquent que celle-ci est pilotée par le choix des variables thermiques et dynamiques utilisées.  Un nouveau diagnostique est proposé, basé sur le comportement de l'indice lors des cyclogénèses observées et consistant à étudier les paramètres de la distribution statistique des rangs de l'indice.
 Dit autrement, ce diagnostique indique dans quelle mesure un indice de cyclogénèse s'active en lieu et date de la formation d'un cyclone dans les observations,
 par rapport au reste du temps. Ce diagnostique montre alors qu'en dépit de l'absence d'amélioration dans la variabilité interannuelle, le fait de re-déterminer
-les coefficients de la régression pour son jeu de données apporte tout de même une plus-value. L'intérêt de construire des indices de cyclogénèse régionaux,
+les coefficients de la régression en vue d'appliquer l'indice aux données de son choix apporte tout de même une plus-value. L'intérêt de construire des indices de cyclogénèse régionaux,
 c'est à dire dont les coefficients varient selon le bassin océanique, est également évalué. Les indices régionaux offrent les mêmes performances à l'échelle
-interannuelle que leurs homologues globaux, mais offrent toutefois une cohérence avec les densités observées sensiblement améliorée, ce qui est particulièrement
+interannuelle que leurs homologues globaux, mais offrent toutefois une cohérence sensiblement améliorée avec les densités observées, ce qui est particulièrement
 intéressant dans les bassins de l'hémisphère nord, où la distribution méridionale de l'activité n'est pas la même dans toutes les régions.
 
 Dans un second temps, l'ajout de nouveaux prédicteurs dans la régression a été étudié. Un indice de cyclogénèse régional a été construit sur une simulation
@@ -92,7 +91,7 @@ historique, faite avec le modèle ARPEGE et forcée par les SST observée, en aj
 notamment pour son rôle de modulation de l'activité cyclonique. Il est alors montré que l'ajout de ce prédicteur permet d'améliorer la variabilité interannuelle
 dans la plupart des bassins. La corrélation entre la variabilité interanuelle inférée par l'indice et celle mesurée par le traqueur du CNRM est rendue
 statistiquement significative dans quasiment tous les bassins océaniques, quand bien même le prédicteur est rejeté par la régression. Le remplacement de
-l'humidité relative à \hPa{600} par le déficit de saturation d'humidité intégré sur la colonne (VPD) est également évalué, sur la base des résultats dans la
+l'humidité relative à \hPa{600} par le déficit de saturation d'humidité intégré sur la colonne (VPD) est également évalué, sur la base de la
 littérature indiquant une convergence du signal en changement climatique lorsque ce prédicteur est utilisé. Il est montré que l'utilisation du VPD en lieu et
 place de l'humidité relative réduit très fortement le biais positif présent en Mer Rouge et dans le Golfe Persique présent dans tous les indices utilisant
 l'humidité relative.
@@ -100,11 +99,11 @@ l'humidité relative.
 Des tendances sont recherchées dans l'évolution du nombre d'occurrence annuel de cyclones tropicaux inféré par différents indices de cyclogénèse appliqués à la
 simulation ARPEGE historique ainsi que dans la réanalyse ERA5. La problématique de la divergence entre les approches directes et indirectes dans les projections
 climatiques est visible dans ces séries temporelles, en ce sens que les indices de cyclogénèses basés sur l'humidité relative indiquent une tendance à la hausse
-statistiquement significative, à l'échelle globale et dans plusieurs bassins oćeaniques. De telles tendances pas ne sont pas détectées dans les observations ou
-dans le modèle. Les indices basés utilisant le VPD ne présentent quant à eux pas de tendances à la hausse non plus.
+statistiquement significative, à l'échelle globale et dans plusieurs bassins oćeaniques. De telles tendances ne sont pas détectées dans les observations ou
+dans les trajectoires du modèle. Les indices utilisant le VPD ne présentent pas de tendances à la hausse non plus.
 
-Enfin, l'effet du VPD est évalué sur deux simulations climatiques à climat futur sous le scénario RCP8.5 avec ARPEGE dans sa configuration basculée-étirée, sur
-le bassin Nord Atlantique et Sud Indien, atteignant localement jusqu'à \km{14} de résolution horizontale. Si, dans ces simulations et dans ces bassins, tous les
+Enfin, l'effet du VPD est évalué sur deux simulations climatiques à climat futur sous le scénario RCP8.5 avec ARPEGE dans sa configuration basculée-étirée : une pour
+le bassin Nord Atlantique et l'autre le bassin Sud Indien. La résolution horizontale de ces simulations atteint localement \km{14} de résolution horizontale au pôle de la grille situé au milieu du bassin considéré. Si, dans ces simulations et dans ces bassins, tous les
 indices considérés projettent une diminution de l'activité cyclonique du même ordre de grandeur que la détection objective des cyclones dans ces simulations,
 l'indice utilisant le VPD produit une diminution plus prononcée et plus homogène dans l'espace. La réponse suggérée par le TCS dans ces simulations présente un
 bon accord avec la réponse indiquée par le schéma de détection, aussi bien dans son amplitude que dans la répartition spatiale du changement, notamment pour la
@@ -112,9 +111,9 @@ simulation sur le bassin Sud Indien.
 
 \subsection*{Perspectives pour des travaux futurs}
 
-Le traqueur du CNRM offre des performances satisfaisantes, mais celui-ci bénéficerait sans aucun doute d'un travail de refonte. En effet, son utilisation est
+Le traqueur du CNRM offre des performances satisfaisantes, mais celui-ci bénéficierait sans aucun doute d'un travail de refonte. En effet, son utilisation est
 complexe et nécessite l'ajustement systématique de certains paramètres directement dans les sources avant application. Par ailleurs, l'utilisation d'un filtre
-des systèmes de moyennes latitudes réduit considérablement les détections indésirables, et le traqueur gagnerait donc à ce qu'un tel système soit y soit
+des systèmes de moyennes latitudes réduit considérablement les détections indésirables, et le traqueur gagnerait donc à ce qu'un tel système y soit
 directement implémenté. Le filtre du paramètre $V_U^T$ est un bon candidat pour cette implémentation, mais les deux paramètres \textbf{PT} et \textbf{PW}
 deviendraient alors redondants.
 
@@ -122,7 +121,7 @@ deviendraient alors redondants.
 %pertinent de mentionner ici.
 
 De plus, l'implémentation qui est faite du filtre du $V_U^T$ dans \textcite{dulac_assessing_2023} est perfectible sur plusieurs aspects. Le premier point,
-mineur, est que le gradient vertical du maximum de pertubation isobarique y est simplement calculé à partir de la différence entre les niveaux \hPa{600} et
+mineur, est que le gradient vertical du maximum de perturbation isobarique y est simplement calculé à partir de la différence entre les niveaux \hPa{600} et
 \hPa{300}. Bien que des essais préliminaires montrent que les différences sont faibles, il serait néanmoins plus rigoureux d'évaluer le gradient vertical sur
 l'ensemble des niveaux verticaux intermédiaires, via un ajustement linéaire du profil vertical de la perturbation de géopotentiel, tel que
 \textcite{hart_cyclone_2003} le suggère. Le second point concerne le rayon de recherche autour du centre du TC pour la mesure de la perturbation maximale de
@@ -131,21 +130,21 @@ circulation cyclonique secondaire (convergente) est constatée dans les observat
 du paramètre $V_U^T$, et la distance idéale dépend en fait de la taille du système considéré. Une valeur non-appropriée peut aboutir à l'élimination d'un TC par
 le filtre ---~ou au contraire à sa préservation~--- pour de mauvaises raisons. Le traqueur du CNRM contient déjà des routines efficaces de calcul de la taille
 du cyclone, si bien que leur utilisation comme étape préalable au diagnostique de vent thermique, dans le cadre d'une implémentation online de ce filtre,
-permettrait de s'assurer que le rayon de cherche est toujours approprié au système considéré.
+permettrait de s'assurer que le rayon de recherche est toujours approprié au système considéré.
 
 Les métriques d'évaluation de la similarité des trajectoires présentées dans la \cref{sec:similarité} gagneraient également à être retravaillées, notamment car
-toutes les métriques proposées sont basées sur la moyenne de la similarité angulaire, celle-ci étant évaluée entre chaque paire de vecteurs de déplacements
+toutes les métriques proposées sont basées sur la moyenne de la similarité angulaire, celle-ci étant calculée entre chaque paire de vecteurs de déplacements
 relatifs. Par conséquent, les scores sont peu sensibles à des divergences locales, en particulier lorsque les trajectoires évaluées sont longues. Les
-trajectoires cycloniques peuvent aisément contenir des dizaines de pas de temps, et en plus encore si le schéma de détection est appliqué à des données de
+trajectoires cycloniques peuvent aisément contenir des dizaines de pas de temps, plus encore si le schéma de détection est appliqué à des données de
 fréquence supérieure à \num{6} heures, et donc la moyenne n'est à priori pas l'opérateur le plus adapté pour mesurer la similarité de la trajectoire dans son
 ensemble. Des métriques d'évaluation de la similarité des trajectoires pourraient néanmoins avoir des applications concrètes intéressantes. Une application
 possible, encore au simple stade d'idée abstraite, consisterait par exemple à utiliser ces métriques pour contraindre le cône d'incertitude des trajectoires de
 TC pour les activités opérationnelles de veille cyclonique.
 
-Les travaux réalisés dans cette thèse sur les indices de cyclogénèse ont essentiellement portés sur la recherche de l'amélioration de la variabilité
+Les travaux réalisés dans cette thèse sur les indices de cyclogénèse ont essentiellement porté sur la recherche de l'amélioration de la variabilité
 interannuelle, mais seul l'apport artificiel de l'information concernant la phase de l'ENSO a permis d'obtenir une amélioration, certes significative, mais
 modérée. Dans la mesure où les prédicteurs utilisés contrôlent la variabilité interannuelle de l'indice, les performances relativement mauvaises obtenues
-suggèrent soit que les bons prédicteurs sont absents, soit que le modèle statistique n'est pas adéquat. Le fait que l'ajout du diagnostique ENSO ait présenté
+suggèrent soit que les bons prédicteurs sont absents, soit que le modèle statistique n'est pas adéquat, ou soit encore que la variabilité interanuelle ne répond pas à un forçage mais au hasard. Le fait que l'ajout du diagnostique ENSO ait présenté
 une amélioration en dépit du rejet du prédicteur par la régression pourrait indiquer que la seconde hypothèse est à privilégier en priorité. Il serait par
 conséquent intéressant de chercher à mettre en place des modèles statistiques plus sophistiqués. En particulier, il existe des modèles qui fonctionnent en deux
 temps (de type Hurdle), dans lesquels une première composante pourrait avoir pour fonction ---~dans le cas qui nous intéresse~--- de déterminer s'il y a, oui ou
@@ -159,7 +158,7 @@ reproduction de la méthodologie de \textcite{tippett_poisson_2011} a mis en év
 utilisée pour les déterminer, et notamment une possible dérive des coefficients dans le temps. En particulier, les coefficients obtenus dans le cadre du
 protocole C25 semble s'éloigner de ceux du TCS si la période de référence est distante de celle utilisée par \textcite{tippett_poisson_2011}. Ce constat ne
 constitue cependant qu'un résultat extrêmement préliminaire. Il serait particulièrement intéressant de chercher à étudier ce phénomène plus en détails, par
-exemple analysant les variations des coefficients de la régression obtenus par glissement de la période de référence.
+exemple en analysant les variations des coefficients de la régression obtenus par glissement de la période de référence.
 
 Enfin, les prédicteurs utilisés dans la formulation des indices construits dans cette thèse ont été sélectionnés sur la base de la littérature existante dans le
 cas du VPD, et pour le rôle connu de l'ENSO à moduler l'activité cyclonique tropicale. Une sélection plus large et objective des prédicteurs pourrait être
