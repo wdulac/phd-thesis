@@ -67,7 +67,8 @@ modèle lorsque ce dernier s'éloigne de l'état connu de l'atmosphère~--- inva
 de l'atmosphère qui est cohérente dans le temps et l'espace et qui correspond le mieux possible à l'état connu de l'atmosphère sur cette période, si bien que le
 produit final constitue une excellente estimation de l'état passé de l'atmosphère sur toute la période considérée. Il en résulte que la plupart ---~sinon
 l'intégralité~--- des cyclones tropicaux observés et référencés dans la base données IBTrACS, introduite dans le \cref{chap:chapitre_1},
-\cref{sec:observations}, sont à priori présents dans une réanalyse.
+\cref{sec:observations}, sont à priori présents dans une réanalyse. Il est toutefois important de préciser que les réanalyses souffrent des défauts du modèle
+sur lequel elles sont établies, en particulier si les TC n'y sont pas explictement assimilés.
 
 Dans ce chapitre, on considère le schéma de détection du CNRM, à l'origine conçu pour suivre les dépressions de moyennes latitudes par
 \textcite{ayrault_nouvelle_2000} puis adapté aux cyclones tropicaux dans \textcite{chauvin_response_2006}, et utilisé à cette fin par
@@ -140,18 +141,20 @@ IBTrACS. Il convient, par soucis de clarté, de distinguer les trois jeux de tra
         du jeu de trjectoires utilisé dans \textcite{dulac_assessing_2023}.
 \end{itemize}
 %
-Dans \textcite{dulac_assessing_2023}, avec le jeu 3, le taux de faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins
-océaniques d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}). Lorsque le filtre appliqué en post-traitement et basé sur le paramètre $V_U^T$ de l'espace
-des phases de \textcite{hart_cyclone_2003} est désactivé (jeu 2), cette quantité vaut alors \prct{60}. Une valeur $V_U^T < 0$, où $V_U^T$ est défini comme le
-gradient vertical entre \hPa{600} et \hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone, est
-indicatif de la présence d'un vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de
-discriminer les cyclones tropicaux à cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Si ce filtre est si efficace, c'est en effet
-parce que la grande majorité des faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyennes latitudes, comme en atteste la
-\cref{fig:lat_density}.a qui présente pour les faux positifs du jeu 2 un mode principal centré sur \ang{50}N et S pour les deux hémisphères respectifs. Pour le
-jeu 3 (\cref{fig:lat_density}.b, en pointillés, avec $V_U^T$), la tendance s'inverse dans l'hémisphère sud, puisque le mode secondaire situé juste en dessous de
-\ang{25}S devient le mode principal, et l'écart entre les deux modes dans l'hémisphère nord se réduit lorsque le filtre est activé. La quantité de ces derniers
-est en partie un effet secondaire de l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la
-\cref{sec:papier_appendix_A}, mais les faux positifs du jeu 1, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extratropicaux.
+Rappelons que que le paramètre $V_U^T$, de l'espace des phases de \textcite{hart_cyclone_2003}, est défini comme le gradient vertical entre \hPa{600} et
+\hPa{300} de la perturbation de hauteur géopotentielle maximale dans un rayon de \km{500} centré sur le cyclone. Une valeur $V_U^T < 0$, est indicative de la
+présence d'un vent thermique (induit par un gradient de température) plus fort à \hPa{600} qu'à \hPa{300}. Ce paramètre permet alors de discriminer les cyclones
+tropicaux à cœur chaud des tempêtes extratropicales qui présentent souvent un cœur froid. Dans \textcite{dulac_assessing_2023}, avec le jeu 3, le taux de
+faux-positivité intégré sur la période \num{1981}~--~\num{2019} et sur les cinq bassins océaniques d'intérêt s'élève à \prct{24} (\cref{sec:papier_results}).
+Lorsque le filtre du $V_U^T$ est désactivé (jeu 2), cette quantité vaut alors \prct{60}. Si ce filtre est si efficace, c'est en effet parce que la grande
+majorité des faux-positifs détectés par le traqueur dans ERA5 sont des systèmes de moyennes latitudes, comme en atteste la \cref{fig:lat_density}.a qui présente
+pour les faux positifs du jeu 2 un mode principal centré sur \ang{50}N et S pour les deux hémisphères respectifs. Pour le jeu 3 (\cref{fig:lat_density}.b, en
+pointillés, avec $V_U^T$), la tendance s'inverse dans l'hémisphère sud. En effet, le mode secondaire situé juste en dessous de \ang{25}S devient le mode
+principal, et l'écart entre les deux modes dans l'hémisphère nord se réduit lorsque le filtre est activé.
+
+%La quantité de ces derniers est en partie un effet
+%secondaire de l'optimisation des seuils de détection dans le but de maximiser la probabilité de détection, présentée dans la \cref{sec:papier_appendix_A}, mais
+%les faux positifs du jeu 1, avec des seuils plus restrictifs, sont aussi largement constitués de systèmes extratropicaux.
 
 \begin{figure}[tb]
     \centering
@@ -189,7 +192,8 @@ longitude, comme filtre des systèmes de moyennes latitudes. La \cref{fig:opheli
 cyclone Ophelia de la saison cyclonique 2017, tel que détecté dans la réanalyse ERA5. Si ce cyclone a terminé sa transition extratropicale le 16 Octobre à
 00:00, à \km{270} du cap Mizen à l'extrémité sud de l'Irlande, correspondant au point situé entre \ang{45} et \ang{50}N sur la \cref{fig:ophelia_z200}, cet
 exemple montre néanmoins que ce système a avancé vers le nord dans un méandre de géopotentiel, et est resté en dessous de la latitude du gradient maximal
-jusqu'à l'Écosse, formant une trajectoire détectée à laquelle ne manque que trois échéances par rapport à la best track.
+jusqu'à l'Écosse, formant une trajectoire détectée à laquelle ne manque que trois échéances par rapport à la best track. Certains systèmes peuvent donc
+atteindre des latitues élevées si les conditions synoptiques le permettent, là où un seuil fixe en latitude aurait pu tronquer la trajectoire.
 
 \begin{figure}[htpb]
     \centering
@@ -337,8 +341,8 @@ mesurer un courant jet bien défini, mais tout type de lissage temporel rend une
 que de l'état instantané de l'atmosphère. Ce filtre ne peut donc s'appliquer que sous la forme d'un post-traitement. L'emploi d'un post-traitement n'est pas un
 point négatif en soi, et peut même s'avérer très pratique pour homogénéiser la méthodologie entre différents traqueurs, à l'instar des travaux de
 \textcite{bourdin_intercomparison_2022}, mais il est permis de penser qu'un schéma de détection qui ne saurait se passer d'un tel système est un schéma
-perfectible. Par ailleurs, diagnostiquer de manière objective la présence du courant jet n'est pas toujours facile, notamment car celui-ci est à son plus faible
-durant la saison chaude, qui correspond pourtant à la plus forte activité cyclonique, et donc à la saison où le filtre est le plus nécessaire. Si
+perfectible. Par ailleurs, diagnostiquer de manière objective la présence du courant jet n'est pas toujours facile, notamment car celui-ci est à son intensité
+la plus faible durant la saison chaude, qui correspond pourtant à la plus forte activité cyclonique, et donc à la saison où le filtre est le plus nécessaire. Si
 l'interpolation spatiale et temporelle de la limite équatoriale du STJ permet de garantir le bon fonctionnement du filtre dans ces cas là, la solution n'est
 toutefois pas pleinement satisfaisante.
 
@@ -360,22 +364,23 @@ chose que le test de \citeauthor{hart_cyclone_2003}.
 
 Les travaux réalisés dans \textcite{dulac_assessing_2023} et présentés dans la \cref{sec:papier} font appel aux notions de FAR et POD pour évaluer la
 performance du schéma de détection de TC du CNRM. Le calcul du POD s'appuie sur un algorithme qui associe les trajectoires détectées dans ERA5 à celles
-présentes dans la base de données IBTrACS par correspondance spatio-temporelle. Si en moyenne le taux de recouvrement des trajectoires appariées
-(\textquote{\textit{matched}} dans \textcite{dulac_assessing_2023}) ---~c'est à dire le nombre de points ERA5 situés à moins de \km{300} d'IBTrACS rapporté au
-nombre d'échéances de la trajectoire IBTrACS, tel que défini dans la \cref{sec:papier_data_methods}~--- est de \prct{68} (médiane à \prct{71}), il suffit dans
-l'absolu d'un seul pas de temps remplissant la condition pour que la trajectoire ERA5 soit appariée à une trajectoire présente dans les observations, et donc
-pour que la trajectoire détectée contribue au POD. Ce cas est néanmoins rare puisqu'il concerne en tout et pour tout \num{7} paires de trajectoires ERA5 /
-IBTrACS, mais on note cependant que près de \prct{4} de nos trajectoires ERA5 ont un taux de recouvrement inférieur ou égal à \prct{25}. Par ailleurs, le taux
-de recouvrement des couples de trajectoires ainsi formés tend à augmenter avec l'intensité des cyclones observés, comme le montre la \cref{fig:coverage_ratio}
-encadré (a), et qui s'explique par le fait que les cyclones les plus intenses sont les plus facilement détectables par le traqueur. Cette tendance à de
-meilleurs recouvrements pour les cyclones les plus forts n'empêchent pas une certaine dispersion des valeurs. Par exemple \prct{5} des trajectoires appariés à
-des TC de catégorie \num{3} ont un taux de recouvrement inférieur ou égal à \prct{31}. Une partie de la variance dans ces scores peut s'expliquer par le fait
-que le traqueur du CNRM est susceptible de manquer le début et la fin du cycle de vie des trajectoires observées, en dépit du mécanisme de relaxation des
-paramètres utilisé dans le schéma de détection \parencite[][Figure 8]{bourdin_intercomparison_2022}, auquel cas le recouvrement s'en voit mécaniquement réduit.
-L'autre facteur est que les trajectoires ERA5 peuvent localement s'éloigner à plus de \km{300} d'IBTrACS. La \cref{fig:coverage_ratio} encadré (b) montre la
-distribution de la fraction des points ERA5 situés à plus de \km{300} des observations pour chaque paire de trajectoire (trajectoires correspondant au jeu 3
-dans la \cref{sec:filtrage_mid_latitudes}) et montre qu'en moyenne \prct{5.8} des points détectés par le traqueur parmi les trajectoires appariés à IBTrACS sont
-au delà de la limite d'appariement. De plus, \prct{5} des trajectoires détectées dans ERA5 ont une fraction divergente d'au moins \prct{26}. Par conséquent, la
+présentes dans la base de données IBTrACS par correspondance spatio-temporelle. Cet algorithme sélectionne les paires de façon à maximiser le taux de
+recouvrement de la trajectoire ERA5 avec celle d'IBTrACS. Comme défini dans la \cref{sec:papier_data_methods}, le taux de recouvrement correpond au nombre de
+points ERA5 à moins \km{300} d'IBTrACS rapporté au nombre d'échéance de la trajectoire IBTrACS. Si en moyenne le taux de recouvrement des trajectoires appariées
+(\textquote{\textit{matched}} dans \textcite{dulac_assessing_2023}) est de \prct{68} (médiane à \prct{71}), il suffit dans l'absolu d'un seul pas de temps
+remplissant la condition pour que la trajectoire ERA5 soit appariée à une trajectoire présente dans les observations, et donc pour que la trajectoire détectée
+contribue au POD. Ce cas est néanmoins rare puisqu'il concerne en tout et pour tout \num{7} paires de trajectoires ERA5 / IBTrACS, mais on note cependant que
+près de \prct{4} de nos trajectoires ERA5 ont un taux de recouvrement inférieur ou égal à \prct{25}. Par ailleurs, le taux de recouvrement des couples de
+trajectoires ainsi formés tend à augmenter avec l'intensité des cyclones observés, comme le montre la \cref{fig:coverage_ratio} encadré (a), et qui s'explique
+par le fait que les cyclones les plus intenses sont les plus facilement détectables par le traqueur. Cette tendance à de meilleurs recouvrements pour les
+cyclones les plus forts n'empêchent pas une certaine dispersion des valeurs. Par exemple \prct{5} des trajectoires appariés à des TC de catégorie \num{3} ont un
+taux de recouvrement inférieur ou égal à \prct{31}. Une partie de la variance dans ces scores peut s'expliquer par le fait que le traqueur du CNRM est
+susceptible de manquer le début et la fin du cycle de vie des trajectoires observées, en dépit du mécanisme de relaxation des paramètres utilisé dans le schéma
+de détection \parencite[][Figure 8]{bourdin_intercomparison_2022}, auquel cas le recouvrement s'en voit mécaniquement réduit. L'autre facteur est que les
+trajectoires ERA5 peuvent localement s'éloigner à plus de \km{300} d'IBTrACS. La \cref{fig:coverage_ratio} encadré (b) montre la distribution de la fraction des
+points ERA5 situés à plus de \km{300} des observations pour chaque paire de trajectoire (trajectoires correspondant au jeu 3 dans la
+\cref{sec:filtrage_mid_latitudes}) et montre qu'en moyenne \prct{5.8} des points détectés par le traqueur parmi les trajectoires appariés à IBTrACS sont au delà
+de la limite d'appariement. De plus, \prct{5} des trajectoires détectées dans ERA5 ont une fraction divergente d'au moins \prct{26}. Par conséquent, la
 trajectoire détectée dans la réanalyse n'est pas toujours identique à celle du catalogue des best tracks, soit parce que le traqueur n'en détecte qu'une partie,
 soit parce que la trajectoire détectée diverge des observations, ou encore par une combinaison quelconque de ces deux éléments. Enfin, bien que le taux de
 recouvrement donne une indication sur la similarité des deux trajectoires, il n'apporte pas d'information sur les variations locales dans la direction de
