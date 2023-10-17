@@ -871,12 +871,23 @@ méthodes objectives de détection et de suivi dans les modèles, laissent entre
 chaud, ce n'est en revanche pas le cas de l'approche indirecte ---~consistant à inférer l'activité indirectement via l'environnement de grande échelle, avec des
 indices de cyclogénèse~--- qui tend au contraire à indiquer une tendance à la hausse de la fréquence d'occurrence (voir \cref{sec:projections_futures}).
 
+\subsection*{Problématique}
+
 C'est précisément sur la différence entre l'approche directe de la détection objective de TC dans les modèles et l'approche indirecte au travers des indices de
-cyclogénèse dans les projections climatiques que porte cette thèse. Pour adresser cette problématique, chacune des deux approches sont abordées dans ce document
-thèse dans le but de déterminer s'il est possible de les réconcilier. Le \cref{chap:chapitre_2} est ainsi consacré à la détection objective de TC dans les
-modèles, avec un tour d'horizon des différents traqueurs employés dans la littérature, avec en particulier une application de l'algorithme de suivi du CNRM à la
-réanalyse ERA5 du CEPMMT. Le \cref{chap:chapitre_3} sera consacré aux indices de cyclogénèses, dont un qui sera appliqué sur des simulations ARPEGE en climat
-présent. Enfin le \cref{chap:chapitre_4} traitera de l'application à des simulations en climat futur avec ARPEGE en configuration forcée et avec la grille
-basculée-étirée.
+cyclogénèse dans les projections climatiques que porte cette thèse. Pour adresser cette problématique, chacune des deux approches est abordée séparément dans ce
+document. Le \cref{chap:chapitre_2} est ainsi consacré à la détection objective de TC dans les modèles, avec un tour d'horizon des différents traqueurs employés
+dans la littérature, avec en particulier une application de l'algorithme de suivi du CNRM à la réanalyse ERA5 du CEPMMT. Une attention particulière est portée
+au développement de nouvelles métriques d'évaluation de la performance du traqueur.
+
+Pour les indices de cyclogénèse, l'accent est porté sur la recherche de l'amélioration de la représentation de la variabilité interannuelle. Il est en effet
+supposé qu'une meilleure variabilité interannuelle serait synonyme d'une meilleure représentation du processus de cyclogénèse, et donc que l'indice serait plus
+apte à fournir la bonne réponse au réchauffement climatique. Le \cref{chap:chapitre_3} est alors consacré au développement d'indices par régression statistique,
+c'est à dire d'indices dans lesquels les variables de grande échelle sont pondérées par des coefficients issus d'une relation ajustée sur l'activité observée.
+Différents modes opératoires sont expérimentés dans le but d'influencer ces coefficients, et pour voir comment ces coefficients affectent en retour la
+représentation de la variabilité interannuelle.
+
+Dans le \cref{chap:chapitre_4}, l'ajout de prédicteurs dans ces indices est exploré. Leur effet sur la variabilité interannuelle est évalué, de même que sur
+les tendances détectées sur la période historique. Le modèle ARPEGE est également utilisé pour construire ces indices, et ces derniers sont ensuite appliqués à
+des simulations en climat futur avec ARPEGE utilisé dans sa configuration basculée-étirée sur deux bassins océaniques distincts.
 
 \end{document}
