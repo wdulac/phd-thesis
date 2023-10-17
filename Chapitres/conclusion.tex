@@ -140,21 +140,46 @@ toutes les métriques proposées sont basées sur la moyenne de la similarité a
 relatifs. Par conséquent, les scores sont peu sensibles à des divergences locales, en particulier lorsque les trajectoires évaluées sont longues. Les
 trajectoires cycloniques peuvent aisément contenir des dizaines de pas de temps, plus encore si le schéma de détection est appliqué à des données de
 fréquence supérieure à \num{6} heures, et donc la moyenne n'est à priori pas l'opérateur le plus adapté pour mesurer la similarité de la trajectoire dans son
-ensemble. Des métriques d'évaluation de la similarité des trajectoires pourraient néanmoins avoir des applications concrètes intéressantes. Une application
-possible, encore au simple stade d'idée abstraite, consisterait par exemple à utiliser ces métriques pour contraindre le cône d'incertitude des trajectoires de
-TC pour les activités opérationnelles de veille cyclonique.
+ensemble.
+
+Les métriques de similarité pourraient peut-être fournir une information sur l'effet du changement climatique sur la forme des trajectoires. Une stratégie pour
+évaluer cet effet pourrait consister à évaluer la similarité de couples de trajectoires formés aléatoirement dans des simulations à climat présent, puis à
+répéter l'opération sur des trajectoires issues de simulations à climat futur. Il serait alors peut-être possible de déterminer si le réchauffement climatique
+amène à une plus grande variété de formes de trajectoires différentes, ou au contraire à des trajectoires plus semblables les unes avec les autres. Une telle
+stratégie d'évaluation pourrait néanmoins être sensible au décalage vers les pôles des TC, auquel cas il serait peut-être nécessaire de réaliser cette analyse
+par bande de latitude. Outre la recherche en changement climatique, les métriques de similarité des trajectoires pourraient également avoir des applications
+concrètes en mode prévision. Par exemple, ces dernières pourraient être utilisées pour contraindre le cône d'incertitude des trajectoires de TC pour les
+activités opérationnelles de veille cyclonique.
 
 Les travaux réalisés dans cette thèse sur les indices de cyclogénèse ont essentiellement porté sur la recherche de l'amélioration de la variabilité
 interannuelle, mais seul l'apport artificiel de l'information concernant la phase de l'ENSO a permis d'obtenir une amélioration, certes significative, mais
 modérée. Dans la mesure où les prédicteurs utilisés contrôlent la variabilité interannuelle de l'indice, les performances relativement mauvaises obtenues
-suggèrent soit que les bons prédicteurs sont absents, soit que le modèle statistique n'est pas adéquat, ou soit encore que la variabilité interanuelle ne répond
-pas à un forçage mais au hasard. Le fait que l'ajout du diagnostique ENSO ait présenté une amélioration en dépit du rejet du prédicteur par la régression
-pourrait indiquer que la seconde hypothèse est à privilégier en priorité. Il serait par conséquent intéressant de chercher à mettre en place des modèles
-statistiques plus sophistiqués. En particulier, il existe des modèles qui fonctionnent en deux temps (de type Hurdle), dans lesquels une première composante
-pourrait avoir pour fonction ---~dans le cas qui nous intéresse~--- de déterminer s'il y a, oui ou non, formation d'un cyclone tropical, tandis que la deuxième
-composante aurait pour fonction d'en déterminer le nombre. La capacité des indices de cyclogénèse construits par régression de Poisson à produire la bonne
-répartition spatiale de l'activité cyclonique mais le mauvais décompte laisse en tout cas penser que cette approche pourrait apporter des résultats
-intéressants.
+peuvent s'expliquer de plusieurs manières, lesquelles ne sont d'ailleurs pas nécessairement mutuellement exclusives. Il est en effet possible que le processus
+physique de la cyclogénèse ne soit pas adéquatement capturé par ces combinaisons de prédicteurs, autrement dit que les bons prédicteurs sont absents. Il est
+également possible que la variabilité interannuelle ne réponde pas à un forçage, mais plutôt que le processus de cyclogénèse possède une dimension
+intrinsèquement stochastique. Cette perspective questionne la définition même d'un indice de cyclogénèse. Si ces derniers ne font que renseigner le degré avec
+lequel l'environnement est favorable à la formation de cyclones, mais que la cyclogénèse en elle-même est en fin de compte aléatoire, alors les indices n'ont
+aucune raison de simuler une variabilité interannuelle proche des observations.
+
+Une troisième possibilité existe néanmoins, car il se peut également que le modèle statistique utilisé ici, à savoir la régression de Poisson, ne soit pas
+adéquat pour reproduire la variabilité interannuelle. Le fait que l'ajout du diagnostique ENSO ait présenté une amélioration de la variabilité interannuelle en
+dépit du rejet du prédicteur par la régression tend en effet à suggérer que des modèles différents pourraient offrir de meilleures performances dans cette
+optique. Il serait par conséquent intéressant de chercher à mettre en place des modèles statistiques plus sophistiqués. En particulier, il existe des modèles
+qui fonctionnent en deux temps (de type Hurdle), dans lesquels une première composante pourrait avoir pour fonction ---~dans le cas qui nous intéresse~--- de
+déterminer s'il y a, oui ou non, formation d'un cyclone tropical, tandis que la deuxième composante aurait pour fonction d'en déterminer le nombre. Cette
+catégorie de modèles permet en outre de mieux prendre en considération l'excès zéros dans les densités de cyclogénèses observées, servant de prédictant à la
+régression. En effet, la plupart des points de grille ne présentent le plus souvent aucun cyclone. 
+
+Il convient de rappeler qu'historiquement, les indices de cyclogénèse étaient utilisés pour étudier l'activité cyclonique dans des modèles dont la résolution
+spatiale ne permettaient pas de simuler de TC. Avec l'arrivée du premier ensemble multi-modèles à haute résolution (HighResMIP), dont certains modèles
+atteignent jusqu'à \km{20} de résolution, il devient légitime de questionner la pertinence de l'utilisation d'indices par rapport à la mesure directe des TC
+dans les simulations par détection objective. Mais si ces hautes résolutions permettent en effet de simuler des TC, et parfois même d'atteindre les catégories 4
+et 5 sur l'échelle de Saffir-Simpson, ces modèles sont encore peu nombreux, et leur utilisation particulièrement coûteuse. Le protocole HighResMIP précaunise à
+ce titre des simulations plus courtes que dans CMIP6 \parencite[et plus particulièrement ScenarioMIP,][]{oneill_scenario_2016}, et sous un seul scénario de
+réchauffement global. HighResMIP ne constitue alors qu'un sous-ensemble de taille moindre et de portée réduite par rapport à l'ensemble mutli-modèles CMIP6. Les
+indices sont donc encore pertinents pour beaucoup de modèles CMIP6, dont la résolution spatiale atteint jusqu'à \km{250}. Par ailleurs, l'application d'un indice de
+cyclogénèse à une simulation est nettement plus aisée que le déploiement d'un schéma de détection et suivi objectif, lequel apporte nécessairement de la
+complexisté additionnelle, et nécessite de traiter les sorties des modèles à une fréquence sub-journalière.
 
 La validité de l'utilisation d'indices de cyclogénèse comme méthode d'évaluation de l'activité cyclonique tropicale dans des simulations climatiques dépend de
 l'hypothèse selon laquelle les relations statistiques entre l'activité observée et l'environnement de grande échelle sont stationnaires dans le temps. La
