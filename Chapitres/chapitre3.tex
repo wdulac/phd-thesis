@@ -544,7 +544,9 @@ grande échelle ainsi que des cyclogénèses IBTrACS sur une grille de \ang{2.5}
 période temporelle considérée distingue les coefficients $b$ de C25 de ceux du TCS, ces derniers étant en effet également issus de valeurs climatologiques à
 cette même résolution. C25 joue alors pour ainsi dire le rôle de groupe témoin, car il est attendu que ses coefficients soient les plus proches possibles de
 ceux du TCS. Notons que pour cet indice, on a $m = N_{\mathrm{lat}} \times N_{\mathrm{lon}} \times N_{\mathrm{temps}} = \num{48} \times \num{144} \times
-\num{12}$. Toutefois, l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de terre masqués sont ignorés. La taille effective,
+\num{12}$. Toutefois, l'emploi d'un masque terre-mer approprié réduit la taille des vecteurs, car les points de terre masqués sont ignorés. Celui-ci est par
+ailleurs choisi de façon à être très conservatif. Spécifiquement, toute fraction de mer strictement inférieure à \prct{100} est masquée. Le masque est ensuite
+interpolé de manière bi-linéaire à la résolution spatiale souhaitée, avant d'être appliqué aux variables de grande échelle. La taille effective,
 $m_{\mathrm{eff}}$, vaut ici \num{52128} (au lieu de \num{82944}). Le second indice, nommé C10, est quant à lui établi toujours sur les moyennes
 climatologiques, mais avec une résolution de \ang{1.0} ($m_{\mathrm{eff}} = \num{327876}$). Le troisième, M25 est construit sur les moyennes mensuelles
 ($N_{\mathrm{temps}} = \num{480}$) à \ang{2.5}, et donc avec $m_{\mathrm{eff}} = \num{2085120}$. Enfin le dernier, nommé M10, correspond par conséquent, selon
