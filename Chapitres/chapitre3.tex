@@ -139,7 +139,7 @@ régression n'est pas remise en cause \parencite{gray_global_1968}.
 %n'est pas assez prononcée. Le TCS simule également mieux l'étendue méridionale de l'activité cyclonique par rapport au GPI ---~notamment grâce à l'usage de la
 %vorticité bornée~--- ce dernier produit en effet une activité trop prononcée proche de l'équateur et dans les hautes latitudes.
 
-\textcite{wang_dynamic_2020} ont également défini un indice de cyclogénèse par un modèle statistique, cette fois ci par une régression log-log\footnote{Une
+\textcite{wang_dynamic_2020} ont également défini leur indice de cyclogénèse par un modèle statistique, cette fois ci par une régression log-log\footnote{Une
 régression de Poisson peut être vue comme une relation log-linéare, reliant linéairement le logarithme de l'espérance de la quantité $Y$ aux prédicteurs
 $\mathbf{x}$ par le vecteur des coefficients $\mathbf{b}$ : $\log \mathbb{E} (Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \mathbf{x}$, tandis que la
 régression utilisée par \textcite{wang_dynamic_2020} est de type $\log \mathbb{E}(Y \mid \mathbf{x}) = \mathbf{b}^{\mathrm{T}} \log \mathbf{x}$. Bien que
@@ -191,23 +191,22 @@ d'une maille avec la latitude. Reprenant l'équation donnée dans la \cref{sec:i
 Où $\rho(j,i)$, défini sur le domaine géographique $D$ représente la valeur de l'indice $\rho$ au point de grille $(j,i)$, caractérisé par sa latitude $\phi_j$
 et sa longitude $\lambda_i$.
 
-La \cref{fig:acgi_ibt} présente la moyenne temporelle des trois indices : TCS, GPI et CYGP, moyennés entre eux, à laquelle est superposée la densité moyenne de
-cyclogénèses IBTrACS par point de grille. La répartition spatiale des indices présente une excellente concordance avec les observations. Cette figure n'est pas
-sans rappeler les climatologies saisonnières du produit de quatre variables identifiées comme favorables à la cyclogénèse par \textcite{gray_tropical_1975},
-présentées sur la \cref{fig:produit_ingredients} (\vpageref{fig:produit_ingredients}) de la \cref{sec:climato_ingredients} (\cref{chap:chapitre_1}). De prime
-abord, la moyenne des trois indices présentée ici sur la \cref{fig:acgi_ibt} corrige le défaut que possède le simple produit des quatres variables d'indiquer
-des conditions favorables dans les hautes latitudes, puisqu'ici l'activité est concentrée dans les régions tropicales et subtropicales. On note encore quelques
-points de discorde, notamment sur la côte Africaine, côté Atlantique, au large de l'Angola et du Nigeria, où l'indice moyen indique une quantité non-nulle de
-TC, et de même dans des sous-domaines du bassin NInd, à savoir dans le Golfe Persique, en Mer Rouge et dans le Golfe d'Aden\footnote{Peu de points sont visibles
-dans ces trois régions du bassin NInd à cause du masque terre-mer utilisé, mais les points visibles indiquent tout de même une activité non négligeable. Ces
-régions, larges d'à peine plus de \km{200}, ne peuvent accueillir des cyclones tropicaux.} La \cref{fig:acgi_ibt} rappelle également les délimitations des
-bassins géographiques utilisés jusqu'à présent.
+La \cref{fig:acgi_ibt} présente les moyennes saisonnières des trois indices TCS, GPI et CYGP, moyennés entre eux, auxquelles sont superposées les densités de
+cyclogénèses IBTrACS. La répartition spatiale des indices présente une excellente concordance avec les observations. Cette figure n'est pas sans rappeler les
+climatologies saisonnières du produit de quatre variables identifiées comme favorables à la cyclogénèse par \textcite{gray_tropical_1975}, présentées sur la
+\cref{fig:produit_ingredients} (\vpageref{fig:produit_ingredients}) de la \cref{sec:climato_ingredients} (\cref{chap:chapitre_1}). Cette dernière présentait
+toutefois le défaut d'indiquer des conditions favorables jusque dans les moyennes latitudes. L'indice moyen sur la \cref{fig:acgi_ibt} corrige ce défaut, toute
+l'activité étant en effet concentrée dans les régions tropicales et subtropicales. On note encore quelques points de discorde, notamment sur la côte Africaine,
+côté Atlantique, au large de l'Angola et du Nigeria, où l'indice moyen indique une quantité non-nulle de TC, et de même dans des sous-domaines du bassin NInd, à
+savoir dans le Golfe Persique, en Mer Rouge et dans le Golfe d'Aden\footnote{Peu de points sont visibles dans ces trois régions du bassin NInd à cause du masque
+terre-mer utilisé, mais les points visibles indiquent tout de même une activité non négligeable. Ces régions, larges d'à peine plus de \km{200}, ne peuvent
+accueillir des cyclones tropicaux.} La \cref{fig:acgi_ibt} rappelle également les délimitations des bassins géographiques utilisés jusqu'à présent.
 
-\begin{figure}[htpb]
+\begin{figure}[p]
     \centering
-    \includegraphics[width=\textwidth]{acgi_mean_IBTrACS.png}
-    \caption{Moyenne temporelle de la moyenne du TCS, du GPI et CYGP évalués sur ERA5 à \ang{1} de résolution entre 1980 et 2020 (nuances de gris). Densité
-    moyenne de cyclogénèses IBTrACS sur une grille de même résolution et sur la même période.}
+    \includegraphics[width=\textwidth]{acgi_mean_IBTrACS_season.png}
+    \caption{Moyennes saisonnières de la moyenne du TCS, du GPI et CYGP évalués sur ERA5 à \ang{1} de résolution entre 1980 et 2020 (nuances de gris). Densités
+    de cyclogénèses IBTrACS sur une grille de même résolution et sur la même période.}
     \label{fig:acgi_ibt}
 \end{figure}
 
@@ -274,34 +273,35 @@ climatologie observée.
 Les qualités désirables pour la climatologie mensuelle d'un indice de cyclogénèse à l'échelle régionale sont de pouvoir simuler : la bonne saisonnalité, c'est à
 dire la bonne étendue temporelle, y compris en minimisant l'activité en dehors de la saison ; la bonne amplitude ; et naturellement le bon nombre de TC moyen
 par an. Sur l'ensemble de ces aspects, aucun des trois indices n'apparaît comme clairement supérieur aux autres sur l'ensemble des six bassins d'activité. Les
-trois indices capturent correctement la saison cyclonique dans l'ensemble des bassins, à l'exception du CYGP dans le Nord Indien où le pic de la première saison est
-indiqué pour le mois de juin plutôt que mai pour les deux autres et dans les observations. Cette caractéristique du CYGP est également notée dans
+trois indices capturent correctement la saison cyclonique dans l'ensemble des bassins, à l'exception du CYGP dans le Nord Indien où le pic de la première saison
+est indiqué pour le mois de juin plutôt que mai pour les deux autres et dans les observations. Cette caractéristique du CYGP est également notée dans
 \textcite{menkes_comparison_2012}, et ne saurait s'expliquer par l'utilisation des précipitations convectives, puisque le YGP présente le même attribut (mais
 encore plus prononcé) et trouve par conséquent son origine dans la composante dynamique de l'indice. Le CYGP se démarque par ailleurs du TCS et du GPI à deux
 autres reprises : dans le bassin Nord Atlantique où celui-ci sous-estime très fortement l'amplitude de l'activité (voir aussi \cref{tab:tcs_cygp_gpi}) ; et dans
 le bassin Sud-Indien, où il est au contraire le seul à simuler un maximum réaliste au mois de février, bien que la tendance entre janvier et février soit
-mauvaise. Le TCS se démarque une fois de plus comme étant l'indice le plus apte à minimiser l'activité inférée en dehors de la saison cyclonique, bien
-qu'elle ne soit tout de même pas négligeable entre juin et octobre dans le bassin SPac, simulant environ \num{0.5} TC par mois, ainsi que dans le NInd entre
-juin et août. Par ailleurs, tous les indices surestiment l'activité dans ces deux bassins. Il est toutefois difficile de distinguer la contribution d'IBTrACS de
-celle des indices dans ce constat dans la mesure où les observations dans ces bassins y sont moins fiables que dans les autres régions ; en particulier dans le
-NInd, où elles sont quasi inexistantes jusqu'au début des années 2000. Les pic d'activités simulés par le TCS dans le WPac, EPac, NAtl et NInd sont
-supérieurs à ceux du CYGP et du GPI. Dans le WPac, le TCS dépasse même les observations sur la période juillet~--~août~--~septembre. Dans les deux bassins de
-l'hémisphère sud, l'activité inférée par le TCS est au contraire plus faible que pour les deux autres indices (ce qui pour le SPac aboutit à une meilleure
-représentation de l'activité observée). Cela se comprend d'une part par le fait, montré dans la section précédente, que le CYGP et le GPI surestiment l'activité
-dans l'hémisphère sud tandis qu'ils la sous-estiment dans le nord ---~le TCS étant beaucoup plus proche des observations dans les deux hémisphères~--- et
-d'autre part, par la capacité du TCS à capturer plus finement la saison active, en débordant moins que les autres sur la saison creuse. Dans le nord, cela
-creuse l'écart du TCS par rapport aux deux autres au cœur de la saison active, tandis qu'il est permis de penser que cette propriété tend au contraire à
-compenser l'activité moindre dans le sud. Sans être exempt de tout défaut, le TCS réunit donc, dans l'ensemble, le plus de qualités désirables dans un indice de
-cyclogénèse pour simuler la climatologie mensuelle à l'échelle régionale.
+mauvaise. Le TCS se démarque une fois de plus comme étant l'indice le plus apte à minimiser l'activité inférée en dehors de la saison cyclonique, bien qu'elle
+ne soit tout de même pas négligeable entre juin et octobre dans le bassin SPac, simulant environ \num{0.5} TC par mois, ainsi que dans le NInd entre juin et
+août. Par ailleurs, tous les indices surestiment l'activité dans ces deux bassins. Il est toutefois difficile de distinguer la contribution d'IBTrACS de celle
+des indices dans ce constat dans la mesure où les observations dans ces bassins y sont potentiellement moins fiables que dans les autres régions
+\parencite{schreck_impact_2014} ; en particulier dans le NInd, où elles sont quasi inexistantes jusqu'au début des années 2000. Les pic d'activités simulés par
+le TCS dans le WPac, EPac, NAtl et NInd sont supérieurs à ceux du CYGP et du GPI. Dans le WPac, le TCS dépasse même les observations sur la période
+juillet~--~août~--~septembre. Dans les deux bassins de l'hémisphère sud, l'activité inférée par le TCS est au contraire plus faible que pour les deux autres
+indices (ce qui pour le SPac aboutit à une meilleure représentation de l'activité observée). Cela se comprend d'une part par le fait, montré dans la section
+précédente, que le CYGP et le GPI surestiment l'activité dans l'hémisphère sud tandis qu'ils la sous-estiment dans le nord ---~le TCS étant beaucoup plus proche
+des observations dans les deux hémisphères. D'autre part, le TCS possède la capacité à capturer plus finement la saison active, en simulant une activité
+comparativement moindre en dehors de la saison cyclonique. Dans le nord, cela creuse l'écart du TCS par rapport aux deux autres au cœur de la saison active,
+tandis qu'il est permis de penser que cette propriété tend au contraire à compenser l'activité moindre dans le sud. Sans être exempt de tout défaut, le TCS
+réunit donc, dans l'ensemble, le plus de qualités désirables dans un indice de cyclogénèse pour simuler la climatologie mensuelle à l'échelle régionale.
+
 \subsection*{Fréquence annuelle et variabilité}
 
-La première partie du \cref{tab:tcs_cygp_gpi} présente la fréquence annuelle moyenne des TC dans les six bassins géographiques ainsi que pour chaque hémisphère et à
-l'échelle globale. Notons en premier lieu que les trois indices produisent le bon ordre de grandeur de fréquence annuelle à toutes les échelles spatiales, à
-l'exception de la sous-estimation du CYGP dans le NAtl, et de la sur-estimation des trois indices dans le bassin NInd, cette dernière pouvant être due au manque
-d'observations dans la région. Le TCS apparait comme l'indice simulant le nombre moyen annuel de TC le plus proche d'IBTrACS pour \num{5} des \num{8} échelles
-spatiales considérées (l'échelle globale ne comptant pas, puisque la fréquence annuelle globale est imposée), à savoir EPac, SPac, NInd et les deux
-hémisphères. Dans le WPac et le SInd, le TCS est toutefois le plus éloigné de la réalité, et est le seul à produire un surplus dans le WPac, avec $+$\num{3.1}
-TC par an par rapport à IBTrACS. Il occupe enfin la 2\ieme~place du classement dans le bassin NAtl, devant le CYGP. Le CYGP quant à lui se démarque dans le WPac
+La première partie du \cref{tab:tcs_cygp_gpi} présente la fréquence annuelle moyenne des TC dans les six bassins géographiques ainsi que pour chaque hémisphère
+et à l'échelle globale. Notons en premier lieu que les trois indices produisent le bon ordre de grandeur de fréquence annuelle à toutes les échelles spatiales,
+à l'exception de la sous-estimation du CYGP dans le NAtl, et de la sur-estimation des trois indices dans le bassin NInd, cette dernière pouvant être due au
+manque d'observations dans la région. Le TCS apparait comme l'indice simulant le nombre moyen annuel de TC le plus proche d'IBTrACS pour \num{5} des \num{8}
+bassins océaniques considérées (l'échelle globale ne comptant pas, puisque la fréquence annuelle globale est imposée), à savoir EPac, SPac, NInd et les deux
+hémisphères. Dans le SInd, le TCS est toutefois le plus éloigné de la réalité, et est à égalité avec le GPI dans le WPac avec un surplus de $+$\num{3.7} TC par
+an par rapport à IBTrACS. Il occupe enfin la 2\ieme~place du classement dans le bassin NAtl, devant le CYGP. Le CYGP quant à lui se démarque dans le WPac
 ---~bien qu'il ait tendance à simuler une saison légèrement trop tardive, décalée d'environ 1 mois, c.f \cref{fig:tcs_cygp_gpi_clim_mensuel}~--- et dans le
 SInd. Enfin, le GPI ne produit la fréquence annuelle la plus proche d'IBTrACS que pour le bassin NAtl, avec cependant un déficit de \num{2.2} TC par an. Dans le
 sous-ensemble d'IBTrACS utilisé ici, le ratio de la fréquence annuelle moyenne entre les deux hémisphères est de \num{2.16}. Sans surprise, le TCS en est le
@@ -339,21 +339,21 @@ comme la somme des séries temporelles calculées indépendamment l'une de l'aut
 dans IBTrACS pour le bassin NInd est largement composée de \num{0} jusqu'au début des années 2000, raison pour laquelle les corrélations sont omises dans cette
 colonne. Là encore, aucun indice ne se distingue clairement des deux autres à toutes les échelles. La capacité des trois indices à produire une variabilité
 interannuelle corrélée aux observations est très variable selon les régions du monde et selon les indices. En effet, les trois indices indiquent une corrélation
-négative dans le SInd, jusqu'à \num{-0.3} pour le GPI. Dans le WPac, le TCS et le GPI ne présentent aucune corrélation, tandis que le CYGP indique un
-coefficient, certes faible mais sensiblement meilleur que pour les deux autres, de \num{0.46}. À l'inverse, dans les bassins EPac et NAtl, les trois indices
-indiquent une variabilité interannuelle en phase avec IBTrACS. En effet dans l'EPac, le TCS indique une corrélation de \num{0.7}, suivi du GPI avec \num{0.64}
-et enfin du CYGP à \num{0.62}, tandis que le GPI dans le NAtl atteint la plus haute corrélation de \num{0.79} ---~le TCS et le CYGP présentant des performances
-honorables d'environ \num{0.7} chacun. Le CYGP se distingue aussi dans le SPac avec une corrélation relativement faible de \num{0.57}, mais meilleure que les
-deux autres indices puisque celles-ci valent \num{0.39} et \num{0.35} pour le GPI et le TCS, respectivement. À plus grande échelle, la variabilité interannuelle
-des indices dans l'hémisphère nord est plus proche que dans le sud, avec dans le premier cas, entre \num{0.27} pour le CYGP et \num{0.43} pour le GPI, tandis
-que dans l'hémisphère sud les trois indices indiquent une corrélation quasi-nulle. À l'échelle globale, seul le GPI indique une très maigre corrélation de
-\num{0.17}, les deux autres indices ne présentant une fois de plus aucun lien avec les observations. Séparer le bassin SInd en deux sous-bassins s'avère
-bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le bassin Sud Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de
-longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre \ang{90} et \ang{135}E. La limite méridionale demeure inchangée,
-entre \ang{0} et \ang{60}S. Ce découpage est plus proche du découpage pratiqué pour la surveillance opérationnelle, comme expliqué dans la
-\cref{sec:bassins_saisons} du \cref{chap:chapitre_1}. Dans ce contexte, le TCS présente une corrélation de \num{0.21} et \num{0.22} pour le SIndW et le SIndE
-respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par conséquent, et pour la suite des travaux présentés dans ce
-document, nous distinguerons toujours les régions SIndW et SIndE.
+négative dans le SInd, jusqu'à \num{-0.3} pour le GPI. Dans le WPac, le TCS et le GPI ne présentent aucune corrélation, en accord avec
+\textcite{wang_dynamic_2020}, tandis que le CYGP indique un coefficient, certes faible mais sensiblement meilleur que pour les deux autres, de \num{0.46}. À
+l'inverse, dans les bassins EPac et NAtl, les trois indices indiquent une variabilité interannuelle en phase avec IBTrACS. En effet dans l'EPac, le TCS indique
+une corrélation de \num{0.7}, suivi du GPI avec \num{0.64} et enfin du CYGP à \num{0.62}, tandis que le GPI dans le NAtl atteint la plus haute corrélation de
+\num{0.79} ---~le TCS et le CYGP présentant des performances honorables d'environ \num{0.7} chacun. Le CYGP se distingue aussi dans le SPac avec une corrélation
+relativement faible de \num{0.57}, mais meilleure que les deux autres indices puisque celles-ci valent \num{0.39} et \num{0.35} pour le GPI et le TCS,
+respectivement. À plus grande échelle, la variabilité interannuelle des indices dans l'hémisphère nord est plus proche que dans le sud, avec dans le premier
+cas, entre \num{0.27} pour le CYGP et \num{0.43} pour le GPI, tandis que dans l'hémisphère sud les trois indices indiquent une corrélation quasi-nulle. À
+l'échelle globale, seul le GPI indique une très maigre corrélation de \num{0.17}, les deux autres indices ne présentant une fois de plus aucun lien avec les
+observations. Séparer le bassin SInd en deux sous-bassins s'avère bénéfique pour la corrélation interannuelle des trois indices. Spécifiquement, on définit le
+bassin Sud Ouest Indien (SIndW) entre \ang{20}E et \ang{90}E de longitude, puis le bassin Sud Est Indien (SIndE), correspondant au bassin australien, entre
+\ang{90} et \ang{135}E. La limite méridionale demeure inchangée, entre \ang{0} et \ang{60}S. Ce découpage est plus proche du découpage pratiqué pour la
+surveillance opérationnelle, comme expliqué dans la \cref{sec:bassins_saisons} du \cref{chap:chapitre_1}. Dans ce contexte, le TCS présente une corrélation de
+\num{0.21} et \num{0.22} pour le SIndW et le SIndE respectivement ; \num{0.37} et \num{0.16} pour le CYGP ; \num{0.27} et \num{0.12} pour le GPI. Par
+conséquent, et pour la suite des travaux présentés dans ce document, nous distinguerons toujours les régions SIndW et SIndE.
 
 \begin{figure}[tb]
     \centering
@@ -367,20 +367,20 @@ interannuelle. La \cref{fig:tcs_cygp_gpi_variabilite} présente les séries temp
 \num{2019} dont sont issues les corrélations du \cref{tab:tcs_cygp_gpi}. Dans le bassin NAtl, où la corrélation interannuelle est supérieure à \num{0.7} pour
 les indices, l'amplitude de la variabilité inférée est moindre par rapport aux observations. Cela est particulièrement vrai pour le GPI, présentant un
 écart-type de \num{1.4} TC contre \num{4.8} TC dans IBTrACS. Le TCS présente une amplitude plus forte que le GPI, mais cette dernière reste toutefois faible,
-avec un écart-type de \num{2.3}, soit une dispersion plus de deux fois petite que la dispersion observée. Certains sursauts observés sont cependant capturés par
-les trois indices. C'est notamment le cas de l'année \num{1995} et \num{2005}. Dans le Sud Pacifique et Sud Est Indien, le constat est similaire, avec une forte
-sous-estimation de l'amplitude à l'exception de certains pics comme pour la saison \num{1998} dans le SPac. Le sursaut d'activité simulé par le CYGP est par
-ailleurs anormalement élevé, par rapport aux observations ainsi qu'aux deux autres indices, dépassant \num{32} TC. Cette valeur n'est dépassée qu'en \num{1983}
-avec près de \num{34} TC, le GPI et le TCS étant quant à eux en accord sur une valeur de \num{23} TC et \num{22.2} respectivement. Si ces pics notés dans les
-trois indices correspondent à un maximum local dans les observations également, la saison ne se démarque toutefois pas des autres saisons. En revanche, le
-bassin EPac présente un accord remarquable entre la variabilité simulée et la variabilité observée, avec pour seules exceptions l'année \num{1992}, pic majeur
-dans IBTrACS avec \num{31} systèmes, là où les trois indices indiquent entre \num{18.5} TC pour le TCS et \num{16.3} TC pour le GPI. La variabilité inférée par
-les indices est, de manière générale, nettement moins proche d'IBTrACS avant l'année \num{1993}, puisque le seul désaccord au delà de cette année \num{2000}.
-Notons en effet que la corrélation interannuelle pour le bassin EPac pris à partir de \num{1993} est augmentée d'au moins \num{0.1} par rapport aux valeurs
-renseignées dans le \cref{tab:tcs_cygp_gpi}, atteignant \num{0.81} pour le TCS. Dans l'EPac, SInd (ouest et est), les trois indices présentent des variabilités
-extrêmement semblables, mis à part les différences dans la fréquence moyenne dans le SIndW. Les différences sont plus marquées dans le WPac, en particulier
-entre le GPI et les deux autres. Le CYGP apparait parfois en opposition du signal indiqué par le TCS et le GPI comme par exemple pour les années \num{1988} et
-\num{2007}.
+avec un écart-type de \num{2.3}, soit une dispersion plus de deux fois moindre que la dispersion observée. Certains sursauts observés sont cependant capturés
+par les trois indices. C'est notamment le cas de l'année \num{1995} et \num{2005}. Dans le Sud Pacifique et Sud Est Indien, le constat est similaire, avec une
+forte sous-estimation de l'amplitude à l'exception de certains pics comme pour la saison \num{1998} dans le SPac. Le sursaut d'activité simulé par le CYGP est
+par ailleurs anormalement élevé, par rapport aux observations ainsi qu'aux deux autres indices, dépassant \num{32} TC. Cette valeur n'est dépassée qu'en
+\num{1983} avec près de \num{34} TC, le GPI et le TCS étant quant à eux en accord sur une valeur de \num{23} TC et \num{22.2} respectivement. Si ces pics notés
+dans les trois indices correspondent à un maximum local dans les observations également, la saison ne se démarque toutefois pas des autres saisons. En revanche,
+le bassin EPac présente un accord remarquable entre la variabilité simulée et la variabilité observée, avec pour seules exceptions l'année \num{1992}, pic
+majeur dans IBTrACS avec \num{31} systèmes, là où les trois indices indiquent entre \num{18.5} TC pour le TCS et \num{16.3} TC pour le GPI. La variabilité
+inférée par les indices est, de manière générale, nettement moins proche d'IBTrACS avant l'année \num{1993}. Notons en effet que la corrélation interannuelle
+pour le bassin EPac pris à partir de \num{1993} est augmentée d'au moins \num{0.1} par rapport aux valeurs renseignées dans le \cref{tab:tcs_cygp_gpi},
+atteignant \num{0.81} pour le TCS. Dans l'EPac, SInd (ouest et est), les trois indices présentent des variabilités extrêmement semblables, mis à part les
+différences dans la fréquence moyenne dans le SIndW. Les différences sont plus marquées dans le WPac, en particulier entre le GPI et les deux autres. Le CYGP
+apparait parfois en opposition du signal indiqué par le TCS et le GPI comme par exemple pour les années \num{1988} et \num{2007}. Le CYGP capture néanmoins
+remarquablement bien les chutes d'activité en \num{1997} et \num{2010}.
 
 \subsection{Limitations des indices de cyclogénèses}
 
@@ -650,10 +650,10 @@ fine et de variabilité temporelle tend à décaler l'activité cyclonique plus 
 l'activité, pour le bassin NAtl est accrue dans le golf du Mexique (\textit{Gulf of Mexico}, GoM), au détriment de la zone de développement
 principale (\textit{Main Development Region}, MDR, entre \ang{10}N et \ang{20}N et entre \ang{20}W et \ang{60}W.). Dans l'encadré (b) pour ce même bassin, le
 GoM ne présente pas de variation importante, et l'effet de l'ajout de variabilité temporelle sur la MDR est contrasté, avec une baisse du côté de l'équateur
-mais une augmentation la partie nord-est de la MDR. Dans les deux cas, l'intégrale sur le bassin est essentiellement \num{0}. Dans le EPac, l'effet de la
+mais une augmentation la partie nord-est de la MDR. Dans les deux cas, l'intégrale sur le bassin est essentiellement \num{0}. Dans le bassin EPac, l'effet de la
 résolution spatiale accrue est en opposition avec l'effet de la variabilité mensuelle, notamment le long des côtes du Mexique. Les intégrales sont de signe
 opposés, avec \num{-0.16} TC par an sur le panneau (a), et $+$\num{0.50} TC par an. On imagine alors que M10, combinant les deux effets, s'accompagne d'une très
-légère hausse de la fréquence annuelle moyenne dans ce bassin. Dans le bassin WPac, les contributions sont inversées. En effet, si les deux panneaux indiquent
+légère hausse de la fréquence annuelle moyenne dans ce bassin. Dans le bassin WPac, l'effet inverse est constaté. En effet, si les deux panneaux indiquent
 une hausse de l'activité autour de \ang{10}, en mer de Chine méridionale, et une diminution dans la région équatoriale, pour (a) l'augmentation l'emporte, avec
 $+$\num{0.28} TC par an, tandis que pour (b) la diminution équatoriale est plus importante, avec \num{-0.12} TC par an. Dans le NInd, l'augmentation de
 l'activité concerne principalement le golf du Bengale, la mer d'Arabie ne voyant elle que peu de changement, avec peut-être une très légère augmentation pour la
