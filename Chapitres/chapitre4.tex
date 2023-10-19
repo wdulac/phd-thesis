@@ -243,8 +243,8 @@ entrevoir dans l'ensemble une possible anti-corrélation.
 Pour évaluer le lien entre l'activité cyclonique détectée et la variabilité El Niño dans ces bassins où la \cref{fig:corr_ONI_pt} ne permet pas de dégager une
 conclusion nette, la corrélation est évaluée à l'échelle du bassin tout entier. Spécifiquement, les cyclogénèses sont comptabilisées sur la grille d'origine de
 la simulation (T359, soit \ang{0.5}), puis l'activité est intégrée spatialement sur les bassins océaniques usuels selon la méthodologie employée dans le
-\cref{chap:chapitre_3}. Enfin, la corrélation avec la variabilité interannuelle de l'ONI est évaluée pour chacun des bassins. La
-\cref{fig:corr_ONI_bassin} présente les coefficients de corrélation $r$ ainsi que les valeurs-p associées.
+\cref{chap:chapitre_3}. Enfin, la corrélation avec l'ONI est évaluée pour chacun des bassins. La \cref{fig:corr_ONI_bassin} présente les coefficients de
+corrélation $r$ ainsi que les valeurs-p associées.
 
 \begin{figure}[tpb]
     \centering
@@ -256,11 +256,11 @@ la simulation (T359, soit \ang{0.5}), puis l'activité est intégrée spatialeme
 Pour les bassins WPac et SIndE, la \cref{fig:corr_ONI_bassin} confirme ce que laisse deviner la \cref{fig:corr_ONI_pt}, à savoir une corrélation dans le
 premier, évaluée à \num{0.34} et à la limite de la significativité sous un seuil de \prct{95}, et une anti-corrélation significative dans le second à
 \num{-0.59}. La \cref{fig:corr_ONI_bassin} permet également de lever l'ambigüité pour les bassins où le lien est contrasté sur la \cref{fig:corr_ONI_pt}. Ainsi
-l'activité cyclonique dans le bassin SIndW est également présenté comme anti-corrélée à l'ONI avec \num{-0.36}, là aussi à la limite de la significativité, et
+l'activité cyclonique dans le bassin SIndW est également présentée comme anti-corrélée à l'ONI avec \num{-0.36}, là aussi à la limite de la significativité, et
 pareillement dans le bassin NAtl avec \num{-0.33}, bien qu'avec une valeur-p de \num{0.07}. En revanche, le bassin EPac ne présente aucune corrélation, et
 celles des bassins NInd et SPac ne sont pas significatives. À titre de référence, cette carte réalisée entre ERA5 et IBTrACS signale une corrélation de
 \num{0.54} dans le bassin EPac et de \num{-0.43} dans le bassin NAtl. La corrélation dans le bassin SIndE est inchangée par rapport à celle mesurée ici, mais
-les bassins WPac et SIndW sont néanmoins parfaitement décorrélés.
+les bassins WPac et SIndW sont néanmoins parfaitement décorrélés, avec des coefficients $r$ proches \num{0}.
 
 Le lien entre l'activité cyclonique telle que détectée par le schéma de détection du CNRM appliqué au modèle ARPEGE d'une part, et le mode de variabilité El
 Niño est dans l'ensemble cohérent. Plusieurs bassins océaniques présentent des corrélations à la limite de la significativité statistique, et c'est par
@@ -268,9 +268,9 @@ conséquent dans ces bassins là qu'une éventuelle plus-value de l'ajout de l'O
 
 \subsection{Application de la régression}
 
-On applique ici la régression de Poisson selon la même méthodologie employée pour construire l'indice nommé M10 dans la \cref{sec:apport_res_temporel_spatial},
-mais appliquée à la simulation ARPEGE. On utilise donc en prédictant les cyclogénèses détectées par le traqueur du CNRM dans la simulation historique ARPEGE
-forcée par HadISST1. Ces dernières, de même que les champs de grande échelle utilisés comme prédicteurs, transposées sur une grille régulière de \ang{1} de
+On applique ici la régression de Poisson selon la méthodologie employée pour construire l'indice nommé M10 dans la \cref{sec:apport_res_temporel_spatial}, mais
+appliquée à la simulation ARPEGE. On utilise donc en prédictant les cyclogénèses détectées par le traqueur du CNRM dans la simulation historique ARPEGE forcée
+par HadISST1. Ces dernières, de même que les champs de grande échelle utilisés comme prédicteurs, sont transposées sur une grille régulière de \ang{1} de
 résolution et agrégées au pas de temps mensuel. Ici encore, la taille de la matrice $\mathbf{x}$ des prédicteurs est le principal facteur limitant la résolution
 spatiale pour réaliser la régression, et est la raison pour laquelle nous n'utilisons pas la grille T359 d'origine. Nous utilisons les mêmes variables
 thermiques et dynamiques que pour le TCS et pour les \cref{sec:apport_res_temporel_spatial,sec:indice_regional}, à savoir la vorticité absolue bornée à
