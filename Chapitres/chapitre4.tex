@@ -130,27 +130,33 @@ filtre parvient toutefois à supprimer \num{95} des \num{97} cyclogénèses situ
 La \cref{fig:density_arpege_ibtracs} présente le biais moyen entre la simulation ARPEGE (c.f \cref{fig:track_density_PRE625REFT359x}) et IBTrACS, prise sur la
 même période, en termes de densité de probabilité d'occurrence pour pallier à la différence dans la fréquence annuelle des deux jeux de données après
 application du filtre du STJ. Dans l'océan Atlantique, la \cref{fig:density_arpege_ibtracs} fait apparaître une légère surestimation dans l'Atlantique Sud d'une
-part, et un déséquilibre dans l'Atlantique nord avec notamment une sous-évaluation dans le MDR et le GoM, mais une sur-évaluation dans le reste de l'océan. Ce
-biais dans l'atlantique nord avec cette simulation est par ailleurs documenté dans \textcite{chauvin_future_2020}. Dans le bassin EPac, l'activité simulée est
-fortement sous-estimée. Dans le WPac, un surplus est noté dans ARPEGE en Mer de Chine méridionale et Mer des Philippines, tandis que le reste du bassin voit
-sinon un déficit. Dans le bassin NInd, la simulation ARPEGE présente une activité sur-estimée aussi bien en Mer d'Arabie que dans le Golfe du Bengale. Dans
-l'hémisphère sud, le biais est plus contrasté. Dans l'océan Indien, on note un biais positif dans le sud-ouest du bassin, autour de Madagascar mais un biais
-négatif dans le nord-est, proche de l'équateur. Une répartition du biais similaire mais symétrique est notée dans le bassin Sud Pacifique, avec un biais positif
-dans le sud-est et négatif au nord-ouest.
+part \parencite[un biais commun à de nombreux modèles,][]{camargo_tropical_2016}, et un déséquilibre dans l'Atlantique nord avec notamment une sous-évaluation dans
+le MDR et le GoM, mais une sur-évaluation dans le reste de l'océan. Ce biais dans l'atlantique nord avec cette simulation est par ailleurs documenté dans
+\textcite{chauvin_future_2020}. Dans le bassin EPac, l'activité simulée est fortement sous-estimée. Dans le WPac, un surplus est noté dans ARPEGE en Mer de
+Chine méridionale et Mer des Philippines, tandis que le reste du bassin voit sinon un déficit. Dans le bassin NInd, la simulation ARPEGE présente une activité
+sur-estimée aussi bien en Mer d'Arabie que dans le Golfe du Bengale. Dans l'hémisphère sud, le biais est plus contrasté. Dans l'océan Indien, on note un biais
+positif dans le sud-ouest du bassin, autour de Madagascar mais un biais négatif dans le nord-est, proche de l'équateur. Une répartition du biais similaire mais
+symétrique est notée dans le bassin Sud Pacifique, avec un biais positif dans le sud-est et négatif au nord-ouest.
 
 Dans la plupart des bassins, ces motifs de biais sont en fait évocateurs d'une mauvaise localisation des cyclogénèses par le schéma de détection, notamment en
 raison de sa tendance connue à détecter les TC un peu tardivement, plutôt que d'un biais avéré dans l'activité simulée. Dans le NAtl, les trajectoires démarrent
 le plus souvent de la MDR ou du GoM pour ensuite remonter vers le nord / nord-est. Dans le SInd, les TC se déplacent souvent du nord-est vers le sud-ouest. Le
-sens de circulation est inversé dans le SPac en raison du flux de mousson en provenance d'ouest qui prend le pas sur la dérive de Coriolis ---~cette dernière
-ayant naturellement tendance à déplacer les TC vers l'ouest dans l'hémisphère sud (c.f \cref{sec:conditions_cyclogenese})~--- si bien que les TC s'y déplacent
-généralement vers le sud-est. Une détection trop tardive des TC pourrait également expliquer au moins en partie le biais noté dans le WPac (voir aussi
-\cref{fig:bassins_TC} du \cref{chap:chapitre_1}, \vpageref{fig:bassins_TC}, pour voir les sens de déplacement des TC dans les bassins océaniques majeurs). Le
-\cref{chap:chapitre_2} fait notamment référence à cette tendance que possède le schéma de détection à détecter trop tardivement les TC dans la réanalyse ERA5,
-et cet effet est également documenté dans \textcite{bourdin_intercomparison_2022}. Dans ce contexte, les seules régions où il existe un biais réel entre
-l'activité simulée par ARPEGE et l'activité observée (outre la différence de fréquence annuelle après passage du filtre) sont le bassin EPac, le NInd, et dans
-une mesure bien moindre le Sud Atlantique. L'activité cyclonique telle que simulée dans le modèle ARPEGE et identifiée par le traqueur du CNRM est donc tout
-compte fait assez fidèle aux observations. Nous considérons alors que les cyclogénèses issues du schéma de détection du CNRM appliqué à la simulation ARPEGE
-peuvent être utilisées comme prédictant pour la construction d'indices de cyclogénèse par régression de Poisson.
+sens de circulation est inversé dans le SPac en raison du flux de mousson en provenance d'ouest qui prend le pas sur l'effet bêta ---~cette dernière ayant
+naturellement tendance à déplacer les TC vers l'ouest (c.f \cref{sec:conditions_cyclogenese})~--- si bien que les TC s'y déplacent généralement vers le sud-est.
+Une détection trop tardive des TC pourrait également expliquer au moins en partie le biais noté dans le WPac (voir aussi \cref{fig:bassins_TC} du
+\cref{chap:chapitre_1}, \vpageref{fig:bassins_TC}, pour voir les sens de déplacement des TC dans les bassins océaniques majeurs). Le \cref{chap:chapitre_2} fait
+notamment référence à cette tendance que possède le schéma de détection à détecter trop tardivement les TC dans la réanalyse ERA5, et cet effet est également
+documenté dans \textcite{bourdin_intercomparison_2022}. Dans ce contexte, les seules régions où il existe un biais réel dans la fréquence d'occurrence entre
+l'activité simulée par ARPEGE et l'activité observée (outre la différence de fréquence annuelle après passage du filtre du STJ) sont le bassin EPac, le NInd, et
+dans une mesure bien moindre le Sud Atlantique.
+
+Dans les autres régions (NAtl, SInd, SPac et WPac), l'importance des biais pour la construction d'indices de cyclogénèse est moindre pour plusieurs raisons.
+D'une part, ceux-ci sont modérés en amplitude. En effet, l'écart moyen dans la latitude médiane des cyclogénèses sur ces bassins est de \ang{2.7} en direction
+des pôles. Le biais en longitude est un peu plus conséquent, avec en moyenne \ang{7.4} en valeur absolue (direction variable selon les bassins), et est
+principalement porté par le WPac et le SPac. D'autre part, bien qu'appelés \textquote{indices de cyclogénèse}, ceux-ci témoignent plus généralement de
+l'activité cyclonique plutôt que de l'emplacement précis de la formation de cyclones. Enfin, que ces biais soient imputables au schéma de détection ou au
+modèle, ou plus vraisemblablement à une combinaison des deux, leur existence justifie encore d'avantage la construction d'indices propres à ces données plutôt
+que l'utilisation d'indices établis sur des réanalyses.
 
 \begin{figure}[tb]
     \centering
