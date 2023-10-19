@@ -282,8 +282,8 @@ LOA, puisqu'il est entendu que, contrairement au \cref{chap:chapitre_3}, les ré
 résolution.
 
 Enfin, précisons que les cyclogénèses détectées sur terre sont masquées, si bien que la fréquence annuelle de référence pour la calibration des indices globaux
-est réduite à \num{52.32} TC par an. Bien que ce nombre soit bien différent de la fréquence de référence issue d'IBTrACS utilisée dans le \cref{chap:chapitre_3},
-cela n'a aucune importance dès lors que tous les indices sont calibrés sur cette valeur. Le TCS de \textcite{tippett_poisson_2011} est également pris comme
+est réduite à \num{52.32} TC par an. Bien que ce nombre soit bien différent de la fréquence de référence issue d'IBTrACS utilisée dans le \cref{chap:chapitre_3}.
+Cela n'a aucune importance dès lors que tous les indices sont calibrés sur cette valeur. Le TCS de \textcite{tippett_poisson_2011} est également pris comme
 référence pour la comparaison des résultats.
 
 \subsubsection{Régressions globales}
@@ -300,7 +300,7 @@ ci-dessous :
 Les coefficients de AM10 sont à mettre en regard avec ceux obtenus pour l'indice M10, obtenus entre ERA5 et IBTrACS dans le \cref{chap:chapitre_3}. Ces derniers
 peuvent être consultés dans le \cref{tab:fit_spatial_temporel}, \vpageref{tab:fit_spatial_temporel}. Le coefficient $b_H$ est réduit d'environ \num{0.072} à
 \num{0.045}, soit une valeur proche du coefficient associé à l'humidité relative du TCS (\num{0.05}). Les coefficients $b_T$ sont quant à eux quasi identiques,
-à \num{0.01} près. Cela peut vraisemblablement s'expliquer par le fait que la réanalyse ERA5 assimile des données la SST issue de la base de données HadISST2
+à \num{0.01} près. Cela peut vraisemblablement s'expliquer par le fait que la réanalyse ERA5 assimile la SST issue de la base de données HadISST2
 jusqu'en \num{2007}. La sensibilité au cisaillement vertical est néanmoins réduite dans AM10, passant d'environ \num{-0.1} dans ERA5 à environ \num{-0.02} dans
 ARPEGE, soit une sensibilité cinq fois moindre dans le modèle de climat. Cette valeur du coefficient apparaît néanmoins comme statistiquement significative
 (ainsi que tous les autres coefficients) en dépit de sa valeur proche de \num{0}. La régression indique en effet des pourcentiles \prct{2.5} et \prct{97.5} de
@@ -314,7 +314,8 @@ La relation pour l'indice OA est donnée ci-dessous :
 \begin{align*}
     \tag{OA}
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + b_{\mathrm{ONI}} \mathrm{ONI} + \log \cos \phi \big)\\
-        &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} \,+\, &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned} \end{align*}
+        &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} \,+\, &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned}
+\end{align*}
 %
 L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs. On ne note qu'une très légère hausse de
 $b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique cependant une sensibilité positive à l'ONI avec une valeur
@@ -367,7 +368,7 @@ Les bassins NInd et EPac présentent les valeurs-p associées à leur coefficien
 dernier. Ces mêmes bassins présentaient également les liens les moins prononcés entre ENSO et la variabilité interannuelle dans la
 \cref{sec:lien_enso_tracking}. Dans le bassin NAtl, la variable ONI apparait non-significative avec une valeur-p de \num{0.376}. Le coefficient
 $b_{\mathrm{ONI}}$, valant environ \num{-0.07}, reflète toutefois le signe du coefficient de corrélation de la \cref{fig:corr_ONI_bassin}, et l'intervalle de
-confiance ---~bien que traversant le \num{0}~--- est clairement plus situé du côté des valeurs négatives que des valeurs positives, avec des quantiles
+confiance ---~bien que contenant \num{0}~--- est clairement plus situé du côté des valeurs négatives que des valeurs positives, avec des quantiles
 \num{0.025} et \num{0.975} de respectivement \num{-0.237} et \num{0.089}. Un constat similaire peut être fait pour les bassins SIndW et SIndE. Les valeurs-p y
 sont en effet supérieures à \num{0.05}, mais leurs coefficients, de respectivement \num{-0.13} et \num{-0.12}, de même que leur intervalle de confiance exprimé
 par les pourcentiles \prct{2.5} et \prct{97.5}, sont cohérents avec les résultats de la \cref{fig:corr_ONI_bassin}. Notons que des deux bassins, le SIndW
@@ -389,8 +390,8 @@ historique, pour le TCS ainsi que les variations vues par le schéma de détecti
 bassin NInd est en effet inclus dans l'analyse puisque la détection objective de TC dans la simulation permet d'avoir une série complète, contrairement à
 IBTrACS dans le \cref{chap:chapitre_3}. Rappelons que, à l'instar de la \cref{sec:indice_regional} du \cref{chap:chapitre_3}, l'indice LOA est en fait défini
 par un indice régional différent pour chaque bassin, dont les coefficients sont donnés dans le \cref{tab:coefs_LOA}. La variabilité temporelle du nombre de TC
-détectés dans ARPEGE par le traqueur du CNRM est noté \textquote{Tracks}. La significativité statistique de la corrélation entre les séries temporelles des
-quatre indices avec les tracks pour chacun des sept bassins est présenté dans le \cref{tab:pvalues_ONI}.
+détectés dans ARPEGE par le traqueur du CNRM est notée \textquote{Tracks}. La significativité statistique de la corrélation entre les séries temporelles des
+quatre indices avec les tracks pour chacun des sept bassins est présentée dans le \cref{tab:pvalues_ONI}.
 
 \begin{figure}[p]
     \centering
@@ -479,10 +480,10 @@ Poisson, malgré un biais négatif important dans le bassin Est Pacifique, et un
 manière la plus explicite possible, l'information concernant la phase du mode de variabilité océanique dans la régression, de façon à ce que chaque point de
 grille ait accès à cette information à chaque pas de temps.
 
-Trois indices sont construits sur les champs mensuels de la simulation interpolés sur une grille régulière de \ang{1} de résolution horizontale : Un indice
+Trois indices sont construits sur les champs mensuels de la simulation interpolés sur une grille régulière de \ang{1} de résolution horizontale : un indice
 global basé sur les prédicteurs du TCS (AM10), un indice global similaire auquel est ajouté la variable ONI (OA) et un indice régional ---~c'est à dire dont les
 coefficients sont fonction du bassin océanique~--- possédant lui aussi la variable ONI comme prédicteur (LOA). La régionalisation de l'indice avec l'ONI est en
-effet jusitifée par le fait que l'effet du phénomène El Niño sur la modulation de l'activité cyclonique est positif dans certaines régions, et négatif dans
+effet justifiée par le fait que l'effet du phénomène El Niño sur la modulation de l'activité cyclonique est positif dans certaines régions, et négatif dans
 d'autres (voir \cref{sec:lien_enso_tracking}). Les résultats montrent que l'ajout de la variable ONI comme prédicteur dans la construction de l'indice parvient
 efficacement à améliorer la représentation de la variabilité interannuelle inférée par l'indice de cyclogénèse régional, avec l'impact le plus frappant
 concernant le bassin Ouest Pacifique. Seules les deux régions dans lesquelles l'activité cyclonique simulée par ARPEGE présente un biais important ne montrent
@@ -495,7 +496,8 @@ dont un indice de cyclogénèse perçoit les télé-connexions. En effet, l'acti
 en atteste la \cref{sec:lien_enso_tracking} (et notamment les \cref{fig:corr_ONI_pt,fig:corr_ONI_bassin}). \textcite{camargo_use_2007} montrent par ailleurs que
 le GPI de \textcite{emanuel_tropical_2004} reproduit fidèlement les anomalies spatiales de l'activité cyclonique liées à l'ENSO, et mettent en évidence
 l'importance du rôle joué par chacun des prédicteurs, notamment de l'humidité relative en moyenne troposphère et le cisaillement vertical du vent. Ces
-variables, ainsi que la SST (absente du GPI), faisant partie intégrante des indices utilisés ici, une bonne réponse dans la variabilité interannuelle de ces
+variables, ainsi que la SST (indirectement inclue dans le GPI à travers l'intensité potentielle), faisant partie intégrante des indices utilisés ici, 
+une bonne réponse dans la variabilité interannuelle de ces
 derniers à la phase de l'ENSO pouvait être attendue. De surcroît, la variabilité interannuelle des indices utilisés ici n'incluant pas la variable ONI, à savoir
 l'AM10 et le TCS, réagissent tout de même à la phase de l'ENSO, mais dans une mesure amoindrie et de manière moins consistante. On peut en effet le voir pendant
 l'épisode de 1983 dans le bassin SPac, mais aussi en 1992 et 1997 dans le bassin EPac et ainsi qu'en 1999 dans le bassin SIndE, pour ne citer que quelques
