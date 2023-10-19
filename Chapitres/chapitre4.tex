@@ -221,8 +221,8 @@ résolution et l'ONI, aggrégé annuellement de la même façon. Précisons que,
 jusqu'à maintenant, et notamment dans le \cref{chap:chapitre_3}, la fréquence annuelle est calculée pour les saisons cycloniques. Dans l'hémisphère sud, le
 nombre de TC pour une saison donnée est donc évalué entre juillet de l'année précédente et juin de l'année courante. Précisons aussi qu'un masque terre-mer
 interpolé sur la grille de \ang{3} de résolution est utilisé pour masquer les cyclogénèses détectées sur terre de la \cref{fig:track_density_PRE625REFT359x}.
-Celui-ci est issu de la même méthodologie que dans la \cref{sec:construction_indices} du \cref{chap:chapitre_3}, c'est à dire en masquant les points où la
-fraction de mer est inférieure à \prct{100}.
+Celui-ci est issu de la méthodologie que dans la \cref{sec:construction_indices} du \cref{chap:chapitre_3}, c'est à dire en masquant les points où la fraction
+de mer est inférieure à \prct{100}.
 
 \begin{figure}[tpb]
     \centering
@@ -321,15 +321,15 @@ La relation pour l'indice OA est donnée ci-dessous :
     \mu &= \exp \big( b_0 + b_\eta \eta + b_{V_{\mathrm{shear}}} V_{\mathrm{shear}} + b_H H + b_T T + b_{\mathrm{ONI}} \mathrm{ONI} + \log \cos \phi \big)\\
         &= \begin{aligned}[t]\exp \big( \num{-18.7099} + \num{2.4430}\, \eta - \num{0.0192}\, V_{\mathrm{shear}} \,+\, &\num{0.0454}\, H + \num{0.4221}\, T + \\&\underbrace{\num{0.0638}\, \mathrm{ONI}}_{\mathrm{Indice\ ENSO}} + \log \cos \phi \big)\end{aligned} \end{align*}
 %
-L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs. On ne note qu'une très légère hausse de
-$b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique cependant une sensibilité positive à l'ONI avec une valeur
-$b_{\mathrm{ONI}}$ d'environ \num{0.06}. Cela signifie qu'à l'échelle globale, un changement de $+$\SI{1}{\degreeCelsius} de l'anomalie de SST dans la région
-3.4 provoque une hausse de la fréquence d'occurrence modélisée par la régression de l'ordre \prct{6}. Cette valeur apparaît comme statistiquement significative,
-avec une valeur-p de \num{0.024}. Il s'agit toutefois de la valeur-p la plus élevée notée jusqu'à maintenant, ces dernières étant sinon systématiquement
-inférieures à \num{1e-3}, pour toutes les régressions réalisées dans le \cref{chap:chapitre_3} et dans le chapitre présent. La régression indique un AIC
-\parencite[\textit{Akaike Information Criterion},][]{akaike_information_1998} ---~c'est à dire une log-vraisemblance ajustée par le nombre de prédicteurs~---
-légèrement réduite par rapport à AM10, passant en effet de \num{24752} à \num{24747}, indiquant une régression de qualité légèrement supérieure lorsque la
-variable ONI est introduite.
+L'ajout de l'ONI dans la régression ne modifie que très marginalement les coefficients associés aux autres prédicteurs, car les coefficients reflètent la
+corrélation avec le prédictant. On ne note qu'une très légère hausse de $b_\eta$ ainsi qu'une augmentation toute aussi faible de $b_T$. La régression indique
+cependant une sensibilité positive à l'ONI avec une valeur $b_{\mathrm{ONI}}$ d'environ \num{0.06}. Cela signifie qu'à l'échelle globale, un changement de
+$+$\SI{1}{\degreeCelsius} de l'anomalie de SST dans la région 3.4 provoque une hausse de la fréquence d'occurrence modélisée par la régression de l'ordre
+\prct{6}. Cette valeur apparaît comme statistiquement significative, avec une valeur-p de \num{0.024}. Il s'agit toutefois de la valeur-p la plus élevée notée
+jusqu'à maintenant, ces dernières étant sinon systématiquement inférieures à \num{1e-3}, pour toutes les régressions réalisées dans le \cref{chap:chapitre_3} et
+dans le chapitre présent. La régression indique un AIC \parencite[\textit{Akaike Information Criterion},][]{akaike_information_1998} ---~c'est à dire une
+log-vraisemblance ajustée par le nombre de prédicteurs~--- légèrement réduite par rapport à AM10, passant en effet de \num{24752} à \num{24747}, indiquant une
+régression de qualité légèrement supérieure lorsque la variable ONI est introduite.
 
 Néanmoins, la \cref{sec:lien_enso_tracking} montre que le lien entre ENSO et l'activité cyclonique n'est pas uniforme dans l'espace, avec certaines régions
 exprimant une corrélation positive, et d'autres une anti-corrélation. Un indice de cyclogénèse formulé sur l'ONI et dont la régression est menée à l'échelle
