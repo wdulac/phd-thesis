@@ -86,32 +86,29 @@ en glace de mer issues d'observations et provenant de la base de données HadISS
 
 \subsubsection{Cylogénèses simulées}\label{sec:tracking_arpege}
 
-Les cyclones tropicaux sont détectés à l'aide du schéma de détection du CNRM \parencite{chauvin_response_2006}, amplement décrit dans le \cref{chap:chapitre_2},
-notamment dans la \cref{sec:eval_tracker_ERA5}. Le schéma de détection a été appliqué aux champs 6-horaires du modèle avec : un seuil de vorticité
-\textbf{VOR}~$=$~\SI{20e-5}{\per\second} ; un seuil de vent \textbf{RES}~$=$~\ms{13}, un seuil d'anomalie de température \textbf{TANOM}~$=$~\SI{1}{\kelvin} ; un
-seuil de profil vertical de température \textbf{PT}~$=$~\SI{-2}{\kelvin} ; un seuil de profil vertical de vitesse du vent \textbf{PW}~$=$~\ms{5}, et enfin un
-paramètre de relaxation des trajectoires \textbf{REL} fixé à \SI{20e-5}{\per\second}. Ces paramètres se distinguent notablement de ceux utilisés pour ERA5 dans
-\textcite{dulac_assessing_2023} par le seuil vorticité (respectivement \SI{15e-5}{\per\second}) et surtout par le seuil de vitesse du vent à la surface
-(respectivement \ms{5}). Rappelons en effet que le modèle ARPEGE, en particulier cette version précise du modèle, est connue pour simuler des cyclones tropicaux
-intenses par rapport à la résolution du modèle \parencite{roberts_impact_2020,chauvin_future_2020} (voir aussi \cref{sec:cyclones_dans_modèles} du
-\cref{chap:chapitre_1}, notamment la \cref{fig:roberts_PV_resolution}, \vpageref{fig:roberts_PV_resolution}). Il convient néanmoins de préciser que
-contrairement au \cref{chap:chapitre_2}, le choix des seuils de détection utilisés pour détecter les TC dans cette simulation n'ont pas fait l'objet d'une
-analyse quantitative des performances ---~une telle analyse serait par ailleurs impossible étant donné qu'il n'existe pas de trajectoires de référence pour les
-pures simulations atmosphériques. Avant post-traitement des trajectoires, la fréquence d'occurrence annuelle moyenne de cyclogénèses est de \num{80.7} TC par
-an. À titre de référence, IBTrACS sur la même période indique \num{82.9} TC par an.
+Les trajectoires des TC utilisées ici sont issues de \textcite{cattiaux_projected_2020}. Les TC ont été détectés dans la simulation à l'aide du schéma de
+détection du CNRM \parencite{chauvin_response_2006}, amplement décrit dans le \cref{chap:chapitre_2}, notamment dans la \cref{sec:eval_tracker_ERA5}. Le schéma
+de détection a été appliqué aux champs 6-horaires du modèle avec : un seuil de vorticité \textbf{VOR}~$=$~\SI{20e-5}{\per\second} ; un seuil de vent
+\textbf{RES}~$=$~\ms{13}, un seuil d'anomalie de température \textbf{TANOM}~$=$~\SI{1}{\kelvin} ; un seuil de profil vertical de température
+\textbf{PT}~$=$~\SI{-2}{\kelvin} ; un seuil de profil vertical de vitesse du vent \textbf{PW}~$=$~\ms{5}, et enfin un paramètre de relaxation des trajectoires
+\textbf{REL} fixé à \SI{20e-5}{\per\second}. Ces paramètres se distinguent notablement de ceux utilisés pour ERA5 dans \textcite{dulac_assessing_2023} par le
+seuil vorticité (respectivement \SI{15e-5}{\per\second}) et surtout par le seuil de vitesse du vent à la surface (respectivement \ms{5}). Rappelons en effet que
+le modèle ARPEGE, en particulier cette version précise du modèle, est connue pour simuler des cyclones tropicaux intenses par rapport à la résolution du modèle
+\parencite{roberts_impact_2020,chauvin_future_2020} (voir aussi \cref{sec:cyclones_dans_modèles} du \cref{chap:chapitre_1}, notamment la
+\cref{fig:roberts_PV_resolution}, \vpageref{fig:roberts_PV_resolution}). Il convient néanmoins de préciser que contrairement au \cref{chap:chapitre_2}, le choix
+des seuils de détection utilisés pour détecter les TC dans cette simulation n'ont pas fait l'objet d'une analyse quantitative des performances ---~une telle
+analyse serait par ailleurs impossible étant donné qu'il n'existe pas de trajectoires de référence pour les pures simulations atmosphériques. Avant
+post-traitement des trajectoires, la fréquence d'occurrence annuelle moyenne de cyclogénèses est de \num{80.7} TC par an. À titre de référence, IBTrACS sur la
+même période indique \num{82.9} TC par an.
 
-Nous appliquons en post-traitement le filtre des systèmes de moyennes latitudes basé sur le diagnostique du jet subtropical (STJ), décrit et illustré dans la
-\cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}). Ce filtre est choisi ici ---~en dépit des réserves exprimées dans le \cref{chap:chapitre_2}~--- en
-raison de sa relative simplicité à implémenter, notamment par rapport au filtre du $V_U^T$ qui a lui été préféré dans \textcite{dulac_assessing_2023}. En effet,
-l'emploi du filtre du $V_U^T$ comme post-traitement nécessite de traiter en profondeur les champs spatiaux 3D du modèle centrés sur les positions des TC
-préalablement identifiés, une opération qui est à la fois techniquement complexe et chronophage. En comparaison, la détermination de la limite équatoriale du
-STJ peut être faite une fois pour toutes, et n'est pas à proprement parler dépendante des trajectoires identifiées, au sens où il n'est pas nécessaire de
-répéter le diagnostique pour appliquer le filtre à de nouvelles trajectoires issues de la même simulation. En outre, \textcite{bourdin_intercomparison_2022}
-montrent que le filtre du STJ parvient très efficacement à filtrer les systèmes de moyennes latitudes, lorsqu'appliqué à plusieurs schémas de détection sur
-ERA5. Rappelons brièvement que la latitude du STJ est déterminée en prenant la limite équatoriale des points où le module du vent à \hPa{200} (lissé sur trois
-mois glissants) est supérieur à \ms{25} et où la composante zonale (lissée de la même façon) est supérieure à \ms{15}. En pratique, puisqu'on s'intéresse aux
-cyclogénèses et qu'on ne garde pour cela que les premières échéances des trajectoires, le filtre consiste à retirer les points situés au delà de la latitude du
-STJ.
+À la différence des travaux portés par \textcite{cattiaux_projected_2020}, nous appliquons en post-traitement le filtre des systèmes de moyennes latitudes basé
+sur le diagnostique du jet subtropical (STJ), décrit et illustré dans la \cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}). Ce filtre est choisi ici
+---~en dépit des réserves exprimées dans le \cref{chap:chapitre_2}~--- en raison de sa relative simplicité à implémenter, notamment par rapport au filtre du
+$V_U^T$ qui a lui été préféré dans \textcite{dulac_assessing_2023}. En outre, \textcite{bourdin_intercomparison_2022} montrent que le filtre du STJ parvient
+très efficacement à filtrer les systèmes de moyennes latitudes, lorsqu'appliqué à plusieurs schémas de détection sur ERA5. Rappelons brièvement que la latitude
+du STJ est déterminée en prenant la limite équatoriale des points où le module du vent à \hPa{200} (lissé sur trois mois glissants) est supérieur à \ms{25} et
+où la composante zonale (lissée de la même façon) est supérieure à \ms{15}. En pratique, puisqu'on s'intéresse aux cyclogénèses et qu'on ne garde pour cela que
+les premières échéances des trajectoires, le filtre consiste à retirer les points situés au delà de la latitude du STJ.
 
 La \cref{fig:track_density_PRE625REFT359x} présente la densité annuelle moyenne (sur \num{30} ans) des premières échéances des trajectoires détectées dans la
 simulation ARPEGE ---~assimilées aux cyclogénèses~--- après application du filtre du STJ. Avec le filtre du STJ, la fréquence annuelle moyenne est réduite à
