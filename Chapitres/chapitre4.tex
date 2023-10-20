@@ -810,7 +810,8 @@ climatique RCP8.5. Que ce soit pour les simulations en climat présent ou futur,
 données HadISST1, est appliquée. Cette méthode est décrite plus en détails dans \textcite{chauvin_future_2020}.
 
 Les deux simulations sur le bassin Nord Atlantique sont ci-après dénommées ATL-P (pour celle en climat présent) et ATL-F (climat futur). ATL-P couvre la période
-\num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Réciproquement, les simulations sur l'Indien sud sont appelées
+\num{1965}~--~\num{2013} (inclue) tandis qu'ATL-F couvre la période \num{2031}~--~\num{2080} (50 ans). Précisons que cinq membres sont utilisés dans
+\textcite{chauvin_future_2020} tandis que l'analyse faite ici n'en utilise qu'un seul. Réciproquement, les simulations sur l'Indien sud sont appelées
 respectivement SIO-P et SIO-F. SIO-P est en décalage de \num{6} mois par rapport à ATL-P, de façon à couvrir les saisons cycloniques \num{1966}~--~\num{2014},
 et s'étend donc de Juillet \num{1965} à Juin \num{2014}. SIO-F couvre quant à elle les saisons cycloniques \num{2048}~--~\num{2094} (47 ans). Notons enfin que
 le domaine spatial dans les simulations SIO regroupe les bassins SIndW et SIndE utilisés dans ce document, c'est à dire qu'il correspond exactement au bassin
@@ -988,27 +989,26 @@ reproductibilité et son interprétabilité.
 
 Dans ce chapitre, l'effet de l'introduction de nouveaux prédicteurs dans des indices de cyclogénèse construits par régression de Poisson est évalué. Faisant
 suite aux résultats du \cref{chap:chapitre_3}, dans lequel il est montré que la variabilité interannuelle des indices construits selon ce modèle statistique est
-extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à la construction d'un indice dans lequel un indice ENSO (ONI)
-est introduit et ajouté aux prédicteurs déjà présents, avec l'objectif de parvenir à améliorer la représentation de la variabilité interannuelle de
-l'indice. Spécifiquement, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné, de façon à
-contraindre le modèle statistique à simuler l'effet de l'ENSO sur la variabilité temporelle de la fréquence modélisée. En effet, si le TCS et ses dérivés
-semblent déjà reproduire quelques pics d'activité historique liés à ce mode de variabilité, seuls les évènements les plus importants semblent laisser une
-empreinte dans la variabilité inférée par ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus
-consistante aux phases de l'ENSO, notamment pour des évènements d'ampleur moindres.
+extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à l'introduction d'un diagnostique représentatif de l'ENSO
+(ONI) parmi les prédicteurs de la régression, avec l'objectif de parvenir à améliorer la représentation de la variabilité interannuelle de l'indice.
+Spécifiquement, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné. De cette façon, le modèle
+statistique est alors contraint à simuler l'effet de l'ENSO sur la variabilité temporelle de la fréquence modélisée. En effet, si le TCS et ses dérivés semblent
+déjà reproduire quelques pics d'activité historique liés à ce mode de variabilité, seuls les évènements les plus importants semblent laisser une empreinte dans
+la variabilité inférée par ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus consistante aux phases de
+l'ENSO, notamment pour des évènements d'ampleur moindres.
 
 Étant donnée la nature de l'impact de l'ENSO sur l'activité cyclonique tropicale, à savoir présentant un effet positif dans les bassins de l'océan Pacifique, et
 négatif dans l'océan Indien sud ainsi que dans l'Atlantique nord, un tel indice ne peut être défini à l'échelle globale et n'a donc de sens que dans une
 démarche de régionalisation de l'indice, selon le mode opératoire de construction d'un indice régional décrit dans la \cref{sec:indice_regional} du
 \cref{chap:chapitre_3}, nommé LOA. Les régressions statistiques locales rejettent le nouveau prédicteur dans la plupart des bassins océaniques, à l'exception
-des bassins WPac et SPac. Cela se traduit par un intervalle de confiance à \prct{95} pour les coefficients $b$ associés à l'ONI à cheval autour de \num{0}, ou
-autrement dit que le signe du coefficient, et donc de la sensibilité de la fréquence modélisée à l'ONI, n'est pas significativement déterminé.
+des bassins WPac et SPac. Cela se traduit par un intervalle de confiance à \prct{95} pour les coefficients $b$ associés à l'ONI à incluant \num{0}, ou autrement
+dit que le signe du coefficient, et donc de la sensibilité de la fréquence modélisée à l'ONI, n'est pas significativement déterminé.
 
 Toutefois, dans la plupart des régions où le coefficient n'est pas significatif, la valeur suggérée apparaît en accord avec le lien constaté dans le modèle
 entre l'activité cyclonique détectée et l'indice ONI. Il apparaît par ailleurs qu'en dépit de la non-significativité des coefficients, la variabilité
-interannuelle inférée par le nouvel indice régional s'en trouve néanmoins sensiblement améliorée. En particulier, la corrélation entre la variabilité
-interannuelle simulée et celle détectée par le schéma de détection est rendue statistiquement significative dans tous les bassins océaniques au seuil de
-\prct{95} lorsque l'indice ONI est introduit, à l'exception du bassin NAtl, qui est néanmoins nettement plus proche du seuil que les indices n'incluant pas ce
-prédicteur.
+interannuelle inférée par le nouvel indice régional s'en trouve néanmoins sensiblement améliorée. En particulier, la corrélation entre le nombre annuel de TC
+simulé et celui mesuré par le schéma de détection est rendue statistiquement significative dans tous les bassins océaniques au seuil de \prct{95} lorsque
+l'indice ONI est introduit, à l'exception du bassin NAtl, qui est néanmoins nettement plus proche du seuil que les indices n'incluant pas ce prédicteur.
 
 Le paradoxe apparent entre le rejet du prédicteur d'une part et l'amélioration sensible de la variabilité interannuelle d'autre part peut s'expliquer par le
 fait que la régression de Poisson vise avant toute chose à identifier la combinaison log-linéaire de prédicteurs permettant d'expliquer la meilleure répartition
@@ -1028,31 +1028,33 @@ de l'intérêt pour la prévision opérationnelle de l'activité cyclonique.
 Une seconde partie du chapitre s'est consacrée au remplacement de l'humidité relative à \hPa{600} dans la régression par le déficit de saturation d'humidité
 intégré sur la colonne atmosphérique, ou VPD. Cette variable présente en effet l'avantage, par rapport à l'humidité relative, de changer d'amplitude avec le
 réchauffement climatique, alors que l'humidité relative est projetée approximativement constante. Par ailleurs, la littérature suggère que le VPD serait une
-variable plus pertinente que l'humidité relative dans le processus de cyclogénèse. L'introduction du VPD accorde dans la régression plus de poids à la SST
-relative, lequel voit son coefficient augmenter. Cet effet est robuste entre la simulation ARPEGE forcée par HadISST1, ERA5 et ainsi que dans la littérature.
-Comme pour on pouvait s'y attendre, l'utilisation du VPD en lieu et place de l'humidité relative ne présente aucun impact clair sur la variabilité interannuelle,
-dans un sens ou dans l'autre.
+variable plus pertinente que l'humidité relative dans le processus de cyclogénèse. Des considérations théoriques
+\parencite{emanuel_finiteamplitude_1989,emanuel_sensitivity_1995,emanuel_hurricanes_2008} ainsi que des résultats de simulations idéalisées
+\parencite{rappin_thermodynamic_2010} indiquent en effet qu'un plus grand déficit de saturation amène à un développement ralenti d'un vortex initial et à une
+plus faible probabilité de cyclogénèse. L'introduction du VPD dans la régression accorde dans la régression plus de poids à la SST relative, lequel voit donc
+son coefficient augmenter. Cet effet est robuste entre la simulation ARPEGE forcée par HadISST1, ERA5 et ainsi que dans la littérature. L'utilisation du VPD en
+lieu et place de l'humidité relative ne présente aucun impact clair sur la variabilité interannuelle, dans un sens ou dans l'autre.
 
-Néanmoins, l'indice construit avec le VPD (AVPD) réduit des biais positifs présents sinon dans tous les indices utilisant l'humidité
-relative. L'effet est le plus notable dans la Mer Rouge et dans le Golfe Persique, si bien qu'un indice dans la Mer Rouge, le Golfe Persique, ainsi que dans
-dans l'océan Atlantique Sud au large de l'Angola. L'utilisation du VPD en remplacement de l'humidité relative est donc à minima particulièrement recommandée
-pour l'application d'indices de cyclogénèse dans le bassin NInd.
+Néanmoins, l'indice construit avec le VPD (AVPD) réduit des biais positifs présents sinon dans tous les indices utilisant l'humidité relative. L'effet est le
+plus notable dans la Mer Rouge et dans le Golfe Persique, ainsi que dans dans l'océan Atlantique Sud au large de l'Angola. L'utilisation du VPD en remplacement
+de l'humidité relative est donc à minima particulièrement recommandée pour l'application d'indices de cyclogénèse dans le bassin NInd.
 
 À défaut de se démarquer par leur représentation de la variabilité interannuelle, les indices basés sur le VPD, qu'ils soient établis sur les champs modèle ou
-bien de la réanalyse ERA5, se distinguent également de ceux basés sur l'humidité relative à travers les différences notées dans l'analyse des tendances
-du nombre de TC sur la période historique. De manière la plus notable, tous les indices basés sur l'humidité relative indiquent une tendance à la
-hausse statistiquement significative de l'ordre de quelques TC par décennie, dans le modèle comme dans la réanalyse. Une telle tendance n'est pas constatée par
-le schéma de détection ou dans les observations historiques. L'introduction du VPD permet alors d'annuler cette tendance, et offre par cette occasion une
-meilleure cohérence avec la mesure directe par détection objective ainsi qu'avec IBTrACS. Ainsi, la convergence entre l'approche directe par détection objective
-et l'approche indirecte des indices de cyclogénèse notée par \textcite{camargo_testing_2014} dans des scénarios climatiques futurs lorsque le VPD est introduit
-semble également avoir ici une empreinte sur la période historique.
+bien de la réanalyse ERA5, se distinguent également de ceux basés sur l'humidité relative à travers les différences notées dans l'analyse des tendances du
+nombre de TC sur la période historique. De manière la plus notable, tous les indices basés sur l'humidité relative indiquent une tendance à la hausse
+statistiquement significative de l'ordre de quelques TC par décennie, dans le modèle comme dans la réanalyse. Une telle tendance n'est pas constatée par le
+schéma de détection ou dans les observations historiques. L'introduction du VPD permet alors d'annuler cette tendance, et offre par cette occasion une meilleure
+cohérence avec la mesure directe par détection objective ainsi qu'avec IBTrACS. Ainsi, la convergence entre l'approche directe et l'approche indirecte notée par
+\textcite{camargo_testing_2014} dans des scénarios climatiques futurs lorsque le VPD est introduit semble également avoir ici une empreinte sur la période
+historique.
 
 Par ailleurs, l'application d'un indice de cyclogénèse basé sur le VPD à des simulations climatiques sous le scénario RCP8.5 montre que l'utilisation du VPD
 amplifie la réduction de l'activité cyclonique constatée par les indices basés sur l'humidité relative. Dans ces simulations, le VPD tend également à lisser la
 réponse spatiale en produisant une réduction homogène à l'échelle des deux bassins océaniques considérés. Dans ces simulations, le TCS et son dérivé régional
-défini sur la simulation à climat présent montrent toutefois une réponse qui semble en meilleur accord avec le signal indiqué par le schéma de détection, que l'indice utilisant le VPD. Si la diminution constatée de l'activité cyclonique dans ces simulations avec le TCS est probablement le résultat d'un
-concours de circonstances propre à ces régions et à ces simulations, ce résultat fournit néanmoins une raison supplémentaire ---~en plus de ses qualités déjà
-mentionnées dans le \cref{chap:chapitre_3}, notamment dans la \cref{sec:proprietes_indices}~--- de porter une attention plus particulière à cet indice par
-rapport notamment au GPI, dont l'usage est très largement répandu.
+défini sur la simulation à climat présent montrent toutefois une réponse qui semble en meilleur accord avec le signal indiqué par le schéma de détection, que
+l'indice utilisant le VPD. Si la diminution constatée de l'activité cyclonique dans ces simulations avec le TCS est probablement le résultat d'un concours de
+circonstances propre à ces régions et à ces simulations, ce résultat fournit néanmoins une raison supplémentaire ---~en plus de ses qualités déjà mentionnées
+dans le \cref{chap:chapitre_3}, notamment dans la \cref{sec:proprietes_indices}~--- de porter une attention plus particulière à cet indice par rapport notamment
+au GPI, dont l'usage est très largement répandu.
 
 \end{document}
