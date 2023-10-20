@@ -184,7 +184,7 @@ que l'utilisation d'indices établis sur des réanalyses.
 
 \subsubsection{Diagnostique ENSO}\label{sec:diag_enso}
 
-Le mode de variabilité El Niño (respectivement La Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'oćean Pacifique central.
+Le mode de variabilité El Niño (respectivement La Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'océan Pacifique central.
 Il existe plusieurs façons de diagnostiquer ce phénomène et qui se distinguent entre elles par la région, ou boîte, utilisée pour calculer l'anomalie de
 température, ainsi que par le lissage temporel utilisé. Ces boîtes sont au nombre de \num{4}, réparties entre les côtes de l'Amérique centrale et les îles
 Salomon. L'anomalie de SST prise dans une de ces boîtes définit alors un indice El Niño. Ici, nous utilisons l'indice ENSO utilisé pour les besoins
@@ -211,13 +211,13 @@ pas de temps de l'anomalie de SST dans la boîte 3.4.
 
 Le lien entre ENSO et l'activité cyclonique tropicale dans les observations et dans les modèles est largement documenté
 \parencite{chan_tropical_1985,wu_gcm_1992,landsea_ninosouthern_2000,mcdonald_tropical_2005,lin_enso_2020}. Une phase positive de l'oscillation El-Niño tend à
-augmenter la fréquence d'occurence des TC dans certains bassins, notamment dans le Pacifique, et tend à la réduire dans l'océan Indien, et vice versa. Dans
+augmenter la fréquence d'occurrence des TC dans certains bassins, notamment dans le Pacifique, et tend à la réduire dans l'océan Indien, et vice versa. Dans
 l'Atlantique nord, l'activité cyclonique est traditionnellement anti-corrélée à ENSO, car ce dernier apporte du cisaillement dans l'océan Atlantique. Cependant,
 pour déterminer dans quelle mesure l'ajout de l'ONI comme prédicteur dans une régression établie sur les cyclogénèses détectées dans le modèle ARPEGE peut
 impacter la fréquence modélisée par l'indice, il convient de quantifier le lien entre l'ONI et l'activité cyclonique dans notre jeu de données.
 
 La \cref{fig:corr_ONI_pt} présente la carte de corrélation entre le nombre annuel de cyclogénèses pour chaque maille d'une grille régulière de \ang{3} de
-résolution et l'ONI, aggrégé annuellement de la même façon. Précisons que, à l'instar de toutes les opérations de calcul de variabilité interannuelle réalisées
+résolution et l'ONI, agrégé annuellement de la même façon. Précisons que, à l'instar de toutes les opérations de calcul de variabilité interannuelle réalisées
 jusqu'à maintenant, et notamment dans le \cref{chap:chapitre_3}, la fréquence annuelle est calculée pour les saisons cycloniques. Dans l'hémisphère sud, le
 nombre de TC pour une saison donnée est donc évalué entre juillet de l'année précédente et juin de l'année courante. Précisons aussi qu'un masque terre-mer
 interpolé sur la grille de \ang{3} de résolution est utilisé pour masquer les cyclogénèses détectées sur terre de la \cref{fig:track_density_PRE625REFT359x}.
@@ -310,7 +310,7 @@ jusqu'en \num{2007}. La sensibilité au cisaillement vertical est néanmoins ré
 ARPEGE, soit une sensibilité cinq fois moindre dans le modèle de climat. Cette valeur du coefficient apparaît néanmoins comme statistiquement significative
 (ainsi que tous les autres coefficients) en dépit de sa valeur proche de \num{0}. La régression indique en effet des pourcentiles \prct{2.5} et \prct{97.5} de
 respectivement \num{-0.027} et \num{-0.011} pour $b_{V_{\mathrm{shear}}}$, et une valeur-p inférieure à \num{1e-3}. Le coefficient associé à la vorticité
-absolue est celui présentant la plus grande différence pasant d'environ \num{1.40} pour M10 à \num{2.44} pour AM10. Une valeur si élévée de $b_\eta$ est
+absolue est celui présentant la plus grande différence passant d'environ \num{1.40} pour M10 à \num{2.44} pour AM10. Une valeur si élévée de $b_\eta$ est
 cohérente avec le biais septentrional dans les cyclogénèses détectées dans ARPEGE (voir \cref{fig:density_arpege_ibtracs}), puisqu'il a été largement montré
 dans le \cref{chap:chapitre_3} que des valeurs élevées de ce paramètre sont associées à une activité simulée par la régression plus éloignée de l'équateur.
 
@@ -552,8 +552,8 @@ saturation d'humidité s'exprime traditionnellement en \SI{}{\kilo\pascal}, et l
 amène à de larges valeurs numériques. Pour cette raison, le VPD intégré sur la colonne est exprimé ici en $10^6$~\SI{}{\pascal\squared}. Cela se traduit par une
 plage de valeurs comprise entre \SI{1e6}{\pascal\squared} et \SI{62e6}{\pascal\squared}, soit un ordre de grandeur comparable aux autres prédicteurs, et en
 particulier à l'humidité relative ---~que le VPD remplace~--- et donc \textit{in fine} à une valeur du coefficient $b_s$ qu'il est possible de comparer à $b_H$.
-En effet, puisque les coefficients expriment des sensibilités pour des changements unitaires, l'application d'un facteur d'échelle au prédicteur se répércute de
-la même manière sur son coefficent dans la régression. En outre, et bien que \textcite{camargo_testing_2014} ne précisent pas l'unité utilisée pour le déficit
+En effet, puisque les coefficients expriment des sensibilités pour des changements unitaires, l'application d'un facteur d'échelle au prédicteur se répercute de
+la même manière sur son coefficient dans la régression. En outre, et bien que \textcite{camargo_testing_2014} ne précisent pas l'unité utilisée pour le déficit
 de saturation intégré sur la colonne, notre valeur de $b_s$ est du même ordre de grandeur que celle proposée pas ces derniers.
 
 La régression est faite selon l'exact même mode opératoire que pour l'indice AM10 construit dans la section précédente, et l'indice M10 établit sur ERA5 avant
@@ -592,7 +592,7 @@ corrélation entre ces deux quantités devenir significative grâce à l'introdu
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{corr_AVPD_AM10_M10_tracks.png}
-    \caption{Corrélations croisées entre la variabilité interannuelle de : AVPD ; AM10 ; M10 du \cref{chap:chapitre_3} appliqué à la simulation ARPEGE ; le
+    \caption{Corrélations croisées entre le nombre annuel de TC simulé par les indices AVPD ; AM10 ; M10 du \cref{chap:chapitre_3} appliqué à la simulation ARPEGE, et du
     schéma de détection, entre 1980 et 2010.}
     \label{fig:corr_AVPD_AM10_M10}
 \end{figure}
@@ -738,7 +738,7 @@ possible que le traqueur indiquerait une tendance à la baisse significative dan
 par décennie (soit une tendance relative plus forte que dans IBTrACS) avec une valeur-p plus basse que celle des indices.
 
 Dans le bassin EPac, l'indice EVPD présente une tendance du même signe qu'IBTrACS mais d'amplitude réduite, avec respectivement \num{-1.6} TC par décennie pour
-EVPD et \num{-2.6} TC par décennie dans IBTracs. Aucun des indices basés sur l'humidité relative ne présentent par ailleurs de tendance. Dans ARPEGE, aucune
+EVPD et \num{-2.6} TC par décennie dans IBTrACS. Aucun des indices basés sur l'humidité relative ne présentent par ailleurs de tendance. Dans ARPEGE, aucune
 tendance n'est détectée, peut-être dû au biais du modèle dans ce bassin (voir \cref{sec:tracking_arpege}). Dans le bassin SPac, dans ARPEGE, l'indice AM10
 indique une faible tendance à la hausse, tandis que M10 appliqué à ARPEGE est en limite de significativité avec une valeur-p de \num{0.06}, et une pente sinon
 positive. Ces tendances ne sont pas confirmées ni par le schéma de détection, ni par IBTrACS, si bien que l'absence de tendance dans l'indice AVPD apparaît en
@@ -828,14 +828,14 @@ seuils \textbf{TANOM,} \textbf{PT} et \textbf{PW} sont inchangés, mais \textbf{
 paramètre de relaxation \textbf{REL} est fixé à \SI{25e-5}{\per\second}.
 
 Nous ne conservons ici que les premières échéances de chaque trajectoire, lesquelles sont assimilées aux cyclogénèses. À la différence de
-\textcite{cattiaux_projected_2020,chauvin_future_2020}, nous appliquons comme précédemment le filtre du STJ aux quatres jeux de cyclogénèses, en ne conservant
+\textcite{cattiaux_projected_2020,chauvin_future_2020}, nous appliquons comme précédemment le filtre du STJ aux quatre jeux de cyclogénèses, en ne conservant
 que celles situées en dessous de la latitude diagnostiquée. Ces jeux de trajectoires sont décrits et analysés en détails ---~incluant les diagrammes
 vent-presson et densités de trajectoires~--- dans \textcite{cattiaux_projected_2020,chauvin_future_2020}. Nous nous contenterons alors d'ajouter ici que, après
 application du filtre terre-mer à \ang{1} de résolution, selon la même méthodologie que précédemment, le filtre du STJ retire au total \num{236} des \num{768}
 TC dans SIO-P (sur 49 ans), et \num{147} des \num{577} TC dans SIO-F (sur 47 ans). L'effet du filtre sur les simulations ATL est en revanche plus conséquent,
 avec une suppression de \num{483} des \num{807} TC sur ATL-P (49 ans), et de \num{396} des \num{726} TC dans ATL-F (50 ans). Pour ATL-P et ATL-F, la latitude
 médiane des cyclogénèses qui sont retirées par le filtre du STJ est de respectivement \ang{31.5}N et \ang{32.5}N. De plus, notons que la latitude moyenne du STJ
-sur la saison SON dans la simulation ATL-F est réhaussée de \ang{0.6} par rapport à celle évaluée sur ATL-P. Spécifiquement, la latitude moyenne du STJ sur SON
+sur la saison SON dans la simulation ATL-F est rehaussée de \ang{0.6} par rapport à celle évaluée sur ATL-P. Spécifiquement, la latitude moyenne du STJ sur SON
 dans ATL-P, évaluée entre \ang{70}W et \ang{15}W est de \ang{35.8}N, et de \ang{36.4}N dans ATL-F.
 
 La \cref{fig:diff_track} présente la différence (moyenne annuelle) entre les densités de cyclogénèses détectées dans les simulations RCP8.5 et à climat présent
@@ -899,7 +899,7 @@ du \cref{chap:chapitre_3}, \vpageref{tab:coefs_fit_bassin}). Enfin, le TCS est �
 
 Pour le calcul des indices sur les simulations en climat présent, un coefficient de calibration est appliqué pour ramener les indices vers la moyenne annuelle
 (entre juillet et juin pour le bassin SInd) du nombre de TC déterminé par le schéma de détection, après application du filtre du STJ. Pour l'application des
-indices aux simulations RCP8.5, les coefficients de calibration utilisés pour le climat présent sont ré-employés tels quels. Ces coefficients sont précisés dans
+indices aux simulations RCP8.5, les coefficients de calibration utilisés pour le climat présent sont réemployés tels quels. Ces coefficients sont précisés dans
 le \cref{tab:coeffs_experiences}.
 
 Remarquons que les indices LAVPD et LAM10 présentent des valeurs $b_0$ et $b_\eta$ inhabituelles par rapport à celles rencontrées jusqu'à maintenant. Ces

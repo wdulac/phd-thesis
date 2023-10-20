@@ -68,11 +68,11 @@ de l'atmosphère qui est cohérente dans le temps et l'espace et qui correspond 
 produit final constitue une excellente estimation de l'état passé de l'atmosphère sur toute la période considérée. Il en résulte que la plupart ---~sinon
 l'intégralité~--- des cyclones tropicaux observés et référencés dans la base données IBTrACS, introduite dans le \cref{chap:chapitre_1},
 \cref{sec:observations}, sont à priori présents dans une réanalyse. Il est toutefois important de préciser que les réanalyses souffrent des défauts du modèle
-sur lequel elles sont établies, en particulier si les TC n'y sont pas explictement assimilés.
+sur lequel elles sont établies, en particulier si les TC n'y sont pas explicitement assimilés.
 
 Dans ce chapitre, on considère le schéma de détection du CNRM, à l'origine conçu pour suivre les dépressions de moyennes latitudes par
 \textcite{ayrault_nouvelle_2000} puis adapté aux cyclones tropicaux dans \textcite{chauvin_response_2006}, et utilisé à cette fin par
-\textcite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Le modèle conceptuel du fonctionnement d'un TC implémanté dans
+\textcite{daloz_impact_2012,chauvin_atlantic_2017,chauvin_future_2020,cattiaux_projected_2020}. Le modèle conceptuel du fonctionnement d'un TC implémenté dans
 le traqueur du CNRM est basé sur \textcite{bengtsson_hurricanetype_1995}, avec la particularité de considérer deux disques concentriques qui délimitent le coeur
 du cyclone et son environnement. Leur rayon est évalué dynamiquement à chaque pas de temps, plutôt que de considérer une boîte fixe autour du coeur du cyclone.
 L'algorithme intègre également le processus de relaxation de \textcite{camargo_improving_2002}. Des descriptions détaillées du fonctionnement de cet algorithme
@@ -80,16 +80,15 @@ sont disponibles dans \textcite{chauvin_response_2006}, ainsi que dans la \cref{
 réanalyse ERA5 \parencite{hersbach_era5_2020}. En effet, ERA5 est la dernière en date du CEPMMT et est la première réanalyse mondiale à atteindre une résolution
 horizontale de \km{31}, ici interpolée sur une grille à \ang{0.25}. Elle assimile des données issues de plus d'une vingtaine de satellites d'observations
 météorologiques, totalisant \num{54} instruments. Aux données satellitaires s'ajoutent les observations \textit{in-situ} composées de stations au sol, bouées
-instrumentées, navires marins, radiosondages, radars et avions de reconnaissance. De par sa résolution inédite et la grande diversité     'mathtext.fontset':
-'dejavuserif', des sources observations qui y sont assimilées, ERA5 constitue donc le choix idéal pour évaluer la capacité du traqueur à détecter les HTV. Dans
-la \cref{sec:eval_tracker_ERA5}, les performances du traqueur du CNRM ainsi que sa sensibilité à ses divers seuils de détection sont évaluées sur ERA5, en
-termes de probabilité de détection (\textit{Probability of Detection}, POD) et de taux de fausses alarmes (\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à
-représenter les TC est également évaluée, via une analyse de leurs caractéristiques en termes d'intensité, de cycle de vie et également via l'étude de leur
-profils verticaux. Ces travaux sont présentés dans la publication scientifique dont ils ont fait l'objet \parencite{dulac_assessing_2023}. Un article
-complémentaire compare les performances du traqueur du CNRM sur ERA5 avec celles de trois autres schémas de détection \parencite{bourdin_intercomparison_2022}.
-Enfin, la \cref{sec:complements_papier} présente des considérations sur le filtrage de systèmes de moyennes latitudes ---~source de biais important dans les
-schémas de détection de TC~--- et introduit trois métriques visant à évaluer la ressemblance des trajectoires détectées dans ERA5 avec les trajectoires
-historiques.
+instrumentées, navires marins, radiosondages, radars et avions de reconnaissance. De par sa résolution inédite et la grande diversité, des sources observations
+qui y sont assimilées, ERA5 constitue donc le choix idéal pour évaluer la capacité du traqueur à détecter les HTV. Dans la \cref{sec:eval_tracker_ERA5}, les
+performances du traqueur du CNRM ainsi que sa sensibilité à ses divers seuils de détection sont évaluées sur ERA5, en termes de probabilité de détection
+(\textit{Probability of Detection}, POD) et de taux de fausses alarmes (\textit{False Alarm Rate}, FAR). La capacité d'ERA5 à représenter les TC est également
+évaluée, via une analyse de leurs caractéristiques en termes d'intensité, de cycle de vie et également via l'étude de leur profils verticaux. Ces travaux sont
+présentés dans la publication scientifique dont ils ont fait l'objet \parencite{dulac_assessing_2023}. Un article complémentaire compare les performances du
+traqueur du CNRM sur ERA5 avec celles de trois autres schémas de détection \parencite{bourdin_intercomparison_2022}. Enfin, la \cref{sec:complements_papier}
+présente des considérations sur le filtrage de systèmes de moyennes latitudes ---~source de biais important dans les schémas de détection de TC~--- et introduit
+trois métriques visant à évaluer la ressemblance des trajectoires détectées dans ERA5 avec les trajectoires historiques.
 
 \section{Évaluation du traqueur CNRM sur ERA5 par rapport à IBTrACS}\label{sec:eval_tracker_ERA5}
 
@@ -138,7 +137,7 @@ IBTrACS. Il convient, par soucis de clarté, de distinguer les trois jeux de tra
     \item Jeu 2 : Trajectoires dites \textquote{optimisées}, où les seuils de détection du schéma de détection sont choisis de façon à maximiser la probabilité
         de détection (voir \cref{sec:papier_appendix_B}) et où aucun filtrage des systèmes de moyennes latitudes n'est utilisé.
     \item Jeu 3 : Trajectoires optimisées, comme le jeu 2, où le filtre des systèmes de moyennes latitudes basé sur le paramètre $V_U^T$ est employé. Il s'agit
-        du jeu de trjectoires utilisé dans \textcite{dulac_assessing_2023}.
+        du jeu de trajectoires utilisé dans \textcite{dulac_assessing_2023}.
 \end{itemize}
 %
 Rappelons que que le paramètre $V_U^T$, de l'espace des phases de \textcite{hart_cyclone_2003}, est défini comme le gradient vertical entre \hPa{600} et
@@ -193,7 +192,7 @@ cyclone Ophelia de la saison cyclonique 2017, tel que détecté dans la réanaly
 00:00, à \km{270} du cap Mizen à l'extrémité sud de l'Irlande, correspondant au point situé entre \ang{45} et \ang{50}N sur la \cref{fig:ophelia_z200}, cet
 exemple montre néanmoins que ce système a avancé vers le nord dans un méandre de géopotentiel, et est resté en dessous de la latitude du gradient maximal
 jusqu'à l'Écosse, formant une trajectoire détectée à laquelle ne manque que trois échéances par rapport à la best track. Certains systèmes peuvent donc
-atteindre des latitues élevées si les conditions synoptiques le permettent, là où un seuil fixe en latitude aurait pu tronquer la trajectoire.
+atteindre des latitudes élevées si les conditions synoptiques le permettent, là où un seuil fixe en latitude aurait pu tronquer la trajectoire.
 
 \begin{figure}[htpb]
     \centering
@@ -365,7 +364,7 @@ chose que le test de \citeauthor{hart_cyclone_2003}.
 Les travaux réalisés dans \textcite{dulac_assessing_2023} et présentés dans la \cref{sec:papier} font appel aux notions de FAR et POD pour évaluer la
 performance du schéma de détection de TC du CNRM. Le calcul du POD s'appuie sur un algorithme qui associe les trajectoires détectées dans ERA5 à celles
 présentes dans la base de données IBTrACS par correspondance spatio-temporelle. Cet algorithme sélectionne les paires de façon à maximiser le taux de
-recouvrement de la trajectoire ERA5 avec celle d'IBTrACS. Comme défini dans la \cref{sec:papier_data_methods}, le taux de recouvrement correpond au nombre de
+recouvrement de la trajectoire ERA5 avec celle d'IBTrACS. Comme défini dans la \cref{sec:papier_data_methods}, le taux de recouvrement correspond au nombre de
 points ERA5 à moins \km{300} d'IBTrACS rapporté au nombre d'échéance de la trajectoire IBTrACS. Si en moyenne le taux de recouvrement des trajectoires appariées
 (\textquote{\textit{matched}} dans \textcite{dulac_assessing_2023}) est de \prct{68} (médiane à \prct{71}), il suffit dans l'absolu d'un seul pas de temps
 remplissant la condition pour que la trajectoire ERA5 soit appariée à une trajectoire présente dans les observations, et donc pour que la trajectoire détectée
@@ -470,7 +469,7 @@ Avant de définir les trois métriques, il est important de distinguer trois mem
 $S_\theta$ est définie ci-dessus pour deux vecteurs correspondants aux déplacements entre deux positions successives, pour deux trajectoires prises au même
 temps $t$. Or, il est admis qu'un des deux vecteurs peut ne pas exister à cet instant si le schéma de détection n'a pas capturé la totalité de la trajectoire ou
 au contraire si la trajectoire détectée est plus longue que celle observée, aussi bien en amont qu'en aval. On appelle donc l'intersection des trajectoires $C
-\cap Q$ le sous-ensemble des pas de temps dans lequel les deux trajectoires co-existent et où chaque paire de points correspond au même temps $t$.
+\cap Q$ le sous-ensemble des pas de temps dans lequel les deux trajectoires coexistent et où chaque paire de points correspond au même temps $t$.
 Réciproquement, l'union $C \cup Q$ contient la totalité des échéances constituant le couple de trajectoires. Enfin, la différence symétrique des deux
 trajectoires $C \ominus Q$ contient les pas de temps pour lesquels une seule trajectoire existe à la fois. La \cref{fig:schema_trajectoires} encadré (b)
 illustre schématiquement ces notions.
@@ -483,10 +482,10 @@ En première approche, on peut définir la similarité intégrée entre deux tra
 \end{equation}
 %
 Cette première métrique de similarité se concentre donc sur les échéances où les deux trajectoires coexistent, les échéances non-détectées ainsi que celles en
-trop par rapport aux observations n'étant pas compatiblisées.
+trop par rapport aux observations n'étant pas comptabilisées.
 
 Comme variante, on définit aussi le MAS sur l'union des deux trajectoires en remplaçant le dénominateur par $N_\cup = N_\cap + N_\ominus$. Cela revient
-à considérer que les echéances sur $C \ominus Q$ ont une similarité angulaire artificiellement fixée à \num{0} :
+à considérer que les échéances sur $C \ominus Q$ ont une similarité angulaire artificiellement fixée à \num{0} :
 %
 \begin{equation}
     \bar{S_\theta}^\cup = \frac{1}{N_\cup} \sum_{i=1}^{N_\cap} S_\theta (\mathbf{c}_i, \mathbf{q}_i) \tag*{MAS$^\cup$}
