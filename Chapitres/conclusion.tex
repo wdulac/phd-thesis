@@ -16,8 +16,8 @@ aux cyclones tropicaux. À l'échelle des bassins océaniques individuels, l'inc
 Deux méthodes existent pour évaluer l'activité cyclonique tropicale dans les simulations climatiques. La première consiste à utiliser un algorithme ou schéma de
 détection de cyclones dans des simulations à haute résolution, tandis que la seconde consiste à utiliser des relations statistiques entre l'environnement de
 grande échelle et l'activité cyclonique observée, pour ensuite les appliquer aux simulations climatiques. Ces deux approches convergent sur certains points,
-notamment sur la probable augmentation de l'intensité maximale que les cyclones peuvent atteindre, mais tendent à indiquer des résultats divergeant quant au
-signe du changement dans la fréquence d'occurrence des cyclones, toutes catégories confondues.
+notamment sur la probable augmentation de l'intensité maximale que les cyclones peuvent atteindre (via les projections futures dans l'intensité potentielle, ou
+PI), mais tendent à indiquer des résultats divergeant quant au signe du changement dans la fréquence d'occurrence des cyclones, toutes catégories confondues.
 
 Motivée par ce désaccord, cette thèse a porté sur l'étude de ces deux méthodes d'évaluation de l'activité cyclonique tropicale. Pour l'approche directe, les
 objectifs étaient notamment de développer des métriques d'évaluation de la performance d'un schéma de détection, pour ensuite proposer de possibles
@@ -101,7 +101,7 @@ relative.
 Des tendances sont recherchées dans l'évolution du nombre d'occurrence annuel de cyclones tropicaux inféré par différents indices de cyclogénèse appliqués à la
 simulation ARPEGE historique ainsi que dans la réanalyse ERA5. La problématique de la divergence entre les approches directes et indirectes dans les projections
 climatiques est visible dans ces séries temporelles, en ce sens que les indices de cyclogénèses basés sur l'humidité relative indiquent une tendance à la hausse
-statistiquement significative, à l'échelle globale et dans plusieurs bassins oćeaniques. De telles tendances ne sont pas détectées dans les observations ou
+statistiquement significative, à l'échelle globale et dans plusieurs bassins océaniques. De telles tendances ne sont pas détectées dans les observations ou
 dans les trajectoires du modèle. Les indices utilisant le VPD ne présentent pas de tendances à la hausse non plus.
 
 Enfin, l'effet du VPD est évalué sur deux simulations climatiques à climat futur sous le scénario RCP8.5 avec ARPEGE dans sa configuration basculée-étirée : une
@@ -177,9 +177,9 @@ dans les simulations par détection objective. Mais si ces hautes résolutions p
 et 5 sur l'échelle de Saffir-Simpson, ces modèles sont encore peu nombreux, et leur utilisation particulièrement coûteuse. Le protocole HighResMIP précaunise à
 ce titre des simulations plus courtes que dans CMIP6 \parencite[et plus particulièrement ScenarioMIP,][]{oneill_scenario_2016}, et sous un seul scénario de
 réchauffement global. HighResMIP ne constitue alors qu'un sous-ensemble de taille moindre et de portée réduite par rapport à l'ensemble mutli-modèles CMIP6. Les
-indices sont donc encore pertinents pour beaucoup de modèles CMIP6, dont la résolution spatiale atteint jusqu'à \km{250}. Par ailleurs, l'application d'un indice de
-cyclogénèse à une simulation est nettement plus aisée que le déploiement d'un schéma de détection et suivi objectif, lequel apporte nécessairement de la
-complexisté additionnelle, et nécessite de traiter les sorties des modèles à une fréquence sub-journalière.
+indices sont donc encore pertinents pour beaucoup de modèles CMIP6, dont la résolution spatiale atteint jusqu'à \km{250}. Par ailleurs, l'application d'un
+indice de cyclogénèse à une simulation est nettement plus aisée que le déploiement d'un schéma de détection et suivi objectif, lequel apporte nécessairement de
+la complexité additionnelle, et nécessite de traiter les sorties des modèles à une fréquence sub-journalière.
 
 La validité de l'utilisation d'indices de cyclogénèse comme méthode d'évaluation de l'activité cyclonique tropicale dans des simulations climatiques dépend de
 l'hypothèse selon laquelle les relations statistiques entre l'activité observée et l'environnement de grande échelle sont stationnaires dans le temps. La
