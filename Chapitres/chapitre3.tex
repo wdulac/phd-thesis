@@ -133,11 +133,6 @@ biais positif introduit par l'ajout de variables additionnelles \parencite{akaik
 thermiques entre la SST relative et le PI produit la meilleure régression. Ce processus est répété pour la vorticité absolue avec la vorticité absolue bornée,
 ainsi que pour l'humidité relative à \hPa{600} et l'humidité relative intégrée sur la colonne atmosphérique. La place du cisaillement vertical dans la
 régression n'est pas remise en cause \parencite{gray_global_1968}.
-%
-%\textcite{tippett_poisson_2011} montrent alors que leur indice produit une description de l'activité cyclonique améliorée sur certains aspects par rapport au
-%GPI. En particulier, le GPI a tendance à simuler une activité trop forte en dehors de la saison cyclonique active, et la différence entre les deux hémisphères
-%n'est pas assez prononcée. Le TCS simule également mieux l'étendue méridienne de l'activité cyclonique par rapport au GPI ---~notamment grâce à l'usage de la
-%vorticité bornée~--- ce dernier produit en effet une activité trop prononcée proche de l'équateur et dans les hautes latitudes.
 
 \textcite{wang_dynamic_2020} ont également défini leur indice de cyclogénèse par un modèle statistique, cette fois ci par une régression log-log\footnote{Une
 régression de Poisson peut être vue comme une relation log-linéare, reliant linéairement le logarithme de l'espérance de la quantité $Y$ aux prédicteurs
@@ -157,18 +152,6 @@ représentée dans les variables dynamiques. Malgré les choix et les pondérati
 performances évaluées sur le climat présent (\num{1980}~--~\num{2017}) sont comparables entre les deux indices. En particulier, \textcite{wang_dynamic_2020}
 soulignent que la corrélation de la variabilité interannuelle du DGPI avec les observations est améliorée dans le bassin WPac et dans l'hémisphère sud, mais
 dégradée dans le bassin EPac.
-
-%%
-%\begin{equation*}
-%    \tag*{DGPI}
-%    \begin{split}
-%        \mathrm{DGPI} = (\num{2,0} + & \num{0,1} \times V_{\mathrm{shear}})^{-1} \left( \num{5,5} - \frac{d u_{500}}{dy} \times 10^5 \right)^{2}\\
-%                                     &(\num{5,0} - \num{20} \times \omega_{500})^3 (\num{5,5} + \lvert \zeta_{850} \times 10^5 \rvert )^2 e^{-12} - \num{1.0}
-%    \end{split}
-%\end{equation*}
-%%
-%Dans le DGPI, les constantes ajoutées aux prédicteurs servent de normalisation de façon à ce que l'amplitude de leurs variations soient comparables, une fois
-%transformées en logarithmes,  
 
 \subsection{Propriétés des indices de cyclogénèses}\label{sec:proprietes_indices}
 
@@ -433,17 +416,7 @@ construirons un indice de cyclogénèse régional, ou plus exactement un indice 
 construits par régression de Poisson~--- caractérisés par des coefficients propres à chaque région, pour là aussi voir comment la variabilité interannuelle s'en
 retrouve affectée.
 
-%Dans un premier temps, nous nous interrogerons sur l'apport de l'utilisation de champs
-%mensuels plutôt que saisonniers dans la capacité de l'indice à simuler la climatologie saisonnière spatiale et temporelle, à l'aide des trois indices définis
-%dans la \cref{sec:tour_horizon_indices}, à savoir le TCS, le CYGP et le GPI. Ensuite, nous étudierons l'apport de la résolution spatiale et temporelle,
-%séparémment, pour la représentation de la variaiblité interannuelle. Spécifiquement, nous utiliserons des indices établis selon le mode opératoire de
-%\textcite{tippett_poisson_2011}, à savoir par régression de Poisson, de façon à déterminer comment ces facteurs influent sur les coefficients de la régression,
-%et comment ceux-ci influencent en retour la variabilité interannuelle. Enfin, nous regarderons si un indice construit comme une agrégation spatiale de
-%régressions faites à l'échelle du bassin améliore ou non la variabilité interannuelle.
-
 %--------------------------------------
-%\section{Climatologie saisonnière spatiale et temporelle}
-
 \section{Apport de la résolution spatiale et temporelle}\label{sec:apport_res_temporel_spatial}
 
 On s'intéresse dans cette section à l'impact de la résolution spatiale et temporelle sur la variabilité interannuelle d'un indice de cyclogénèse défini comme
@@ -474,7 +447,6 @@ façon suivante :
 %
 \begin{gather*}
     \log \mathbb{E} \left( Y \mid \mathbf{x} \right ) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-    %\Leftrightarrow \quad \quad \mathbb{E} \left ( Y \mid \mathbf{x} \right ) &= e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
     \Leftrightarrow \quad \mu = e^{\mathbf{b}^{\mathrm{T}} \mathbf{x}}
 \end{gather*}
 %
@@ -485,7 +457,6 @@ alors :
 \begin{equation}
     \begin{gathered}\label{eq:poisson_reg}
         \log \left( \frac{\mathbb{E} \left( Y \mid \mathbf{x}\right )}{\cos \phi} \right) = \mathbf{b}^{\mathrm{T}} \mathbf{x} \\
-        %\Leftrightarrow \quad\quad \log \mathbb{E} \left( Y \mid \mathbf{x} \right) &= \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
         \Leftrightarrow \quad \log \mu = \mathbf{b}^{\mathrm{T}} \mathbf{x} + \log (\cos \phi)
     \end{gathered}
 \end{equation}
@@ -1075,17 +1046,6 @@ indique que sa contribution dans une régression réalisée à l'échelle global
 de la répartition méridienne de l'activité cyclonique dans l'hémisphère nord est à l'origine de la mauvaise distribution méridienne simulée dans cet
 hémisphère pour les indices construits à l'échelle globale (voir aussi \cref{fig:tcs_cygp_gpi_zonal,fig:my_fit_meridional}). Les indices construits à l'échelle
 régionale permettent par conséquent de corriger ces biais et d'offrir localement une meilleure ressemblance avec l'activité observée.
-
-%Dans les
-%bassins EPac et WPac, la répartition spatiale de l'activité cyclonique avec LM10 est distinctement plus proche de l'activité observée dans IBTrACS. En
-%particulier, l'activité est focalisée le long de la côte du Mexique dans le bassin EPac, autour de \ang{90}W. Ce résultat est atteint en augmentant la
-%sensibilité à la SST relative (à sa valeur la plus haute dans cette région) ainsi qu'en augmentant plus modestement la sensibilité à la vortcité, par rapport à
-%M10. Dans le bassin WPac, l'activité cyclonique inférée de LM10 est au contraire déportée vers l'équateur, par le biais notamment d'une baisse importante de la
-%sensibilité à la vorticité. Rappelons en effet que la sensibilité à la vorticité a pour conséquence notable de piloter la répartition méridienne de l'activité
-%cyclonique, comme montré dans la \cref{sec:apport_res_temporel_spatial}. Dans les deux bassins, l'erreur quadratique moyenne entre IBTrACS et l'activité simulée
-%est réduite avec LM10, indiquant une meilleure ressemblance avec la densité de cyclogénèses observées. Dans le bassin NAtl, l'activité est déportée vers le nord
-%en faveur de la MDR, se rapprochant ainsi des observations, mais l'activité est réduite dans le GoM, ce qui constitue une dégradation par rapport à M10, qui
-%dans ce sous-domaine est plus proche d'IBTrACS. À l'échelle du bassin, l'erreur quadratique moyenne est tout de même améliorée.
 
 %--------------------------------------
 \section{Synthèse}

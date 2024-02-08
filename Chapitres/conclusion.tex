@@ -120,9 +120,6 @@ des systèmes de moyennes latitudes réduit considérablement les détections in
 directement implémenté. Le filtre du paramètre $V_U^T$ est un bon candidat pour cette implémentation, mais les deux paramètres \textbf{PT} et \textbf{PW}
 deviendraient alors redondants.
 
-%L'implémentation online du filtre nécessiterait dans tous les cas une refonte importante de l'algorithme pour diverses raisons techniques qu'il n'est pas
-%pertinent de mentionner ici.
-
 De plus, l'implémentation qui est faite du filtre du $V_U^T$ dans \textcite{dulac_assessing_2023} est perfectible sur plusieurs aspects. Le premier point,
 mineur, est que le gradient vertical du maximum de perturbation isobarique y est simplement calculé à partir de la différence entre les niveaux \hPa{600} et
 \hPa{300}. Bien que des essais préliminaires montrent que les différences sont faibles, il serait néanmoins plus rigoureux d'évaluer le gradient vertical sur
