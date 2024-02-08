@@ -10,8 +10,6 @@
 
 %%%%%%%%%% Figures and tables
 
-%\usepackage{tabularray}
-
 \usepackage{multirow}
 
 \usepackage{graphicx} % Required for inserting images
@@ -71,7 +69,6 @@
 \newcommand{\textgreek}[1]
     {\bgroup\greekfont{#1}\egroup} % Greek text
 
-%\setmainfont[Ligatures=TeX]{Times New Roman}
 \usepackage[style=french]{csquotes}
 
 \def\frenchtablename{Tableau}
@@ -105,9 +102,7 @@
 \usepackage{xcolor}
 \hypersetup{
     colorlinks, % Colours links instead of boxes
-    %linkcolor={red!50!black},
     linkcolor=black, % Internal links
-    %citecolor={blue!50!black}, % References
     citecolor=black,
     urlcolor={blue!80!black} % External links
 }
@@ -126,7 +121,6 @@
 \fancyhead[RO]{\rightmark}
 \setlength{\headheight}{29.8pt}
 \addtolength{\topmargin}{-13.72pt}
-%\renewcommand{\headrulewidth}{0pt} % Supprime la barre horizontale en haut de page de fancyhdr
 
 \usepackage{emptypage} % Pour ne pas avoir de numéro et de header sur les pages vides
 
@@ -142,7 +136,6 @@
 \renewcommand{\thesubsubsection}{\thesubsection.\Roman{subsubsection}}
 \setcounter{minitocdepth}{3}
 
-%\usepackage[nottoc]{tocbibind}
 \usepackage{enumitem}
 \setlist[itemize]{nosep, label={--}}
 
@@ -151,18 +144,6 @@
 \usepackage{subfiles}
 \addbibresource{\subfix{./references.bib}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Création 4ème couverture    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%{\newpage\vspace*{\fill}\thispagestyle{empty}\renewcommand{\headrulewidth}{0pt}}
-%{\vspace*{\fill}}
-
-%\newenvironment{vcenterpage}
-%{\vspace*{\fill}\renewcommand{\headrulewidth}{0pt}}
-%{\vspace*{\fill}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \frontmatter
