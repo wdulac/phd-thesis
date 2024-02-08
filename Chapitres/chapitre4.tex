@@ -19,7 +19,7 @@
 \section{Introduction}
 
 Le \cref{chap:chapitre_3} a porté sur la modification des coefficients $b$ du TCS pour étudier la façon dont ces coefficients affectent la variabilité
-interannuelle inférée par l'indice. Plusieurs approches ont été expérimentées, telles que la réalisation de la régression sur des champs à plus haute
+interannuelle inférée de l'indice. Plusieurs approches ont été expérimentées, telles que la réalisation de la régression sur des champs à plus haute
 résolution, en introduisant de la variabilité temporelle à plus haute fréquence, ainsi qu'en réalisant des régressions locales à l'échelle des bassins
 océaniques. Re-déterminer les coefficients $b$ du TCS pour obtenir un indice mieux adapté à son jeu de données, à l'échelle globale comme régionale, présente
 une réelle plus-value, mais l'amélioration de la représentation de la variabilité interannuelle n'en fait cependant pas partie. Celle-ci apparaît en effet comme
@@ -27,9 +27,9 @@ particulièrement robuste aux changements dans les coefficients de l'indice, si 
 façon d'influencer la variabilité interannuelle.
 
 Dans ce chapitre, il s'agit par conséquent d'étudier l'apport de deux nouveaux prédicteurs dans la construction d'un indice de cyclogénèse par régression de
-Poisson. Dans un premier temps, nous ajouterons explicitement un diagnostique du mode de variabilité El Niño comme nouveau prédicteur dans la régression. L'ENSO
+Poisson. Dans un premier temps, nous ajouterons explicitement un diagnostic du mode de variabilité El Niño comme nouveau prédicteur dans la régression. L'ENSO
 est en effet connu pour sa modulation de l'activité cyclonique tropicale \parencite{chan_tropical_1985,landsea_ninosouthern_2000,lin_enso_2020} et constitue
-une source de prévisibilité de l'activité cyclonique à l'échelle interannuelle. L'ajout d'un diagnostique ENSO dans la régression est considérée ici à titre
+une source de prévisibilité de l'activité cyclonique à l'échelle interannuelle. L'ajout d'un diagnostic ENSO dans la régression est considérée ici à titre
 expérimental, car la philosophie des indices de cyclogénèse consiste habituellement à introduire les ingrédients qui sont supposés intervenir directement dans
 le processus physique de cyclogénèse. L'ENSO affecte quant à lui la SST, le cisaillement vertical ainsi que l'humidité relative à différents degrés selon les
 régions et par télé-connexions. Il ne s'agit donc pas d'un ingrédient intervenant directement dans le processus de formation d'un cyclone tropical. Il est
@@ -47,7 +47,7 @@ réchauffement climatique cohérente avec la méthode directe de détection obje
 \section{Utilisation d'un indice Niño dans une régression de Poisson}\label{sec:indice_ONI}
 
 On s'intéresse ici à l'ajout explicite du signal du mode de variabilité ENSO (\textit{El Niño-Southern Oscillation}) dans un indice de cyclogénèse construit par
-régression de Poisson, dans le but de voir si cet apport d'information est susceptible d'améliorer la variabilité interannuelle inférée par l'indice.
+régression de Poisson, dans le but de voir si cet apport d'information est susceptible d'améliorer la variabilité interannuelle inférée de l'indice.
 
 Nous nous plaçons pour cela dans le cadre du modèle de climat ARPEGE, avec une simulation de la période historique forcée par la SST observée issue de la base
 de données HadISST1. Dans la mesure où la construction de nouveaux indices de cyclogénèse a pour finalité une application à des simulations de réchauffement
@@ -102,7 +102,7 @@ post-traitement des trajectoires, la fréquence d'occurrence annuelle moyenne de
 même période indique \num{82.9} TC par an.
 
 À la différence des travaux portés par \textcite{cattiaux_projected_2020}, nous appliquons en post-traitement le filtre des systèmes de moyennes latitudes basé
-sur le diagnostique du jet subtropical (STJ), décrit et illustré dans la \cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}). Ce filtre est choisi ici
+sur le diagnostic du jet subtropical (STJ), décrit et illustré dans la \cref{sec:filtrage_mid_latitudes} (\cref{chap:chapitre_2}). Ce filtre est choisi ici
 ---~en dépit des réserves exprimées dans le \cref{chap:chapitre_2}~--- en raison de sa relative simplicité à implémenter, notamment par rapport au filtre du
 $V_U^T$ qui a lui été préféré dans \textcite{dulac_assessing_2023}. En outre, \textcite{bourdin_intercomparison_2022} montrent que le filtre du STJ parvient
 très efficacement à filtrer les systèmes de moyennes latitudes, lorsqu'appliqué à plusieurs schémas de détection sur ERA5. Rappelons brièvement que la latitude
@@ -133,7 +133,7 @@ application du filtre du STJ. Dans l'océan Atlantique, la \cref{fig:density_arp
 part \parencite[un biais commun à de nombreux modèles,][]{camargo_tropical_2016}, et un déséquilibre dans l'Atlantique nord avec notamment une sous-évaluation dans
 le MDR et le GoM, mais une sur-évaluation dans le reste de l'océan. Ce biais dans l'atlantique nord avec cette simulation est par ailleurs documenté dans
 \textcite{chauvin_future_2020}. Dans le bassin EPac, l'activité simulée est fortement sous-estimée. Dans le WPac, un surplus est noté dans ARPEGE en Mer de
-Chine méridionale et Mer des Philippines, tandis que le reste du bassin voit sinon un déficit. Dans le bassin NInd, la simulation ARPEGE présente une activité
+Chine Méridionale et Mer des Philippines, tandis que le reste du bassin voit sinon un déficit. Dans le bassin NInd, la simulation ARPEGE présente une activité
 sur-estimée aussi bien en Mer d'Arabie que dans le Golfe du Bengale. Dans l'hémisphère sud, le biais est plus contrasté. Dans l'océan Indien, on note un biais
 positif dans le sud-ouest du bassin, autour de Madagascar mais un biais négatif dans le nord-est, proche de l'équateur. Une répartition du biais similaire mais
 symétrique est notée dans le bassin Sud Pacifique, avec un biais positif dans le sud-est et négatif au nord-ouest.
@@ -177,12 +177,12 @@ que l'utilisation d'indices établis sur des réanalyses.
 %    \centering
 %    \includegraphics[width=\textwidth]{STJ_season_PRE625REFT359x.png}
 %    \caption{Moyennes saisonnières de la latitude de la limite équatoriale du jet subtropical dans la simulation ARPEGE-Climat forcée par HadISST1. Chacune des
-%    quatre colonnes correspond à une saison. La première ligne présente le diagnostique pour l'hémisphère nord, tandis que la seconde ligne le présente pour
+%    quatre colonnes correspond à une saison. La première ligne présente le diagnostic pour l'hémisphère nord, tandis que la seconde ligne le présente pour
 %    l'hémisphère sud.}
 %    \label{fig:STJ_PRE625REFT359x}
 %\end{figure}
 
-\subsubsection{Diagnostique ENSO}\label{sec:diag_enso}
+\subsubsection{diagnostic ENSO}\label{sec:diag_enso}
 
 Le mode de variabilité El Niño (respectivement La Niña) est caractérisé par une anomalie chaude (respectivement froide) de SST dans l'océan Pacifique central.
 Il existe plusieurs façons de diagnostiquer ce phénomène et qui se distinguent entre elles par la région, ou boîte, utilisée pour calculer l'anomalie de
@@ -282,7 +282,7 @@ ces quatre variables décrivant l'environnement de grande échelle le champ arti
 mensuelle de SST dans la boîte 3.4 présentée dans la \cref{sec:diag_enso}. L'indice incluant l'ONI comme prédicteur est nommé OAM10, abrégé en OA. La régression
 avec l'ONI comme prédicteur est appliquée aussi bien à l'échelle globale qu'à l'échelle des bassins individuels. Dans le second cas, la méthodologie employée
 dans la \cref{sec:indice_regional} pour construire l'indice LM10 est transposée aux prédicteurs et prédictant ARPEGE, notamment pour ce qui concerne la
-calibration de l'indice régional sur la fréquence annuelle moyenne inférée par son homologue global. L'indice régional est alors nommé LOAM10, ou simplement
+calibration de l'indice régional sur la fréquence annuelle moyenne inférée de son homologue global. L'indice régional est alors nommé LOAM10, ou simplement
 LOA, puisqu'il est entendu que, contrairement au \cref{chap:chapitre_3}, les régressions sont uniquement faites avec les moyennes mensuelles à \ang{1} de
 résolution.
 
@@ -426,7 +426,7 @@ quatre indices avec les tracks pour chacun des sept bassins est présentée dans
 \end{table}
 
 La \cref{fig:variability_ONI} montre que l'ajout de l'indice ENSO comme prédicteur dans la régression parvient, avec un effet variable selon les bassins, à
-modifier la variabilité interannuelle inférée par les indices de cyclogénèse d'une part, et à améliorer la corrélation entre cette variabilité et celle mesurée
+modifier la variabilité interannuelle inférée des indices de cyclogénèse d'une part, et à améliorer la corrélation entre cette variabilité et celle mesurée
 par le schéma de détection de cyclones tropicaux dans la simulation ARPEGE d'autre part. Notons que le nombre annuel de TC simulé par l'indice LOA est significativement
 corrélé à l'activité détectée par le traqueur dans tous les bassins géographiques à l'exception du Nord Atlantique. Dans ce dernier, le LOA présente néanmoins
 une amélioration sensible de la corrélation associée à une valeur-p en limite de significativité par rapport aux autres indices.
@@ -471,17 +471,17 @@ sur celle des trois autres indices, selon les régions. Ce dernier est néanmoin
 globale.}\footnote{Rien n'impose que la fréquence d'occurrence moyenne de l'indice AM10 dans chacun des bassins soit égale à celle des indices OA et LOA. La
 proximité entre les coefficients des deux indices ainsi que la faible sensibilité au prédicteur ONI dans l'indice OA laissent toutefois penser que les
 fréquences moyennes régionales sont très proches, ce qui est également corroboré par la \cref{fig:variability_ONI}.} (\cref{tab:coefs_LOA}) présentent également
-la plus grande amplitude. Inversement, les bassins où l'activité inférée par les indices est faible tendent à présenter une faible amplitude.
+la plus grande amplitude. Inversement, les bassins où l'activité inférée des indices est faible tendent à présenter une faible amplitude.
 
 \subsection{Discussion}
 
-Cette section s'est concentrée sur l'introduction d'un diagnostique du mode de variabilité El Niño dans la construction d'un indice de cyclogénèse par
+Cette section s'est concentrée sur l'introduction d'un diagnostic du mode de variabilité El Niño dans la construction d'un indice de cyclogénèse par
 régression de Poisson. Pour cela une simulation réalisée avec le modèle ARPEGE-Climat sur la période \num{1979}~--~\num{2010}, forcée par le jeu de données
 HadISST1 est utilisée pour fournir les prédicteurs de grande échelle. Le schéma de détection du CNRM est utilisé pour comptabiliser les cyclogénèses dans la
-simulation, lesquelles étant préalablement filtrées par le diagnostique du jet subtropical présenté dans le \cref{chap:chapitre_2}. La répartition spatiale de
+simulation, lesquelles étant préalablement filtrées par le diagnostic du jet subtropical présenté dans le \cref{chap:chapitre_2}. La répartition spatiale de
 l'activité cyclonique détectée dans la simulation ARPEGE est jugée suffisamment réaliste pour utiliser ces données comme prédictant dans une régression de
 Poisson, malgré un biais négatif important dans le bassin Est Pacifique, et un biais au contraire positif dans le bassin Nord Indien (voir
-\cref{sec:tracking_arpege}). L'utilisation du diagnostique ENSO dans la construction d'indices de cyclogénèse consiste à apporter artificiellement, et de la
+\cref{sec:tracking_arpege}). L'utilisation du diagnostic ENSO dans la construction d'indices de cyclogénèse consiste à apporter artificiellement, et de la
 manière la plus explicite possible, l'information concernant la phase du mode de variabilité océanique dans la régression, de façon à ce que chaque point de
 grille ait accès à cette information à chaque pas de temps.
 
@@ -490,7 +490,7 @@ global basé sur les prédicteurs du TCS (AM10), un indice global similaire auqu
 coefficients sont fonction du bassin océanique~--- possédant lui aussi la variable ONI comme prédicteur (LOA). La régionalisation de l'indice avec l'ONI est en
 effet justifiée par le fait que l'effet du phénomène El Niño sur la modulation de l'activité cyclonique est positif dans certaines régions, et négatif dans
 d'autres (voir \cref{sec:lien_enso_tracking}). Les résultats montrent que l'ajout de la variable ONI comme prédicteur dans la construction de l'indice parvient
-efficacement à améliorer la représentation de la variabilité interannuelle inférée par l'indice de cyclogénèse régional, avec l'impact le plus frappant
+efficacement à améliorer la représentation de la variabilité interannuelle inférée de l'indice de cyclogénèse régional, avec l'impact le plus frappant
 concernant le bassin Ouest Pacifique. Seules les deux régions dans lesquelles l'activité cyclonique simulée par ARPEGE présente un biais important ne montrent
 pas d'amélioration notable suite à l'introduction de ce nouveau prédicteur. Cette amélioration de la variabilité interannuelle se fait cependant au détriment du
 sens physique que porte sinon l'indice de cyclogénèse, la philosophie originelle consistant en effet à n'utiliser que des variables intervenant (supposément)
@@ -511,11 +511,11 @@ exemples. La capacité des indices de cyclogénèse à réagir à ce mode de var
 
 Sachant cela, l'introduction de la variable ONI aurait pu être tout à fait redondante et n'apporter aucune plus-value dans la régression. C'est d'ailleurs une
 interprétation possible aux significativités pour le moins hésitantes associées à ce prédicteur dans le \cref{tab:coefs_LOA}. En effet, le champ spatial
-artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostique en tout point de l'espace, ne contient par définition aucune variabilité
+artificiel de l'ONI, construit en répliquant la valeur (scalaire) du diagnostic en tout point de l'espace, ne contient par définition aucune variabilité
 spatiale. Or, les résultats obtenus dans le \cref{chap:chapitre_3} montrent que la régression de Poisson vise avant toute autre chose à fournir la meilleure
 vraisemblance spatiale entre les prédicteurs et le prédictant. Malgré cela, l'utilisation de l'ONI comme prédicteur et d'un coefficient $b_{\mathrm{ONI}}$
 associé, quand bien même ce dernier n'est pas statistiquement significatif, améliore sensiblement la corrélation entre la variabilité interannuelle de l'indice
-et la variabilité détectée dans la plupart des bassins. Chercher à améliorer la représentation de la variabilité interannuelle inférée par un indice de
+et la variabilité détectée dans la plupart des bassins. Chercher à améliorer la représentation de la variabilité interannuelle inférée d'un indice de
 cyclogénèse par l'ajout de nouveaux prédicteurs apparaît donc possible, mais la méthodologie de construction d'un indice par régression de Poisson ne semble pas
 être le mode opératoire le mieux adapté à cette tâche.
 
@@ -580,7 +580,7 @@ régression entre la fréquence d'occurrence des TC et l'environnement de grande
 côté, et notre simulation ARPEGE forcée par HadISST1 et les cyclogénèses issues du schéma de détection de cyclones tropicaux de l'autre.
 
 Précisons que l'introduction du VPD dans la régression de Poisson n'a que peu d'impact sur la variabilité interannuelle. La corrélation entre le
-nombre annuel de TC inféré par l'indice AVPD et celui mesuré par le traqueur est généralement inchangée par rapport à AM10, mais peut également être dégradée,
+nombre annuel de TC inféré de l'indice AVPD et celui mesuré par le traqueur est généralement inchangée par rapport à AM10, mais peut également être dégradée,
 comme en atteste la \cref{fig:corr_AVPD_AM10_M10}. Contrairement à l'introduction de l'indice ONI dans la \cref{sec:indice_ONI}, aucun bassin ne voit sa
 corrélation entre ces deux quantités devenir significative grâce à l'introduction du VPD.
 
@@ -619,7 +619,7 @@ l'humidité relative. Ce biais est brièvement mentionné dans le \cref{chap:cha
 
 Le premier changement, et le plus conséquent des deux, consiste en la réduction du biais positif dans le Golfe Persique ainsi qu'en Mer Rouge, deux sous-régions
 du bassin NInd. En Mer Rouge (incluant le Golfe d'Aden, entre le Yémen et la Somalie, délimitée en pointillés sur la \cref{fig:diff_VPD_AM10}), la fréquence
-annuelle moyenne entre \num{1980} et \num{2010} inférée par l'indice AM10 est de \num{0.2} TC par an, tandis qu'elle est réduite à \num{0.02} TC par an pour
+annuelle moyenne entre \num{1980} et \num{2010} inférée de l'indice AM10 est de \num{0.2} TC par an, tandis qu'elle est réduite à \num{0.02} TC par an pour
 l'indice incluant le VPD. Réciproquement, dans le Golfe Persique (en incluant également le Golfe d'Oman à l'embouchure, voir délimitations en pointillés), la
 fréquence est réduite de \num{0.1} TC par an à \num{0.005} TC par an pour l'indice incluant le VPD par rapport à AM10. . Il en résulte que la production de TC
 dans ces régions est purement une conséquence de l'utilisation de l'humidité relative dans la formulation des indices. Le deuxième domaine dont la
@@ -779,7 +779,7 @@ relative.
 
 Il apparaît alors que les indices utilisant l'humidité relative à \hPa{600} comme prédicteur tendent à présenter une tendance à la hausse, aussi bien sur la
 simulation ARPEGE forcée par la SST observée que dans la réanalyse ERA5, là où les indices utilisant le VPD ne présentent au contraire pas de tendance. Dans la
-majorité des cas, l'absence de tendance dans la variabilité inférée par les indices AVPD et EVPD (l'équivalent du AVPD sur ERA5) est en accord avec les
+majorité des cas, l'absence de tendance dans la variabilité inférée des indices AVPD et EVPD (l'équivalent du AVPD sur ERA5) est en accord avec les
 résultats du schéma de détection, ou des observations IBTrACS dans le cas de la réanalyse ERA5. Ce constat rejoint d'une certaine façon la problématique de la
 divergence dans les projections climatiques documenté dans la littérature entre l'approche directe par détection obective ---~indiquant généralement une
 fréquence d'occurrence à la baisse ou stable~--- et l'approche indirecte des indices de cyclogénèse qui tendent au contraire à indiquer une augmentation de
@@ -989,12 +989,12 @@ reproductibilité et son interprétabilité.
 
 Dans ce chapitre, l'effet de l'introduction de nouveaux prédicteurs dans des indices de cyclogénèse construits par régression de Poisson est évalué. Faisant
 suite aux résultats du \cref{chap:chapitre_3}, dans lequel il est montré que la variabilité interannuelle des indices construits selon ce modèle statistique est
-extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à l'introduction d'un diagnostique représentatif de l'ENSO
+extrêmement robuste aux perturbations de leurs coefficients, une première partie s'est consacrée à l'introduction d'un diagnostic représentatif de l'ENSO
 (ONI) parmi les prédicteurs de la régression, avec l'objectif de parvenir à améliorer la représentation de la variabilité interannuelle de l'indice.
 Spécifiquement, le prédicteur est construit en répliquant en tout point de l'espace l'anomalie de SST pour un pas de temps de donné. De cette façon, le modèle
 statistique est alors contraint à simuler l'effet de l'ENSO sur la variabilité temporelle de la fréquence modélisée. En effet, si le TCS et ses dérivés semblent
 déjà reproduire quelques pics d'activité historique liés à ce mode de variabilité, seuls les évènements les plus importants semblent laisser une empreinte dans
-la variabilité inférée par ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus consistante aux phases de
+la variabilité inférée de ceux-ci. L'introduction explicite d'un indice ENSO dans la régression laisse alors espérer une réponse plus consistante aux phases de
 l'ENSO, notamment pour des évènements d'ampleur moindres.
 
 Étant donnée la nature de l'impact de l'ENSO sur l'activité cyclonique tropicale, à savoir présentant un effet positif dans les bassins de l'océan Pacifique, et
@@ -1006,7 +1006,7 @@ dit que le signe du coefficient, et donc de la sensibilité de la fréquence mod
 
 Toutefois, dans la plupart des régions où le coefficient n'est pas significatif, la valeur suggérée apparaît en accord avec le lien constaté dans le modèle
 entre l'activité cyclonique détectée et l'indice ONI. Il apparaît par ailleurs qu'en dépit de la non-significativité des coefficients, la variabilité
-interannuelle inférée par le nouvel indice régional s'en trouve néanmoins sensiblement améliorée. En particulier, la corrélation entre le nombre annuel de TC
+interannuelle inférée du nouvel indice régional s'en trouve néanmoins sensiblement améliorée. En particulier, la corrélation entre le nombre annuel de TC
 simulé et celui mesuré par le schéma de détection est rendue statistiquement significative dans tous les bassins océaniques au seuil de \prct{95} lorsque
 l'indice ONI est introduit, à l'exception du bassin NAtl, qui est néanmoins nettement plus proche du seuil que les indices n'incluant pas ce prédicteur.
 
@@ -1017,7 +1017,7 @@ ce qui contribue probablement à ce que ces indices excellent dans la répartiti
 Le prédicteur ONI, au contraire, n'est que pure variabilité temporelle, puisque constant dans l'espace par construction. Ainsi le rejet de l'ONI dans la
 régression exprime vraisemblablement l'impossibilité de mettre en relation la variabilité spatiale de l'activité détectée dans le modèle avec le prédicteur ONI.
 Cela laisse entendre que la méthodologie de la régression de Poisson n'est pas la plus adaptée pour espérer améliorer d'avantage la variabilité interannuelle
-inférée par les indices. L'utilisation de modèles statistiques plus sophistiqués pourrait peut-être apporter une solution à ce problème, tels que les modèles
+inférée des indices. L'utilisation de modèles statistiques plus sophistiqués pourrait peut-être apporter une solution à ce problème, tels que les modèles
 dits \textquote{hurdle}. Les modèles de cette famille consistent en fait en la combinaison de deux processus, l'un visant à évaluer la probabilité d'avoir une
 occurrence de TC de façon binaire, et l'autre visant à déterminer l'amplitude de l'évènement, c'est à dire le nombre de TC, sachant qu'il y a occurrence.
 

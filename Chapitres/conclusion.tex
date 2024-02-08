@@ -22,7 +22,7 @@ PI), mais tendent à indiquer des résultats divergeant quant au signe du change
 Motivée par ce désaccord, cette thèse a porté sur l'étude de ces deux méthodes d'évaluation de l'activité cyclonique tropicale. Pour l'approche directe, les
 objectifs étaient notamment de développer des métriques d'évaluation de la performance d'un schéma de détection, pour ensuite proposer de possibles
 améliorations au traqueur du CNRM. Pour l'approche indirecte, l'accent fut principalement porté sur l'amélioration de la représentation de la variabilité
-interannuelle inférée par les indices de cyclogénèse.
+interannuelle inférée des indices de cyclogénèse.
 
 \section*{Rappels des principaux résultats}
 
@@ -78,27 +78,27 @@ accrue. En outre, la modification du coefficient associé à la vorticité absol
 intégrale du biais équatorial présent dans les trois indices présentes.
 
 Il s'avère néanmoins que la modification des coefficients de la régression n'a que peu d'effet sur la représentation de la variabilité interannuelle simulée, ce
-qui indique par conséquent que celle-ci est pilotée par le choix des variables thermiques et dynamiques utilisées.  Un nouveau diagnostique est proposé, basé
+qui indique par conséquent que celle-ci est pilotée par le choix des variables thermiques et dynamiques utilisées. Un nouveau diagnostic est proposé, basé
 sur le comportement de l'indice lors des cyclogénèses observées et consistant à étudier les paramètres de la distribution statistique des rangs de l'indice. Dit
-autrement, ce diagnostique indique dans quelle mesure un indice de cyclogénèse s'active en lieu et date de la formation d'un cyclone dans les observations, par
-rapport au reste du temps. Ce diagnostique montre alors qu'en dépit de l'absence d'amélioration dans la variabilité interannuelle, le fait de re-déterminer les
+autrement, ce diagnostic indique dans quelle mesure un indice de cyclogénèse s'active en lieu et date de la formation d'un cyclone dans les observations, par
+rapport au reste du temps. Ce diagnostic montre alors qu'en dépit de l'absence d'amélioration dans la variabilité interannuelle, le fait de re-déterminer les
 coefficients de la régression en vue d'appliquer l'indice aux données de son choix apporte tout de même une plus-value. L'intérêt de construire des indices de
 cyclogénèse régionaux, c'est à dire dont les coefficients varient selon le bassin océanique, est également évalué. Les indices régionaux offrent les mêmes
 performances à l'échelle interannuelle que leurs homologues globaux, mais offrent toutefois une cohérence sensiblement améliorée avec les densités observées, ce
-qui est particulièrement intéressant dans les bassins de l'hémisphère nord, où la distribution méridionale de l'activité n'est pas la même dans toutes les
+qui est particulièrement intéressant dans les bassins de l'hémisphère nord, où la distribution méridienne de l'activité n'est pas la même dans toutes les
 régions.
 
 Dans un second temps, l'ajout de nouveaux prédicteurs dans la régression a été étudié. Un indice de cyclogénèse régional a été construit sur une simulation
-historique, faite avec le modèle ARPEGE et forcée par les SST observée, en ajoutant comme prédicteur un diagnostique du mode de variabilité El Niño, connu
+historique, faite avec le modèle ARPEGE et forcée par les SST observée, en ajoutant comme prédicteur un diagnostic du mode de variabilité El Niño, connu
 notamment pour son rôle de modulation de l'activité cyclonique. Il est alors montré que l'ajout de ce prédicteur permet d'améliorer la variabilité interannuelle
-dans la plupart des bassins. La corrélation entre la variabilité interannuelle inférée par l'indice et celle mesurée par le traqueur du CNRM est rendue
+dans la plupart des bassins. La corrélation entre la variabilité interannuelle inférée de l'indice et celle mesurée par le traqueur du CNRM est rendue
 statistiquement significative dans quasiment tous les bassins océaniques, quand bien même le prédicteur est rejeté par la régression. Le remplacement de
 l'humidité relative à \hPa{600} par le déficit de saturation d'humidité intégré sur la colonne (VPD) est également évalué, sur la base de la littérature
 indiquant une convergence du signal en changement climatique lorsque ce prédicteur est utilisé. Il est montré que l'utilisation du VPD en lieu et place de
 l'humidité relative réduit très fortement le biais positif présent en Mer Rouge et dans le Golfe Persique présent dans tous les indices utilisant l'humidité
 relative.
 
-Des tendances sont recherchées dans l'évolution du nombre d'occurrence annuel de cyclones tropicaux inféré par différents indices de cyclogénèse appliqués à la
+Des tendances sont recherchées dans l'évolution du nombre d'occurrence annuel de cyclones tropicaux inféré de différents indices de cyclogénèse appliqués à la
 simulation ARPEGE historique ainsi que dans la réanalyse ERA5. La problématique de la divergence entre les approches directes et indirectes dans les projections
 climatiques est visible dans ces séries temporelles, en ce sens que les indices de cyclogénèses basés sur l'humidité relative indiquent une tendance à la hausse
 statistiquement significative, à l'échelle globale et dans plusieurs bassins océaniques. De telles tendances ne sont pas détectées dans les observations ou
@@ -132,7 +132,7 @@ géopotentiel. Celui-ci est fixé à \km{500} autour du centre. Ce rayon est jus
 circulation cyclonique secondaire (convergente) est constatée dans les observations \parencite{frank_structure_1977}. Le rayon de recherche affecte les valeurs
 du paramètre $V_U^T$, et la distance idéale dépend en fait de la taille du système considéré. Une valeur non-appropriée peut aboutir à l'élimination d'un TC par
 le filtre ---~ou au contraire à sa préservation~--- pour de mauvaises raisons. Le traqueur du CNRM contient déjà des routines efficaces de calcul de la taille
-du cyclone, si bien que leur utilisation comme étape préalable au diagnostique de vent thermique, dans le cadre d'une implémentation online de ce filtre,
+du cyclone, si bien que leur utilisation comme étape préalable au diagnostic de vent thermique, dans le cadre d'une implémentation online de ce filtre,
 permettrait de s'assurer que le rayon de recherche est toujours approprié au système considéré.
 
 Les métriques d'évaluation de la similarité des trajectoires présentées dans la \cref{sec:similarité} gagneraient également à être retravaillées, notamment car
@@ -162,7 +162,7 @@ lequel l'environnement est favorable à la formation de cyclones, mais que la cy
 aucune raison de simuler une variabilité interannuelle proche des observations.
 
 Une troisième possibilité existe néanmoins, car il se peut également que le modèle statistique utilisé ici, à savoir la régression de Poisson, ne soit pas
-adéquat pour reproduire la variabilité interannuelle. Le fait que l'ajout du diagnostique ENSO ait présenté une amélioration de la variabilité interannuelle en
+adéquat pour reproduire la variabilité interannuelle. Le fait que l'ajout du diagnostic ENSO ait présenté une amélioration de la variabilité interannuelle en
 dépit du rejet du prédicteur par la régression tend en effet à suggérer que des modèles différents pourraient offrir de meilleures performances dans cette
 optique. Il serait par conséquent intéressant de chercher à mettre en place des modèles statistiques plus sophistiqués. En particulier, il existe des modèles
 qui fonctionnent en deux temps (de type Hurdle), dans lesquels une première composante pourrait avoir pour fonction ---~dans le cas qui nous intéresse~--- de

@@ -21,7 +21,7 @@ cyclonique mesurée au choix de la méthode de détection et montre que ce choix
 expériences à climat plus chaud. En effet, si tous les traqueurs de TC partagent le même objectif, les méthodologies utilisées dans la littérature présentent
 néanmoins une très grande diversité. Les premiers schémas de détection étaient basés uniquement sur la MSLP et la vitesse des vents
 \parencite{bengtsson_simulation_1982,broccoli_can_1990}, tandis que \textcite{haarsma_tropical_1993,bengtsson_hurricanetype_1995} ajoutèrent à cela des critères
-sur la vorticité ainsi qu'un diagnostique sur la présence d'un cœur chaud, dans l'optique de discriminer les perturbations tropicales de leurs homologues
+sur la vorticité ainsi qu'un diagnostic sur la présence d'un cœur chaud, dans l'optique de discriminer les perturbations tropicales de leurs homologues
 extratropicales. \textcite{wu_gcm_1992} utilisent des critères supplémentaires conçus pour discriminer les perturbations tropicales sèches via un seuil
 d'humidité relative, les perturbations équatoriales d'est en interdisant le vent d'est à \hPa{950} au point situé à \ang{4.5} au nord et au sud du cyclone,
 ainsi que les perturbations baroclines en bornant la vitesse du vent d'ouest à \hPa{200} au dessus du centre du cyclone à \ms{5}. Dans
@@ -179,7 +179,7 @@ appliqué à des simulation de réchauffement climatique se doit de pouvoir s'ad
 Dans cette section, nous détaillons les différents filtres qui ont été explorés avant de finalement choisir celui employant le paramètre $V_U^T$ de
 \citeauthor{hart_cyclone_2003} pour \textcite{dulac_assessing_2023}. Une attention particulière est portée à une solution consistant en l'utilisation de la
 latitude du maximum de gradient méridional de hauteur géopotentielle à \hPa{200}. Le parallèle est fait avec la méthode employée dans
-\textcite{bourdin_intercomparison_2022} qui utilise la limite équatoriale du jet subtropical comme limite méridionale.
+\textcite{bourdin_intercomparison_2022} qui utilise la limite équatoriale du jet subtropical comme limite méridienne.
 
 \subsubsection*{Filtre du gradient de hauteur géopotentielle à \hPa{200}}
 
@@ -203,10 +203,10 @@ atteindre des latitudes élevées si les conditions synoptiques le permettent, l
     \label{fig:ophelia_z200}
 \end{figure}
 
-L'usage du gradient de $Z_{200}$ comme limite méridionale présente par ailleurs l'intérêt d'évoluer de manière saisonnière. C'est ce que montre la
+L'usage du gradient de $Z_{200}$ comme limite méridienne présente par ailleurs l'intérêt d'évoluer de manière saisonnière. C'est ce que montre la
 \cref{fig:geopdy_clim} avec la climatologie mensuelle de la latitude du maximum de $\partial Z_{200} / \partial \phi$ sur la période \num{1980}~--~\num{2020},
 sous la forme d'un diagramme de Hovmöller. L'encadré (a) de la \cref{fig:geopdy_clim}, correspondant à l'hémisphère nord, montre par exemple que cette limite
-méridionale tend à se déplacer vers le pôle durant la saison estivale, en particulier sur l'océan Atlantique, mais aussi sur l'ensemble de l'océan Pacifique,
+méridienne tend à se déplacer vers le pôle durant la saison estivale, en particulier sur l'océan Atlantique, mais aussi sur l'ensemble de l'océan Pacifique,
 régions sur lesquelles la moyenne sur le mois d'Août est située au delà de \ang{50}. Inversement, la moyenne mensuelle descend à \ang{39}N au cœur de
 l'Atlantique durant le mois de mars. Dans le bassin WPac, la latitude climatologique du maximum de gradient varie entre \ang{33}N au moins de Janvier, et
 \ang{49}N au moins d'août. Dans l'hémisphère sud, présenté sur la \cref{fig:geopdy_clim}.b, la saisonnalité de latitude du gradient maximal est également
@@ -249,7 +249,7 @@ plusieurs maxima locaux de $\partial Z_{200} / \partial \phi$. Cela aboutit à u
 1\iere~colonne), et plus localement pour la date du 2019--06--24 (1\iere~ligne 1\iere~colonne) entre \ang{0}E et \ang{180}, ou encore au 2019--04--21
 (1\iere~ligne 3\ieme~colonne) entre \ang{180} et \ang{120}W. Dans ces cas, la latitude du gradient maximum saute d'un courant atmosphérique à l'autre, séparés
 de \ang{30} l'un de l'autre. Parmi les autres dates, il apparaît que le gradient à la limite des subtropiques n'est souvent pas suffisamment fort par rapport au
-gradient dans les latitudes plus proches du pôle, si bien que la latitude du gradient maximal frôle localement la limite méridionale du domaine de
+gradient dans les latitudes plus proches du pôle, si bien que la latitude du gradient maximal frôle localement la limite méridienne du domaine de
 fonctionnement du schéma de détection, \ang{60}S, comme par exemple à la date du 2018--09--12 (2\ieme~ligne 2\ieme~colonne), autour de \ang{60}E (bassin SInd)
 ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équivalent à ne pas avoir de filtre.
 %
@@ -263,10 +263,10 @@ ainsi qu'entre \ang{120}W et \ang{60}W (SPac), ce qui est essentiellement équiv
 
 \subsubsection*{Filtre du jet subtropical}
 
-Le filtre du gradient de géopotentiel à \hPa{200} vise essentiellement à définir un courant jet comme limite méridionale des tropiques. D'autres travaux ont
-employé une approche similaire basée sur un diagnostique différent du jet subtropical, en lieu et place d'un seuil fixe en latitude
+Le filtre du gradient de géopotentiel à \hPa{200} vise essentiellement à définir un courant jet comme limite méridienne des tropiques. D'autres travaux ont
+employé une approche similaire basée sur un diagnostic différent du jet subtropical, en lieu et place d'un seuil fixe en latitude
 \parencite{tory_projected_2013,tory_sea_2015,bell_statistical_2018}, dont la formulation est reprise dans \textcite{bourdin_intercomparison_2022}.
-Spécifiquement, le diagnostique du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à
+Spécifiquement, le diagnostic du jet subtropical, ou STJ (\textit{Subtropical Jet}) consiste à lisser les composantes horizontales $u$ et $v$ du vent à
 \hPa{200} avec une fenêtre glissante de 30 jours, puis à déterminer la région dans laquelle le module du vent est supérieur à \ms{25} et où la composante zonale
 $u$ est supérieure à \ms{15}. Le seuil en latitude du filtre est ensuite défini en prenant la limite équatoriale de la zone où ces conditions sont réunies, ou
 en interpolant linéairement entre les deux points les plus proches dans l'éventualité où le STJ ne serait pas défini sur une tranche de longitude donnée, et en
@@ -274,12 +274,12 @@ interpolant temporellement en dernier recours si aucun point ne remplit les crit
 
 La \cref{fig:STJ_random} illustre le fonctionnement du filtre du STJ, en montrant pour les trois dates prises comme exemple sur la 1\iere~ligne de la
 \cref{fig:geopdy_random}, la région où \mbox{$\sqrt{u^2 + v^2} > \ms{25}$} et \mbox{$u > \ms{15}$}, accompagnée de la limite équatoriale de cette zone indiquée
-par les tirets rouges. Le diagnostique du jet subtropical apparaît comme nettement plus lisse que le filtre du gradient de géopotentiel, et est également situé
+par les tirets rouges. Le diagnostic du jet subtropical apparaît comme nettement plus lisse que le filtre du gradient de géopotentiel, et est également situé
 plus proche de l'équateur, même en mettant de côté l'effet \textquote{dents de scie} du gradient de $Z_{200}$. La proximité avec l'équateur s'explique par la
 caractéristique du STJ à prendre la limite équatoriale plutôt que le maximum du champ, tandis que le lissage sur 30 jours glissants permet d'atteindre une
-meilleure homogénéité en longitude. En effet la 2\ieme~ligne de la \cref{fig:STJ_random} présente le diagnostique établi sur les trois mêmes dates sur les
+meilleure homogénéité en longitude. En effet la 2\ieme~ligne de la \cref{fig:STJ_random} présente le diagnostic établi sur les trois mêmes dates sur les
 composantes du vent non lissées et montre une plus grande irrégularité dans le placement du STJ. Sur la 3\ieme~colonne, à la date du 2019--04--21, cela se
-traduit par le même effet que pour le filtre précédent, avec des chutes brutales de la limite équatoriale du jet vers le pôle. Le diagnostique réalisé sans
+traduit par le même effet que pour le filtre précédent, avec des chutes brutales de la limite équatoriale du jet vers le pôle. Le diagnostic réalisé sans
 lissage temporel illustre la grande proximité conceptuelle entre les deux filtres, puisque la structure des régions remplissant les deux conditions correspond
 très fidèlement aux zones de fort gradient de géopotentiel présentées sur la 1\iere~ligne de la \cref{fig:geopdy_random}, l'intensité des courants jets à
 \hPa{200} étant directement proportionnelle à $\partial Z_{200} / \partial \phi$. Il en résulte que le lissage temporel préalable des champs concernés constitue
@@ -288,8 +288,8 @@ la différence fondamentale entre les deux méthodologies.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{STJ_mask_random.png}
-    \caption{Principe de fonctionnement du diagnostique du jet subtropical pour les trois dates de la première ligne de la \cref{fig:geopdy_random}. La seconde
-    ligne applique le diagnostique aux trois mêmes dates avec le vent instantané non lissé. Le tracé en tirets rouge indique la limite équatoriale du jet
+    \caption{Principe de fonctionnement du diagnostic du jet subtropical pour les trois dates de la première ligne de la \cref{fig:geopdy_random}. La seconde
+    ligne applique le diagnostic aux trois mêmes dates avec le vent instantané non lissé. Le tracé en tirets rouge indique la limite équatoriale du jet
     subtropical ainsi déterminé.}
     \label{fig:STJ_random}
 \end{figure}
@@ -308,9 +308,9 @@ de \ang{150}W, suivi d'une rupture additionnelle dans le bassin NAtl, à \ang{30
 filtre du gradient de géopotentiel. Le second cas (2\ieme~ligne) présente un jet subtropical presque absent, avec deux parcelles principales dont le vent ne
 dépasse pas \ms{40}, l'un autour de \ang{60}E et l'autre centré sur \ang{60}W. Les cas où le courant jet est faible et donc imparfaitement défini sont nombreux
 durant la saison estivale, le gradient de température Nord-Sud étant affaibli par les fortes températures dans les latitudes subtropicales en été. Dans ces cas
-là, le seuil en latitude issu du diagnostique du STJ est soit parasité par des structures de petite échelle, comme dans le premier cas, soit particulièrement
+là, le seuil en latitude issu du diagnostic du STJ est soit parasité par des structures de petite échelle, comme dans le premier cas, soit particulièrement
 lisse car interpolé sur une grande partie du domaine, comme dans le second. Le troisième cas (3\ieme~ligne), quant à lui, présente une situation où du vent fort
-est identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostique à \ang{0}N. Ces cas semblent plus rare, et apparaissent limités à
+est identifié au niveau de l'équateur, causant une chute de la latitude issue du diagnostic à \ang{0}N. Ces cas semblent plus rare, et apparaissent limités à
 la saison hivernale, lorsque le STJ est au plus fort, et l'activité cyclonique est nulle. Bien que ce cas concerne ici l'hémisphère nord, l'hémisphère sud est
 lui aussi concerné par ces situations qui témoignent de la difficulté à diagnostiquer objectivement le courant jet ---~toute méthode de détection objective
 étant nécessairement sujette à des erreurs.
@@ -332,7 +332,7 @@ méridional de hauteur géopotentielle à \hPa{200} appliqué au schéma de dét
 bassins, avec de bonnes performances dans les bassin WPac et EPac, mais des résultats mitigés dans le NAtl et le SInd. Il est cependant extrêmement inefficace
 dans le bassin SPac. Outre ces résultats, il apparaît que les champs de $\partial Z_{200} / \partial \phi$ ne sont pas suffisamment lisses pour permettre leur
 utilisation dans l'objectif de filtrer les tempêtes extratropicales, puisque la latitude du gradient maximal est sujette à des ruptures fréquentes conduisant à
-une limite méridionale en dents de scie.
+une limite méridienne en dents de scie.
 
 Le filtre du STJ quant à lui conduit à de biens meilleures performances, le seuil en latitude qui en résulte étant souvent bien plus proche de l'équateur, et
 accomplit cela principalement grâce au lissage temporel des composantes du vent à \hPa{200}. Le lissage sur 30 jours glissants est nécessaire pour espérer
@@ -675,10 +675,10 @@ concerne les systèmes de moyennes latitudes, si bien que la \cref{sec:filtrage_
 sont le maximum de gradient méridional de hauteur géopotentielle à \hPa{200} et la limite équatoriale du jet subtropical. Ces deux méthodologies permettent
 ainsi de définir de façon dynamique un seuil en latitude permettant de filtrer les systèmes indésirables. Les deux filtres sont en fait conceptuellement très
 proches, mais très différents dans leur implémentation. De plus, tous deux présentent des défauts, aboutissant à ce qu'une troisième méthode, basée sur le
-diagnostique du vent thermique dans la haute troposphère et issue de \textcite{hart_cyclone_2003} soit utilisée à la place dans \textcite{dulac_assessing_2023}.
+diagnostic du vent thermique dans la haute troposphère et issue de \textcite{hart_cyclone_2003} soit utilisée à la place dans \textcite{dulac_assessing_2023}.
 Cette dernière semble en effet la plus intéressante en ce sens qu'elle rend possible une implémentation online au sein même du schéma de détection, et qu'elle
 est également capable de filtrer des systèmes dans la ceinture tropicale, puisqu'à la différence des deux autres elle ne cherche pas à définir un seuil en
-latitude, mais comptabilise le nombre de pas de temps pour lesquels un cœur chaud est diagnostiqué. Ce diagnostique est fortement comparable aux diagnostiques
+latitude, mais comptabilise le nombre de pas de temps pour lesquels un cœur chaud est diagnostiqué. Ce diagnostic est fortement comparable aux diagnostics
 de profils verticaux de vent et d'anomalie de température internes au schéma de détection, mais apparaît cependant bien plus efficace, avec toutefois un risque
 non-nul d'éliminer des systèmes qui auraient sinon été appariés avec IBTrACS.
 
