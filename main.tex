@@ -158,38 +158,46 @@
 
 \chapter*{Remerciements}
 
-Le travail de thèse possède une particularité quelque peu paradoxale. S'il s'agit \textit{in fine} d'un travail individuel, il ne peut avoir lieu --- et encore
-moins aboutir --- sans le concours actif d'un plus grand nombre de personnes. En particulier, l'encadrement joue sans conteste le rôle le plus déterminant dans
-le déroulement d'une thèse.
+Si le travail de thèse est \textit{in fine} un travail individuel, il est évident qu'il ne peut avoir lieu, et encore moins aboutir, sans le concours actif d'un
+plus grand nombre de personnes. En particulier, l'encadrement joue sans conteste le rôle le plus déterminant dans le déroulement d'une thèse, et c'est donc
+naturellement à mes deux encadrants, Julien et Fabrice, que j'adresse mes remerciements en premier. Merci d'abord à Julien pour ces trois années, depuis
+l'élaboration du sujet de thèse et la préparation du concours de l'école doctorale jusqu'à la fermeture du bar, le soir après ma soutenance. Ta qualité que j'ai
+préférée pendant la thèse fut sans doute la sérénité avec laquelle tu abordais toutes les situations, qui pour moi se présentaient comme des problèmes soit très
+ennuyeux sinon potentiellement catastrophiques, et de toujours y proposer des solutions, m'offrant ainsi le sentiment soulageant que tout était largement sous
+contrôle. Merci également à Fabrice de m'avoir fait bénéficier d'une part de ta grande expertise sur les cyclones tropicaux ainsi que sur le traqueur, et
+d'autre part de ta bonne humeur et de ton humour quasi constant. Au delà de la thèse, tu m'as également accueilli en stage de fin d'études en 2019, à la suite
+de quoi c'est aussi en grande partie grâce à toi que j'ai pu être embauché au CNRM avant de démarrer la thèse, et tu m'as également présenté Julien pour
+commencer à discuter du projet de thèse. Pour tout ça je te suis très reconnaissant. En tant qu'encadrants de thèse, vous formiez un binôme très complémentaire,
+et je vous dis donc merci encore à tous les deux pour votre rôle essentiel à l'aboutissement de ma thèse.
 
 \chapter*{Résumé}
 \vspace{-1cm}
 
-En raison de leurs impacts dévastateurs sur les populations et les infrastructures des pays concernés, l’évolution future de l’activité cyclonique tropicale
-dans le contexte du réchauffement climatique est une question de grande importance. Deux méthodes existent pour évaluer l’activité cyclonique tropicale en
-changement climatique dans les modèles de climat : l’utilisation d’algorithmes de détection (traqueurs) de cyclones ou l’utilisation d’indices de cyclogénèse 
-qui traduisent des relations statistiques liant l’activité cyclonique observée à des variables atmosphériques de grande échelle. Ces deux méthodes tendent à
+En raison de leurs impacts dévastateurs sur les populations et les infrastructures des pays concernés, l'évolution future de l'activité cyclonique tropicale
+dans le contexte du réchauffement climatique est une question de grande importance. Deux méthodes existent pour évaluer l'activité cyclonique tropicale en
+changement climatique dans les modèles de climat : l'utilisation d’algorithmes de détection (traqueurs) de cyclones ou l'utilisation d’indices de cyclogénèse 
+qui traduisent des relations statistiques liant l'activité cyclonique observée à des variables atmosphériques de grande échelle. Ces deux méthodes tendent à
 fournir des projections opposées dans les simulations climatiques. Motivée par ce désaccord, cette thèse propose alors d’explorer ces deux approches dans le but
 d’apporter des améliorations à chacune d’elles.
 
 Dans un premier temps, le traqueur de cyclones tropicaux du CNRM est appliqué à la réanalyse ERA5 du Centre européen pour les prévisions météorologiques à moyen
-terme, et évalué à l’aide de la base de données d’observations des cyclones IBTrACS. Ses performances sont évaluées en termes de probabilité de détection et de
+terme, et évalué à l'aide de la base de données d’observations des cyclones IBTrACS. Ses performances sont évaluées en termes de probabilité de détection et de
 taux de fausses alarmes (POD et FAR), après optimisation des paramètres de détection, et en appliquant un filtre des systèmes de moyennes latitudes adéquat.
 Plusieurs métriques d’évaluation de la similarité des trajectoires détectées dans ERA5 avec celles observées sont ensuite proposées puis comparées. Ces
-métriques novatrices sont complémentaires au POD et au FAR et montrent que l’optimisation des paramètres de détection s’accompagne d’une légère amélioration de
+métriques novatrices sont complémentaires au POD et au FAR et montrent que l'optimisation des paramètres de détection s’accompagne d’une légère amélioration de
 la similarité des trajectoires.
 
 De nouveaux indices de cyclogénèse sont ensuite construits sur ERA5 par régression de Poisson entre des prédicteurs de grande échelle thermiques et dynamiques,
-et la base de données IBTrACS. Les régressions sont déclinées à différentes résolutions spatiales et temporelles ainsi qu’à l’échelle globale et pour les
+et la base de données IBTrACS. Les régressions sont déclinées à différentes résolutions spatiales et temporelles ainsi qu'à l'échelle globale et pour les
 différents bassins océaniques. La résolution temporelle accrue permet la correction du biais équatorial présent dans les indices les plus communément utilisés.
 La variabilité interannuelle des indices apparaît cependant robuste aux modifications apportées aux coefficients de pondération des variables de grande échelle.
-Suite à ce constat, l’apport de l’ajout de prédicteurs dans les régressions est évalué sur ERA5 ainsi que dans le modèle ARPEGE ; d’une part en ajoutant
-explicitement un diagnostic du mode de variabilité El Niño (ENSO) dans l’indice, et d’autre part en remplaçant l’humidité relative à \hPa{600} par le déficit
-de saturation d’humidité intégré sur la colonne (VPD). L’ajout du diagnostic ENSO permet alors d’améliorer la variabilité interannuelle de l’indice dans la
+Suite à ce constat, l'apport de l'ajout de prédicteurs dans les régressions est évalué sur ERA5 ainsi que dans le modèle ARPEGE ; d’une part en ajoutant
+explicitement un diagnostic du mode de variabilité El Niño (ENSO) dans l’indice, et d’autre part en remplaçant l'humidité relative à \hPa{600} par le déficit
+de saturation d’humidité intégré sur la colonne (VPD). L’ajout du diagnostic ENSO permet alors d’améliorer la variabilité interannuelle de l'indice dans la
 plupart des bassins océaniques. Les corrélations avec les séries observées est rendue statistiquement significative au seuil de \prct{95} dans tous les bassins
-à l’exception du Nord Atlantique. L’utilisation du VPD permet quant à elle d’annuler les tendances à la hausse dans la période historique observée dans les
-indices basés sur l’humidité relative. L’indice obtenu présente donc un meilleur accord avec les observations. Lorsqu’appliqué à des simulations climatiques
-ARPEGE à très haute résolution, sous le scénario RCP8.5, le VPD amplifie également la diminution de l’activité cyclonique.
+à l'exception du Nord Atlantique. L'utilisation du VPD permet quant à elle d’annuler les tendances à la hausse dans la période historique observée dans les
+indices basés sur l'humidité relative. L'indice obtenu présente donc un meilleur accord avec les observations. Lorsqu'appliqué à des simulations climatiques
+ARPEGE à très haute résolution, sous le scénario RCP8.5, le VPD amplifie également la diminution de l'activité cyclonique.
 
 \chapter*{Abstract}
 
