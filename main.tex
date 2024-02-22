@@ -122,6 +122,12 @@
 \setlength{\headheight}{29.8pt}
 \addtolength{\topmargin}{-13.72pt}
 
+\fancypagestyle{plain}{% Redefine plain page style
+  \fancyhf{}% Clear header/footer
+  \renewcommand{\headrulewidth}{0.0pt}%
+  \fancyfoot[C]{\thepage}
+}
+
 \usepackage{emptypage} % Pour ne pas avoir de numéro et de header sur les pages vides
 
 \setlength{\parskip}{8pt}
@@ -156,19 +162,56 @@
 
 \dominitoc
 
-\chapter*{Remerciements}
+%\chapter*{Remerciements}
+%\vspace{-1cm}
+\clearpage
+%\thispagestyle{empty}
 
-Si le travail de thèse est \textit{in fine} un travail individuel, il est évident qu'il ne peut avoir lieu, et encore moins aboutir, sans le concours actif d'un
-plus grand nombre de personnes. En particulier, l'encadrement joue sans conteste le rôle le plus déterminant dans le déroulement d'une thèse, et c'est donc
-naturellement à mes deux encadrants, Julien et Fabrice, que j'adresse mes remerciements en premier. Merci d'abord à Julien pour ces trois années, depuis
-l'élaboration du sujet de thèse et la préparation du concours de l'école doctorale jusqu'à la fermeture du bar, le soir après ma soutenance. Ta qualité que j'ai
-préférée pendant la thèse fut sans doute la sérénité avec laquelle tu abordais toutes les situations, qui pour moi se présentaient comme des problèmes soit très
-ennuyeux sinon potentiellement catastrophiques, et de toujours y proposer des solutions, m'offrant ainsi le sentiment soulageant que tout était largement sous
-contrôle. Merci également à Fabrice de m'avoir fait bénéficier d'une part de ta grande expertise sur les cyclones tropicaux ainsi que sur le traqueur, et
-d'autre part de ta bonne humeur et de ton humour quasi constant. Au delà de la thèse, tu m'as également accueilli en stage de fin d'études en 2019, à la suite
-de quoi c'est aussi en grande partie grâce à toi que j'ai pu être embauché au CNRM avant de démarrer la thèse, et tu m'as également présenté Julien pour
-commencer à discuter du projet de thèse. Pour tout ça je te suis très reconnaissant. En tant qu'encadrants de thèse, vous formiez un binôme très complémentaire,
-et je vous dis donc merci encore à tous les deux pour votre rôle essentiel à l'aboutissement de ma thèse.
+\newenvironment{acknowledgements}%
+    {\cleardoublepage\thispagestyle{plain}\null\vfill\begin{center}%
+    \vspace{-1.5cm}\Large\textbf{Remerciements}\end{center}}%
+    {\vfill\null}
+        \begin{acknowledgements}
+            \hspace{\parindent} Si le travail de thèse est \textit{in fine} un travail individuel, il est évident qu'il ne peut avoir lieu, et encore moins
+            aboutir, sans le concours actif d'un plus grand nombre de personnes. En particulier, l'encadrement joue sans conteste le rôle le plus déterminant
+            dans le déroulement d'une thèse, et c'est donc naturellement à mes deux encadrants, Julien et Fabrice, que j'adresse mes remerciements en premier.
+            Merci d'abord à Julien pour ces trois années, depuis l'élaboration du sujet de thèse et la préparation du concours de l'école doctorale jusqu'à la
+            fermeture du bar, le soir après ma soutenance. Ta qualité que j'ai préférée pendant la thèse fut sans doute la sérénité avec laquelle tu abordais
+            toutes les situations qui, pour moi, se présentaient comme des problèmes soit très ennuyeux sinon potentiellement catastrophiques. Tu proposais
+            toujours les bonnes solutions, m'offrant ainsi le sentiment soulageant que tout était largement sous contrôle. Merci également à Fabrice de m'avoir
+            fait bénéficier d'une part de ta grande expertise sur les cyclones tropicaux ainsi que sur le traqueur, et d'autre part de ta bonne humeur et de ton
+            humour quasi constant. Au delà de la thèse, tu m'as également accueilli en stage de fin d'études en 2019, à la suite de quoi c'est aussi en grande
+            partie grâce à toi que j'ai pu être embauché au CNRM avant de démarrer la thèse, et tu m'as également présenté Julien pour commencer à discuter du
+            projet de thèse. Pour tout ça je te suis très reconnaissant. En tant qu'encadrants de thèse, vous formiez un binôme très complémentaire, et je vous
+            dis donc merci encore à tous les deux pour votre rôle essentiel à l'aboutissement de ma thèse.
+
+            Je tiens également à remercier les membres de mon équipe pour leur bienveillance, pour les réunions d'équipe rythmées par de nombreuses rigolades et
+            les quelques déjeuners d'équipe annuels fort sympathiques. Parmi les membres de l'équipe, je remercie également mes deux co-bureau, Occitane ---
+            arrivée au tout début de ma troisième année --- et Enora --- arrivée à seulement quelques mois de la fin --- pour leur compagnie très agréable. Je
+            remercie également Samuel de l'équipe MOSCA qui --- alors que je travaillais dans cette équipe --- m'a encouragé à mener cette thèse, ce qui
+            impliquait pour moi de démissionner de mon poste actuel et donc pour lui de perdre la personne s'occupant entre autres du contrôle qualité des
+            simulations climatiques régionales. J'ai également une pensée envers Christine, Jonathan et Florence pour leur très grande assiduité dans les mails
+            annonçant les pauses café et destinés à celles et ceux qui, comme moi, sont trop éloigné\textperiodcentered es de l'espace tisanerie pour être
+            averti de ces moments d'une autre façon. Je remercie d'ailleurs toutes celles et ceux avec qui j'ai échangé à ces occasions.
+
+            Je tiens aussi à remercier tous les membres de l'équipe Cyclones du LACy de m'avoir accueilli pendant ma visite scientifique à la Réunion pour
+            m'avoir offert l'opportunité de travailler dans une équipe exclusivement portée sur l'étude de ces systèmes. Je remercie également les membres de
+            mon comité de suivi individuel de thèse, Caroline et Emilia, d'avoir accepté d'en faire partie et de m'avoir aiguillé et fourni de précieux
+            conseils. Je remercie également les membres de mon jury de thèse, qui ont accepté de relire et d'évaluer ce manuscrit et d'assister à ma soutenance,
+            apportant des remarques constructives et pertinentes sur mon travail.
+
+            Un grand merci à Pauline pour son soutien essentiel à chaque étape du parcours. Un grand merci également à toute ma famille d'avoir traversé en
+            grande partie le pays pour assister à ma soutenance, et en particulier à mes parents de m'avoir offert la possibilité de mener mes études jusqu'au
+            bout, sans quoi cette thèse n'aurait pas pu avoir lieu.
+        \end{acknowledgements}
+
+%\begin{minipage}[t]{0.95\textwidth}\parindent2em\parskip2ex
+%
+%    \begin{center}
+%        \Large\textbf{Remerciements}
+%    \end{center}
+%
+%\end{minipage}
 
 \chapter*{Résumé}
 \vspace{-1cm}
