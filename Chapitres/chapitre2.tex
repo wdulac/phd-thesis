@@ -407,15 +407,6 @@ ressemblantes, du fait de la formulation de la condition nécessaire et suffisan
 
 \subsubsection*{La similarité angulaire}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{schema_vec_sequence.png}
-    \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a),
-    inspirée de \textcite{nakamura_shapebased_2013}. Représentation visuelle de l'intersection entre deux trajectoires $C$ et $Q$, notée $C \cap Q$ et de la
-    différence symétrique $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
-    \label{fig:schema_trajectoires}
-\end{figure}
-
 Une trajectoire de cyclone tropical est une série temporelle composée des positions successives du système et accompagnées de diverses informations permettant
 la caractérisation du système, telles que le vent maximum ou la pression centrale. Pour pouvoir évaluer la similarité entre deux trajectoires, on considère non
 pas les positions discrètes du système, mais plutôt la série de vecteurs décrivant le déplacement relatif entre chaque position successive.
@@ -458,6 +449,15 @@ Et son complément, appelé similarité angulaire par :
 %
 C'est cette dernière distance $S_\theta$ qui est utilisée dans cette analyse. De cette façon, la plus faible similarité entre deux vecteurs est atteinte
 lorsqu'ils sont parallèles mais de sens opposés, tandis que la similarité est maximale si deux vecteurs parallèles sont de même sens.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{schema_vec_sequence.png}
+    \caption{Représentation schématique de la décomposition d'une trajectoire $C$ en séquence de vecteurs de déplacements relatifs $C_{\text{vec}}$ (a),
+    inspirée de \textcite{nakamura_shapebased_2013}. Représentation visuelle de l'intersection entre deux trajectoires $C$ et $Q$, notée $C \cap Q$ et de la
+    différence symétrique $C \ominus Q$ (b). Dans cet exemple, $N_\cap = N_\ominus = 4$.}
+    \label{fig:schema_trajectoires}
+\end{figure}
 
 \subsubsection*{Métriques de similarité intégrée}\label{sec:definition_MAS}
 
